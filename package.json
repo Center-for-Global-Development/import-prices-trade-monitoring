@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "import-prices-trade-monitoring",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy",
+    "cf:preview": "npm run build && wrangler dev"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
@@ -36,6 +38,7 @@
     "globals": "^17.5.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "wrangler": "^4.86.0"
   }
 }
