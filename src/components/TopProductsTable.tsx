@@ -1,4 +1,4 @@
-import type { Product } from "@/data/seriesByCountry"
+import { hs2For, type Product } from "@/data/seriesByCountry"
 import {
   Table,
   TableBody,
@@ -9,40 +9,84 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 
-function pct(n: number, digits = 1) {
-  const sign = n > 0 ? "+" : ""
-  return `${sign}${n.toFixed(digits)}%`
+function usdBn(n: number) {
+  return `$${n.toFixed(2)}B`
+}
+
+type Group = {
+  code: string
+  name: string
+  products: Product[]
+  importValueYTD: number
+}
+
+function groupByHS2(products: Product[]): Group[] {
+  const groups = new Map<string, Group>()
+  for (const p of products) {
+    const { code, name } = hs2For(p.hs)
+    let g = groups.get(code)
+    if (!g) {
+      g = { code, name, products: [], importValueYTD: 0 }
+      groups.set(code, g)
+    }
+    g.products.push(p)
+    g.importValueYTD += p.importValueYTD
+  }
+  const out = [...groups.values()]
+  out.forEach((g) => g.products.sort((a, b) => b.shareToUS - a.shareToUS))
+  // Order groups by total import value, descending.
+  out.sort((a, b) => b.importValueYTD - a.importValueYTD)
+  return out
 }
 
 export function TopProductsTable({ products }: { products: Product[] }) {
+  const groups = groupByHS2(products)
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>HS4</TableHead>
+          <TableHead className="w-[180px]">HS</TableHead>
           <TableHead>Product</TableHead>
           <TableHead className="text-right">Share to U.S.</TableHead>
-          <TableHead className="text-right">Latest index</TableHead>
-          <TableHead className="text-right">YTD %</TableHead>
+          <TableHead className="text-right">Current price index</TableHead>
+          <TableHead className="text-right">Total import value YTD</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {products.map((p) => {
-          const last = p.priceSeries[p.priceSeries.length - 1].idx
-          const ytd = ((last - 100) / 100) * 100
-          return (
-            <TableRow key={p.hs}>
-              <TableCell className="font-mono">{p.hs}</TableCell>
-              <TableCell>{p.name}</TableCell>
-              <TableCell className="text-right">
-                <Badge variant="secondary">{Math.round(p.shareToUS * 100)}%</Badge>
-              </TableCell>
-              <TableCell className="text-right tabular-nums">{last.toFixed(1)}</TableCell>
-              <TableCell className="text-right tabular-nums">{pct(ytd)}</TableCell>
-            </TableRow>
-          )
-        })}
+        {groups.map((g) => (
+          <HS2Group key={g.code} group={g} />
+        ))}
       </TableBody>
     </Table>
+  )
+}
+
+function HS2Group({ group }: { group: Group }) {
+  return (
+    <>
+      <TableRow className="bg-muted/50 hover:bg-muted/50">
+        <TableCell className="font-mono font-medium">{group.code}</TableCell>
+        <TableCell className="font-medium">{group.name}</TableCell>
+        <TableCell />
+        <TableCell />
+        <TableCell className="text-right font-medium tabular-nums">
+          {usdBn(group.importValueYTD)}
+        </TableCell>
+      </TableRow>
+      {group.products.map((p) => {
+        const last = p.priceSeries[p.priceSeries.length - 1].idx
+        return (
+          <TableRow key={p.hs}>
+            <TableCell className="pl-8 font-mono text-muted-foreground">{p.hs}</TableCell>
+            <TableCell>{p.name}</TableCell>
+            <TableCell className="text-right">
+              <Badge variant="secondary">{Math.round(p.shareToUS * 100)}%</Badge>
+            </TableCell>
+            <TableCell className="text-right tabular-nums">{last.toFixed(1)}</TableCell>
+            <TableCell className="text-right tabular-nums">{usdBn(p.importValueYTD)}</TableCell>
+          </TableRow>
+        )
+      })}
+    </>
   )
 }

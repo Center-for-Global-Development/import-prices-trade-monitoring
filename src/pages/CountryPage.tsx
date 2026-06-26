@@ -8,7 +8,6 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
-import { SummaryStats } from "@/components/SummaryStats"
 import { TopProductsTable } from "@/components/TopProductsTable"
 import { PriceTrendsChart } from "@/components/PriceTrendsChart"
 import { ImportValueChart } from "@/components/ImportValueChart"
@@ -49,8 +48,6 @@ export function CountryPage() {
         </div>
       </div>
 
-      <SummaryStats data={data} qualifying={qualifying} />
-
       <Card>
         <CardHeader>
           <CardTitle>Top products</CardTitle>
@@ -90,7 +87,7 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Import value</CardTitle>
           <CardDescription>
-            Total U.S. imports from {country.name}, monthly (USD billions).
+            Year-over-year change in cumulative YTD U.S. imports from {country.name}, 2025 vs 2026.
           </CardDescription>
         </CardHeader>
         <CardContent>

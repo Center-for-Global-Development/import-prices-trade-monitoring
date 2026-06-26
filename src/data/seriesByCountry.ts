@@ -6,6 +6,41 @@ export type Product = {
   name: string
   shareToUS: number
   priceSeries: PricePoint[]
+  importValueYTD: number
+}
+
+export type HS2 = { code: string; name: string }
+
+// HS2 chapter names for the HS4 codes referenced in the product library.
+const HS2_NAMES: Record<string, string> = {
+  "03": "Fish & crustaceans",
+  "07": "Edible vegetables",
+  "08": "Edible fruit & nuts",
+  "09": "Coffee, tea & spices",
+  "16": "Preparations of meat & fish",
+  "17": "Sugars & confectionery",
+  "22": "Beverages & spirits",
+  "27": "Mineral fuels & oils",
+  "30": "Pharmaceutical products",
+  "31": "Fertilisers",
+  "40": "Rubber & articles thereof",
+  "42": "Leather goods & handbags",
+  "44": "Wood & articles of wood",
+  "62": "Apparel, woven",
+  "64": "Footwear",
+  "71": "Pearls, precious metals & jewellery",
+  "72": "Iron & steel",
+  "84": "Machinery & mechanical appliances",
+  "85": "Electrical machinery & equipment",
+  "87": "Vehicles",
+  "90": "Optical & medical instruments",
+  "94": "Furniture & bedding",
+  "95": "Toys, games & sports equipment",
+}
+
+export function hs2For(hs: string): HS2 {
+  const code = hs.slice(0, 2)
+  return { code, name: HS2_NAMES[code] ?? "Other" }
 }
 
 export type CountryData = {
@@ -162,11 +197,14 @@ const COUNTRY_DATA: Record<string, CountryData> = (() => {
       const share = shareFor(iso, p.hs, () => 0.05 + rand() * 0.55)
       const drift = (rand() - 0.4) * 0.6
       const noise = 0.8 + rand() * 1.4
+      // Dummy year-to-date import value (USD bn), weighted by share to the U.S.
+      const importValueYTD = Math.round((0.15 + rand() * 3.5) * (0.4 + share) * 100) / 100
       return {
         hs: p.hs,
         name: p.name,
         shareToUS: Math.round(share * 100) / 100,
         priceSeries: makePriceSeries(baseSeed + pi * 11, drift, noise),
+        importValueYTD,
       }
     })
     const baseImports = 5 + ci * 3.5
