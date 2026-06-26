@@ -23,31 +23,49 @@ const PALETTE = [
 ]
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
+  // Only products with a BLS price series can be plotted.
+  const plottable = useMemo(
+    () => products.filter((p) => p.priceSeries.length > 0),
+    [products],
+  )
+
   const [selected, setSelected] = useState<string[]>(() =>
-    products.slice(0, 3).map((p) => p.hs),
+    plottable.slice(0, 3).map((p) => p.hs),
   )
 
   const config = useMemo<ChartConfig>(() => {
     const c: ChartConfig = {}
-    products.forEach((p, i) => {
+    plottable.forEach((p, i) => {
       c[p.hs] = { label: `${p.hs} · ${p.name}`, color: PALETTE[i % PALETTE.length] }
     })
     return c
-  }, [products])
+  }, [plottable])
 
   const data = useMemo(() => {
-    if (products.length === 0) return []
-    const dates = products[0].priceSeries.map((pt) => pt.date)
-    return dates.map((date, i) => {
+    if (plottable.length === 0) return []
+    // Union of all dates across the selected series (they can differ in range).
+    const dates = new Set<string>()
+    plottable.forEach((p) => p.priceSeries.forEach((pt) => dates.add(pt.date)))
+    const sorted = [...dates].sort()
+    return sorted.map((date) => {
       const row: Record<string, string | number> = { date }
-      products.forEach((p) => {
+      plottable.forEach((p) => {
         if (selected.includes(p.hs)) {
-          row[p.hs] = p.priceSeries[i].idx
+          const pt = p.priceSeries.find((x) => x.date === date)
+          if (pt) row[p.hs] = pt.idx
         }
       })
       return row
     })
-  }, [products, selected])
+  }, [plottable, selected])
+
+  if (plottable.length === 0) {
+    return (
+      <p className="text-sm text-muted-foreground">
+        BLS does not publish an import price index for any of these products.
+      </p>
+    )
+  }
 
   const toggle = (hs: string) =>
     setSelected((curr) =>
@@ -63,7 +81,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm">
-              {selected.length} of {products.length} products
+              {selected.length} of {plottable.length} products
               <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </PopoverTrigger>
@@ -71,7 +89,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
             <div className="space-y-2">
               <div className="text-sm font-medium">Show products</div>
               <div className="max-h-72 space-y-2 overflow-y-auto">
-                {products.map((p) => (
+                {plottable.map((p) => (
                   <label
                     key={p.hs}
                     className="flex items-center gap-2 text-sm cursor-pointer"
@@ -96,7 +114,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
           <YAxis domain={["auto", "auto"]} tick={{ fontSize: 12 }} />
           <ChartTooltip content={<ChartTooltipContent />} />
           <ChartLegend content={<ChartLegendContent />} />
-          {products
+          {plottable
             .filter((p) => selected.includes(p.hs))
             .map((p) => (
               <Line
@@ -106,6 +124,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
                 stroke={`var(--color-${p.hs})`}
                 strokeWidth={2}
                 dot={false}
+                connectNulls
               />
             ))}
         </LineChart>

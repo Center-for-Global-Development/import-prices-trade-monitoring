@@ -12,12 +12,6 @@ const MONTH_LABELS = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ]
 
-// Dummy per-month factors used to synthesize a prior year (2024) that we don't
-// have real data for, so the 2025 YoY line isn't flat. Rough sense only.
-const DUMMY_PRIOR_FACTOR = [
-  0.86, 0.89, 0.84, 0.91, 0.88, 0.93, 0.87, 0.9, 0.85, 0.92, 0.88, 0.86,
-]
-
 const config: ChartConfig = {
   yoy2025: { label: "2025 YoY", color: "var(--chart-1)" },
   yoy2026: { label: "2026 YoY", color: "var(--chart-2)" },
@@ -63,10 +57,9 @@ function yoy(
 
 function toYoYRows(data: ImportPoint[]): Row[] {
   const byYear = monthlyByYear(data)
+  const m2024 = byYear["2024"] ?? Array(12).fill(undefined)
   const m2025 = byYear["2025"] ?? Array(12).fill(undefined)
   const m2026 = byYear["2026"] ?? Array(12).fill(undefined)
-  // 2024 is synthesized from 2025 since we have no real data for it.
-  const m2024 = m2025.map((v, i) => (v === undefined ? undefined : v * DUMMY_PRIOR_FACTOR[i]))
 
   const yoy2025 = yoy(m2025, m2024)
   const yoy2026 = yoy(m2026, m2025)

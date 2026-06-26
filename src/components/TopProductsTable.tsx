@@ -33,7 +33,9 @@ function groupByHS2(products: Product[]): Group[] {
     g.importValueYTD += p.importValueYTD
   }
   const out = [...groups.values()]
-  out.forEach((g) => g.products.sort((a, b) => b.shareToUS - a.shareToUS))
+  out.forEach((g) =>
+    g.products.sort((a, b) => (b.shareToUS ?? -1) - (a.shareToUS ?? -1)),
+  )
   // Order groups by total import value, descending.
   out.sort((a, b) => b.importValueYTD - a.importValueYTD)
   return out
@@ -74,15 +76,27 @@ function HS2Group({ group }: { group: Group }) {
         </TableCell>
       </TableRow>
       {group.products.map((p) => {
-        const last = p.priceSeries[p.priceSeries.length - 1].idx
+        const last = p.priceSeries.length
+          ? p.priceSeries[p.priceSeries.length - 1].idx
+          : null
         return (
           <TableRow key={p.hs}>
             <TableCell className="pl-8 font-mono text-muted-foreground">{p.hs}</TableCell>
             <TableCell>{p.name}</TableCell>
             <TableCell className="text-right">
-              <Badge variant="secondary">{Math.round(p.shareToUS * 100)}%</Badge>
+              {p.shareToUS === null ? (
+                <span className="text-xs text-muted-foreground">n/a</span>
+              ) : (
+                <Badge variant="secondary">{Math.round(p.shareToUS * 100)}%</Badge>
+              )}
             </TableCell>
-            <TableCell className="text-right tabular-nums">{last.toFixed(1)}</TableCell>
+            <TableCell className="text-right tabular-nums">
+              {last === null ? (
+                <span className="text-muted-foreground">—</span>
+              ) : (
+                last.toFixed(1)
+              )}
+            </TableCell>
             <TableCell className="text-right tabular-nums">{usdBn(p.importValueYTD)}</TableCell>
           </TableRow>
         )
