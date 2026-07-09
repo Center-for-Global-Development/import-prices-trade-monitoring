@@ -96,8 +96,7 @@ export function CountryPage() {
         <CardContent>
           {data.importValue.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              Monthly Census import values haven't been pulled for {data.name} yet
-              — currently available for the 10 pilot countries only.
+              No monthly Census import value data for {data.name}.
             </p>
           ) : (
             <ImportValueChart data={data.importValue} />

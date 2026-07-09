@@ -16,16 +16,23 @@ the JSON the app imports:
 python3 scripts/build_app_data.py
 ```
 
-The app's data layer is `src/data/tracker.ts`. Monthly bilateral import values
-(the country-level YoY chart) still come from `tracker_data.json` produced by
-the R script below — the researcher data doesn't include them — so that chart
-only shows for the 10 pilot countries.
+The app's data layer is `src/data/tracker.ts`.
+
+## fetch_import_values.py (current: Census monthly imports, all countries)
+
+Monthly total U.S. goods imports from every partner country (the country-level
+YoY chart), via the Census International Trade API — one request per year,
+Schedule C codes mapped to ISO3. Needs `reference/census_apikey.txt`.
+
+```bash
+python3 scripts/fetch_import_values.py   # writes src/data/import_values.json
+```
 
 ## fetch_tracker_data.R (legacy: API pulls)
 
 `fetch_tracker_data.R` pulls tracker data from the BLS/Census/Comtrade APIs and
-writes `src/data/tracker_data.json`. The app now only reads `importValue`
-(Census monthly imports by country) from it.
+writes `src/data/tracker_data.json`. The app no longer reads it — kept for
+reference.
 
 ## What it pulls
 

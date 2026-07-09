@@ -31,7 +31,6 @@ type Group = {
   code: string
   name: string
   products: Product[]
-  usExports: number
 }
 
 function groupByHS2(products: Product[]): Group[] {
@@ -40,23 +39,25 @@ function groupByHS2(products: Product[]): Group[] {
     const { code, name } = hs2For(p.hs)
     let g = groups.get(code)
     if (!g) {
-      g = { code, name, products: [], usExports: 0 }
+      g = { code, name, products: [] }
       groups.set(code, g)
     }
     g.products.push(p)
-    g.usExports += p.usExports
   }
   const out = [...groups.values()]
   out.forEach((g) => g.products.sort((a, b) => b.shareToUS - a.shareToUS))
-  // Order groups by total US-bound export value, descending.
-  out.sort((a, b) => b.usExports - a.usExports)
+  // Order groups by the US-bound export value of the qualifying products in
+  // them (a display ordering only — NOT a true chapter total, since products
+  // below the 10% share threshold are excluded).
+  const sum = (g: Group) => g.products.reduce((n, p) => n + p.usExports, 0)
+  out.sort((a, b) => sum(b) - sum(a))
   return out
 }
 
 // Rows shown before the "Show all" toggle kicks in. Countries can have
 // 1,000+ qualifying products (Canada, Mexico), which makes the page unusable
 // if rendered in full by default.
-const COLLAPSED_ROW_TARGET = 40
+const COLLAPSED_ROW_TARGET = 20
 
 export function TopProductsTable({ products }: { products: Product[] }) {
   const [showAll, setShowAll] = useState(false)
@@ -65,11 +66,12 @@ export function TopProductsTable({ products }: { products: Product[] }) {
   let visible = groups
   if (!showAll) {
     visible = []
-    let rows = 0
+    let remaining = COLLAPSED_ROW_TARGET
     for (const g of groups) {
-      visible.push(g)
-      rows += g.products.length
-      if (rows >= COLLAPSED_ROW_TARGET) break
+      if (remaining <= 0) break
+      const take = g.products.slice(0, remaining)
+      visible.push({ ...g, products: take })
+      remaining -= take.length
     }
   }
   const hiddenCount =
@@ -113,12 +115,8 @@ function HS2Group({ group }: { group: Group }) {
     <>
       <TableRow className="bg-muted/50 hover:bg-muted/50">
         <TableCell className="font-mono font-medium">{group.code}</TableCell>
-        <TableCell className="font-medium">{group.name}</TableCell>
-        <TableCell />
-        <TableCell />
-        <TableCell />
-        <TableCell className="text-right font-medium tabular-nums">
-          {usd(group.usExports)}
+        <TableCell className="font-medium" colSpan={5}>
+          {group.name}
         </TableCell>
       </TableRow>
       {group.products.map((p) => {

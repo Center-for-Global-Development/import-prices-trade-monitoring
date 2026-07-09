@@ -11,14 +11,14 @@
 //                             exports of the product went to the U.S. (OEC).
 //   exempt_share.json         Import-value-weighted % of each HS4 exempt
 //                             from tariffs under the Annex II lists.
-//   tracker_data.json         Legacy R-script pull; still the source for
-//                             monthly bilateral import values (U.S. Census),
-//                             currently available for 10 pilot countries.
+//   import_values.json        Monthly total U.S. goods imports by partner
+//                             country (U.S. Census), fetched by
+//                             scripts/fetch_import_values.py.
 
 import blsRaw from "./bls_series.json"
 import productsRaw from "./products_by_country.json"
 import exemptRaw from "./exempt_share.json"
-import legacyData from "./tracker_data.json"
+import importValuesRaw from "./import_values.json"
 
 export type PricePoint = { date: string; idx: number }
 export type ImportPoint = { date: string; usdBn: number }
@@ -54,14 +54,11 @@ type ProductsRaw = {
   hs4Names: Record<string, string>
   countries: Record<string, { name: string; products: { h: string; s: number; x: number }[] }>
 }
-type LegacyRaw = {
-  countries: Record<string, { importValue?: ImportPoint[] }>
-}
-
 const BLS = blsRaw as unknown as BlsRaw
 const PRODUCTS = productsRaw as ProductsRaw
 const EXEMPT = exemptRaw as Record<string, number>
-const LEGACY = legacyData as unknown as LegacyRaw
+const IMPORT_VALUES = importValuesRaw as unknown as Record<string, [string, number][]>
+
 
 export const BASE_LABEL = BLS.baseLabel
 export const SHARE_YEAR = PRODUCTS.shareYear
@@ -103,7 +100,7 @@ export function getCountryData(iso: string): CountryData | undefined {
       exemptPct: EXEMPT[p.h] ?? null,
       hasPriceSeries: p.h in BLS.series,
     })),
-    importValue: LEGACY.countries[iso]?.importValue ?? [],
+    importValue: (IMPORT_VALUES[iso] ?? []).map(([date, usdBn]) => ({ date, usdBn })),
   }
 }
 

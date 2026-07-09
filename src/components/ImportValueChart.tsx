@@ -12,83 +12,110 @@ const MONTH_LABELS = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ]
 
+// One metric across all panels -> one hue everywhere; the panel title
+// carries the year.
 const config: ChartConfig = {
-  yoy2025: { label: "2025 YoY", color: "var(--chart-1)" },
-  yoy2026: { label: "2026 YoY", color: "var(--chart-2)" },
+  yoy: { label: "YoY change", color: "var(--chart-1)" },
 }
 
-type Row = { month: string; yoy2025: number | null; yoy2026: number | null }
+type Row = { month: string; yoy: number | null }
+type Panel = { year: number; rows: Row[] }
 
-function monthlyByYear(data: ImportPoint[]): Record<string, (number | undefined)[]> {
-  const out: Record<string, (number | undefined)[]> = {}
+function monthlyByYear(data: ImportPoint[]): Record<number, (number | undefined)[]> {
+  const out: Record<number, (number | undefined)[]> = {}
   for (const pt of data) {
     const [year, month] = pt.date.split("-")
+    const y = parseInt(year, 10)
     const m = parseInt(month, 10) - 1
-    if (!out[year]) out[year] = Array(12).fill(undefined)
-    out[year][m] = pt.usdBn
+    if (!out[y]) out[y] = Array(12).fill(undefined)
+    out[y][m] = pt.usdBn
   }
   return out
 }
 
 // YoY % change per the methodology doc: each month's import value vs the same
 // month one year earlier (removes seasonality; NOT cumulative YTD).
-function yoy(
-  monthly: (number | undefined)[],
-  prior: (number | undefined)[],
-): (number | null)[] {
-  return MONTH_LABELS.map((_, m) => {
-    const a = monthly[m]
-    const b = prior[m]
-    if (a === undefined || b === undefined || b === 0) return null
-    return Math.round((a / b - 1) * 1000) / 10
-  })
-}
-
-function toYoYRows(data: ImportPoint[]): Row[] {
+function toPanels(data: ImportPoint[]): Panel[] {
   const byYear = monthlyByYear(data)
-  const m2024 = byYear["2024"] ?? Array(12).fill(undefined)
-  const m2025 = byYear["2025"] ?? Array(12).fill(undefined)
-  const m2026 = byYear["2026"] ?? Array(12).fill(undefined)
-
-  const yoy2025 = yoy(m2025, m2024)
-  const yoy2026 = yoy(m2026, m2025)
-  return MONTH_LABELS.map((month, m) => ({
-    month,
-    yoy2025: yoy2025[m],
-    yoy2026: yoy2026[m],
+  // A year gets a panel when both it and the prior year have data.
+  const years = Object.keys(byYear)
+    .map(Number)
+    .filter((y) => byYear[y - 1])
+    .sort()
+    .slice(-3)
+  return years.map((year) => ({
+    year,
+    rows: MONTH_LABELS.map((month, m) => {
+      const a = byYear[year][m]
+      const b = byYear[year - 1][m]
+      const yoy =
+        a === undefined || b === undefined || b === 0
+          ? null
+          : Math.round((a / b - 1) * 1000) / 10
+      return { month, yoy }
+    }),
   }))
 }
 
 export function ImportValueChart({ data }: { data: ImportPoint[] }) {
-  const rows = toYoYRows(data)
+  const panels = toPanels(data)
+  if (panels.length === 0) {
+    return (
+      <p className="text-sm text-muted-foreground">
+        Not enough history to compute year-over-year changes.
+      </p>
+    )
+  }
+
+  // Shared y-domain so the panels are comparable at a glance.
+  const values = panels.flatMap((p) => p.rows.map((r) => r.yoy)).filter(
+    (v): v is number => v !== null,
+  )
+  const pad = 5
+  const domain: [number, number] = [
+    Math.floor(Math.min(...values, 0) / pad) * pad - pad,
+    Math.ceil(Math.max(...values, 0) / pad) * pad + pad,
+  ]
+
   return (
-    <ChartContainer config={config} className="h-72 w-full">
-      <LineChart data={rows} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-        <YAxis tick={{ fontSize: 12 }} unit="%" />
-        <ReferenceLine y={0} stroke="var(--border)" />
-        <ChartTooltip
-          content={<ChartTooltipContent />}
-          formatter={(value, name) => [`${(value as number).toFixed(1)}%`, name]}
-        />
-        <Line
-          dataKey="yoy2025"
-          name="2025 YoY"
-          stroke="var(--color-yoy2025)"
-          strokeWidth={2}
-          dot={false}
-          connectNulls
-        />
-        <Line
-          dataKey="yoy2026"
-          name="2026 YoY"
-          stroke="var(--color-yoy2026)"
-          strokeWidth={2}
-          dot={false}
-          connectNulls
-        />
-      </LineChart>
-    </ChartContainer>
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {panels.map((p) => (
+        <div key={p.year}>
+          <div className="mb-1 text-sm font-medium">{p.year}</div>
+          <ChartContainer config={config} className="h-44 w-full">
+            <LineChart data={p.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="month"
+                tick={{ fontSize: 11 }}
+                ticks={["Jan", "Apr", "Jul", "Oct"]}
+                tickLine={false}
+              />
+              <YAxis
+                domain={domain}
+                tick={{ fontSize: 11 }}
+                unit="%"
+                width={42}
+              />
+              <ReferenceLine y={0} stroke="var(--border)" />
+              <ChartTooltip
+                content={<ChartTooltipContent />}
+                formatter={(value) => [
+                  `${(value as number).toFixed(1)}%`,
+                  `${p.year} YoY`,
+                ]}
+              />
+              <Line
+                dataKey="yoy"
+                stroke="var(--color-yoy)"
+                strokeWidth={2}
+                dot={false}
+                connectNulls
+              />
+            </LineChart>
+          </ChartContainer>
+        </div>
+      ))}
+    </div>
   )
 }
