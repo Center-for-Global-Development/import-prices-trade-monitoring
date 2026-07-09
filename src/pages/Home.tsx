@@ -1,54 +1,52 @@
-import { Link } from "react-router-dom"
-import { COUNTRIES } from "@/data/countries"
+import { useNavigate } from "react-router-dom"
+import { COUNTRIES } from "@/data/tracker"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { useNavigate } from "react-router-dom"
+  Command,
+  CommandEmpty,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
 
 export function Home() {
   const navigate = useNavigate()
   return (
     <div className="container mx-auto max-w-3xl p-8">
-      <h1 className="text-3xl font-semibold tracking-tight">U.S. Import Price & Trade Tracker</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">CGD Trade Tracker</h1>
       <p className="mt-2 text-muted-foreground">
-        Pick a country to see its U.S. import-price trends and trade flows.
+        U.S. import prices and trade flows for products where the U.S. is a major
+        export market. Pick a country to open its dashboard.
       </p>
 
       <Card className="mt-8">
         <CardHeader>
           <CardTitle>Country</CardTitle>
-          <CardDescription>Select a country to open its dashboard.</CardDescription>
+          <CardDescription>
+            {COUNTRIES.length} countries with at least one product sending ≥10% of
+            its exports to the U.S.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <Select onValueChange={(iso) => navigate(`/country/${iso}`)}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a country..." />
-            </SelectTrigger>
-            <SelectContent>
+        <CardContent>
+          <Command className="rounded-md border">
+            <CommandInput placeholder="Search countries..." />
+            <CommandList className="max-h-96">
+              <CommandEmpty>No country found.</CommandEmpty>
               {COUNTRIES.map((c) => (
-                <SelectItem key={c.iso} value={c.iso}>
-                  {c.name}
-                </SelectItem>
+                <CommandItem
+                  key={c.iso}
+                  value={c.name}
+                  onSelect={() => navigate(`/country/${c.iso}`)}
+                  className="flex justify-between"
+                >
+                  <span>{c.name}</span>
+                  <span className="text-xs text-muted-foreground tabular-nums">
+                    {c.productCount} products · {c.priceSeriesCount} priced
+                  </span>
+                </CommandItem>
               ))}
-            </SelectContent>
-          </Select>
-
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            {COUNTRIES.map((c) => (
-              <Link
-                key={c.iso}
-                to={`/country/${c.iso}`}
-                className="rounded-md border px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </div>
+            </CommandList>
+          </Command>
         </CardContent>
       </Card>
     </div>

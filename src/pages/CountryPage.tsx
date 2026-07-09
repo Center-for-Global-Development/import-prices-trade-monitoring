@@ -1,10 +1,9 @@
 import { Link, useParams } from "react-router-dom"
-import { COUNTRIES } from "@/data/countries"
 import {
   getCountryData,
-  qualifyingProducts,
   QUALIFYING_THRESHOLD,
-} from "@/data/seriesByCountry"
+  SHARE_YEAR,
+} from "@/data/tracker"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
@@ -14,10 +13,9 @@ import { ImportValueChart } from "@/components/ImportValueChart"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
-  const country = COUNTRIES.find((c) => c.iso === iso)
-  const data = getCountryData(iso)
+  const data = getCountryData(iso.toUpperCase())
 
-  if (!country || !data) {
+  if (!data) {
     return (
       <div className="container mx-auto max-w-3xl p-8">
         <p>Country not found.</p>
@@ -28,8 +26,8 @@ export function CountryPage() {
     )
   }
 
-  const qualifying = qualifyingProducts(data)
   const thresholdPct = Math.round(QUALIFYING_THRESHOLD * 100)
+  const withPrice = data.products.filter((p) => p.hasPriceSeries).length
 
   return (
     <div className="container mx-auto max-w-6xl space-y-8 p-8">
@@ -41,28 +39,30 @@ export function CountryPage() {
               All countries
             </Link>
           </Button>
-          <h1 className="text-3xl font-semibold tracking-tight">{country.name}</h1>
+          <h1 className="text-3xl font-semibold tracking-tight">{data.name}</h1>
           <p className="text-muted-foreground">
-            U.S. import prices &amp; trade flows · ISO {country.iso}
+            U.S. import prices &amp; trade flows · ISO {data.iso}
           </p>
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Top products</CardTitle>
+          <CardTitle>Tracked products</CardTitle>
           <CardDescription>
-            HS4 products where ≥{thresholdPct}% of {country.name}'s exports go to the U.S.
-            ({qualifying.length} of {data.products.length} products)
+            HS4 products where ≥{thresholdPct}% of {data.name}'s exports went to
+            the U.S. in {SHARE_YEAR} ({data.products.length} products, {withPrice} with
+            a BLS price series). Tariff status is the import-value-weighted share
+            of the HS4 exempt under Annex II.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {qualifying.length === 0 ? (
+          {data.products.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              No products meet the {thresholdPct}% threshold for {country.name}.
+              No products meet the {thresholdPct}% threshold for {data.name}.
             </p>
           ) : (
-            <TopProductsTable products={qualifying} />
+            <TopProductsTable products={data.products} />
           )}
         </CardContent>
       </Card>
@@ -71,14 +71,16 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Price trends</CardTitle>
           <CardDescription>
-            BLS import price indices, monthly. Multi-select to compare products.
+            BLS import price indices, monthly since Jan 2023, indexed to March
+            2025 = 100. BLS indices cover all U.S. imports of a product, not
+            imports from {data.name} alone. Multi-select to compare products.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {qualifying.length === 0 ? (
+          {data.products.length === 0 ? (
             <p className="text-sm text-muted-foreground">No qualifying products to plot.</p>
           ) : (
-            <PriceTrendsChart products={qualifying} />
+            <PriceTrendsChart products={data.products} />
           )}
         </CardContent>
       </Card>
@@ -87,11 +89,19 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Import value</CardTitle>
           <CardDescription>
-            Year-over-year change in cumulative YTD U.S. imports from {country.name}, 2025 vs 2026.
+            Year-over-year change in monthly U.S. goods imports from {data.name},
+            each month vs the same month a year earlier (U.S. Census).
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ImportValueChart data={data.importValue} />
+          {data.importValue.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              Monthly Census import values haven't been pulled for {data.name} yet
+              — currently available for the 10 pilot countries only.
+            </p>
+          ) : (
+            <ImportValueChart data={data.importValue} />
+          )}
         </CardContent>
       </Card>
     </div>

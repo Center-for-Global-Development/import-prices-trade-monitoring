@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import type { Product } from "@/data/seriesByCountry"
+import { BASE_LABEL, getPriceSeries, type Product } from "@/data/tracker"
 import {
   ChartContainer,
   ChartTooltip,
@@ -8,7 +8,7 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart"
 import type { ChartConfig } from "@/components/ui/chart"
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -25,7 +25,7 @@ const PALETTE = [
 export function PriceTrendsChart({ products }: { products: Product[] }) {
   // Only products with a BLS price series can be plotted.
   const plottable = useMemo(
-    () => products.filter((p) => p.priceSeries.length > 0),
+    () => products.filter((p) => p.hasPriceSeries),
     [products],
   )
 
@@ -42,21 +42,22 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
   }, [plottable])
 
   const data = useMemo(() => {
-    if (plottable.length === 0) return []
-    // Union of all dates across the selected series (they can differ in range).
-    const dates = new Set<string>()
-    plottable.forEach((p) => p.priceSeries.forEach((pt) => dates.add(pt.date)))
-    const sorted = [...dates].sort()
-    return sorted.map((date) => {
-      const row: Record<string, string | number> = { date }
-      plottable.forEach((p) => {
-        if (selected.includes(p.hs)) {
-          const pt = p.priceSeries.find((x) => x.date === date)
-          if (pt) row[p.hs] = pt.idx
+    const active = plottable.filter((p) => selected.includes(p.hs))
+    // date -> { hs4: idx } across the selected series (ranges can differ).
+    const byDate = new Map<string, Record<string, string | number>>()
+    for (const p of active) {
+      for (const pt of getPriceSeries(p.hs)) {
+        let row = byDate.get(pt.date)
+        if (!row) {
+          row = { date: pt.date }
+          byDate.set(pt.date, row)
         }
-      })
-      return row
-    })
+        row[p.hs] = pt.idx
+      }
+    }
+    return [...byDate.values()].sort((a, b) =>
+      (a.date as string).localeCompare(b.date as string),
+    )
   }, [plottable, selected])
 
   if (plottable.length === 0) {
@@ -76,7 +77,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="text-sm text-muted-foreground">
-          Indexed to Jan 2025 = 100
+          Indexed to {BASE_LABEL}
         </div>
         <Popover>
           <PopoverTrigger asChild>
@@ -112,6 +113,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" tick={{ fontSize: 12 }} />
           <YAxis domain={["auto", "auto"]} tick={{ fontSize: 12 }} />
+          <ReferenceLine y={100} stroke="var(--border)" />
           <ChartTooltip content={<ChartTooltipContent />} />
           <ChartLegend content={<ChartLegendContent />} />
           {plottable

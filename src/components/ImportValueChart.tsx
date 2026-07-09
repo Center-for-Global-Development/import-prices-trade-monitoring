@@ -1,4 +1,4 @@
-import type { ImportPoint } from "@/data/seriesByCountry"
+import type { ImportPoint } from "@/data/tracker"
 import {
   ChartContainer,
   ChartTooltip,
@@ -30,27 +30,16 @@ function monthlyByYear(data: ImportPoint[]): Record<string, (number | undefined)
   return out
 }
 
-// Running cumulative YTD; null for months with no data.
-function cumulative(monthly: (number | undefined)[]): (number | null)[] {
-  let running = 0
-  return monthly.map((v) => {
-    if (v === undefined) return null
-    running += v
-    return running
-  })
-}
-
-// YoY % change of cumulative YTD: this year's YTD-through-month vs prior year's.
+// YoY % change per the methodology doc: each month's import value vs the same
+// month one year earlier (removes seasonality; NOT cumulative YTD).
 function yoy(
   monthly: (number | undefined)[],
   prior: (number | undefined)[],
 ): (number | null)[] {
-  const cur = cumulative(monthly)
-  const prev = cumulative(prior)
   return MONTH_LABELS.map((_, m) => {
-    const a = cur[m]
-    const b = prev[m]
-    if (a == null || b == null || b === 0) return null
+    const a = monthly[m]
+    const b = prior[m]
+    if (a === undefined || b === undefined || b === 0) return null
     return Math.round((a / b - 1) * 1000) / 10
   })
 }

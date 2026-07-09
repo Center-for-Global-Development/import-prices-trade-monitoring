@@ -1,8 +1,31 @@
-# Data fetch pipeline
+# Data pipeline
 
-`fetch_tracker_data.R` pulls the real data that backs the tracker and writes
-`src/data/tracker_data.json` (the shape the app consumes), replacing the dummy
-data generated in `src/data/seriesByCountry.ts`.
+## build_app_data.py (current: researcher deliverables → app JSON)
+
+Since July 2026 the app's primary data comes from the researcher's files in
+`researcher data/`. `build_app_data.py` (stdlib-only Python) converts them to
+the JSON the app imports:
+
+| Output (src/data/) | Source file | Contents |
+|---|---|---|
+| `bls_series.json` | `bls_indexed_mar2025.csv` | BLS import price indexes by HS4, monthly since Jan 2023, rebased to **March 2025 = 100** (183 series). |
+| `products_by_country.json` | `product_us_share.csv` | Country × HS4 pairs meeting the ≥10% US-export-share rule (OEC 2024 data; 220 countries, ~28k pairs), with US-bound export values. |
+| `exempt_share.json` | `exemptions_annex_ii_list.xlsx` | Import-value-weighted % of each HS4 exempt from tariffs (Annex II). |
+
+```bash
+python3 scripts/build_app_data.py
+```
+
+The app's data layer is `src/data/tracker.ts`. Monthly bilateral import values
+(the country-level YoY chart) still come from `tracker_data.json` produced by
+the R script below — the researcher data doesn't include them — so that chart
+only shows for the 10 pilot countries.
+
+## fetch_tracker_data.R (legacy: API pulls)
+
+`fetch_tracker_data.R` pulls tracker data from the BLS/Census/Comtrade APIs and
+writes `src/data/tracker_data.json`. The app now only reads `importValue`
+(Census monthly imports by country) from it.
 
 ## What it pulls
 
@@ -49,13 +72,10 @@ Outputs:
 
 ## Notes / caveats
 
-- **Base period:** the app and this script use **Jan 2025 = 100**
-  (`baseMonth` in `products.json`). The original proposal said Jan 2024 = 100 —
-  change `baseMonth` if you want to match the proposal.
+- **Base period:** the R script re-bases to Jan 2025 = 100, but the app now
+  uses the researcher's March 2025 = 100 series from `bls_series.json`; the
+  R script's `priceSeries` output is no longer read by the app.
 - **BLS coverage:** expect several HS4 codes to have no price index. Those
   products keep their import value/share but plot no price line.
-- **Wiring:** the app currently still reads the synthetic data in
-  `seriesByCountry.ts`. Switching it to read `tracker_data.json` is a separate
-  step (not yet done).
 - `legacy_fetch_harmonized_imports.R` is the original researcher script (BLS
   only), kept for reference.

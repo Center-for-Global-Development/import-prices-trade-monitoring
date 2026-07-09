@@ -32,3 +32,6 @@ reference/
 
 # Fetch-script output (regenerated CSVs for researcher inspection)
 scripts/output/
+
+scripts/
+researcher data/
