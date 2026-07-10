@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import { BASE_LABEL, getPriceSeries, type Product } from "@/data/tracker"
+import { TARIFF_EVENTS } from "@/data/events"
 import {
   ChartContainer,
   ChartTooltip,
@@ -114,6 +115,22 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
           <XAxis dataKey="date" tick={{ fontSize: 12 }} />
           <YAxis domain={["auto", "auto"]} tick={{ fontSize: 12 }} />
           <ReferenceLine y={100} stroke="var(--border)" />
+          {TARIFF_EVENTS.filter((e) =>
+            data.some((row) => row.date === e.month),
+          ).map((e) => (
+            <ReferenceLine
+              key={e.month}
+              x={e.month}
+              stroke="var(--muted-foreground)"
+              strokeDasharray="4 4"
+              label={{
+                value: e.label,
+                position: "insideTopLeft",
+                fontSize: 11,
+                fill: "var(--muted-foreground)",
+              }}
+            />
+          ))}
           <ChartTooltip content={<ChartTooltipContent />} />
           <ChartLegend content={<ChartLegendContent />} />
           {plottable

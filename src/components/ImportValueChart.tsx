@@ -1,4 +1,5 @@
 import type { ImportPoint } from "@/data/tracker"
+import { TARIFF_EVENTS } from "@/data/events"
 import {
   ChartContainer,
   ChartTooltip,
@@ -98,6 +99,22 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
                 width={42}
               />
               <ReferenceLine y={0} stroke="var(--border)" />
+              {TARIFF_EVENTS.filter((e) => e.month.startsWith(`${p.year}-`)).map(
+                (e) => (
+                  <ReferenceLine
+                    key={e.month}
+                    x={MONTH_LABELS[parseInt(e.month.slice(5), 10) - 1]}
+                    stroke="var(--muted-foreground)"
+                    strokeDasharray="4 4"
+                    label={{
+                      value: e.label,
+                      position: "insideTopLeft",
+                      fontSize: 10,
+                      fill: "var(--muted-foreground)",
+                    }}
+                  />
+                ),
+              )}
               <ChartTooltip
                 content={<ChartTooltipContent />}
                 formatter={(value) => [

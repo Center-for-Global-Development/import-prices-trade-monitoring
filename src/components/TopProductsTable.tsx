@@ -27,6 +27,20 @@ function TariffBadge({ exemptPct }: { exemptPct: number | null }) {
   return <Badge variant="secondary">{Math.round(exemptPct)}% exempt</Badge>
 }
 
+// Cumulative price change since the March 2025 = 100 baseline: the series is
+// rebased so latest − 100 IS the % change since the tariff baseline.
+function priceChange(p: Product): number | null {
+  if (!p.hasPriceSeries) return null
+  const series = getPriceSeries(p.hs)
+  if (series.length === 0) return null
+  return series[series.length - 1].idx - 100
+}
+
+function fmtChange(delta: number): string {
+  const sign = delta >= 0 ? "+" : "−"
+  return `${sign}${Math.abs(delta).toFixed(1)}%`
+}
+
 type Group = {
   code: string
   name: string
@@ -86,7 +100,7 @@ export function TopProductsTable({ products }: { products: Product[] }) {
             <TableHead>Product</TableHead>
             <TableHead className="text-right">Share to U.S.</TableHead>
             <TableHead className="text-right">Tariff status</TableHead>
-            <TableHead className="text-right">Price index (latest)</TableHead>
+            <TableHead className="text-right">Price change since Mar 2025</TableHead>
             <TableHead className="text-right">Exports to U.S. ({SHARE_YEAR})</TableHead>
           </TableRow>
         </TableHeader>
@@ -106,6 +120,26 @@ export function TopProductsTable({ products }: { products: Product[] }) {
           Collapse
         </Button>
       )}
+      <TariffKey />
+    </div>
+  )
+}
+
+// Placeholder key until the researcher's designer supplies one.
+function TariffKey() {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t pt-3 text-xs text-muted-foreground">
+      <span className="font-medium">Tariff status key:</span>
+      <span className="flex items-center gap-1.5">
+        <Badge variant="destructive">Tariffed</Badge> no Annex II exemption
+      </span>
+      <span className="flex items-center gap-1.5">
+        <Badge variant="secondary">n% exempt</Badge> share of the HS4's U.S.
+        import value that is exempt
+      </span>
+      <span className="flex items-center gap-1.5">
+        <Badge variant="outline">Exempt</Badge> fully exempt
+      </span>
     </div>
   )
 }
@@ -120,8 +154,7 @@ function HS2Group({ group }: { group: Group }) {
         </TableCell>
       </TableRow>
       {group.products.map((p) => {
-        const series = p.hasPriceSeries ? getPriceSeries(p.hs) : []
-        const last = series.length ? series[series.length - 1].idx : null
+        const delta = priceChange(p)
         return (
           <TableRow key={p.hs}>
             <TableCell className="pl-8 font-mono text-muted-foreground">{p.hs}</TableCell>
@@ -133,10 +166,10 @@ function HS2Group({ group }: { group: Group }) {
               <TariffBadge exemptPct={p.exemptPct} />
             </TableCell>
             <TableCell className="text-right tabular-nums">
-              {last === null ? (
+              {delta === null ? (
                 <span className="text-muted-foreground">—</span>
               ) : (
-                last.toFixed(1)
+                fmtChange(delta)
               )}
             </TableCell>
             <TableCell className="text-right tabular-nums">{usd(p.usExports)}</TableCell>

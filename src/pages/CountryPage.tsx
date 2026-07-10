@@ -27,7 +27,9 @@ export function CountryPage() {
   }
 
   const thresholdPct = Math.round(QUALIFYING_THRESHOLD * 100)
-  const withPrice = data.products.filter((p) => p.hasPriceSeries).length
+  // The tracker follows products it can price: qualifying HS4s with a BLS
+  // import price index. The rest of the qualifying basket stays out of view.
+  const priced = data.products.filter((p) => p.hasPriceSeries)
 
   return (
     <div className="container mx-auto max-w-6xl space-y-8 p-8">
@@ -50,19 +52,20 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Tracked products</CardTitle>
           <CardDescription>
-            HS4 products where ≥{thresholdPct}% of {data.name}'s exports went to
-            the U.S. in {SHARE_YEAR} ({data.products.length} products, {withPrice} with
-            a BLS price series). Tariff status is the import-value-weighted share
-            of the HS4 exempt under Annex II.
+            HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
+            {data.name}'s exports went to the U.S. in {SHARE_YEAR} ({priced.length} of{" "}
+            {data.products.length} qualifying products). Tariff status is the
+            import-value-weighted share of the HS4 exempt under Annex II.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {data.products.length === 0 ? (
+          {priced.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              No products meet the {thresholdPct}% threshold for {data.name}.
+              None of {data.name}'s {data.products.length} qualifying products
+              have a BLS import price index.
             </p>
           ) : (
-            <TopProductsTable products={data.products} />
+            <TopProductsTable products={priced} />
           )}
         </CardContent>
       </Card>
@@ -77,10 +80,10 @@ export function CountryPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {data.products.length === 0 ? (
+          {priced.length === 0 ? (
             <p className="text-sm text-muted-foreground">No qualifying products to plot.</p>
           ) : (
-            <PriceTrendsChart products={data.products} />
+            <PriceTrendsChart products={priced} />
           )}
         </CardContent>
       </Card>

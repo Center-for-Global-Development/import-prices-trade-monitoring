@@ -13,7 +13,9 @@ export function Home() {
   const navigate = useNavigate()
   return (
     <div className="container mx-auto max-w-3xl p-8">
-      <h1 className="text-3xl font-semibold tracking-tight">CGD Trade Tracker</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">
+        US Import Price and Value Tracker
+      </h1>
       <p className="mt-2 text-muted-foreground">
         U.S. import prices and trade flows for products where the U.S. is a major
         export market. Pick a country to open its dashboard.
@@ -41,7 +43,7 @@ export function Home() {
                 >
                   <span>{c.name}</span>
                   <span className="text-xs text-muted-foreground tabular-nums">
-                    {c.productCount} products · {c.priceSeriesCount} priced
+                    {c.priceSeriesCount} priced · {c.productCount} qualifying
                   </span>
                 </CommandItem>
               ))}
