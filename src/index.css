@@ -3,61 +3,89 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* CGD brand palette (CGD Data Visualization Style Guide v03, adapted).
+     Everything below maps these onto the app's semantic tokens. */
+  --cgd-teal: #0b4c5b;
+  --cgd-gold: #ffb52c;
+  --cgd-teal-gray: #85a5ad;
+  --cgd-light-teal: #006970;
+  --cgd-cream: #f3f6f7;
+  --cgd-dark-gray: #394649;
+  --cgd-teal-black: #1a272a;
+  --cgd-blue: #2d99b5;
+  --cgd-light-blue: #bfdee0;
+  --cgd-light-gold: #fee8bf;
+  --cgd-light-gray: #dfe0e2;
+  --cgd-red: #d15553;
+  --cgd-green: #00896c;
+
+  --background: #ffffff;
+  --foreground: var(--cgd-teal-black);
+  --card: #ffffff;
+  --card-foreground: var(--cgd-teal-black);
+  --popover: #ffffff;
+  --popover-foreground: var(--cgd-teal-black);
+  --primary: var(--cgd-teal);
+  --primary-foreground: #ffffff;
+  --secondary: var(--cgd-cream);
+  --secondary-foreground: var(--cgd-teal);
+  --muted: var(--cgd-cream);
+  --muted-foreground: #55686e;
+  --accent: var(--cgd-cream);
+  --accent-foreground: var(--cgd-teal);
+  --destructive: var(--cgd-red);
+  --destructive-foreground: #ffffff;
+  --border: var(--cgd-light-gray);
+  --input: var(--cgd-light-gray);
+  --ring: var(--cgd-light-teal);
+  /* Categorical order per the style guide, with its two pale entries (light
+     blue, light gold) skipped — they can't hold a 2px line on white — and
+     dark gray seated between blue and teal gray so adjacent series stay
+     distinguishable (checked with the palette validator). */
+  --chart-1: var(--cgd-light-teal);
+  --chart-2: var(--cgd-gold);
+  --chart-3: var(--cgd-blue);
+  --chart-4: var(--cgd-dark-gray);
+  --chart-5: var(--cgd-teal-gray);
+  /* Stoplight palette: reserved for status (tariff badges), never series. */
+  --status-good: var(--cgd-green);
+  --status-caution: var(--cgd-gold);
+  --status-bad: var(--cgd-red);
   --radius: 0.625rem;
 }
 
+/* The app ships light-only today; these keep dark serviceable if a toggle
+   ever lands. Chart slots swap to the palette's lighter steps. */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --background: var(--cgd-teal-black);
+  --foreground: var(--cgd-cream);
+  --card: #22343a;
+  --card-foreground: var(--cgd-cream);
+  --popover: #22343a;
+  --popover-foreground: var(--cgd-cream);
+  --primary: var(--cgd-blue);
+  --primary-foreground: var(--cgd-teal-black);
+  --secondary: #2a3a3f;
+  --secondary-foreground: var(--cgd-cream);
+  --muted: #2a3a3f;
+  --muted-foreground: #9db4ba;
+  --accent: #2a3a3f;
+  --accent-foreground: var(--cgd-cream);
+  --destructive: var(--cgd-red);
+  --destructive-foreground: var(--cgd-cream);
+  --border: var(--cgd-dark-gray);
+  --input: var(--cgd-dark-gray);
+  --ring: var(--cgd-blue);
+  --chart-1: var(--cgd-blue);
+  --chart-2: var(--cgd-gold);
+  --chart-3: var(--cgd-light-blue);
+  --chart-4: var(--cgd-teal-gray);
+  --chart-5: var(--cgd-light-gold);
 }
 
 @theme inline {
+  --font-sans: "sofia-pro", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Bitter", Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -94,5 +122,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Brand type roles: teal headings, serif body copy (Bitter), sans UI. */
+  [data-slot="card-title"] {
+    color: var(--primary);
+  }
+  [data-slot="card-description"] {
+    font-family: var(--font-serif);
   }
 }

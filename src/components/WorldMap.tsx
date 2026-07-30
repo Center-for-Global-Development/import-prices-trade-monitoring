@@ -51,7 +51,7 @@ export function WorldMap() {
                   ? "var(--chart-1)"
                   : tracked
                     ? "color-mix(in oklab, var(--chart-1) 35%, var(--background))"
-                    : "var(--muted)"
+                    : "var(--cgd-light-gray)" // CGD none/neutral
               }
               className={tracked ? "cursor-pointer" : undefined}
               onClick={tracked ? () => navigate(`/country/${c.iso}`) : undefined}

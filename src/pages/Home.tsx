@@ -14,10 +14,11 @@ export function Home() {
   const navigate = useNavigate()
   return (
     <div className="container mx-auto max-w-5xl p-8">
-      <h1 className="text-3xl font-semibold tracking-tight">
+      <h1 className="text-3xl font-semibold tracking-tight text-primary">
         US Import Price and Value Tracker
       </h1>
-      <p className="mt-2 text-muted-foreground">
+      <div className="mt-3 h-1 w-12 rounded-full bg-(--cgd-gold)" />
+      <p className="mt-3 font-serif text-muted-foreground">
         U.S. import prices and trade flows for products where the U.S. is a major
         export market. Pick a country to open its dashboard.
       </p>

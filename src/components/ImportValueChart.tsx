@@ -68,27 +68,30 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
           <div className="mb-1 text-sm font-medium">{p.year}</div>
           <ChartContainer config={config} className="h-44 w-full">
             <LineChart data={p.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid vertical={false} stroke="var(--border)" />
               <XAxis
                 dataKey="month"
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 11, fill: "var(--foreground)" }}
                 ticks={["Jan", "Apr", "Jul", "Oct"]}
+                axisLine={{ stroke: "var(--foreground)" }}
                 tickLine={false}
               />
               <YAxis
                 domain={domain}
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 11, fill: "var(--foreground)" }}
+                axisLine={false}
+                tickLine={false}
                 unit="%"
                 width={42}
               />
-              <ReferenceLine y={0} stroke="var(--border)" />
+              <ReferenceLine y={0} stroke="var(--cgd-teal-gray)" />
               {TARIFF_EVENTS.filter((e) => e.month.startsWith(`${p.year}-`)).map(
                 (e) => (
                   <ReferenceLine
                     key={e.month}
                     x={MONTH_LABELS[parseInt(e.month.slice(5), 10) - 1]}
-                    stroke="var(--muted-foreground)"
-                    strokeDasharray="4 4"
+                    stroke="var(--cgd-teal-gray)"
+                    strokeDasharray="10 4"
                     label={{
                       value: e.label,
                       position: "insideTopLeft",
@@ -108,7 +111,7 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
               <Line
                 dataKey="yoy"
                 stroke="var(--color-yoy)"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 dot={false}
                 connectNulls
               />

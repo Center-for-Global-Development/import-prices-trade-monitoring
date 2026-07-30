@@ -42,8 +42,11 @@ export function CountryPage() {
               All countries
             </Link>
           </Button>
-          <h1 className="text-3xl font-semibold tracking-tight">{data.name}</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-semibold tracking-tight text-primary">
+            {data.name}
+          </h1>
+          <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
+          <p className="font-serif text-muted-foreground">
             U.S. import prices &amp; trade flows
           </p>
         </div>

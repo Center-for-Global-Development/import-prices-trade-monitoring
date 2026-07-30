@@ -18,13 +18,25 @@ function usd(n: number) {
   return `$${n.toFixed(0)}`
 }
 
+// CGD stoplight palette: tariffed = bad, partially exempt = caution, fully
+// exempt = good. Meaning is carried by the label, never color alone.
 function TariffBadge({ exemptPct }: { exemptPct: number | null }) {
   if (exemptPct === null) {
     return <span className="text-xs text-muted-foreground">n/a</span>
   }
   if (exemptPct === 0) return <Badge variant="destructive">Tariffed</Badge>
-  if (exemptPct === 100) return <Badge variant="outline">Exempt</Badge>
-  return <Badge variant="secondary">{Math.round(exemptPct)}% exempt</Badge>
+  if (exemptPct === 100) {
+    return (
+      <Badge className="border-transparent bg-(--status-good)/12 text-(--status-good)">
+        Exempt
+      </Badge>
+    )
+  }
+  return (
+    <Badge className="border-transparent bg-(--status-caution)/25 text-foreground">
+      {Math.round(exemptPct)}% exempt
+    </Badge>
+  )
 }
 
 // Cumulative price change since the March 2025 = 100 baseline: the series is
@@ -134,11 +146,16 @@ function TariffKey() {
         <Badge variant="destructive">Tariffed</Badge> no Annex II exemption
       </span>
       <span className="flex items-center gap-1.5">
-        <Badge variant="secondary">n% exempt</Badge> share of the HS4's U.S.
-        import value that is exempt
+        <Badge className="border-transparent bg-(--status-caution)/25 text-foreground">
+          n% exempt
+        </Badge>{" "}
+        share of the HS4's U.S. import value that is exempt
       </span>
       <span className="flex items-center gap-1.5">
-        <Badge variant="outline">Exempt</Badge> fully exempt
+        <Badge className="border-transparent bg-(--status-good)/12 text-(--status-good)">
+          Exempt
+        </Badge>{" "}
+        fully exempt
       </span>
     </div>
   )

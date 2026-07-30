@@ -111,18 +111,30 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
       </div>
       <ChartContainer config={config} className="h-80 w-full">
         <LineChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-          <YAxis domain={["auto", "auto"]} tick={{ fontSize: 12 }} />
-          <ReferenceLine y={100} stroke="var(--border)" />
+          {/* CGD chart furniture: solid light-gray horizontal grid only,
+              teal-black axis text, teal-gray separators/indicators. */}
+          <CartesianGrid vertical={false} stroke="var(--border)" />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 12, fill: "var(--foreground)" }}
+            axisLine={{ stroke: "var(--foreground)" }}
+            tickLine={false}
+          />
+          <YAxis
+            domain={["auto", "auto"]}
+            tick={{ fontSize: 12, fill: "var(--foreground)" }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <ReferenceLine y={100} stroke="var(--cgd-teal-gray)" />
           {TARIFF_EVENTS.filter((e) =>
             data.some((row) => row.date === e.month),
           ).map((e) => (
             <ReferenceLine
               key={e.month}
               x={e.month}
-              stroke="var(--muted-foreground)"
-              strokeDasharray="4 4"
+              stroke="var(--cgd-teal-gray)"
+              strokeDasharray="10 4"
               label={{
                 value: e.label,
                 position: "insideTopLeft",
@@ -141,7 +153,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
                 type="monotone"
                 dataKey={p.hs}
                 stroke={`var(--color-${p.hs})`}
-                strokeWidth={2}
+                strokeWidth={2.5}
                 dot={false}
                 connectNulls
               />
