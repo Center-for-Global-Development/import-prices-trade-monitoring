@@ -10,6 +10,7 @@ import { ChevronLeft } from "lucide-react"
 import { TopProductsTable } from "@/components/TopProductsTable"
 import { PriceTrendsChart } from "@/components/PriceTrendsChart"
 import { ImportValueChart } from "@/components/ImportValueChart"
+import { CountryOverview } from "@/components/CountryOverview"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
@@ -48,27 +49,7 @@ export function CountryPage() {
         </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Tracked products</CardTitle>
-          <CardDescription>
-            HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
-            {data.name}'s exports went to the U.S. in {SHARE_YEAR} ({priced.length} of{" "}
-            {data.products.length} qualifying products). Tariff status is the
-            import-value-weighted share of the HS4 exempt under Annex II.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {priced.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              None of {data.name}'s {data.products.length} qualifying products
-              have a BLS import price index.
-            </p>
-          ) : (
-            <TopProductsTable products={priced} />
-          )}
-        </CardContent>
-      </Card>
+      <CountryOverview data={data} />
 
       <Card>
         <CardHeader>
@@ -103,6 +84,28 @@ export function CountryPage() {
             </p>
           ) : (
             <ImportValueChart data={data.importValue} />
+          )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Tracked products</CardTitle>
+          <CardDescription>
+            HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
+            {data.name}'s exports went to the U.S. in {SHARE_YEAR} ({priced.length} of{" "}
+            {data.products.length} qualifying products). Tariff status is the
+            import-value-weighted share of the HS4 exempt under Annex II.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {priced.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              None of {data.name}'s {data.products.length} qualifying products
+              have a BLS import price index.
+            </p>
+          ) : (
+            <TopProductsTable products={priced} />
           )}
         </CardContent>
       </Card>

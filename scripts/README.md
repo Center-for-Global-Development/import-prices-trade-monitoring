@@ -86,3 +86,18 @@ Outputs:
   products keep their import value/share but plot no price line.
 - `legacy_fetch_harmonized_imports.R` is the original researcher script (BLS
   only), kept for reference.
+
+## build_world_map.mjs (world-map geometry for the home page)
+
+Precomputes SVG paths for the clickable country map from world-atlas
+countries-110m (Natural Earth), keyed by ISO3. Needs the dev deps
+`d3-geo topojson-client world-atlas i18n-iso-countries` (in package.json).
+Rerun only if the projection or geometry source changes.
+
+```bash
+node scripts/build_world_map.mjs   # writes src/data/world_map.json
+```
+
+110m resolution omits microstates and small islands (plus city-states like
+Singapore and Hong Kong) — those countries are reachable through the
+searchable list only.

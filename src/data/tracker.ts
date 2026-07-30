@@ -69,6 +69,11 @@ export type Country = {
   name: string
   productCount: number
   priceSeriesCount: number
+  // Qualifying products fully tariffed (0% exempt) / fully exempt (100%)
+  // under Annex II. Partially exempt and not-in-workbook products count in
+  // neither bucket.
+  tariffedCount: number
+  exemptCount: number
 }
 
 export const COUNTRIES: Country[] = Object.entries(PRODUCTS.countries)
@@ -77,8 +82,38 @@ export const COUNTRIES: Country[] = Object.entries(PRODUCTS.countries)
     name: c.name,
     productCount: c.products.length,
     priceSeriesCount: c.products.filter((p) => p.h in BLS.series).length,
+    tariffedCount: c.products.filter((p) => EXEMPT[p.h] === 0).length,
+    exemptCount: c.products.filter((p) => EXEMPT[p.h] === 100).length,
   }))
   .sort((a, b) => a.name.localeCompare(b.name))
+
+export const COUNTRY_BY_ISO: Record<string, Country> = Object.fromEntries(
+  COUNTRIES.map((c) => [c.iso, c]),
+)
+
+// Total U.S. goods imports from the country in a calendar year, USD bn.
+// Null when the year is missing months (partial years would understate it).
+export function importsInYear(points: ImportPoint[], year: number): number | null {
+  const months = points.filter((p) => p.date.startsWith(`${year}-`))
+  if (months.length < 12) return null
+  return months.reduce((n, p) => n + p.usdBn, 0)
+}
+
+// YoY % change for the latest month that has a same-month-prior-year
+// comparison (the methodology's monthly YoY, applied to the newest point).
+export function latestImportYoY(
+  points: ImportPoint[],
+): { month: string; pct: number } | null {
+  const byDate = new Map(points.map((p) => [p.date, p.usdBn]))
+  for (let i = points.length - 1; i >= 0; i--) {
+    const { date, usdBn } = points[i]
+    const prior = byDate.get(`${parseInt(date, 10) - 1}${date.slice(4)}`)
+    if (prior !== undefined && prior !== 0) {
+      return { month: date, pct: (usdBn / prior - 1) * 100 }
+    }
+  }
+  return null
+}
 
 export function getPriceSeries(hs: string): PricePoint[] {
   const s = BLS.series[hs]

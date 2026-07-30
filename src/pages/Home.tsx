@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { COUNTRIES } from "@/data/tracker"
+import { WorldMap } from "@/components/WorldMap"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import {
   Command,
@@ -12,7 +13,7 @@ import {
 export function Home() {
   const navigate = useNavigate()
   return (
-    <div className="container mx-auto max-w-3xl p-8">
+    <div className="container mx-auto max-w-5xl p-8">
       <h1 className="text-3xl font-semibold tracking-tight">
         US Import Price and Value Tracker
       </h1>
@@ -26,10 +27,12 @@ export function Home() {
           <CardTitle>Country</CardTitle>
           <CardDescription>
             {COUNTRIES.length} countries with at least one product sending ≥10% of
-            its exports to the U.S.
+            its exports to the U.S. Click the map or search the list — smaller
+            territories appear in the list only.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-6">
+          <WorldMap />
           <Command className="rounded-md border">
             <CommandInput placeholder="Search countries..." />
             <CommandList className="max-h-96">
@@ -43,7 +46,7 @@ export function Home() {
                 >
                   <span>{c.name}</span>
                   <span className="text-xs text-muted-foreground tabular-nums">
-                    {c.priceSeriesCount} priced · {c.productCount} qualifying
+                    {c.tariffedCount} tariffed · {c.exemptCount} exempt
                   </span>
                 </CommandItem>
               ))}
