@@ -32,12 +32,12 @@ function Stat({
   detail?: string
 }) {
   return (
-    <Card>
-      <CardContent className="pt-6">
-        <div className="text-sm text-muted-foreground">{label}</div>
-        <div className="mt-1 text-2xl font-semibold">{value}</div>
+    <Card className="py-3 sm:py-4">
+      <CardContent className="px-3 sm:px-4">
+        <div className="text-xs text-muted-foreground sm:text-sm">{label}</div>
+        <div className="mt-0.5 text-xl font-semibold sm:text-2xl">{value}</div>
         {detail && (
-          <div className="mt-1 text-xs text-muted-foreground">{detail}</div>
+          <div className="mt-0.5 text-xs text-muted-foreground">{detail}</div>
         )}
       </CardContent>
     </Card>
@@ -54,7 +54,9 @@ export function CountryOverview({ data }: { data: CountryData }) {
   const exempt = data.products.filter((p) => p.exemptPct === 100).length
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    // 2-up even on phones (the tiles are compact enough), 4-up once the
+    // full-width row fits; gap stays tighter than the page's card spacing.
+    <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
       <Stat
         label={`U.S. imports (${IMPORTS_YEAR})`}
         value={total === null ? "—" : usdBn(total)}

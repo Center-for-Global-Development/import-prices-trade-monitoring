@@ -44,7 +44,7 @@ export function CountryPage() {
           </Button>
           <h1 className="text-3xl font-semibold tracking-tight">{data.name}</h1>
           <p className="text-muted-foreground">
-            U.S. import prices &amp; trade flows · ISO {data.iso}
+            U.S. import prices &amp; trade flows
           </p>
         </div>
       </div>
