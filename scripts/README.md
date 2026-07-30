@@ -101,3 +101,23 @@ node scripts/build_world_map.mjs   # writes src/data/world_map.json
 110m resolution omits microstates and small islands (plus city-states like
 Singapore and Hong Kong) — those countries are reachable through the
 searchable list only.
+
+## build_app_data_v2.py (current: data v2 deliverables → app JSON)
+
+Since the researcher's July 30 2026 "data v2" drop, this supersedes BOTH
+`build_app_data.py` and `fetch_import_values.py`. Stdlib-only, fully offline.
+Reads `researcher data/data v2/` and writes all four app JSONs:
+
+| Output (src/data/) | Source | Contents |
+|---|---|---|
+| `products_by_country.json` | `us_export_share_ytd.csv` | Country × HS4 pairs with `us_export_share_ytd` ≥10% (Census YTD imports ÷ OEC-estimated global exports; shares >100% capped at 100% per the RA). `x` is now U.S. imports over the share period, not OEC exports. |
+| `import_values.json` | `Census_Country_Import_Cumulative_YoY.xlsx` | Monthly imports (USD bn) + the researcher's **cumulative YTD YoY** per country. Placeholder months after the data cutoff are dropped. |
+| `bls_series.json` | `bls_indexed_mar2025.csv` | Unchanged from v1 (byte-identical file). |
+| `exempt_share.json` | `exemptions_annex_ii_list.xlsx` | Unchanged from v1 (byte-identical file). |
+
+CTY_CODE → ISO3 is recovered offline from `us_export_share_multiyear.csv` +
+`unmatched_oec_country_hs4.csv`; HS4 names from `usa_trade_share_comparison.xlsx`.
+
+```bash
+python3 scripts/build_app_data_v2.py
+```

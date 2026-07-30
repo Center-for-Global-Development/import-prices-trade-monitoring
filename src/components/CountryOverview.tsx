@@ -71,7 +71,7 @@ export function CountryOverview({ data }: { data: CountryData }) {
         detail="fully exempt under Annex II"
       />
       <Stat
-        label="Import value YoY"
+        label="Imports YTD vs year earlier"
         value={
           yoy === null
             ? "—"
@@ -79,8 +79,8 @@ export function CountryOverview({ data }: { data: CountryData }) {
         }
         detail={
           yoy === null
-            ? "no year-earlier month to compare"
-            : `${monthLabel(yoy.month)} vs a year earlier`
+            ? "no year-earlier period to compare"
+            : `cumulative through ${monthLabel(yoy.month)}`
         }
       />
     </div>

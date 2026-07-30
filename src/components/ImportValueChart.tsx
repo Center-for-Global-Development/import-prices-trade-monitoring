@@ -16,45 +16,28 @@ const MONTH_LABELS = [
 // One metric across all panels -> one hue everywhere; the panel title
 // carries the year.
 const config: ChartConfig = {
-  yoy: { label: "YoY change", color: "var(--chart-1)" },
+  yoy: { label: "Cumulative YoY", color: "var(--chart-1)" },
 }
 
 type Row = { month: string; yoy: number | null }
 type Panel = { year: number; rows: Row[] }
 
-function monthlyByYear(data: ImportPoint[]): Record<number, (number | undefined)[]> {
-  const out: Record<number, (number | undefined)[]> = {}
-  for (const pt of data) {
-    const [year, month] = pt.date.split("-")
-    const y = parseInt(year, 10)
-    const m = parseInt(month, 10) - 1
-    if (!out[y]) out[y] = Array(12).fill(undefined)
-    out[y][m] = pt.usdBn
-  }
-  return out
-}
-
-// YoY % change per the methodology doc: each month's import value vs the same
-// month one year earlier (removes seasonality; NOT cumulative YTD).
+// Cumulative (YTD) YoY per the v2 methodology: imports Jan..M vs the same
+// months a year earlier. The values come straight from the researcher's
+// Census workbook (ImportPoint.cumYoy), not computed here.
 function toPanels(data: ImportPoint[]): Panel[] {
-  const byYear = monthlyByYear(data)
-  // A year gets a panel when both it and the prior year have data.
-  const years = Object.keys(byYear)
-    .map(Number)
-    .filter((y) => byYear[y - 1])
-    .sort()
-    .slice(-3)
+  const byYear: Record<number, (number | null)[]> = {}
+  for (const pt of data) {
+    if (pt.cumYoy === null) continue
+    const y = parseInt(pt.date, 10)
+    const m = parseInt(pt.date.slice(5), 10) - 1
+    if (!byYear[y]) byYear[y] = Array(12).fill(null)
+    byYear[y][m] = pt.cumYoy
+  }
+  const years = Object.keys(byYear).map(Number).sort().slice(-3)
   return years.map((year) => ({
     year,
-    rows: MONTH_LABELS.map((month, m) => {
-      const a = byYear[year][m]
-      const b = byYear[year - 1][m]
-      const yoy =
-        a === undefined || b === undefined || b === 0
-          ? null
-          : Math.round((a / b - 1) * 1000) / 10
-      return { month, yoy }
-    }),
+    rows: MONTH_LABELS.map((month, m) => ({ month, yoy: byYear[year][m] })),
   }))
 }
 
@@ -119,7 +102,7 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
                 content={<ChartTooltipContent />}
                 formatter={(value) => [
                   `${(value as number).toFixed(1)}%`,
-                  `${p.year} YoY`,
+                  `${p.year} YTD YoY`,
                 ]}
               />
               <Line

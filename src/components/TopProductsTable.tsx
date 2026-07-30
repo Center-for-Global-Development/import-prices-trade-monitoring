@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { getPriceSeries, hs2For, SHARE_YEAR, type Product } from "@/data/tracker"
+import { getPriceSeries, hs2For, SHARE_PERIOD, type Product } from "@/data/tracker"
 import { Button } from "@/components/ui/button"
 import {
   Table,
@@ -60,10 +60,10 @@ function groupByHS2(products: Product[]): Group[] {
   }
   const out = [...groups.values()]
   out.forEach((g) => g.products.sort((a, b) => b.shareToUS - a.shareToUS))
-  // Order groups by the US-bound export value of the qualifying products in
+  // Order groups by the U.S. import value of the qualifying products in
   // them (a display ordering only — NOT a true chapter total, since products
   // below the 10% share threshold are excluded).
-  const sum = (g: Group) => g.products.reduce((n, p) => n + p.usExports, 0)
+  const sum = (g: Group) => g.products.reduce((n, p) => n + p.usImports, 0)
   out.sort((a, b) => sum(b) - sum(a))
   return out
 }
@@ -101,7 +101,7 @@ export function TopProductsTable({ products }: { products: Product[] }) {
             <TableHead className="text-right">Share to U.S.</TableHead>
             <TableHead className="text-right">Tariff status</TableHead>
             <TableHead className="text-right">Price change since Mar 2025</TableHead>
-            <TableHead className="text-right">Exports to U.S. ({SHARE_YEAR})</TableHead>
+            <TableHead className="text-right">U.S. imports ({SHARE_PERIOD})</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -172,7 +172,7 @@ function HS2Group({ group }: { group: Group }) {
                 fmtChange(delta)
               )}
             </TableCell>
-            <TableCell className="text-right tabular-nums">{usd(p.usExports)}</TableCell>
+            <TableCell className="text-right tabular-nums">{usd(p.usImports)}</TableCell>
           </TableRow>
         )
       })}

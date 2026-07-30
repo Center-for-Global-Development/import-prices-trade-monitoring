@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { COUNTRIES } from "@/data/tracker"
+import { COUNTRIES, SHARE_PERIOD } from "@/data/tracker"
 import { WorldMap } from "@/components/WorldMap"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import {
@@ -26,9 +26,10 @@ export function Home() {
         <CardHeader>
           <CardTitle>Country</CardTitle>
           <CardDescription>
-            {COUNTRIES.length} countries with at least one product sending ≥10% of
-            its exports to the U.S. Click the map or search the list — smaller
-            territories appear in the list only.
+            {COUNTRIES.length} countries with at least one product sending ≥10%
+            of its estimated exports to the U.S. in {SHARE_PERIOD}. Click the
+            map or search the list — smaller territories appear in the list
+            only.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">

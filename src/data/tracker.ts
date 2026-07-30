@@ -1,5 +1,6 @@
-// Data layer for the tracker, backed by the researcher's deliverables
-// (researcher data/), converted to JSON by scripts/build_app_data.py.
+// Data layer for the tracker, backed by the researcher's "data v2"
+// deliverables (researcher data/data v2/), converted to JSON by
+// scripts/build_app_data_v2.py.
 //
 //   bls_series.json           BLS import price indexes by HS4 (monthly,
 //                             rebased to March 2025 = 100). BLS publishes
@@ -7,13 +8,16 @@
 //                             origin country, so a series is shared by every
 //                             country that exports the product.
 //   products_by_country.json  Country x HS4 pairs meeting the tracker's
-//                             selection rule: >=10% of the country's 2024
-//                             exports of the product went to the U.S. (OEC).
+//                             selection rule: >=10% of the country's
+//                             estimated exports of the product went to the
+//                             U.S. over the share period (Census YTD imports
+//                             / OEC-estimated global exports; shares over
+//                             100% are capped at 100%).
 //   exempt_share.json         Import-value-weighted % of each HS4 exempt
 //                             from tariffs under the Annex II lists.
 //   import_values.json        Monthly total U.S. goods imports by partner
-//                             country (U.S. Census), fetched by
-//                             scripts/fetch_import_values.py.
+//                             country plus the researcher's cumulative (YTD)
+//                             YoY growth (U.S. Census workbook).
 
 import blsRaw from "./bls_series.json"
 import productsRaw from "./products_by_country.json"
@@ -21,14 +25,19 @@ import exemptRaw from "./exempt_share.json"
 import importValuesRaw from "./import_values.json"
 
 export type PricePoint = { date: string; idx: number }
-export type ImportPoint = { date: string; usdBn: number }
+// cumYoy: cumulative year-to-date imports vs the same months a year earlier,
+// % — the researcher's YoY definition (v2). Null when no prior-year data.
+export type ImportPoint = { date: string; usdBn: number; cumYoy: number | null }
 
 export type Product = {
   hs: string
   name: string
+  // Capped at 1 in the pipeline (the global-exports denominator is
+  // estimated, so raw shares can exceed 100%).
   shareToUS: number
-  // Exports to the U.S. in the share year, USD (OEC, exporter-reported).
-  usExports: number
+  // U.S. imports of this HS4 from the country over the share period, USD
+  // (Census, importer-reported).
+  usImports: number
   // % of U.S. import value of this HS4 exempt from tariffs; null = HS4 not
   // in the exemptions workbook.
   exemptPct: number | null
@@ -49,19 +58,23 @@ type BlsRaw = {
   series: Record<string, { name: string; points: [string, number][] }>
 }
 type ProductsRaw = {
-  shareYear: number
+  sharePeriod: string
   threshold: number
   hs4Names: Record<string, string>
   countries: Record<string, { name: string; products: { h: string; s: number; x: number }[] }>
 }
 const BLS = blsRaw as unknown as BlsRaw
-const PRODUCTS = productsRaw as ProductsRaw
+const PRODUCTS = productsRaw as unknown as ProductsRaw
 const EXEMPT = exemptRaw as Record<string, number>
-const IMPORT_VALUES = importValuesRaw as unknown as Record<string, [string, number][]>
+const IMPORT_VALUES = importValuesRaw as unknown as Record<
+  string,
+  [string, number, number | null][]
+>
 
 
 export const BASE_LABEL = BLS.baseLabel
-export const SHARE_YEAR = PRODUCTS.shareYear
+// e.g. "Jan–May 2026" — the YTD window the qualifying shares cover.
+export const SHARE_PERIOD = PRODUCTS.sharePeriod
 export const QUALIFYING_THRESHOLD = PRODUCTS.threshold
 
 export type Country = {
@@ -99,18 +112,14 @@ export function importsInYear(points: ImportPoint[], year: number): number | nul
   return months.reduce((n, p) => n + p.usdBn, 0)
 }
 
-// YoY % change for the latest month that has a same-month-prior-year
-// comparison (the methodology's monthly YoY, applied to the newest point).
+// The freshest cumulative (YTD) YoY value — the researcher's v2 YoY
+// definition, taken directly from the Census workbook rather than computed.
 export function latestImportYoY(
   points: ImportPoint[],
 ): { month: string; pct: number } | null {
-  const byDate = new Map(points.map((p) => [p.date, p.usdBn]))
   for (let i = points.length - 1; i >= 0; i--) {
-    const { date, usdBn } = points[i]
-    const prior = byDate.get(`${parseInt(date, 10) - 1}${date.slice(4)}`)
-    if (prior !== undefined && prior !== 0) {
-      return { month: date, pct: (usdBn / prior - 1) * 100 }
-    }
+    const { date, cumYoy } = points[i]
+    if (cumYoy !== null) return { month: date, pct: cumYoy }
   }
   return null
 }
@@ -131,11 +140,15 @@ export function getCountryData(iso: string): CountryData | undefined {
       hs: p.h,
       name: PRODUCTS.hs4Names[p.h] ?? p.h,
       shareToUS: p.s,
-      usExports: p.x,
+      usImports: p.x,
       exemptPct: EXEMPT[p.h] ?? null,
       hasPriceSeries: p.h in BLS.series,
     })),
-    importValue: (IMPORT_VALUES[iso] ?? []).map(([date, usdBn]) => ({ date, usdBn })),
+    importValue: (IMPORT_VALUES[iso] ?? []).map(([date, usdBn, cumYoy]) => ({
+      date,
+      usdBn,
+      cumYoy,
+    })),
   }
 }
 

@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import {
   getCountryData,
   QUALIFYING_THRESHOLD,
-  SHARE_YEAR,
+  SHARE_PERIOD,
 } from "@/data/tracker"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -73,8 +73,9 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Import value</CardTitle>
           <CardDescription>
-            Year-over-year change in monthly U.S. goods imports from {data.name},
-            each month vs the same month a year earlier (U.S. Census).
+            Cumulative year-to-date U.S. goods imports from {data.name}, each
+            month showing the year so far vs the same months a year earlier
+            (U.S. Census).
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -93,9 +94,12 @@ export function CountryPage() {
           <CardTitle>Tracked products</CardTitle>
           <CardDescription>
             HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
-            {data.name}'s exports went to the U.S. in {SHARE_YEAR} ({priced.length} of{" "}
+            {data.name}'s exports went to the U.S. in {SHARE_PERIOD} ({priced.length} of{" "}
             {data.products.length} qualifying products). Tariff status is the
             import-value-weighted share of the HS4 exempt under Annex II.
+            Export shares are U.S. imports (Census) divided by estimated global
+            exports (OEC-based); because the denominator is estimated, shares
+            can exceed 100% and are capped at 100%.
           </CardDescription>
         </CardHeader>
         <CardContent>
