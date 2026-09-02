@@ -71,7 +71,7 @@ function groupByHS2(products: Product[]): Group[] {
   }
   const out = [...groups.values()]
   out.forEach((g) => g.products.sort((a, b) => (b.shareToUS ?? 0) - (a.shareToUS ?? 0)))
-  // Order groups by the U.S. import value of the tracked products in them (a
+  // Order groups by the US import value of the tracked products in them (a
   // display ordering only — NOT a true chapter total, since products below
   // the 10% share threshold or without a price series are excluded).
   const sum = (g: Group) => g.products.reduce((n, p) => n + (p.usImportsYtd ?? 0), 0)
@@ -109,11 +109,11 @@ export function TopProductsTable({ products }: { products: Product[] }) {
           <TableRow>
             <TableHead className="w-[80px]">HS</TableHead>
             <TableHead>Product</TableHead>
-            <TableHead className="text-right">Share to U.S. ({SHARE_BASIS})</TableHead>
+            <TableHead className="text-right">Share of exports to the US ({SHARE_BASIS})</TableHead>
             <TableHead className="text-right">Tariff status</TableHead>
             <TableHead className="text-right">Price change since Mar 2025</TableHead>
             <TableHead className="text-right">
-              U.S. imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
+              US imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -144,19 +144,19 @@ function TariffKey() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t pt-3 text-xs text-muted-foreground">
       <span className="font-medium">Tariff status key:</span>
       <span className="flex items-center gap-1.5">
-        <Badge variant="destructive">Tariffed</Badge> no Annex II exemption
+        <Badge variant="destructive">Tariffed</Badge> no exemption under Executive Orders
       </span>
       <span className="flex items-center gap-1.5">
         <Badge className="border-transparent bg-(--status-caution)/25 text-foreground">
           n% exempt
         </Badge>{" "}
-        share of the HS4's U.S. import value that is exempt
+        share of the HS4's US import value that is exempt
       </span>
       <span className="flex items-center gap-1.5">
         <Badge className="border-transparent bg-(--status-good)/12 text-(--status-good)">
           Exempt
         </Badge>{" "}
-        fully exempt
+        fully exempt under Executive Orders
       </span>
     </div>
   )

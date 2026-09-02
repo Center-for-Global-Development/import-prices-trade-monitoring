@@ -1,4 +1,4 @@
-import { monthLabel, type CountryData } from "@/data/tracker"
+import { monthLabel, QUALIFYING_THRESHOLD, type CountryData } from "@/data/tracker"
 import { Card, CardContent } from "@/components/ui/card"
 
 // The year the headline import total covers — fixed by the researcher's file
@@ -33,31 +33,33 @@ function Stat({
   )
 }
 
-// At-a-glance country summary the researcher asked for: how much the U.S.
+// At-a-glance country summary the researcher asked for: how much the US
 // imports from the country, how much of its qualifying basket is tariffed vs
 // exempt, and the freshest import-value signal. All four figures come
 // precomputed on the researcher's country_summary row.
 export function CountryOverview({ data }: { data: CountryData }) {
   const yoy = data.latestYoy
+  const thresholdPct = Math.round(QUALIFYING_THRESHOLD * 100)
 
   return (
-    // 2-up even on phones (the tiles are compact enough), 4-up once the
-    // full-width row fits; gap stays tighter than the page's card spacing.
+    <div className="space-y-2">
+    {/* 2-up even on phones (the tiles are compact enough), 4-up once the
+        full-width row fits; gap stays tighter than the page's card spacing. */}
     <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
       <Stat
-        label={`U.S. imports (${IMPORTS_YEAR})`}
+        label={`US imports (${IMPORTS_YEAR})`}
         value={data.usImports2024 === null ? "—" : usd(data.usImports2024)}
-        detail="All goods, U.S. Census"
+        detail="All goods, US Census"
       />
       <Stat
         label="Tariffed products"
         value={String(data.tariffedCount)}
-        detail={`of ${data.qualifyingCount} qualifying, no Annex II exemption`}
+        detail={`of ${data.qualifyingCount} qualifying products, no exemptions`}
       />
       <Stat
         label="Exempt products"
         value={String(data.exemptCount)}
-        detail="fully exempt under Annex II"
+        detail="fully exempt under Executive Orders"
       />
       <Stat
         label="Imports YTD vs year earlier"
@@ -72,6 +74,13 @@ export function CountryOverview({ data }: { data: CountryData }) {
             : `cumulative through ${monthLabel(yoy.month)}`
         }
       />
+    </div>
+    {/* "Qualifying" is the tracker's term of art; the research lead asked
+        for it to be defined where the tiles use it. */}
+    <p className="text-xs text-muted-foreground">
+      Qualifying products: HS4 products for which ≥{thresholdPct}% of{" "}
+      {data.name}'s exports are destined for the US.
+    </p>
     </div>
   )
 }

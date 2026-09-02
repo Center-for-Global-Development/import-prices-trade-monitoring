@@ -32,7 +32,7 @@ function usd(n: number): string {
   return `$${n.toFixed(0)}`
 }
 
-// Per-product U.S. import value from the country, laid out like the
+// Per-product US import value from the country, laid out like the
 // country-level import chart (one calendar year on the x-axis) with the
 // price chart's add/drop product picker.
 //
@@ -48,7 +48,7 @@ export function ProductImportChart({ products }: { products: Product[] }) {
   )
 
   // Default to the three largest by import value — the products that matter
-  // most for the country's trade with the U.S.
+  // most for the country's trade with the US.
   const [selected, setSelected] = useState<string[]>(() =>
     [...plottable]
       .sort((a, b) => (b.usImportsYtd ?? 0) - (a.usImportsYtd ?? 0))

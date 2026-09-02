@@ -5,7 +5,7 @@
 // upstream in the researcher's R workflow; this module only reshapes.
 //
 //   prices.json     BLS import price indexes by HS4 (monthly, rebased to
-//                   March 2025 = 100). BLS publishes these for ALL U.S.
+//                   March 2025 = 100). BLS publishes these for ALL US
 //                   imports of an HS4, not by origin country, so a series is
 //                   shared by every country that exports the product.
 //   countries.json  Per country: the summary tiles (2024 import total,
@@ -13,25 +13,25 @@
 //                   cumulative-YTD import YoY), the monthly cumulative YoY
 //                   series, and the tracked products — the country×HS4 pairs
 //                   where ≥10% of the country's exports of the product went
-//                   to the U.S. (OEC 2024) AND a BLS price series exists —
+//                   to the US (OEC 2024) AND a BLS price series exists —
 //                   each with share, exemption status, latest price change
-//                   and YTD U.S. imports.
+//                   and YTD US imports.
 
 import pricesRaw from "./prices.json"
 import countriesRaw from "./countries.json"
 
 export type PricePoint = { date: string; idx: number }
-// Cumulative year-to-date U.S. imports vs the same months a year earlier, %.
+// Cumulative year-to-date US imports vs the same months a year earlier, %.
 // Null when the researcher's file has no comparison for that month.
 export type ImportPoint = { date: string; cumYoy: number | null }
 
 export type Product = {
   hs: string
   name: string
-  // Share of the country's exports of this HS4 that went to the U.S., % (OEC
+  // Share of the country's exports of this HS4 that went to the US, % (OEC
   // 2024, capped at 100 upstream).
   shareToUS: number | null
-  // % of U.S. import value of this HS4 exempt from tariffs under Annex II;
+  // % of US import value of this HS4 exempt from tariffs under Annex II;
   // null = not classified.
   exemptPct: number | null
   // Preformatted by the researcher: "Tariffed", "Exempt" or "n% exempt".
@@ -40,7 +40,7 @@ export type Product = {
   // refers to. Null when the series has no usable latest value.
   priceChangePct: number | null
   priceMonth: string | null
-  // Cumulative U.S. imports of this HS4 from the country, Jan through
+  // Cumulative US imports of this HS4 from the country, Jan through
   // IMPORTS_YTD_THROUGH, USD. A real zero is a real zero.
   usImportsYtd: number | null
 }
@@ -48,7 +48,7 @@ export type Product = {
 export type CountryData = {
   iso: string
   name: string
-  // Total U.S. goods imports from the country in 2024, USD. Null when the
+  // Total US goods imports from the country in 2024, USD. Null when the
   // researcher's file has none.
   usImports2024: number | null
   // Basket counts over ALL qualifying products (with or without a BLS price

@@ -53,7 +53,7 @@ export function CountryPage() {
           </h1>
           <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
           <p className="font-serif text-muted-foreground">
-            U.S. import prices &amp; trade flows
+            US import prices &amp; trade flows
           </p>
         </div>
       </div>
@@ -64,8 +64,9 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Price trends</CardTitle>
           <CardDescription>
-            BLS import price indices, monthly through {monthLabel(PRICES_THROUGH)},
-            indexed to March 2025 = 100. BLS indices cover all U.S. imports of a
+            BLS import price indices, monthly from Jan 2023 or the earliest
+            available month through {monthLabel(PRICES_THROUGH)}, indexed to
+            March 2025 = 100. BLS indices cover all US imports of a
             product, not imports from {data.name} alone. Multi-select to compare
             products.
           </CardDescription>
@@ -83,9 +84,9 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Import value</CardTitle>
           <CardDescription>
-            Cumulative year-to-date U.S. goods imports from {data.name}, each
+            Cumulative year-to-date US goods imports from {data.name}, each
             month showing the year so far vs the same months a year earlier
-            (U.S. Census).
+            (US Census).
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -103,7 +104,7 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Import value by product</CardTitle>
           <CardDescription>
-            U.S. imports of each tracked product from {data.name} (U.S. Census).
+            US imports of each tracked product from {data.name} (US Census).
             The current data carries a single cumulative{" "}
             {ytdLabel(IMPORTS_YTD_THROUGH)} value per product, so each product
             appears as one point; monthly history would turn these into lines
@@ -124,10 +125,10 @@ export function CountryPage() {
           <CardTitle>Tracked products</CardTitle>
           <CardDescription>
             HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
-            {data.name}'s exports went to the U.S. in {SHARE_BASIS} ({priced.length} of{" "}
+            {data.name}'s exports went to the US in {SHARE_BASIS} ({priced.length} of{" "}
             {data.qualifyingCount} qualifying products). Export shares are from
             OEC bilateral trade data for {SHARE_BASIS}. Tariff status is the
-            import-value-weighted share of the HS4 exempt under Annex II.
+            import-value-weighted share of the HS4 exempt under Executive Orders.
           </CardDescription>
         </CardHeader>
         <CardContent>

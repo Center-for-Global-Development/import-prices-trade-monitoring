@@ -13,7 +13,7 @@ export type TariffEvent = {
 
 export const TARIFF_EVENTS: TariffEvent[] = [
   { month: "2025-04", label: "Tariffs announced" },
-  // "next tariffs go dead on July 24" per researcher conversation, Jul 2026 —
-  // confirm what happens on that date before finalizing the label.
-  { month: "2026-07", label: "Jul 24 deadline" },
+  // Wording from the research lead (Sep 2026). Charts are monthly, so the
+  // marker sits on July; the day lives in the label.
+  { month: "2026-07", label: "Section 122 tariffs expired (Jul 24)" },
 ]
