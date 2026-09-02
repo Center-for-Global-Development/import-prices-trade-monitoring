@@ -10,10 +10,7 @@ import {
 } from "@/components/ui/chart"
 import type { ChartConfig } from "@/components/ui/chart"
 import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { ChevronDown } from "lucide-react"
+import { ProductPicker } from "@/components/ProductPicker"
 
 const PALETTE = [
   "var(--chart-1)",
@@ -81,34 +78,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
         <div className="text-sm text-muted-foreground">
           Indexed to {BASE_LABEL}
         </div>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" size="sm">
-              {selected.length} of {plottable.length} products
-              <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-80" align="end">
-            <div className="space-y-2">
-              <div className="text-sm font-medium">Show products</div>
-              <div className="max-h-72 space-y-2 overflow-y-auto">
-                {plottable.map((p) => (
-                  <label
-                    key={p.hs}
-                    className="flex items-center gap-2 text-sm cursor-pointer"
-                  >
-                    <Checkbox
-                      checked={selected.includes(p.hs)}
-                      onCheckedChange={() => toggle(p.hs)}
-                    />
-                    <span className="font-mono text-xs">{p.hs}</span>
-                    <span className="truncate">{p.name}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <ProductPicker products={plottable} selected={selected} onToggle={toggle} />
       </div>
       <ChartContainer config={config} className="h-80 w-full">
         <LineChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>

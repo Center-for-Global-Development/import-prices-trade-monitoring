@@ -1,10 +1,12 @@
 import { Link, useParams } from "react-router-dom"
 import {
   getCountryData,
+  IMPORTS_YTD_THROUGH,
   monthLabel,
   PRICES_THROUGH,
   QUALIFYING_THRESHOLD,
   SHARE_BASIS,
+  ytdLabel,
 } from "@/data/tracker"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,6 +14,7 @@ import { ChevronLeft } from "lucide-react"
 import { TopProductsTable } from "@/components/TopProductsTable"
 import { PriceTrendsChart } from "@/components/PriceTrendsChart"
 import { ImportValueChart } from "@/components/ImportValueChart"
+import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
 
 export function CountryPage() {
@@ -92,6 +95,26 @@ export function CountryPage() {
             </p>
           ) : (
             <ImportValueChart data={data.importValue} />
+          )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Import value by product</CardTitle>
+          <CardDescription>
+            U.S. imports of each tracked product from {data.name} (U.S. Census).
+            The current data carries a single cumulative{" "}
+            {ytdLabel(IMPORTS_YTD_THROUGH)} value per product, so each product
+            appears as one point; monthly history would turn these into lines
+            like the country total above. Multi-select to compare products.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {priced.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No tracked products to plot.</p>
+          ) : (
+            <ProductImportChart products={priced} />
           )}
         </CardContent>
       </Card>
