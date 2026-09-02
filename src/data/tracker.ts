@@ -1,102 +1,147 @@
-// Data layer for the tracker, backed by the researcher's "data v2"
-// deliverables (researcher data/data v2/), converted to JSON by
-// scripts/build_app_data_v2.py.
+// Data layer for the tracker, backed by the researcher's consolidated CSVs in
+// data/ (the canonical handoff format since August 2026), converted to JSON
+// by scripts/build_app_data.mjs. Everything analytical — product selection,
+// tariff classification, cumulative YoY, latest-period handling — is done
+// upstream in the researcher's R workflow; this module only reshapes.
 //
-//   bls_series.json           BLS import price indexes by HS4 (monthly,
-//                             rebased to March 2025 = 100). BLS publishes
-//                             these for ALL U.S. imports of an HS4, not by
-//                             origin country, so a series is shared by every
-//                             country that exports the product.
-//   products_by_country.json  Country x HS4 pairs meeting the tracker's
-//                             selection rule: >=10% of the country's
-//                             estimated exports of the product went to the
-//                             U.S. over the share period (Census YTD imports
-//                             / OEC-estimated global exports; shares over
-//                             100% are capped at 100%).
-//   exempt_share.json         Import-value-weighted % of each HS4 exempt
-//                             from tariffs under the Annex II lists.
-//   import_values.json        Monthly total U.S. goods imports by partner
-//                             country plus the researcher's cumulative (YTD)
-//                             YoY growth (U.S. Census workbook).
+//   prices.json     BLS import price indexes by HS4 (monthly, rebased to
+//                   March 2025 = 100). BLS publishes these for ALL U.S.
+//                   imports of an HS4, not by origin country, so a series is
+//                   shared by every country that exports the product.
+//   countries.json  Per country: the summary tiles (2024 import total,
+//                   qualifying / tracked / tariffed / exempt counts, latest
+//                   cumulative-YTD import YoY), the monthly cumulative YoY
+//                   series, and the tracked products — the country×HS4 pairs
+//                   where ≥10% of the country's exports of the product went
+//                   to the U.S. (OEC 2024) AND a BLS price series exists —
+//                   each with share, exemption status, latest price change
+//                   and YTD U.S. imports.
 
-import blsRaw from "./bls_series.json"
-import productsRaw from "./products_by_country.json"
-import exemptRaw from "./exempt_share.json"
-import importValuesRaw from "./import_values.json"
+import pricesRaw from "./prices.json"
+import countriesRaw from "./countries.json"
 
 export type PricePoint = { date: string; idx: number }
-// cumYoy: cumulative year-to-date imports vs the same months a year earlier,
-// % — the researcher's YoY definition (v2). Null when no prior-year data.
-export type ImportPoint = { date: string; usdBn: number; cumYoy: number | null }
+// Cumulative year-to-date U.S. imports vs the same months a year earlier, %.
+// Null when the researcher's file has no comparison for that month.
+export type ImportPoint = { date: string; cumYoy: number | null }
 
 export type Product = {
   hs: string
   name: string
-  // Capped at 1 in the pipeline (the global-exports denominator is
-  // estimated, so raw shares can exceed 100%).
-  shareToUS: number
-  // U.S. imports of this HS4 from the country over the share period, USD
-  // (Census, importer-reported).
-  usImports: number
-  // % of U.S. import value of this HS4 exempt from tariffs; null = HS4 not
-  // in the exemptions workbook.
+  // Share of the country's exports of this HS4 that went to the U.S., % (OEC
+  // 2024, capped at 100 upstream).
+  shareToUS: number | null
+  // % of U.S. import value of this HS4 exempt from tariffs under Annex II;
+  // null = not classified.
   exemptPct: number | null
-  hasPriceSeries: boolean
+  // Preformatted by the researcher: "Tariffed", "Exempt" or "n% exempt".
+  tariffStatus: string
+  // Latest BLS index − 100, i.e. % change since March 2025, and the month it
+  // refers to. Null when the series has no usable latest value.
+  priceChangePct: number | null
+  priceMonth: string | null
+  // Cumulative U.S. imports of this HS4 from the country, Jan through
+  // IMPORTS_YTD_THROUGH, USD. A real zero is a real zero.
+  usImportsYtd: number | null
 }
 
 export type CountryData = {
   iso: string
   name: string
-  products: Product[]
-  // Monthly total U.S. goods imports from this country, USD bn (Census).
-  // Empty when we have no Census pull for the country yet.
+  // Total U.S. goods imports from the country in 2024, USD. Null when the
+  // researcher's file has none.
+  usImports2024: number | null
+  // Basket counts over ALL qualifying products (with or without a BLS price
+  // series). tariffed = no Annex II exemption; exempt = fully exempt.
+  // Partially exempt products sit in neither, so they need not sum.
+  qualifyingCount: number
+  tariffedCount: number
+  exemptCount: number
+  // Freshest cumulative-YTD import YoY and the month it runs through.
+  latestYoy: { month: string; pct: number } | null
   importValue: ImportPoint[]
+  // Tracked products only (qualifying AND priced), sorted by share desc.
+  products: Product[]
 }
 
-type BlsRaw = {
+type PricesRaw = {
   baseLabel: string
+  through: string
   series: Record<string, { name: string; points: [string, number][] }>
 }
-type ProductsRaw = {
-  sharePeriod: string
-  threshold: number
-  hs4Names: Record<string, string>
-  countries: Record<string, { name: string; products: { h: string; s: number; x: number }[] }>
+type ProductRow = [
+  hs4: string,
+  usSharePct: number | null,
+  exemptSharePct: number | null,
+  tariffStatus: string,
+  priceMonth: string | null,
+  priceChangePct: number | null,
+  usImportsYtd: number | null,
+]
+type CountryRaw = {
+  name: string
+  ctyCode: string
+  usImports2024: number | null
+  qualifying: number
+  tracked: number
+  tariffed: number
+  exempt: number
+  latestYoy: { month: string; pct: number } | null
+  months: [string, number | null][]
+  products: ProductRow[]
 }
-const BLS = blsRaw as unknown as BlsRaw
-const PRODUCTS = productsRaw as unknown as ProductsRaw
-const EXEMPT = exemptRaw as Record<string, number>
-const IMPORT_VALUES = importValuesRaw as unknown as Record<
-  string,
-  [string, number, number | null][]
->
+type CountriesRaw = {
+  shareBasis: string
+  threshold: number
+  importsYtdThrough: string
+  priceThrough: string
+  hs4Names: Record<string, string>
+  countries: Record<string, CountryRaw>
+}
+const PRICES = pricesRaw as unknown as PricesRaw
+const DATA = countriesRaw as unknown as CountriesRaw
 
+export const BASE_LABEL = PRICES.baseLabel
+// The year the export shares refer to (OEC bilateral trade), e.g. "2024".
+export const SHARE_BASIS = DATA.shareBasis
+export const QUALIFYING_THRESHOLD = DATA.threshold
+// Latest month covered by the per-product YTD import values ("YYYY-MM") and
+// by the BLS price series. Drive period wording from these, never hard-code.
+export const IMPORTS_YTD_THROUGH = DATA.importsYtdThrough
+export const PRICES_THROUGH = DATA.priceThrough
 
-export const BASE_LABEL = BLS.baseLabel
-// e.g. "Jan–May 2026" — the YTD window the qualifying shares cover.
-export const SHARE_PERIOD = PRODUCTS.sharePeriod
-export const QUALIFYING_THRESHOLD = PRODUCTS.threshold
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+// "2026-06" -> "Jun 2026"
+export function monthLabel(ym: string): string {
+  const [y, m] = ym.split("-")
+  return `${MONTHS[parseInt(m, 10) - 1]} ${y}`
+}
+// "2026-06" -> "Jan–Jun 2026" (the YTD window ending that month).
+export function ytdLabel(ym: string): string {
+  const [y, m] = ym.split("-")
+  const end = MONTHS[parseInt(m, 10) - 1]
+  return end === "Jan" ? `Jan ${y}` : `Jan–${end} ${y}`
+}
 
 export type Country = {
   iso: string
   name: string
-  productCount: number
-  priceSeriesCount: number
-  // Qualifying products fully tariffed (0% exempt) / fully exempt (100%)
-  // under Annex II. Partially exempt and not-in-workbook products count in
-  // neither bucket.
+  qualifyingCount: number
+  trackedCount: number
   tariffedCount: number
   exemptCount: number
 }
 
-export const COUNTRIES: Country[] = Object.entries(PRODUCTS.countries)
+export const COUNTRIES: Country[] = Object.entries(DATA.countries)
   .map(([iso, c]) => ({
     iso,
     name: c.name,
-    productCount: c.products.length,
-    priceSeriesCount: c.products.filter((p) => p.h in BLS.series).length,
-    tariffedCount: c.products.filter((p) => EXEMPT[p.h] === 0).length,
-    exemptCount: c.products.filter((p) => EXEMPT[p.h] === 100).length,
+    qualifyingCount: c.qualifying,
+    trackedCount: c.products.length,
+    tariffedCount: c.tariffed,
+    exemptCount: c.exempt,
   }))
   .sort((a, b) => a.name.localeCompare(b.name))
 
@@ -104,57 +149,43 @@ export const COUNTRY_BY_ISO: Record<string, Country> = Object.fromEntries(
   COUNTRIES.map((c) => [c.iso, c]),
 )
 
-// Total U.S. goods imports from the country in a calendar year, USD bn.
-// Null when the year is missing months (partial years would understate it).
-export function importsInYear(points: ImportPoint[], year: number): number | null {
-  const months = points.filter((p) => p.date.startsWith(`${year}-`))
-  if (months.length < 12) return null
-  return months.reduce((n, p) => n + p.usdBn, 0)
-}
-
-// The freshest cumulative (YTD) YoY value — the researcher's v2 YoY
-// definition, taken directly from the Census workbook rather than computed.
-export function latestImportYoY(
-  points: ImportPoint[],
-): { month: string; pct: number } | null {
-  for (let i = points.length - 1; i >= 0; i--) {
-    const { date, cumYoy } = points[i]
-    if (cumYoy !== null) return { month: date, pct: cumYoy }
-  }
-  return null
-}
-
 export function getPriceSeries(hs: string): PricePoint[] {
-  const s = BLS.series[hs]
+  const s = PRICES.series[hs]
   if (!s) return []
   return s.points.map(([date, idx]) => ({ date, idx }))
 }
 
 export function getCountryData(iso: string): CountryData | undefined {
-  const c = PRODUCTS.countries[iso]
+  const c = DATA.countries[iso]
   if (!c) return undefined
   return {
     iso,
     name: c.name,
-    products: c.products.map((p) => ({
-      hs: p.h,
-      name: PRODUCTS.hs4Names[p.h] ?? p.h,
-      shareToUS: p.s,
-      usImports: p.x,
-      exemptPct: EXEMPT[p.h] ?? null,
-      hasPriceSeries: p.h in BLS.series,
-    })),
-    importValue: (IMPORT_VALUES[iso] ?? []).map(([date, usdBn, cumYoy]) => ({
-      date,
-      usdBn,
-      cumYoy,
-    })),
+    usImports2024: c.usImports2024,
+    qualifyingCount: c.qualifying,
+    tariffedCount: c.tariffed,
+    exemptCount: c.exempt,
+    latestYoy: c.latestYoy,
+    importValue: c.months.map(([date, cumYoy]) => ({ date, cumYoy })),
+    products: c.products.map(
+      ([hs, share, exempt, tariffStatus, priceMonth, priceChangePct, usImportsYtd]) => ({
+        hs,
+        name: DATA.hs4Names[hs] ?? PRICES.series[hs]?.name ?? hs,
+        shareToUS: share,
+        exemptPct: exempt,
+        tariffStatus,
+        priceChangePct,
+        priceMonth,
+        usImportsYtd,
+      }),
+    ),
   }
 }
 
 export type HS2 = { code: string; name: string }
 
-// HS chapter (HS2) names, abridged.
+// HS chapter (HS2) names, abridged. The researcher's file carries the HS2
+// code but not its description.
 const HS2_NAMES: Record<string, string> = {
   "01": "Live animals",
   "02": "Meat",

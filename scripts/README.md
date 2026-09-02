@@ -1,93 +1,27 @@
-# Data pipeline
+# Scripts
 
-## build_app_data.py (current: researcher deliverables → app JSON)
+## build_app_data.mjs — the data pipeline
 
-Since July 2026 the app's primary data comes from the researcher's files in
-`researcher data/`. `build_app_data.py` (stdlib-only Python) converts them to
-the JSON the app imports:
+Converts the researcher's two CSVs in [`../data/`](../data/README.md) into
+the JSON the app imports. Node only, no dependencies. Runs automatically at
+the start of `npm run dev` and `npm run build`; run it by hand with
+`npm run data`.
 
-| Output (src/data/) | Source file | Contents |
+| Output (src/data/) | Source | Contents |
 |---|---|---|
-| `bls_series.json` | `bls_indexed_mar2025.csv` | BLS import price indexes by HS4, monthly since Jan 2023, rebased to **March 2025 = 100** (183 series). |
-| `products_by_country.json` | `product_us_share.csv` | Country × HS4 pairs meeting the ≥10% US-export-share rule (OEC 2024 data; 220 countries, ~28k pairs), with US-bound export values. |
-| `exempt_share.json` | `exemptions_annex_ii_list.xlsx` | Import-value-weighted % of each HS4 exempt from tariffs (Annex II). |
+| `prices.json` | `data/PRICE_DATA.csv` | BLS import price indexes by HS4, monthly, March 2025 = 100. |
+| `countries.json` | `data/COUNTRY_PRODUCT_DATA.csv` | Per country: summary tiles, monthly cumulative-YTD import YoY, and the tracked products (share, tariff status, price change, YTD imports) as compact rows. |
 
-```bash
-python3 scripts/build_app_data.py
-```
+The app's data layer is `src/data/tracker.ts`; it is the only module that
+reads these files.
 
-The app's data layer is `src/data/tracker.ts`.
+It exits non-zero on structural problems (missing files or columns, duplicate
+keys, a product whose HS4 has no price series) and prints warnings for
+inconsistencies to raise with the researcher (counts that don't reconcile,
+tariff labels that disagree with the numeric share, price changes that don't
+match the series).
 
-## fetch_import_values.py (current: Census monthly imports, all countries)
-
-Monthly total U.S. goods imports from every partner country (the country-level
-YoY chart), via the Census International Trade API — one request per year,
-Schedule C codes mapped to ISO3. Needs `reference/census_apikey.txt`.
-
-```bash
-python3 scripts/fetch_import_values.py   # writes src/data/import_values.json
-```
-
-## fetch_tracker_data.R (legacy: API pulls)
-
-`fetch_tracker_data.R` pulls tracker data from the BLS/Census/Comtrade APIs and
-writes `src/data/tracker_data.json`. The app no longer reads it — kept for
-reference.
-
-## What it pulls
-
-| App field | Source | Notes |
-|---|---|---|
-| `Product.priceSeries` | **BLS** Import Price Index API (`EIUIP<HS4>`) | Monthly index, re-based so `baseMonth` = 100. Published by HS good for **all** U.S. imports, not by origin country — so a given HS4 has the same series for every country. BLS only publishes a subset of HS codes; the rest come back empty. |
-| `CountryData.importValue` | **U.S. Census** Intl Trade API (`imports/ctry`) | Monthly total U.S. imports from the country, USD bn. |
-| `Product.importValueYTD` | **U.S. Census** Intl Trade API (`imports/hs`, `COMM_LVL=HS4`) | YTD U.S. import value for that country × HS4, USD bn. |
-| `Product.shareToUS` | **UN Comtrade** (annual HS exports) | `exports to USA / exports to World` for the latest available year. Drives the ≥10% product-selection filter. |
-
-The list of countries and HS4 products comes from
-[`../src/data/products.json`](../src/data/products.json) — the single source of
-truth. Census Schedule-C and Comtrade M49 country codes live there too.
-
-## API keys
-
-Keys live in `../reference/` (git-ignored). One per file, key string on line 1:
-
-| File | Service | Required? | Get one |
-|---|---|---|---|
-| `reference/apikey.txt` | BLS | **Yes** | https://data.bls.gov/registrationEngine/ (already present) |
-| `reference/census_apikey.txt` | U.S. Census | **Yes for import values** | https://api.census.gov/data/key_signup.html (free, instant) |
-| `reference/comtrade_apikey.txt` | UN Comtrade | Recommended for shares | https://comtradeplus.un.org/ → register → free subscription |
-
-Behavior when a key is missing:
-- **BLS** missing → script stops (it's the core series).
-- **Census** missing → import values/YTD are skipped (warned), prices still pulled.
-- **Comtrade** missing → falls back to the keyless *preview* endpoint, which is
-  heavily rate-limited (~1 request every few seconds, so the run is slow) and
-  only serves data the free tier exposes. A key uses the authenticated endpoint
-  and is much faster/more reliable.
-
-## Run
-
-From the repo root:
-
-```bash
-Rscript scripts/fetch_tracker_data.R
-```
-
-Outputs:
-- `src/data/tracker_data.json` — consumed by the app.
-- `scripts/output/products_summary.csv` — tidy table for inspection (git-ignored).
-
-## Notes / caveats
-
-- **Base period:** the R script re-bases to Jan 2025 = 100, but the app now
-  uses the researcher's March 2025 = 100 series from `bls_series.json`; the
-  R script's `priceSeries` output is no longer read by the app.
-- **BLS coverage:** expect several HS4 codes to have no price index. Those
-  products keep their import value/share but plot no price line.
-- `legacy_fetch_harmonized_imports.R` is the original researcher script (BLS
-  only), kept for reference.
-
-## build_world_map.mjs (world-map geometry for the home page)
+## build_world_map.mjs — world-map geometry for the home page
 
 Precomputes SVG paths for the clickable country map from world-atlas
 countries-110m (Natural Earth), keyed by ISO3. Needs the dev deps
@@ -102,22 +36,12 @@ node scripts/build_world_map.mjs   # writes src/data/world_map.json
 Singapore and Hong Kong) — those countries are reachable through the
 searchable list only.
 
-## build_app_data_v2.py (current: data v2 deliverables → app JSON)
+## Everything else in this folder is local-only and git-ignored
 
-Since the researcher's July 30 2026 "data v2" drop, this supersedes BOTH
-`build_app_data.py` and `fetch_import_values.py`. Stdlib-only, fully offline.
-Reads `researcher data/data v2/` and writes all four app JSONs:
-
-| Output (src/data/) | Source | Contents |
-|---|---|---|
-| `products_by_country.json` | `us_export_share_ytd.csv` | Country × HS4 pairs with `us_export_share_ytd` ≥10% (Census YTD imports ÷ OEC-estimated global exports; shares >100% capped at 100% per the RA). `x` is now U.S. imports over the share period, not OEC exports. |
-| `import_values.json` | `Census_Country_Import_Cumulative_YoY.xlsx` | Monthly imports (USD bn) + the researcher's **cumulative YTD YoY** per country. Placeholder months after the data cutoff are dropped. |
-| `bls_series.json` | `bls_indexed_mar2025.csv` | Unchanged from v1 (byte-identical file). |
-| `exempt_share.json` | `exemptions_annex_ii_list.xlsx` | Unchanged from v1 (byte-identical file). |
-
-CTY_CODE → ISO3 is recovered offline from `us_export_share_multiyear.csv` +
-`unmatched_oec_country_hs4.csv`; HS4 names from `usa_trade_share_comparison.xlsx`.
-
-```bash
-python3 scripts/build_app_data_v2.py
-```
+Earlier pipelines, kept on disk for reference but no longer used by the app:
+`build_app_data.py` (July 2026 v1: OEC share CSV + BLS + exemptions
+workbook), `build_app_data_v2.py` (July 30 2026 v2: Census-YTD share
+experiment), `fetch_import_values.py` (Census API pull), and the original
+R scripts `fetch_tracker_data.R` / `legacy_fetch_harmonized_imports.R`
+(BLS/Census/Comtrade API pulls into `tracker_data.json`, which the app no
+longer ships). API keys for those lived in `../reference/`.

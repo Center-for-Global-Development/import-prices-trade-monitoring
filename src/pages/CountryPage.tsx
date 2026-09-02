@@ -1,8 +1,10 @@
 import { Link, useParams } from "react-router-dom"
 import {
   getCountryData,
+  monthLabel,
+  PRICES_THROUGH,
   QUALIFYING_THRESHOLD,
-  SHARE_PERIOD,
+  SHARE_BASIS,
 } from "@/data/tracker"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -28,9 +30,10 @@ export function CountryPage() {
   }
 
   const thresholdPct = Math.round(QUALIFYING_THRESHOLD * 100)
-  // The tracker follows products it can price: qualifying HS4s with a BLS
-  // import price index. The rest of the qualifying basket stays out of view.
-  const priced = data.products.filter((p) => p.hasPriceSeries)
+  // The tracker follows products it can price: the researcher's file already
+  // restricts country_product rows to qualifying HS4s with a BLS import price
+  // index. The rest of the qualifying basket is only a count.
+  const priced = data.products
 
   return (
     <div className="container mx-auto max-w-6xl space-y-8 p-8">
@@ -58,9 +61,10 @@ export function CountryPage() {
         <CardHeader>
           <CardTitle>Price trends</CardTitle>
           <CardDescription>
-            BLS import price indices, monthly since Jan 2023, indexed to March
-            2025 = 100. BLS indices cover all U.S. imports of a product, not
-            imports from {data.name} alone. Multi-select to compare products.
+            BLS import price indices, monthly through {monthLabel(PRICES_THROUGH)},
+            indexed to March 2025 = 100. BLS indices cover all U.S. imports of a
+            product, not imports from {data.name} alone. Multi-select to compare
+            products.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -97,18 +101,16 @@ export function CountryPage() {
           <CardTitle>Tracked products</CardTitle>
           <CardDescription>
             HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
-            {data.name}'s exports went to the U.S. in {SHARE_PERIOD} ({priced.length} of{" "}
-            {data.products.length} qualifying products). Tariff status is the
+            {data.name}'s exports went to the U.S. in {SHARE_BASIS} ({priced.length} of{" "}
+            {data.qualifyingCount} qualifying products). Export shares are from
+            OEC bilateral trade data for {SHARE_BASIS}. Tariff status is the
             import-value-weighted share of the HS4 exempt under Annex II.
-            Export shares are U.S. imports (Census) divided by estimated global
-            exports (OEC-based); because the denominator is estimated, shares
-            can exceed 100% and are capped at 100%.
           </CardDescription>
         </CardHeader>
         <CardContent>
           {priced.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              None of {data.name}'s {data.products.length} qualifying products
+              None of {data.name}'s {data.qualifyingCount} qualifying products
               have a BLS import price index.
             </p>
           ) : (

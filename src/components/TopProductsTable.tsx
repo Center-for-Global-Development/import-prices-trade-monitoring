@@ -1,5 +1,11 @@
 import { useState } from "react"
-import { getPriceSeries, hs2For, SHARE_PERIOD, type Product } from "@/data/tracker"
+import {
+  hs2For,
+  IMPORTS_YTD_THROUGH,
+  SHARE_BASIS,
+  ytdLabel,
+  type Product,
+} from "@/data/tracker"
 import { Button } from "@/components/ui/button"
 import {
   Table,
@@ -19,33 +25,26 @@ function usd(n: number) {
 }
 
 // CGD stoplight palette: tariffed = bad, partially exempt = caution, fully
-// exempt = good. Meaning is carried by the label, never color alone.
-function TariffBadge({ exemptPct }: { exemptPct: number | null }) {
-  if (exemptPct === null) {
-    return <span className="text-xs text-muted-foreground">n/a</span>
+// exempt = good. The label text is the researcher's preformatted
+// tariff_status; the numeric exempt share only picks the colour. Meaning is
+// carried by the label, never colour alone.
+function TariffBadge({ product: p }: { product: Product }) {
+  if (p.exemptPct === null) {
+    return <span className="text-xs text-muted-foreground">{p.tariffStatus || "n/a"}</span>
   }
-  if (exemptPct === 0) return <Badge variant="destructive">Tariffed</Badge>
-  if (exemptPct === 100) {
+  if (p.exemptPct === 0) return <Badge variant="destructive">{p.tariffStatus}</Badge>
+  if (p.exemptPct === 100) {
     return (
       <Badge className="border-transparent bg-(--status-good)/12 text-(--status-good)">
-        Exempt
+        {p.tariffStatus}
       </Badge>
     )
   }
   return (
     <Badge className="border-transparent bg-(--status-caution)/25 text-foreground">
-      {Math.round(exemptPct)}% exempt
+      {p.tariffStatus}
     </Badge>
   )
-}
-
-// Cumulative price change since the March 2025 = 100 baseline: the series is
-// rebased so latest − 100 IS the % change since the tariff baseline.
-function priceChange(p: Product): number | null {
-  if (!p.hasPriceSeries) return null
-  const series = getPriceSeries(p.hs)
-  if (series.length === 0) return null
-  return series[series.length - 1].idx - 100
 }
 
 function fmtChange(delta: number): string {
@@ -71,18 +70,18 @@ function groupByHS2(products: Product[]): Group[] {
     g.products.push(p)
   }
   const out = [...groups.values()]
-  out.forEach((g) => g.products.sort((a, b) => b.shareToUS - a.shareToUS))
-  // Order groups by the U.S. import value of the qualifying products in
-  // them (a display ordering only — NOT a true chapter total, since products
-  // below the 10% share threshold are excluded).
-  const sum = (g: Group) => g.products.reduce((n, p) => n + p.usImports, 0)
+  out.forEach((g) => g.products.sort((a, b) => (b.shareToUS ?? 0) - (a.shareToUS ?? 0)))
+  // Order groups by the U.S. import value of the tracked products in them (a
+  // display ordering only — NOT a true chapter total, since products below
+  // the 10% share threshold or without a price series are excluded).
+  const sum = (g: Group) => g.products.reduce((n, p) => n + (p.usImportsYtd ?? 0), 0)
   out.sort((a, b) => sum(b) - sum(a))
   return out
 }
 
-// Rows shown before the "Show all" toggle kicks in. Countries can have
-// 1,000+ qualifying products (Canada, Mexico), which makes the page unusable
-// if rendered in full by default.
+// Rows shown before the "Show all" toggle kicks in. Countries can have 170+
+// tracked products (Canada, Mexico), which makes the page unwieldy if
+// rendered in full by default.
 const COLLAPSED_ROW_TARGET = 20
 
 export function TopProductsTable({ products }: { products: Product[] }) {
@@ -110,10 +109,12 @@ export function TopProductsTable({ products }: { products: Product[] }) {
           <TableRow>
             <TableHead className="w-[80px]">HS</TableHead>
             <TableHead>Product</TableHead>
-            <TableHead className="text-right">Share to U.S.</TableHead>
+            <TableHead className="text-right">Share to U.S. ({SHARE_BASIS})</TableHead>
             <TableHead className="text-right">Tariff status</TableHead>
             <TableHead className="text-right">Price change since Mar 2025</TableHead>
-            <TableHead className="text-right">U.S. imports ({SHARE_PERIOD})</TableHead>
+            <TableHead className="text-right">
+              U.S. imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -170,29 +171,36 @@ function HS2Group({ group }: { group: Group }) {
           {group.name}
         </TableCell>
       </TableRow>
-      {group.products.map((p) => {
-        const delta = priceChange(p)
-        return (
-          <TableRow key={p.hs}>
-            <TableCell className="pl-8 font-mono text-muted-foreground">{p.hs}</TableCell>
-            <TableCell className="max-w-[340px] whitespace-normal">{p.name}</TableCell>
-            <TableCell className="text-right">
-              <Badge variant="secondary">{Math.round(p.shareToUS * 100)}%</Badge>
-            </TableCell>
-            <TableCell className="text-right">
-              <TariffBadge exemptPct={p.exemptPct} />
-            </TableCell>
-            <TableCell className="text-right tabular-nums">
-              {delta === null ? (
-                <span className="text-muted-foreground">—</span>
-              ) : (
-                fmtChange(delta)
-              )}
-            </TableCell>
-            <TableCell className="text-right tabular-nums">{usd(p.usImports)}</TableCell>
-          </TableRow>
-        )
-      })}
+      {group.products.map((p) => (
+        <TableRow key={p.hs}>
+          <TableCell className="pl-8 font-mono text-muted-foreground">{p.hs}</TableCell>
+          <TableCell className="max-w-[340px] whitespace-normal">{p.name}</TableCell>
+          <TableCell className="text-right">
+            {p.shareToUS === null ? (
+              <span className="text-muted-foreground">—</span>
+            ) : (
+              <Badge variant="secondary">{Math.round(p.shareToUS)}%</Badge>
+            )}
+          </TableCell>
+          <TableCell className="text-right">
+            <TariffBadge product={p} />
+          </TableCell>
+          <TableCell className="text-right tabular-nums">
+            {p.priceChangePct === null ? (
+              <span className="text-muted-foreground">—</span>
+            ) : (
+              fmtChange(p.priceChangePct)
+            )}
+          </TableCell>
+          <TableCell className="text-right tabular-nums">
+            {p.usImportsYtd === null ? (
+              <span className="text-muted-foreground">—</span>
+            ) : (
+              usd(p.usImportsYtd)
+            )}
+          </TableCell>
+        </TableRow>
+      ))}
     </>
   )
 }

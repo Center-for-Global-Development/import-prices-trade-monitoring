@@ -24,9 +24,10 @@ const PALETTE = [
 ]
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
-  // Only products with a BLS price series can be plotted.
+  // Only products with a BLS price series can be plotted. The researcher's
+  // file already restricts tracked products to those, but guard anyway.
   const plottable = useMemo(
-    () => products.filter((p) => p.hasPriceSeries),
+    () => products.filter((p) => getPriceSeries(p.hs).length > 0),
     [products],
   )
 

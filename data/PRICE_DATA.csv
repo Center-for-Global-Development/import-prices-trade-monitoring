@@ -1,0 +1,4351 @@
+date,hs4,product,price_index
+2025-01-01,0102,Bovine,95.15
+2025-02-01,0102,Bovine,98.76
+2025-03-01,0102,Bovine,100
+2025-04-01,0102,Bovine,100.48
+2025-05-01,0102,Bovine,103.04
+2025-06-01,0102,Bovine,97.05
+2025-07-01,0102,Bovine,110.47
+2025-08-01,0102,Bovine,99.52
+2025-09-01,0102,Bovine,102.28
+2025-10-01,0102,Bovine,101.71
+2025-11-01,0102,Bovine,103.33
+2025-12-01,0102,Bovine,101.43
+2026-01-01,0102,Bovine,109.71
+2026-02-01,0102,Bovine,113.51
+2026-03-01,0102,Bovine,112.08
+2026-04-01,0102,Bovine,116.37
+2026-05-01,0102,Bovine,116.27
+2026-06-01,0102,Bovine,115.89
+2026-07-01,0102,Bovine,116.65
+2023-01-01,0201,Bovine Meat,79.63
+2023-02-01,0201,Bovine Meat,79.07
+2023-03-01,0201,Bovine Meat,79.55
+2023-04-01,0201,Bovine Meat,86.37
+2023-05-01,0201,Bovine Meat,91.18
+2023-06-01,0201,Bovine Meat,96.63
+2023-07-01,0201,Bovine Meat,99.76
+2023-08-01,0201,Bovine Meat,95.27
+2023-09-01,0201,Bovine Meat,94.31
+2023-10-01,0201,Bovine Meat,92.54
+2023-11-01,0201,Bovine Meat,90.22
+2023-12-01,0201,Bovine Meat,92.78
+2024-01-01,0201,Bovine Meat,93.91
+2024-02-01,0201,Bovine Meat,95.35
+2024-03-01,0201,Bovine Meat,98.32
+2024-04-01,0201,Bovine Meat,102
+2024-05-01,0201,Bovine Meat,104.41
+2024-06-01,0201,Bovine Meat,101.28
+2024-07-01,0201,Bovine Meat,100
+2024-08-01,0201,Bovine Meat,100.08
+2024-09-01,0201,Bovine Meat,98.64
+2024-10-01,0201,Bovine Meat,94.23
+2024-11-01,0201,Bovine Meat,97.43
+2024-12-01,0201,Bovine Meat,97.51
+2025-01-01,0201,Bovine Meat,97.35
+2025-02-01,0201,Bovine Meat,98.72
+2025-03-01,0201,Bovine Meat,100
+2025-04-01,0201,Bovine Meat,101.6
+2025-05-01,0201,Bovine Meat,105.29
+2025-06-01,0201,Bovine Meat,110.51
+2025-07-01,0201,Bovine Meat,113.79
+2025-08-01,0201,Bovine Meat,111.47
+2025-09-01,0201,Bovine Meat,111.63
+2025-10-01,0201,Bovine Meat,110.99
+2025-11-01,0201,Bovine Meat,109.38
+2025-12-01,0201,Bovine Meat,110.1
+2026-01-01,0201,Bovine Meat,107.78
+2026-02-01,0201,Bovine Meat,108.58
+2026-03-01,0201,Bovine Meat,112.27
+2026-04-01,0201,Bovine Meat,114.92
+2026-05-01,0201,Bovine Meat,113.63
+2026-06-01,0201,Bovine Meat,114.68
+2026-07-01,0201,Bovine Meat,114.68
+2025-01-01,0202,Frozen Bovine Meat,94.97
+2025-02-01,0202,Frozen Bovine Meat,99.15
+2025-03-01,0202,Frozen Bovine Meat,100
+2025-04-01,0202,Frozen Bovine Meat,101.8
+2025-05-01,0202,Frozen Bovine Meat,101.61
+2025-06-01,0202,Frozen Bovine Meat,101.04
+2025-07-01,0202,Frozen Bovine Meat,102.56
+2025-08-01,0202,Frozen Bovine Meat,102.09
+2025-09-01,0202,Frozen Bovine Meat,101.33
+2025-10-01,0202,Frozen Bovine Meat,102.66
+2025-11-01,0202,Frozen Bovine Meat,105.03
+2025-12-01,0202,Frozen Bovine Meat,109.69
+2026-01-01,0202,Frozen Bovine Meat,112.25
+2026-02-01,0202,Frozen Bovine Meat,107.03
+2026-03-01,0202,Frozen Bovine Meat,102.56
+2026-04-01,0202,Frozen Bovine Meat,104.27
+2026-05-01,0202,Frozen Bovine Meat,105.7
+2026-06-01,0202,Frozen Bovine Meat,106.84
+2026-07-01,0202,Frozen Bovine Meat,106.46
+2025-01-01,0203,Pig Meat,98.72
+2025-02-01,0203,Pig Meat,99.41
+2025-03-01,0203,Pig Meat,100
+2025-04-01,0203,Pig Meat,97.73
+2025-05-01,0203,Pig Meat,100.99
+2025-06-01,0203,Pig Meat,107.11
+2025-07-01,0203,Pig Meat,108.98
+2025-08-01,0203,Pig Meat,109.67
+2025-09-01,0203,Pig Meat,110.07
+2025-10-01,0203,Pig Meat,104.94
+2025-11-01,0203,Pig Meat,101.48
+2025-12-01,0203,Pig Meat,100
+2026-01-01,0203,Pig Meat,99.41
+2026-02-01,0203,Pig Meat,101.09
+2026-03-01,0203,Pig Meat,102.17
+2026-04-01,0203,Pig Meat,100.59
+2026-05-01,0203,Pig Meat,101.48
+2026-06-01,0203,Pig Meat,100.69
+2026-07-01,0203,Pig Meat,100.2
+2025-01-01,0204,Sheep and Goat Meat,99.11
+2025-02-01,0204,Sheep and Goat Meat,99.31
+2025-03-01,0204,Sheep and Goat Meat,100
+2025-04-01,0204,Sheep and Goat Meat,101.98
+2025-05-01,0204,Sheep and Goat Meat,98.71
+2025-06-01,0204,Sheep and Goat Meat,97.62
+2025-07-01,0204,Sheep and Goat Meat,99.9
+2025-08-01,0204,Sheep and Goat Meat,105.05
+2025-09-01,0204,Sheep and Goat Meat,104.06
+2025-10-01,0204,Sheep and Goat Meat,107.14
+2025-11-01,0204,Sheep and Goat Meat,108.92
+2025-12-01,0204,Sheep and Goat Meat,110.6
+2026-01-01,0204,Sheep and Goat Meat,112.19
+2026-02-01,0204,Sheep and Goat Meat,112.88
+2026-03-01,0204,Sheep and Goat Meat,112.39
+2026-04-01,0204,Sheep and Goat Meat,116.55
+2026-05-01,0204,Sheep and Goat Meat,117.54
+2026-06-01,0204,Sheep and Goat Meat,120.32
+2026-07-01,0204,Sheep and Goat Meat,122
+2025-01-01,0302,Non-fillet Fresh Fish,110.13
+2025-02-01,0302,Non-fillet Fresh Fish,101.76
+2025-03-01,0302,Non-fillet Fresh Fish,100
+2025-04-01,0302,Non-fillet Fresh Fish,95.48
+2025-05-01,0302,Non-fillet Fresh Fish,87.89
+2025-06-01,0302,Non-fillet Fresh Fish,90.97
+2025-07-01,0302,Non-fillet Fresh Fish,88.66
+2025-08-01,0302,Non-fillet Fresh Fish,88.99
+2025-09-01,0302,Non-fillet Fresh Fish,91.19
+2025-10-01,0302,Non-fillet Fresh Fish,91.19
+2025-11-01,0302,Non-fillet Fresh Fish,90.09
+2025-12-01,0302,Non-fillet Fresh Fish,94.6
+2026-01-01,0302,Non-fillet Fresh Fish,100.99
+2026-02-01,0302,Non-fillet Fresh Fish,96.37
+2026-03-01,0302,Non-fillet Fresh Fish,100.11
+2026-04-01,0302,Non-fillet Fresh Fish,98.46
+2026-05-01,0302,Non-fillet Fresh Fish,98.46
+2026-06-01,0302,Non-fillet Fresh Fish,94.82
+2026-07-01,0302,Non-fillet Fresh Fish,95.37
+2025-01-01,0303,Non-fillet Frozen Fish,98.91
+2025-02-01,0303,Non-fillet Frozen Fish,98.22
+2025-03-01,0303,Non-fillet Frozen Fish,100
+2025-04-01,0303,Non-fillet Frozen Fish,98.91
+2025-05-01,0303,Non-fillet Frozen Fish,96.74
+2025-06-01,0303,Non-fillet Frozen Fish,97.23
+2025-07-01,0303,Non-fillet Frozen Fish,96.34
+2025-08-01,0303,Non-fillet Frozen Fish,95.45
+2025-09-01,0303,Non-fillet Frozen Fish,97.63
+2025-10-01,0303,Non-fillet Frozen Fish,96.74
+2025-11-01,0303,Non-fillet Frozen Fish,97.03
+2025-12-01,0303,Non-fillet Frozen Fish,98.12
+2026-01-01,0303,Non-fillet Frozen Fish,99.7
+2026-02-01,0303,Non-fillet Frozen Fish,98.71
+2026-03-01,0303,Non-fillet Frozen Fish,99.31
+2026-04-01,0303,Non-fillet Frozen Fish,103.76
+2026-05-01,0303,Non-fillet Frozen Fish,101.98
+2026-06-01,0303,Non-fillet Frozen Fish,102.27
+2026-07-01,0303,Non-fillet Frozen Fish,101.88
+2023-01-01,0304,Fish Fillets,105.14
+2023-02-01,0304,Fish Fillets,110.93
+2023-03-01,0304,Fish Fillets,110.43
+2023-04-01,0304,Fish Fillets,105.07
+2023-05-01,0304,Fish Fillets,104.5
+2023-06-01,0304,Fish Fillets,103.43
+2023-07-01,0304,Fish Fillets,97.57
+2023-08-01,0304,Fish Fillets,103.93
+2023-09-01,0304,Fish Fillets,98.5
+2023-10-01,0304,Fish Fillets,92.79
+2023-11-01,0304,Fish Fillets,88.29
+2023-12-01,0304,Fish Fillets,83.14
+2024-01-01,0304,Fish Fillets,89.71
+2024-02-01,0304,Fish Fillets,95.57
+2024-03-01,0304,Fish Fillets,97
+2024-04-01,0304,Fish Fillets,95.86
+2024-05-01,0304,Fish Fillets,93.93
+2024-06-01,0304,Fish Fillets,96.71
+2024-07-01,0304,Fish Fillets,97.14
+2024-08-01,0304,Fish Fillets,95
+2024-09-01,0304,Fish Fillets,94.86
+2024-10-01,0304,Fish Fillets,92.64
+2024-11-01,0304,Fish Fillets,94.71
+2024-12-01,0304,Fish Fillets,95.36
+2025-01-01,0304,Fish Fillets,99.57
+2025-02-01,0304,Fish Fillets,99.14
+2025-03-01,0304,Fish Fillets,100
+2025-04-01,0304,Fish Fillets,97.14
+2025-05-01,0304,Fish Fillets,94.14
+2025-06-01,0304,Fish Fillets,91.93
+2025-07-01,0304,Fish Fillets,90.29
+2025-08-01,0304,Fish Fillets,88.71
+2025-09-01,0304,Fish Fillets,89.43
+2025-10-01,0304,Fish Fillets,88.5
+2025-11-01,0304,Fish Fillets,88.57
+2025-12-01,0304,Fish Fillets,90.71
+2026-01-01,0304,Fish Fillets,91.79
+2026-02-01,0304,Fish Fillets,93.36
+2026-03-01,0304,Fish Fillets,96
+2026-04-01,0304,Fish Fillets,97.07
+2026-05-01,0304,Fish Fillets,97.86
+2026-06-01,0304,Fish Fillets,98.79
+2026-07-01,0304,Fish Fillets,97.71
+2023-01-01,0306,Crustaceans,86.42
+2023-02-01,0306,Crustaceans,87.41
+2023-03-01,0306,Crustaceans,89.09
+2023-04-01,0306,Crustaceans,88.94
+2023-05-01,0306,Crustaceans,86.5
+2023-06-01,0306,Crustaceans,83.52
+2023-07-01,0306,Crustaceans,83.3
+2023-08-01,0306,Crustaceans,82
+2023-09-01,0306,Crustaceans,82.76
+2023-10-01,0306,Crustaceans,83.07
+2023-11-01,0306,Crustaceans,80.09
+2023-12-01,0306,Crustaceans,79.25
+2024-01-01,0306,Crustaceans,79.25
+2024-02-01,0306,Crustaceans,80.7
+2024-03-01,0306,Crustaceans,80.78
+2024-04-01,0306,Crustaceans,83.3
+2024-05-01,0306,Crustaceans,84.13
+2024-06-01,0306,Crustaceans,85.89
+2024-07-01,0306,Crustaceans,83.75
+2024-08-01,0306,Crustaceans,84.21
+2024-09-01,0306,Crustaceans,87.34
+2024-10-01,0306,Crustaceans,90.01
+2024-11-01,0306,Crustaceans,90.62
+2024-12-01,0306,Crustaceans,93.29
+2025-01-01,0306,Crustaceans,96.26
+2025-02-01,0306,Crustaceans,98.93
+2025-03-01,0306,Crustaceans,100
+2025-04-01,0306,Crustaceans,101.91
+2025-05-01,0306,Crustaceans,96.64
+2025-06-01,0306,Crustaceans,96.95
+2025-07-01,0306,Crustaceans,97.25
+2025-08-01,0306,Crustaceans,96.8
+2025-09-01,0306,Crustaceans,97.41
+2025-10-01,0306,Crustaceans,98.17
+2025-11-01,0306,Crustaceans,99.16
+2025-12-01,0306,Crustaceans,98.63
+2026-01-01,0306,Crustaceans,101.22
+2026-02-01,0306,Crustaceans,100.53
+2026-03-01,0306,Crustaceans,101.98
+2026-04-01,0306,Crustaceans,99.31
+2026-05-01,0306,Crustaceans,99.01
+2026-06-01,0306,Crustaceans,98.09
+2026-07-01,0306,Crustaceans,99.01
+2025-01-01,0307,Molluscs,96.43
+2025-02-01,0307,Molluscs,97.11
+2025-03-01,0307,Molluscs,100
+2025-04-01,0307,Molluscs,97.01
+2025-05-01,0307,Molluscs,99.32
+2025-06-01,0307,Molluscs,97.4
+2025-07-01,0307,Molluscs,99.9
+2025-08-01,0307,Molluscs,98.94
+2025-09-01,0307,Molluscs,99.42
+2025-10-01,0307,Molluscs,100.58
+2025-11-01,0307,Molluscs,100.58
+2025-12-01,0307,Molluscs,99.81
+2026-01-01,0307,Molluscs,99.81
+2026-02-01,0307,Molluscs,99.04
+2026-03-01,0307,Molluscs,99.9
+2026-04-01,0307,Molluscs,99.9
+2026-05-01,0307,Molluscs,101.83
+2026-06-01,0307,Molluscs,103.66
+2026-07-01,0307,Molluscs,104.73
+2025-01-01,0406,Cheese,98.72
+2025-02-01,0406,Cheese,98.62
+2025-03-01,0406,Cheese,100
+2025-04-01,0406,Cheese,100.99
+2025-05-01,0406,Cheese,100.89
+2025-06-01,0406,Cheese,103.95
+2025-07-01,0406,Cheese,105.23
+2025-08-01,0406,Cheese,105.03
+2025-09-01,0406,Cheese,104.64
+2025-10-01,0406,Cheese,103.65
+2025-11-01,0406,Cheese,104.44
+2025-12-01,0406,Cheese,103.16
+2026-01-01,0406,Cheese,102.76
+2026-02-01,0406,Cheese,103.85
+2026-03-01,0406,Cheese,103.55
+2026-04-01,0406,Cheese,103.85
+2026-05-01,0406,Cheese,105.53
+2026-06-01,0406,Cheese,102.76
+2026-07-01,0406,Cheese,102.27
+2025-01-01,0603,Cut Flowers,119.47
+2025-02-01,0603,Cut Flowers,115.89
+2025-03-01,0603,Cut Flowers,100
+2025-04-01,0603,Cut Flowers,96.77
+2025-05-01,0603,Cut Flowers,93.67
+2025-06-01,0603,Cut Flowers,88.53
+2025-07-01,0603,Cut Flowers,84.95
+2025-08-01,0603,Cut Flowers,81.12
+2025-09-01,0603,Cut Flowers,91.28
+2025-10-01,0603,Cut Flowers,96.06
+2025-11-01,0603,Cut Flowers,101.31
+2025-12-01,0603,Cut Flowers,101.31
+2026-01-01,0603,Cut Flowers,100.96
+2026-02-01,0603,Cut Flowers,97.01
+2026-03-01,0603,Cut Flowers,81.24
+2026-04-01,0603,Cut Flowers,96.3
+2026-05-01,0603,Cut Flowers,95.94
+2026-06-01,0603,Cut Flowers,89.25
+2026-07-01,0603,Cut Flowers,88.77
+2025-01-01,0702,Tomatoes,105.71
+2025-02-01,0702,Tomatoes,93.97
+2025-03-01,0702,Tomatoes,100
+2025-04-01,0702,Tomatoes,100.63
+2025-05-01,0702,Tomatoes,96.51
+2025-06-01,0702,Tomatoes,101.06
+2025-07-01,0702,Tomatoes,98.2
+2025-08-01,0702,Tomatoes,96.72
+2025-09-01,0702,Tomatoes,96.41
+2025-10-01,0702,Tomatoes,99.47
+2025-11-01,0702,Tomatoes,96.09
+2025-12-01,0702,Tomatoes,86.36
+2026-01-01,0702,Tomatoes,89.53
+2026-02-01,0702,Tomatoes,98.2
+2026-03-01,0702,Tomatoes,139.75
+2026-04-01,0702,Tomatoes,149.68
+2026-05-01,0702,Tomatoes,120.51
+2026-06-01,0702,Tomatoes,99.79
+2026-07-01,0702,Tomatoes,100.63
+2025-01-01,0709,Other Vegetables,116.28
+2025-02-01,0709,Other Vegetables,111.28
+2025-03-01,0709,Other Vegetables,100
+2025-04-01,0709,Other Vegetables,99.19
+2025-05-01,0709,Other Vegetables,100.35
+2025-06-01,0709,Other Vegetables,103.6
+2025-07-01,0709,Other Vegetables,109.42
+2025-08-01,0709,Other Vegetables,111.16
+2025-09-01,0709,Other Vegetables,104.53
+2025-10-01,0709,Other Vegetables,103.37
+2025-11-01,0709,Other Vegetables,105.58
+2025-12-01,0709,Other Vegetables,105.58
+2026-01-01,0709,Other Vegetables,102.56
+2026-02-01,0709,Other Vegetables,104.88
+2026-03-01,0709,Other Vegetables,114.88
+2026-04-01,0709,Other Vegetables,119.88
+2026-05-01,0709,Other Vegetables,112.56
+2026-06-01,0709,Other Vegetables,108.02
+2026-07-01,0709,Other Vegetables,113.84
+2025-01-01,0710,Frozen Vegetables,102.25
+2025-02-01,0710,Frozen Vegetables,102.45
+2025-03-01,0710,Frozen Vegetables,100
+2025-04-01,0710,Frozen Vegetables,100.31
+2025-05-01,0710,Frozen Vegetables,100.41
+2025-06-01,0710,Frozen Vegetables,101.02
+2025-07-01,0710,Frozen Vegetables,101.02
+2025-08-01,0710,Frozen Vegetables,99.9
+2025-09-01,0710,Frozen Vegetables,101.94
+2025-10-01,0710,Frozen Vegetables,101.23
+2025-11-01,0710,Frozen Vegetables,100.82
+2025-12-01,0710,Frozen Vegetables,100.82
+2026-01-01,0710,Frozen Vegetables,101.33
+2026-02-01,0710,Frozen Vegetables,101.23
+2026-03-01,0710,Frozen Vegetables,101.43
+2026-04-01,0710,Frozen Vegetables,100.41
+2026-05-01,0710,Frozen Vegetables,102.04
+2026-06-01,0710,Frozen Vegetables,101.94
+2026-07-01,0710,Frozen Vegetables,100.82
+2025-01-01,0801,"Coconuts, Brazil Nuts, and Cashews",99.4
+2025-02-01,0801,"Coconuts, Brazil Nuts, and Cashews",101.09
+2025-03-01,0801,"Coconuts, Brazil Nuts, and Cashews",100
+2025-04-01,0801,"Coconuts, Brazil Nuts, and Cashews",102.29
+2025-05-01,0801,"Coconuts, Brazil Nuts, and Cashews",101.99
+2025-06-01,0801,"Coconuts, Brazil Nuts, and Cashews",100.99
+2025-07-01,0801,"Coconuts, Brazil Nuts, and Cashews",103.98
+2025-08-01,0801,"Coconuts, Brazil Nuts, and Cashews",102.09
+2025-09-01,0801,"Coconuts, Brazil Nuts, and Cashews",103.68
+2025-10-01,0801,"Coconuts, Brazil Nuts, and Cashews",102.68
+2025-11-01,0801,"Coconuts, Brazil Nuts, and Cashews",100.7
+2025-12-01,0801,"Coconuts, Brazil Nuts, and Cashews",101.79
+2026-01-01,0801,"Coconuts, Brazil Nuts, and Cashews",103.58
+2026-02-01,0801,"Coconuts, Brazil Nuts, and Cashews",103.38
+2026-03-01,0801,"Coconuts, Brazil Nuts, and Cashews",102.49
+2026-04-01,0801,"Coconuts, Brazil Nuts, and Cashews",101.69
+2026-05-01,0801,"Coconuts, Brazil Nuts, and Cashews",100
+2026-06-01,0801,"Coconuts, Brazil Nuts, and Cashews",102.68
+2026-07-01,0801,"Coconuts, Brazil Nuts, and Cashews",103.78
+2025-01-01,0803,Bananas,97.09
+2025-02-01,0803,Bananas,98.16
+2025-03-01,0803,Bananas,100
+2025-04-01,0803,Bananas,102.43
+2025-05-01,0803,Bananas,103.79
+2025-06-01,0803,Bananas,102.04
+2025-07-01,0803,Bananas,102.23
+2025-08-01,0803,Bananas,103.01
+2025-09-01,0803,Bananas,106.6
+2025-10-01,0803,Bananas,106.89
+2025-11-01,0803,Bananas,107.48
+2025-12-01,0803,Bananas,107.48
+2026-01-01,0803,Bananas,107.67
+2026-02-01,0803,Bananas,107.38
+2026-03-01,0803,Bananas,108.16
+2026-04-01,0803,Bananas,108.54
+2026-05-01,0803,Bananas,108.45
+2026-06-01,0803,Bananas,108.83
+2026-07-01,0803,Bananas,109.42
+2025-01-01,0806,Grapes,119.9
+2025-02-01,0806,Grapes,113.55
+2025-03-01,0806,Grapes,100
+2025-04-01,0806,Grapes,104.68
+2025-05-01,0806,Grapes,97
+2025-06-01,0806,Grapes,141.01
+2025-07-01,0806,Grapes,130.58
+2025-08-01,0806,Grapes,91.13
+2025-09-01,0806,Grapes,94.96
+2025-10-01,0806,Grapes,88.73
+2025-11-01,0806,Grapes,97.36
+2025-12-01,0806,Grapes,99.04
+2026-01-01,0806,Grapes,92.57
+2026-02-01,0806,Grapes,89.81
+2026-03-01,0806,Grapes,94.48
+2026-04-01,0806,Grapes,108.15
+2026-05-01,0806,Grapes,100.12
+2026-06-01,0806,Grapes,106.95
+2026-07-01,0806,Grapes,152.28
+2025-01-01,0811,Frozen Fruits and Nuts,102.56
+2025-02-01,0811,Frozen Fruits and Nuts,101.33
+2025-03-01,0811,Frozen Fruits and Nuts,100
+2025-04-01,0811,Frozen Fruits and Nuts,99.28
+2025-05-01,0811,Frozen Fruits and Nuts,100.21
+2025-06-01,0811,Frozen Fruits and Nuts,99.18
+2025-07-01,0811,Frozen Fruits and Nuts,99.49
+2025-08-01,0811,Frozen Fruits and Nuts,101.33
+2025-09-01,0811,Frozen Fruits and Nuts,100.72
+2025-10-01,0811,Frozen Fruits and Nuts,100.82
+2025-11-01,0811,Frozen Fruits and Nuts,104.82
+2025-12-01,0811,Frozen Fruits and Nuts,105.54
+2026-01-01,0811,Frozen Fruits and Nuts,106.05
+2026-02-01,0811,Frozen Fruits and Nuts,104.92
+2026-03-01,0811,Frozen Fruits and Nuts,104
+2026-04-01,0811,Frozen Fruits and Nuts,104.62
+2026-05-01,0811,Frozen Fruits and Nuts,104.92
+2026-06-01,0811,Frozen Fruits and Nuts,104.21
+2026-07-01,0811,Frozen Fruits and Nuts,103.69
+2023-01-01,0901,Coffee,66.47
+2023-02-01,0901,Coffee,67.29
+2023-03-01,0901,Coffee,67.21
+2023-04-01,0901,Coffee,66.58
+2023-05-01,0901,Coffee,66.95
+2023-06-01,0901,Coffee,66.69
+2023-07-01,0901,Coffee,65.17
+2023-08-01,0901,Coffee,65.46
+2023-09-01,0901,Coffee,64.76
+2023-10-01,0901,Coffee,63.68
+2023-11-01,0901,Coffee,65.54
+2023-12-01,0901,Coffee,68.11
+2024-01-01,0901,Coffee,64.05
+2024-02-01,0901,Coffee,64.94
+2024-03-01,0901,Coffee,65.61
+2024-04-01,0901,Coffee,66.39
+2024-05-01,0901,Coffee,66.8
+2024-06-01,0901,Coffee,70.97
+2024-07-01,0901,Coffee,71.68
+2024-08-01,0901,Coffee,72.46
+2024-09-01,0901,Coffee,74.1
+2024-10-01,0901,Coffee,77.07
+2024-11-01,0901,Coffee,80.98
+2024-12-01,0901,Coffee,88.05
+2025-01-01,0901,Coffee,84.82
+2025-02-01,0901,Coffee,89.1
+2025-03-01,0901,Coffee,100
+2025-04-01,0901,Coffee,106.33
+2025-05-01,0901,Coffee,105.99
+2025-06-01,0901,Coffee,104.8
+2025-07-01,0901,Coffee,100.33
+2025-08-01,0901,Coffee,94.38
+2025-09-01,0901,Coffee,94.6
+2025-10-01,0901,Coffee,97.25
+2025-11-01,0901,Coffee,100.07
+2025-12-01,0901,Coffee,101.49
+2026-01-01,0901,Coffee,101.9
+2026-02-01,0901,Coffee,97.66
+2026-03-01,0901,Coffee,94.49
+2026-04-01,0901,Coffee,89.58
+2026-05-01,0901,Coffee,88.72
+2026-06-01,0901,Coffee,87.31
+2026-07-01,0901,Coffee,86.53
+2025-01-01,1006,Rice,102.35
+2025-02-01,1006,Rice,100
+2025-03-01,1006,Rice,100
+2025-04-01,1006,Rice,99.08
+2025-05-01,1006,Rice,97.03
+2025-06-01,1006,Rice,95.8
+2025-07-01,1006,Rice,97.44
+2025-08-01,1006,Rice,98.77
+2025-09-01,1006,Rice,98.57
+2025-10-01,1006,Rice,96.93
+2025-11-01,1006,Rice,97.85
+2025-12-01,1006,Rice,95.19
+2026-01-01,1006,Rice,94.27
+2026-02-01,1006,Rice,96.32
+2026-03-01,1006,Rice,96.83
+2026-04-01,1006,Rice,99.08
+2026-05-01,1006,Rice,98.57
+2026-06-01,1006,Rice,100.31
+2026-07-01,1006,Rice,100.41
+2025-01-01,1509,Pure Olive Oil,126.42
+2025-02-01,1509,Pure Olive Oil,112.77
+2025-03-01,1509,Pure Olive Oil,100
+2025-04-01,1509,Pure Olive Oil,95.95
+2025-05-01,1509,Pure Olive Oil,93.55
+2025-06-01,1509,Pure Olive Oil,90.01
+2025-07-01,1509,Pure Olive Oil,90.52
+2025-08-01,1509,Pure Olive Oil,89.25
+2025-09-01,1509,Pure Olive Oil,90.77
+2025-10-01,1509,Pure Olive Oil,91.02
+2025-11-01,1509,Pure Olive Oil,93.81
+2025-12-01,1509,Pure Olive Oil,92.41
+2026-01-01,1509,Pure Olive Oil,93.68
+2026-02-01,1509,Pure Olive Oil,93.43
+2026-03-01,1509,Pure Olive Oil,92.16
+2026-04-01,1509,Pure Olive Oil,92.41
+2026-05-01,1509,Pure Olive Oil,93.43
+2026-06-01,1509,Pure Olive Oil,92.67
+2026-07-01,1509,Pure Olive Oil,93.55
+2025-01-01,1511,Palm Oil,99.4
+2025-02-01,1511,Palm Oil,104.57
+2025-03-01,1511,Palm Oil,100
+2025-04-01,1511,Palm Oil,99.6
+2025-05-01,1511,Palm Oil,98.71
+2025-06-01,1511,Palm Oil,89.46
+2025-07-01,1511,Palm Oil,85.98
+2025-08-01,1511,Palm Oil,85.19
+2025-09-01,1511,Palm Oil,84.99
+2025-10-01,1511,Palm Oil,89.07
+2025-11-01,1511,Palm Oil,94.43
+2025-12-01,1511,Palm Oil,94.33
+2026-01-01,1511,Palm Oil,90.46
+2026-02-01,1511,Palm Oil,90.76
+2026-03-01,1511,Palm Oil,90.76
+2026-04-01,1511,Palm Oil,90.66
+2026-05-01,1511,Palm Oil,95.73
+2026-06-01,1511,Palm Oil,97.81
+2026-07-01,1511,Palm Oil,101.59
+2025-01-01,1513,Coconut Oil,95.51
+2025-02-01,1513,Coconut Oil,97.42
+2025-03-01,1513,Coconut Oil,100
+2025-04-01,1513,Coconut Oil,110.22
+2025-05-01,1513,Coconut Oil,109.84
+2025-06-01,1513,Coconut Oil,108.79
+2025-07-01,1513,Coconut Oil,116.62
+2025-08-01,1513,Coconut Oil,106.78
+2025-09-01,1513,Coconut Oil,119.01
+2025-10-01,1513,Coconut Oil,105.73
+2025-11-01,1513,Coconut Oil,116.81
+2025-12-01,1513,Coconut Oil,118.53
+2026-01-01,1513,Coconut Oil,120.44
+2026-02-01,1513,Coconut Oil,111.46
+2026-03-01,1513,Coconut Oil,107.26
+2026-04-01,1513,Coconut Oil,110.7
+2026-05-01,1513,Coconut Oil,108.69
+2026-06-01,1513,Coconut Oil,115.38
+2026-07-01,1513,Coconut Oil,111.75
+2025-01-01,1514,Rapeseed Oil,102.99
+2025-02-01,1514,Rapeseed Oil,102.68
+2025-03-01,1514,Rapeseed Oil,100
+2025-04-01,1514,Rapeseed Oil,100.1
+2025-05-01,1514,Rapeseed Oil,105.56
+2025-06-01,1514,Rapeseed Oil,105.77
+2025-07-01,1514,Rapeseed Oil,112.26
+2025-08-01,1514,Rapeseed Oil,116.17
+2025-09-01,1514,Rapeseed Oil,116.99
+2025-10-01,1514,Rapeseed Oil,112.26
+2025-11-01,1514,Rapeseed Oil,109.99
+2025-12-01,1514,Rapeseed Oil,110.81
+2026-01-01,1514,Rapeseed Oil,107.93
+2026-02-01,1514,Rapeseed Oil,110.09
+2026-03-01,1514,Rapeseed Oil,116.17
+2026-04-01,1514,Rapeseed Oil,130.69
+2026-05-01,1514,Rapeseed Oil,137.9
+2026-06-01,1514,Rapeseed Oil,145.01
+2026-07-01,1514,Rapeseed Oil,145.62
+2025-01-01,1602,Other Prepared Meat,101.11
+2025-02-01,1602,Other Prepared Meat,101.72
+2025-03-01,1602,Other Prepared Meat,100
+2025-04-01,1602,Other Prepared Meat,101.31
+2025-05-01,1602,Other Prepared Meat,101.01
+2025-06-01,1602,Other Prepared Meat,103.34
+2025-07-01,1602,Other Prepared Meat,104.85
+2025-08-01,1602,Other Prepared Meat,106.67
+2025-09-01,1602,Other Prepared Meat,105.16
+2025-10-01,1602,Other Prepared Meat,105.26
+2025-11-01,1602,Other Prepared Meat,106.57
+2025-12-01,1602,Other Prepared Meat,107.38
+2026-01-01,1602,Other Prepared Meat,105.46
+2026-02-01,1602,Other Prepared Meat,102.63
+2026-03-01,1602,Other Prepared Meat,105.16
+2026-04-01,1602,Other Prepared Meat,105.56
+2026-05-01,1602,Other Prepared Meat,106.77
+2026-06-01,1602,Other Prepared Meat,108.7
+2026-07-01,1602,Other Prepared Meat,109.2
+2025-01-01,1604,Processed Fish,98.81
+2025-02-01,1604,Processed Fish,99.51
+2025-03-01,1604,Processed Fish,100
+2025-04-01,1604,Processed Fish,99.7
+2025-05-01,1604,Processed Fish,99.9
+2025-06-01,1604,Processed Fish,100.3
+2025-07-01,1604,Processed Fish,101.09
+2025-08-01,1604,Processed Fish,99.51
+2025-09-01,1604,Processed Fish,99.6
+2025-10-01,1604,Processed Fish,101.68
+2025-11-01,1604,Processed Fish,97.83
+2025-12-01,1604,Processed Fish,99.6
+2026-01-01,1604,Processed Fish,101.09
+2026-02-01,1604,Processed Fish,101.98
+2026-03-01,1604,Processed Fish,103.36
+2026-04-01,1604,Processed Fish,103.06
+2026-05-01,1604,Processed Fish,103.26
+2026-06-01,1604,Processed Fish,104.45
+2026-07-01,1604,Processed Fish,104.94
+2025-01-01,1605,Processed Crustaceans,98.52
+2025-02-01,1605,Processed Crustaceans,98.62
+2025-03-01,1605,Processed Crustaceans,100
+2025-04-01,1605,Processed Crustaceans,98.62
+2025-05-01,1605,Processed Crustaceans,99.7
+2025-06-01,1605,Processed Crustaceans,98.92
+2025-07-01,1605,Processed Crustaceans,98.62
+2025-08-01,1605,Processed Crustaceans,100.89
+2025-09-01,1605,Processed Crustaceans,100.99
+2025-10-01,1605,Processed Crustaceans,103.05
+2025-11-01,1605,Processed Crustaceans,104.43
+2025-12-01,1605,Processed Crustaceans,102.17
+2026-01-01,1605,Processed Crustaceans,100.79
+2026-02-01,1605,Processed Crustaceans,101.77
+2026-03-01,1605,Processed Crustaceans,102.36
+2026-04-01,1605,Processed Crustaceans,101.08
+2026-05-01,1605,Processed Crustaceans,105.62
+2026-06-01,1605,Processed Crustaceans,106.4
+2026-07-01,1605,Processed Crustaceans,107.78
+2025-01-01,1701,Raw Sugar,105.71
+2025-02-01,1701,Raw Sugar,110.04
+2025-03-01,1701,Raw Sugar,100
+2025-04-01,1701,Raw Sugar,100.42
+2025-05-01,1701,Raw Sugar,105.18
+2025-06-01,1701,Raw Sugar,101.06
+2025-07-01,1701,Raw Sugar,93.87
+2025-08-01,1701,Raw Sugar,92.81
+2025-09-01,1701,Raw Sugar,89.96
+2025-10-01,1701,Raw Sugar,90.7
+2025-11-01,1701,Raw Sugar,99.68
+2025-12-01,1701,Raw Sugar,90.17
+2026-01-01,1701,Raw Sugar,83.93
+2026-02-01,1701,Raw Sugar,81.5
+2026-03-01,1701,Raw Sugar,91.65
+2026-04-01,1701,Raw Sugar,86.79
+2026-05-01,1701,Raw Sugar,97.15
+2026-06-01,1701,Raw Sugar,98.2
+2026-07-01,1701,Raw Sugar,83.51
+2025-01-01,1704,Confectionery Sugar,97.94
+2025-02-01,1704,Confectionery Sugar,98.14
+2025-03-01,1704,Confectionery Sugar,100
+2025-04-01,1704,Confectionery Sugar,101.27
+2025-05-01,1704,Confectionery Sugar,100.69
+2025-06-01,1704,Confectionery Sugar,100.2
+2025-07-01,1704,Confectionery Sugar,102.15
+2025-08-01,1704,Confectionery Sugar,102.94
+2025-09-01,1704,Confectionery Sugar,101.67
+2025-11-01,1704,Confectionery Sugar,102.84
+2025-12-01,1704,Confectionery Sugar,101.67
+2026-01-01,1704,Confectionery Sugar,100.69
+2026-02-01,1704,Confectionery Sugar,99.9
+2026-03-01,1704,Confectionery Sugar,100.29
+2026-04-01,1704,Confectionery Sugar,101.96
+2026-05-01,1704,Confectionery Sugar,102.25
+2026-06-01,1704,Confectionery Sugar,101.86
+2026-07-01,1704,Confectionery Sugar,103.23
+2025-01-01,1806,Chocolate,93.72
+2025-02-01,1806,Chocolate,97.38
+2025-03-01,1806,Chocolate,100
+2025-04-01,1806,Chocolate,96.25
+2025-05-01,1806,Chocolate,96.25
+2025-06-01,1806,Chocolate,98.5
+2025-07-01,1806,Chocolate,99.06
+2025-08-01,1806,Chocolate,100.84
+2025-09-01,1806,Chocolate,100.56
+2025-10-01,1806,Chocolate,99.81
+2025-11-01,1806,Chocolate,100.56
+2025-12-01,1806,Chocolate,101.03
+2026-01-01,1806,Chocolate,98.22
+2026-02-01,1806,Chocolate,98.78
+2026-03-01,1806,Chocolate,97.56
+2026-04-01,1806,Chocolate,95.31
+2026-05-01,1806,Chocolate,93.06
+2026-06-01,1806,Chocolate,93.16
+2026-07-01,1806,Chocolate,92.69
+2025-01-01,1901,Malt Extract,106.16
+2025-02-01,1901,Malt Extract,104.46
+2025-03-01,1901,Malt Extract,100
+2025-04-01,1901,Malt Extract,99.04
+2025-05-01,1901,Malt Extract,104.35
+2025-06-01,1901,Malt Extract,104.67
+2025-07-01,1901,Malt Extract,100.85
+2025-08-01,1901,Malt Extract,106.48
+2025-09-01,1901,Malt Extract,99.89
+2025-10-01,1901,Malt Extract,101.59
+2025-11-01,1901,Malt Extract,97.77
+2025-12-01,1901,Malt Extract,97.45
+2026-01-01,1901,Malt Extract,102.76
+2026-02-01,1901,Malt Extract,106.16
+2026-03-01,1901,Malt Extract,99.15
+2026-04-01,1901,Malt Extract,100.64
+2026-05-01,1901,Malt Extract,101.91
+2026-06-01,1901,Malt Extract,101.91
+2026-07-01,1901,Malt Extract,100.21
+2025-01-01,1902,Pasta,101.11
+2025-02-01,1902,Pasta,100.91
+2025-03-01,1902,Pasta,100
+2025-04-01,1902,Pasta,100.91
+2025-05-01,1902,Pasta,100
+2025-06-01,1902,Pasta,97.98
+2025-07-01,1902,Pasta,97.27
+2025-08-01,1902,Pasta,97.57
+2025-09-01,1902,Pasta,96.76
+2025-10-01,1902,Pasta,96.97
+2025-11-01,1902,Pasta,98.89
+2025-12-01,1902,Pasta,99.39
+2026-01-01,1902,Pasta,97.78
+2026-02-01,1902,Pasta,97.17
+2026-03-01,1902,Pasta,96.97
+2026-04-01,1902,Pasta,97.07
+2026-05-01,1902,Pasta,96.76
+2026-06-01,1902,Pasta,98.08
+2026-07-01,1902,Pasta,101.31
+2023-12-01,1905,Baked Goods,101.32
+2024-01-01,1905,Baked Goods,101.42
+2024-02-01,1905,Baked Goods,101.32
+2024-03-01,1905,Baked Goods,101.32
+2024-04-01,1905,Baked Goods,101.42
+2024-05-01,1905,Baked Goods,101.52
+2024-06-01,1905,Baked Goods,101.82
+2024-07-01,1905,Baked Goods,101.72
+2024-08-01,1905,Baked Goods,101.82
+2024-09-01,1905,Baked Goods,102.23
+2024-10-01,1905,Baked Goods,102.53
+2024-11-01,1905,Baked Goods,102.74
+2024-12-01,1905,Baked Goods,102.33
+2025-01-01,1905,Baked Goods,102.03
+2025-02-01,1905,Baked Goods,100.81
+2025-03-01,1905,Baked Goods,100
+2025-04-01,1905,Baked Goods,98.48
+2025-05-01,1905,Baked Goods,98.89
+2025-06-01,1905,Baked Goods,100.1
+2025-07-01,1905,Baked Goods,101.52
+2025-08-01,1905,Baked Goods,103.04
+2025-09-01,1905,Baked Goods,101.32
+2025-10-01,1905,Baked Goods,104.36
+2025-11-01,1905,Baked Goods,103.34
+2025-12-01,1905,Baked Goods,100.51
+2026-01-01,1905,Baked Goods,100.2
+2026-02-01,1905,Baked Goods,101.22
+2026-03-01,1905,Baked Goods,101.52
+2026-04-01,1905,Baked Goods,101.22
+2026-05-01,1905,Baked Goods,100.51
+2026-06-01,1905,Baked Goods,100.61
+2026-07-01,1905,Baked Goods,99.9
+2025-01-01,2004,Other Frozen Vegetables,102.99
+2025-02-01,2004,Other Frozen Vegetables,101.24
+2025-03-01,2004,Other Frozen Vegetables,100
+2025-04-01,2004,Other Frozen Vegetables,101.03
+2025-05-01,2004,Other Frozen Vegetables,101.44
+2025-06-01,2004,Other Frozen Vegetables,99.69
+2025-07-01,2004,Other Frozen Vegetables,101.03
+2025-08-01,2004,Other Frozen Vegetables,98.66
+2025-09-01,2004,Other Frozen Vegetables,100.21
+2025-10-01,2004,Other Frozen Vegetables,100.72
+2025-11-01,2004,Other Frozen Vegetables,101.44
+2025-12-01,2004,Other Frozen Vegetables,99.79
+2026-01-01,2004,Other Frozen Vegetables,101.85
+2026-02-01,2004,Other Frozen Vegetables,99.79
+2026-03-01,2004,Other Frozen Vegetables,99.9
+2026-04-01,2004,Other Frozen Vegetables,98.97
+2026-05-01,2004,Other Frozen Vegetables,99.59
+2026-06-01,2004,Other Frozen Vegetables,98.56
+2026-07-01,2004,Other Frozen Vegetables,98.46
+2025-01-01,2005,Other Processed Vegetables,101.11
+2025-02-01,2005,Other Processed Vegetables,101.21
+2025-03-01,2005,Other Processed Vegetables,100
+2025-04-01,2005,Other Processed Vegetables,99.39
+2025-05-01,2005,Other Processed Vegetables,99.8
+2025-06-01,2005,Other Processed Vegetables,99.29
+2025-07-01,2005,Other Processed Vegetables,99.29
+2025-08-01,2005,Other Processed Vegetables,100
+2025-09-01,2005,Other Processed Vegetables,99.8
+2025-10-01,2005,Other Processed Vegetables,100.51
+2025-11-01,2005,Other Processed Vegetables,99.19
+2025-12-01,2005,Other Processed Vegetables,98.99
+2026-01-01,2005,Other Processed Vegetables,99.8
+2026-02-01,2005,Other Processed Vegetables,99.19
+2026-03-01,2005,Other Processed Vegetables,100.4
+2026-04-01,2005,Other Processed Vegetables,101.11
+2026-05-01,2005,Other Processed Vegetables,100.2
+2026-06-01,2005,Other Processed Vegetables,100.61
+2026-07-01,2005,Other Processed Vegetables,100.3
+2025-01-01,2008,Other Processed Fruits and Nuts,99.11
+2025-02-01,2008,Other Processed Fruits and Nuts,99.6
+2025-03-01,2008,Other Processed Fruits and Nuts,100
+2025-04-01,2008,Other Processed Fruits and Nuts,99.31
+2025-05-01,2008,Other Processed Fruits and Nuts,99.5
+2025-06-01,2008,Other Processed Fruits and Nuts,98.81
+2025-07-01,2008,Other Processed Fruits and Nuts,99.5
+2025-08-01,2008,Other Processed Fruits and Nuts,99.41
+2025-09-01,2008,Other Processed Fruits and Nuts,99.01
+2025-10-01,2008,Other Processed Fruits and Nuts,99.31
+2025-11-01,2008,Other Processed Fruits and Nuts,99.5
+2025-12-01,2008,Other Processed Fruits and Nuts,98.41
+2026-01-01,2008,Other Processed Fruits and Nuts,99.01
+2026-02-01,2008,Other Processed Fruits and Nuts,100
+2026-03-01,2008,Other Processed Fruits and Nuts,99.5
+2026-04-01,2008,Other Processed Fruits and Nuts,99.5
+2026-05-01,2008,Other Processed Fruits and Nuts,98.61
+2026-06-01,2008,Other Processed Fruits and Nuts,98.61
+2026-07-01,2008,Other Processed Fruits and Nuts,98.91
+2025-01-01,2009,Fruit Juice,100.2
+2025-02-01,2009,Fruit Juice,101.9
+2025-03-01,2009,Fruit Juice,100
+2025-04-01,2009,Fruit Juice,97.39
+2025-05-01,2009,Fruit Juice,98.9
+2025-06-01,2009,Fruit Juice,96.99
+2025-07-01,2009,Fruit Juice,95.99
+2025-08-01,2009,Fruit Juice,93.79
+2025-09-01,2009,Fruit Juice,100.3
+2025-10-01,2009,Fruit Juice,95.89
+2025-11-01,2009,Fruit Juice,92.28
+2025-12-01,2009,Fruit Juice,91.68
+2026-01-01,2009,Fruit Juice,91.48
+2026-02-01,2009,Fruit Juice,88.98
+2026-03-01,2009,Fruit Juice,85.07
+2026-04-01,2009,Fruit Juice,86.17
+2026-05-01,2009,Fruit Juice,88.08
+2026-06-01,2009,Fruit Juice,84.47
+2026-07-01,2009,Fruit Juice,86.67
+2025-01-01,2101,Coffee and Tea Extracts,95.42
+2025-02-01,2101,Coffee and Tea Extracts,98.85
+2025-03-01,2101,Coffee and Tea Extracts,100
+2025-04-01,2101,Coffee and Tea Extracts,100.1
+2025-05-01,2101,Coffee and Tea Extracts,101.81
+2025-06-01,2101,Coffee and Tea Extracts,106.2
+2025-07-01,2101,Coffee and Tea Extracts,108.87
+2025-08-01,2101,Coffee and Tea Extracts,111.26
+2025-09-01,2101,Coffee and Tea Extracts,110.21
+2025-10-01,2101,Coffee and Tea Extracts,113.84
+2025-11-01,2101,Coffee and Tea Extracts,113.84
+2025-12-01,2101,Coffee and Tea Extracts,105.63
+2026-01-01,2101,Coffee and Tea Extracts,107.92
+2026-02-01,2101,Coffee and Tea Extracts,111.93
+2026-03-01,2101,Coffee and Tea Extracts,109.26
+2026-04-01,2101,Coffee and Tea Extracts,108.97
+2026-05-01,2101,Coffee and Tea Extracts,104.01
+2026-06-01,2101,Coffee and Tea Extracts,108.11
+2026-07-01,2101,Coffee and Tea Extracts,104.68
+2025-01-01,2103,Sauces and Seasonings,102.56
+2025-02-01,2103,Sauces and Seasonings,101.85
+2025-03-01,2103,Sauces and Seasonings,100
+2025-04-01,2103,Sauces and Seasonings,101.54
+2025-05-01,2103,Sauces and Seasonings,99.49
+2025-06-01,2103,Sauces and Seasonings,101.44
+2025-07-01,2103,Sauces and Seasonings,103.69
+2025-08-01,2103,Sauces and Seasonings,103.79
+2025-09-01,2103,Sauces and Seasonings,102.77
+2025-10-01,2103,Sauces and Seasonings,102.36
+2025-11-01,2103,Sauces and Seasonings,103.49
+2025-12-01,2103,Sauces and Seasonings,103.9
+2026-01-01,2103,Sauces and Seasonings,102.87
+2026-02-01,2103,Sauces and Seasonings,102.87
+2026-03-01,2103,Sauces and Seasonings,103.59
+2026-04-01,2103,Sauces and Seasonings,102.77
+2026-05-01,2103,Sauces and Seasonings,104
+2026-06-01,2103,Sauces and Seasonings,105.64
+2026-07-01,2103,Sauces and Seasonings,105.03
+2023-01-01,2204,Wine,102.73
+2023-02-01,2204,Wine,103.33
+2023-03-01,2204,Wine,103.13
+2023-04-01,2204,Wine,103.54
+2023-05-01,2204,Wine,104.04
+2023-06-01,2204,Wine,104.04
+2023-07-01,2204,Wine,104.14
+2023-08-01,2204,Wine,104.55
+2023-09-01,2204,Wine,104.04
+2023-10-01,2204,Wine,103.74
+2023-11-01,2204,Wine,103.54
+2023-12-01,2204,Wine,104.34
+2024-01-01,2204,Wine,104.75
+2024-02-01,2204,Wine,105.15
+2024-03-01,2204,Wine,104.75
+2024-04-01,2204,Wine,105.25
+2024-05-01,2204,Wine,104.85
+2024-06-01,2204,Wine,105.15
+2024-07-01,2204,Wine,105.15
+2024-08-01,2204,Wine,105.56
+2024-09-01,2204,Wine,106.26
+2024-10-01,2204,Wine,106.77
+2024-11-01,2204,Wine,105.86
+2024-12-01,2204,Wine,104.44
+2025-01-01,2204,Wine,102.02
+2025-02-01,2204,Wine,99.49
+2025-03-01,2204,Wine,100
+2025-04-01,2204,Wine,99.8
+2025-05-01,2204,Wine,97.88
+2025-06-01,2204,Wine,95.45
+2025-07-01,2204,Wine,94.85
+2025-08-01,2204,Wine,96.67
+2025-09-01,2204,Wine,95.86
+2025-10-01,2204,Wine,93.94
+2025-11-01,2204,Wine,92.42
+2025-12-01,2204,Wine,94.14
+2026-01-01,2204,Wine,96.36
+2026-02-01,2204,Wine,97.27
+2026-03-01,2204,Wine,95.66
+2026-04-01,2204,Wine,94.95
+2026-05-01,2204,Wine,96.06
+2026-06-01,2204,Wine,95.86
+2026-07-01,2204,Wine,96.36
+2023-01-01,2208,Hard Liquor,101.59
+2023-02-01,2208,Hard Liquor,101.86
+2023-03-01,2208,Hard Liquor,102.19
+2023-04-01,2208,Hard Liquor,102.39
+2023-05-01,2208,Hard Liquor,102.39
+2023-06-01,2208,Hard Liquor,102.46
+2023-07-01,2208,Hard Liquor,103.12
+2023-08-01,2208,Hard Liquor,103.12
+2023-09-01,2208,Hard Liquor,103.19
+2023-10-01,2208,Hard Liquor,102.59
+2023-11-01,2208,Hard Liquor,102.59
+2023-12-01,2208,Hard Liquor,102.66
+2024-01-01,2208,Hard Liquor,101.4
+2024-02-01,2208,Hard Liquor,101.53
+2024-03-01,2208,Hard Liquor,101.4
+2024-04-01,2208,Hard Liquor,101.26
+2024-05-01,2208,Hard Liquor,101.33
+2024-06-01,2208,Hard Liquor,101.33
+2024-07-01,2208,Hard Liquor,102.06
+2024-08-01,2208,Hard Liquor,102.72
+2024-09-01,2208,Hard Liquor,102.72
+2024-10-01,2208,Hard Liquor,102.72
+2024-11-01,2208,Hard Liquor,102.79
+2024-12-01,2208,Hard Liquor,102.79
+2025-01-01,2208,Hard Liquor,101.86
+2025-02-01,2208,Hard Liquor,102.79
+2025-03-01,2208,Hard Liquor,100
+2025-04-01,2208,Hard Liquor,100.27
+2025-05-01,2208,Hard Liquor,96.41
+2025-06-01,2208,Hard Liquor,86.64
+2025-07-01,2208,Hard Liquor,82.19
+2025-08-01,2208,Hard Liquor,76.21
+2025-09-01,2208,Hard Liquor,73.89
+2025-10-01,2208,Hard Liquor,70.3
+2025-11-01,2208,Hard Liquor,74.75
+2025-12-01,2208,Hard Liquor,71.5
+2026-01-01,2208,Hard Liquor,70.43
+2026-02-01,2208,Hard Liquor,73.36
+2026-03-01,2208,Hard Liquor,71.23
+2026-04-01,2208,Hard Liquor,71.76
+2026-05-01,2208,Hard Liquor,73.02
+2026-06-01,2208,Hard Liquor,73.29
+2026-07-01,2208,Hard Liquor,73.62
+2025-01-01,2306,Other Vegetable Residues,116.96
+2025-02-01,2306,Other Vegetable Residues,108.77
+2025-03-01,2306,Other Vegetable Residues,100
+2025-04-01,2306,Other Vegetable Residues,96.49
+2025-05-01,2306,Other Vegetable Residues,99.42
+2025-06-01,2306,Other Vegetable Residues,94.97
+2025-07-01,2306,Other Vegetable Residues,92.98
+2025-08-01,2306,Other Vegetable Residues,92.75
+2025-09-01,2306,Other Vegetable Residues,87.13
+2025-10-01,2306,Other Vegetable Residues,82.46
+2025-11-01,2306,Other Vegetable Residues,87.72
+2025-12-01,2306,Other Vegetable Residues,88.54
+2026-01-01,2306,Other Vegetable Residues,85.26
+2026-02-01,2306,Other Vegetable Residues,83.04
+2026-03-01,2306,Other Vegetable Residues,88.65
+2026-04-01,2306,Other Vegetable Residues,92.98
+2026-05-01,2306,Other Vegetable Residues,83.63
+2026-06-01,2306,Other Vegetable Residues,92.16
+2026-07-01,2306,Other Vegetable Residues,103.51
+2025-01-01,2309,Animal Food,96.62
+2025-02-01,2309,Animal Food,97.58
+2025-03-01,2309,Animal Food,100
+2025-04-01,2309,Animal Food,99.52
+2025-05-01,2309,Animal Food,97.78
+2025-06-01,2309,Animal Food,96.04
+2025-07-01,2309,Animal Food,95.46
+2025-08-01,2309,Animal Food,95.65
+2025-09-01,2309,Animal Food,94.11
+2025-10-01,2309,Animal Food,93.33
+2025-11-01,2309,Animal Food,92.27
+2025-12-01,2309,Animal Food,94.01
+2026-01-01,2309,Animal Food,92.95
+2026-02-01,2309,Animal Food,92.56
+2026-03-01,2309,Animal Food,91.69
+2026-04-01,2309,Animal Food,92.66
+2026-05-01,2309,Animal Food,92.56
+2026-06-01,2309,Animal Food,93.43
+2026-07-01,2309,Animal Food,93.24
+2025-01-01,2402,Rolled Tobacco,99.01
+2025-02-01,2402,Rolled Tobacco,99.5
+2025-03-01,2402,Rolled Tobacco,100
+2025-04-01,2402,Rolled Tobacco,100.5
+2025-05-01,2402,Rolled Tobacco,100.59
+2025-06-01,2402,Rolled Tobacco,98.91
+2025-07-01,2402,Rolled Tobacco,100.3
+2025-08-01,2402,Rolled Tobacco,99.5
+2025-09-01,2402,Rolled Tobacco,99.7
+2025-10-01,2402,Rolled Tobacco,95.35
+2025-11-01,2402,Rolled Tobacco,95.94
+2025-12-01,2402,Rolled Tobacco,96.73
+2026-01-01,2402,Rolled Tobacco,94.46
+2026-02-01,2402,Rolled Tobacco,96.53
+2026-03-01,2402,Rolled Tobacco,102.87
+2026-04-01,2402,Rolled Tobacco,102.67
+2026-05-01,2402,Rolled Tobacco,103.66
+2026-06-01,2402,Rolled Tobacco,104.36
+2026-07-01,2402,Rolled Tobacco,104.06
+2025-01-01,2523,Cement,104.28
+2025-02-01,2523,Cement,108.55
+2025-03-01,2523,Cement,100
+2025-04-01,2523,Cement,97.18
+2025-05-01,2523,Cement,95.2
+2025-06-01,2523,Cement,93.12
+2025-07-01,2523,Cement,95.93
+2025-08-01,2523,Cement,98.23
+2025-09-01,2523,Cement,91.97
+2025-10-01,2523,Cement,94.16
+2025-11-01,2523,Cement,93.12
+2025-12-01,2523,Cement,96.14
+2026-01-01,2523,Cement,97.18
+2026-02-01,2523,Cement,100.83
+2026-03-01,2523,Cement,99.27
+2026-04-01,2523,Cement,100.21
+2026-05-01,2523,Cement,101.88
+2026-06-01,2523,Cement,103.23
+2026-07-01,2523,Cement,103.65
+2025-01-01,2707,Coal Tar Oil,111.86
+2025-02-01,2707,Coal Tar Oil,100.34
+2025-03-01,2707,Coal Tar Oil,100
+2025-04-01,2707,Coal Tar Oil,105.26
+2025-05-01,2707,Coal Tar Oil,104.59
+2025-06-01,2707,Coal Tar Oil,102.35
+2025-07-01,2707,Coal Tar Oil,103.69
+2025-08-01,2707,Coal Tar Oil,101.01
+2025-09-01,2707,Coal Tar Oil,91.16
+2025-10-01,2707,Coal Tar Oil,120.47
+2025-11-01,2707,Coal Tar Oil,113.09
+2025-12-01,2707,Coal Tar Oil,114.43
+2026-01-01,2707,Coal Tar Oil,98.66
+2026-02-01,2707,Coal Tar Oil,113.09
+2026-03-01,2707,Coal Tar Oil,122.48
+2026-04-01,2707,Coal Tar Oil,135.35
+2026-05-01,2707,Coal Tar Oil,147.65
+2026-06-01,2707,Coal Tar Oil,138.48
+2026-07-01,2707,Coal Tar Oil,132.55
+2023-01-01,2709,Crude Petroleum,97.77
+2023-02-01,2709,Crude Petroleum,97.67
+2023-03-01,2709,Crude Petroleum,96.05
+2023-04-01,2709,Crude Petroleum,103.58
+2023-05-01,2709,Crude Petroleum,100.17
+2023-06-01,2709,Crude Petroleum,99.66
+2023-07-01,2709,Crude Petroleum,103.07
+2023-08-01,2709,Crude Petroleum,112.19
+2023-09-01,2709,Crude Petroleum,121.58
+2023-10-01,2709,Crude Petroleum,119.15
+2023-11-01,2709,Crude Petroleum,108.17
+2023-12-01,2709,Crude Petroleum,97.06
+2024-01-01,2709,Crude Petroleum,98.07
+2024-02-01,2709,Crude Petroleum,101.45
+2024-03-01,2709,Crude Petroleum,106.55
+2024-04-01,2709,Crude Petroleum,114.08
+2024-05-01,2709,Crude Petroleum,111.72
+2024-06-01,2709,Crude Petroleum,110.3
+2024-07-01,2709,Crude Petroleum,111.82
+2024-08-01,2709,Crude Petroleum,105.84
+2024-09-01,2709,Crude Petroleum,98.38
+2024-10-01,2709,Crude Petroleum,98.31
+2024-11-01,2709,Crude Petroleum,96.66
+2024-12-01,2709,Crude Petroleum,96.79
+2025-01-01,2709,Crude Petroleum,100.95
+2025-02-01,2709,Crude Petroleum,102.53
+2025-03-01,2709,Crude Petroleum,100
+2025-04-01,2709,Crude Petroleum,97.94
+2025-05-01,2709,Crude Petroleum,91.29
+2025-06-01,2709,Crude Petroleum,92.87
+2025-07-01,2709,Crude Petroleum,95.31
+2025-08-01,2709,Crude Petroleum,95.2
+2025-09-01,2709,Crude Petroleum,92.98
+2025-10-01,2709,Crude Petroleum,90.24
+2025-11-01,2709,Crude Petroleum,88.72
+2025-12-01,2709,Crude Petroleum,85.95
+2026-01-01,2709,Crude Petroleum,83.72
+2026-02-01,2709,Crude Petroleum,85.55
+2026-03-01,2709,Crude Petroleum,95.41
+2026-04-01,2709,Crude Petroleum,116.68
+2026-05-01,2709,Crude Petroleum,133.81
+2026-06-01,2709,Crude Petroleum,131.68
+2026-07-01,2709,Crude Petroleum,120.47
+2023-01-01,2710,Refined Petroleum,117.33
+2023-02-01,2710,Refined Petroleum,117.29
+2023-03-01,2710,Refined Petroleum,110.96
+2023-04-01,2710,Refined Petroleum,114.58
+2023-05-01,2710,Refined Petroleum,106.63
+2023-06-01,2710,Refined Petroleum,112.17
+2023-07-01,2710,Refined Petroleum,108.85
+2023-08-01,2710,Refined Petroleum,118.83
+2023-09-01,2710,Refined Petroleum,124.63
+2023-10-01,2710,Refined Petroleum,113.11
+2023-11-01,2710,Refined Petroleum,107.91
+2023-12-01,2710,Refined Petroleum,102.37
+2024-01-01,2710,Refined Petroleum,106.97
+2024-02-01,2710,Refined Petroleum,103.05
+2024-03-01,2710,Refined Petroleum,112.92
+2024-04-01,2710,Refined Petroleum,112.35
+2024-05-01,2710,Refined Petroleum,121.39
+2024-06-01,2710,Refined Petroleum,117.55
+2024-07-01,2710,Refined Petroleum,113.3
+2024-08-01,2710,Refined Petroleum,115.18
+2024-09-01,2710,Refined Petroleum,104.86
+2024-10-01,2710,Refined Petroleum,100.38
+2024-11-01,2710,Refined Petroleum,107.23
+2024-12-01,2710,Refined Petroleum,104.78
+2025-01-01,2710,Refined Petroleum,102.37
+2025-02-01,2710,Refined Petroleum,103.13
+2025-03-01,2710,Refined Petroleum,100
+2025-04-01,2710,Refined Petroleum,97.4
+2025-05-01,2710,Refined Petroleum,97.4
+2025-06-01,2710,Refined Petroleum,97.85
+2025-07-01,2710,Refined Petroleum,100.19
+2025-08-01,2710,Refined Petroleum,99.28
+2025-09-01,2710,Refined Petroleum,98.83
+2025-10-01,2710,Refined Petroleum,95.37
+2025-11-01,2710,Refined Petroleum,95.48
+2025-12-01,2710,Refined Petroleum,91.41
+2026-01-01,2710,Refined Petroleum,89.19
+2026-02-01,2710,Refined Petroleum,92.62
+2026-03-01,2710,Refined Petroleum,113.9
+2026-04-01,2710,Refined Petroleum,136.95
+2026-05-01,2710,Refined Petroleum,152.09
+2026-06-01,2710,Refined Petroleum,134.58
+2026-07-01,2710,Refined Petroleum,127.27
+2023-01-01,2711,Petroleum Gas,224
+2023-02-01,2711,Petroleum Gas,129.22
+2023-03-01,2711,Petroleum Gas,100
+2023-04-01,2711,Petroleum Gas,85.96
+2023-05-01,2711,Petroleum Gas,70.07
+2023-06-01,2711,Petroleum Gas,67.46
+2023-07-01,2711,Petroleum Gas,71.3
+2023-08-01,2711,Petroleum Gas,81.31
+2023-09-01,2711,Petroleum Gas,78.89
+2023-10-01,2711,Petroleum Gas,78.42
+2023-11-01,2711,Petroleum Gas,95.68
+2023-12-01,2711,Petroleum Gas,92.93
+2024-01-01,2711,Petroleum Gas,89.99
+2024-02-01,2711,Petroleum Gas,83.25
+2024-03-01,2711,Petroleum Gas,65.56
+2024-04-01,2711,Petroleum Gas,59.91
+2024-05-01,2711,Petroleum Gas,52.37
+2024-06-01,2711,Petroleum Gas,49.19
+2024-07-01,2711,Petroleum Gas,52.09
+2024-08-01,2711,Petroleum Gas,48.58
+2024-09-01,2711,Petroleum Gas,44.64
+2024-10-01,2711,Petroleum Gas,53.27
+2024-11-01,2711,Petroleum Gas,65.18
+2024-12-01,2711,Petroleum Gas,94.12
+2025-01-01,2711,Petroleum Gas,107.54
+2025-02-01,2711,Petroleum Gas,125.9
+2025-03-01,2711,Petroleum Gas,100
+2025-04-01,2711,Petroleum Gas,91.27
+2025-05-01,2711,Petroleum Gas,81.4
+2025-06-01,2711,Petroleum Gas,71.3
+2025-07-01,2711,Petroleum Gas,70.45
+2025-08-01,2711,Petroleum Gas,64.42
+2025-09-01,2711,Petroleum Gas,62.86
+2025-11-01,2711,Petroleum Gas,92.17
+2025-12-01,2711,Petroleum Gas,127.04
+2026-01-01,2711,Petroleum Gas,143.83
+2026-02-01,2711,Petroleum Gas,146.49
+2026-03-01,2711,Petroleum Gas,111.05
+2026-04-01,2711,Petroleum Gas,100.76
+2026-05-01,2711,Petroleum Gas,98.72
+2026-06-01,2711,Petroleum Gas,103.23
+2026-07-01,2711,Petroleum Gas,106.02
+2025-01-01,2713,Petroleum Coke,106.16
+2025-02-01,2713,Petroleum Coke,105.73
+2025-03-01,2713,Petroleum Coke,100
+2025-04-01,2713,Petroleum Coke,92.25
+2025-05-01,2713,Petroleum Coke,92.68
+2025-06-01,2713,Petroleum Coke,98.94
+2025-07-01,2713,Petroleum Coke,107.54
+2025-08-01,2713,Petroleum Coke,101.49
+2025-09-01,2713,Petroleum Coke,105.2
+2025-10-01,2713,Petroleum Coke,98.94
+2025-11-01,2713,Petroleum Coke,97.77
+2025-12-01,2713,Petroleum Coke,100.21
+2026-01-01,2713,Petroleum Coke,95.65
+2026-02-01,2713,Petroleum Coke,94.59
+2026-03-01,2713,Petroleum Coke,99.26
+2026-04-01,2713,Petroleum Coke,137.79
+2026-05-01,2713,Petroleum Coke,146.6
+2026-06-01,2713,Petroleum Coke,135.88
+2026-07-01,2713,Petroleum Coke,123.99
+2025-01-01,2901,Acyclic Hydrocarbons,95.69
+2025-02-01,2901,Acyclic Hydrocarbons,103.25
+2025-03-01,2901,Acyclic Hydrocarbons,100
+2025-04-01,2901,Acyclic Hydrocarbons,105.55
+2025-05-01,2901,Acyclic Hydrocarbons,96.84
+2025-06-01,2901,Acyclic Hydrocarbons,95.22
+2025-07-01,2901,Acyclic Hydrocarbons,93.3
+2025-08-01,2901,Acyclic Hydrocarbons,98.28
+2025-09-01,2901,Acyclic Hydrocarbons,93.97
+2025-10-01,2901,Acyclic Hydrocarbons,89.38
+2025-11-01,2901,Acyclic Hydrocarbons,84.4
+2025-12-01,2901,Acyclic Hydrocarbons,87.94
+2026-01-01,2901,Acyclic Hydrocarbons,84.31
+2026-02-01,2901,Acyclic Hydrocarbons,97.03
+2026-03-01,2901,Acyclic Hydrocarbons,104.88
+2026-04-01,2901,Acyclic Hydrocarbons,111.58
+2026-05-01,2901,Acyclic Hydrocarbons,118.28
+2026-06-01,2901,Acyclic Hydrocarbons,131.39
+2026-07-01,2901,Acyclic Hydrocarbons,121.82
+2025-01-01,2902,Cyclic Hydrocarbons,102.04
+2025-02-01,2902,Cyclic Hydrocarbons,98.27
+2025-03-01,2902,Cyclic Hydrocarbons,100
+2025-04-01,2902,Cyclic Hydrocarbons,93.67
+2025-05-01,2902,Cyclic Hydrocarbons,95.41
+2025-06-01,2902,Cyclic Hydrocarbons,95.71
+2025-07-01,2902,Cyclic Hydrocarbons,90
+2025-08-01,2902,Cyclic Hydrocarbons,95.92
+2025-09-01,2902,Cyclic Hydrocarbons,102.24
+2025-10-01,2902,Cyclic Hydrocarbons,97.65
+2025-11-01,2902,Cyclic Hydrocarbons,89.08
+2025-12-01,2902,Cyclic Hydrocarbons,93.88
+2026-01-01,2902,Cyclic Hydrocarbons,87.65
+2026-02-01,2902,Cyclic Hydrocarbons,95.82
+2026-03-01,2902,Cyclic Hydrocarbons,106.53
+2026-04-01,2902,Cyclic Hydrocarbons,134.08
+2026-05-01,2902,Cyclic Hydrocarbons,136.12
+2026-06-01,2902,Cyclic Hydrocarbons,127.35
+2026-07-01,2902,Cyclic Hydrocarbons,127.14
+2025-01-01,2903,Halogenated Hydrocarbons,93.02
+2025-02-01,2903,Halogenated Hydrocarbons,93.49
+2025-03-01,2903,Halogenated Hydrocarbons,100
+2025-04-01,2903,Halogenated Hydrocarbons,95.16
+2025-05-01,2903,Halogenated Hydrocarbons,96.93
+2025-06-01,2903,Halogenated Hydrocarbons,98.51
+2025-07-01,2903,Halogenated Hydrocarbons,92.19
+2025-08-01,2903,Halogenated Hydrocarbons,97.02
+2025-09-01,2903,Halogenated Hydrocarbons,99.81
+2025-10-01,2903,Halogenated Hydrocarbons,103.53
+2025-11-01,2903,Halogenated Hydrocarbons,93.58
+2025-12-01,2903,Halogenated Hydrocarbons,90.42
+2026-01-01,2903,Halogenated Hydrocarbons,99.53
+2026-02-01,2903,Halogenated Hydrocarbons,93.21
+2026-03-01,2903,Halogenated Hydrocarbons,94.42
+2026-04-01,2903,Halogenated Hydrocarbons,92.19
+2026-05-01,2903,Halogenated Hydrocarbons,95.53
+2026-06-01,2903,Halogenated Hydrocarbons,97.21
+2026-07-01,2903,Halogenated Hydrocarbons,91.26
+2025-01-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",102.25
+2025-02-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",101.94
+2025-03-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",100
+2025-04-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",99.18
+2025-05-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",96.11
+2025-06-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",96.22
+2025-07-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",95.71
+2025-08-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",94.58
+2025-09-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",95.19
+2025-10-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",94.58
+2025-11-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",90.49
+2025-12-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",92.43
+2026-01-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",91
+2026-02-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",90.18
+2026-03-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",91.31
+2026-04-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",90.9
+2026-05-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",98.98
+2026-06-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",104.4
+2026-07-01,2905,"Acyclic alcohol derivatives (halogenated, sulphonated, nitrated)",105.01
+2025-01-01,2914,Ketones and Quinones,101.83
+2025-02-01,2914,Ketones and Quinones,97.35
+2025-03-01,2914,Ketones and Quinones,100
+2025-04-01,2914,Ketones and Quinones,101.32
+2025-05-01,2914,Ketones and Quinones,103.16
+2025-06-01,2914,Ketones and Quinones,100.92
+2025-07-01,2914,Ketones and Quinones,104.28
+2025-08-01,2914,Ketones and Quinones,97.86
+2025-09-01,2914,Ketones and Quinones,103.05
+2025-11-01,2914,Ketones and Quinones,98.27
+2025-12-01,2914,Ketones and Quinones,95.82
+2026-01-01,2914,Ketones and Quinones,95.42
+2026-02-01,2914,Ketones and Quinones,96.03
+2026-03-01,2914,Ketones and Quinones,102.14
+2026-04-01,2914,Ketones and Quinones,99.39
+2026-05-01,2914,Ketones and Quinones,106.31
+2026-06-01,2914,Ketones and Quinones,113.75
+2026-07-01,2914,Ketones and Quinones,126.78
+2025-01-01,2915,Saturated Acyclic Monocarboxylic Acids,97.94
+2025-02-01,2915,Saturated Acyclic Monocarboxylic Acids,98.04
+2025-03-01,2915,Saturated Acyclic Monocarboxylic Acids,100
+2025-04-01,2915,Saturated Acyclic Monocarboxylic Acids,97.26
+2025-05-01,2915,Saturated Acyclic Monocarboxylic Acids,97.65
+2025-06-01,2915,Saturated Acyclic Monocarboxylic Acids,99.12
+2025-07-01,2915,Saturated Acyclic Monocarboxylic Acids,100.2
+2025-08-01,2915,Saturated Acyclic Monocarboxylic Acids,100.2
+2025-09-01,2915,Saturated Acyclic Monocarboxylic Acids,96.96
+2025-10-01,2915,Saturated Acyclic Monocarboxylic Acids,97.65
+2025-11-01,2915,Saturated Acyclic Monocarboxylic Acids,94.03
+2025-12-01,2915,Saturated Acyclic Monocarboxylic Acids,96.77
+2026-01-01,2915,Saturated Acyclic Monocarboxylic Acids,98.53
+2026-02-01,2915,Saturated Acyclic Monocarboxylic Acids,93.44
+2026-03-01,2915,Saturated Acyclic Monocarboxylic Acids,93.54
+2026-04-01,2915,Saturated Acyclic Monocarboxylic Acids,97.06
+2026-05-01,2915,Saturated Acyclic Monocarboxylic Acids,100
+2026-06-01,2915,Saturated Acyclic Monocarboxylic Acids,101.27
+2026-07-01,2915,Saturated Acyclic Monocarboxylic Acids,97.06
+2025-01-01,2916,Unsaturated Acyclic Monocarboxylic Acids,103.73
+2025-02-01,2916,Unsaturated Acyclic Monocarboxylic Acids,99.38
+2025-03-01,2916,Unsaturated Acyclic Monocarboxylic Acids,100
+2025-04-01,2916,Unsaturated Acyclic Monocarboxylic Acids,99.27
+2025-05-01,2916,Unsaturated Acyclic Monocarboxylic Acids,99.17
+2025-06-01,2916,Unsaturated Acyclic Monocarboxylic Acids,93.98
+2025-07-01,2916,Unsaturated Acyclic Monocarboxylic Acids,94.5
+2025-08-01,2916,Unsaturated Acyclic Monocarboxylic Acids,92.53
+2025-09-01,2916,Unsaturated Acyclic Monocarboxylic Acids,95.02
+2025-11-01,2916,Unsaturated Acyclic Monocarboxylic Acids,90.66
+2025-12-01,2916,Unsaturated Acyclic Monocarboxylic Acids,93.98
+2026-01-01,2916,Unsaturated Acyclic Monocarboxylic Acids,90.46
+2026-02-01,2916,Unsaturated Acyclic Monocarboxylic Acids,88.69
+2026-03-01,2916,Unsaturated Acyclic Monocarboxylic Acids,89.73
+2026-04-01,2916,Unsaturated Acyclic Monocarboxylic Acids,89.52
+2026-05-01,2916,Unsaturated Acyclic Monocarboxylic Acids,92.95
+2026-06-01,2916,Unsaturated Acyclic Monocarboxylic Acids,103.73
+2026-07-01,2916,Unsaturated Acyclic Monocarboxylic Acids,112.03
+2025-01-01,2917,Polycarboxylic Acids,94.79
+2025-02-01,2917,Polycarboxylic Acids,92.13
+2025-03-01,2917,Polycarboxylic Acids,100
+2025-04-01,2917,Polycarboxylic Acids,100.09
+2025-05-01,2917,Polycarboxylic Acids,98.39
+2025-06-01,2917,Polycarboxylic Acids,92.7
+2025-07-01,2917,Polycarboxylic Acids,92.23
+2025-08-01,2917,Polycarboxylic Acids,98.86
+2025-09-01,2917,Polycarboxylic Acids,95.83
+2025-11-01,2917,Polycarboxylic Acids,92.23
+2025-12-01,2917,Polycarboxylic Acids,90.43
+2026-01-01,2917,Polycarboxylic Acids,88.34
+2026-02-01,2917,Polycarboxylic Acids,89.76
+2026-03-01,2917,Polycarboxylic Acids,93.55
+2026-04-01,2917,Polycarboxylic Acids,101.71
+2026-05-01,2917,Polycarboxylic Acids,113.84
+2026-06-01,2917,Polycarboxylic Acids,120.85
+2026-07-01,2917,Polycarboxylic Acids,122.37
+2025-01-01,2918,Carboxylic Acids,103.31
+2025-02-01,2918,Carboxylic Acids,100.93
+2025-03-01,2918,Carboxylic Acids,100
+2025-04-01,2918,Carboxylic Acids,98.14
+2025-05-01,2918,Carboxylic Acids,101.34
+2025-06-01,2918,Carboxylic Acids,99.79
+2025-07-01,2918,Carboxylic Acids,102.48
+2025-08-01,2918,Carboxylic Acids,105.17
+2025-09-01,2918,Carboxylic Acids,102.38
+2025-11-01,2918,Carboxylic Acids,97.21
+2025-12-01,2918,Carboxylic Acids,99.38
+2026-01-01,2918,Carboxylic Acids,98.24
+2026-02-01,2918,Carboxylic Acids,100.21
+2026-03-01,2918,Carboxylic Acids,98.35
+2026-04-01,2918,Carboxylic Acids,98.45
+2026-05-01,2918,Carboxylic Acids,97.42
+2026-06-01,2918,Carboxylic Acids,101.14
+2026-07-01,2918,Carboxylic Acids,96.18
+2025-01-01,2921,Amine Compounds,102.25
+2025-02-01,2921,Amine Compounds,102.15
+2025-03-01,2921,Amine Compounds,100
+2025-04-01,2921,Amine Compounds,103.78
+2025-05-01,2921,Amine Compounds,101.12
+2025-06-01,2921,Amine Compounds,96.42
+2025-07-01,2921,Amine Compounds,98.67
+2025-08-01,2921,Amine Compounds,94.89
+2025-09-01,2921,Amine Compounds,97.55
+2025-10-01,2921,Amine Compounds,95.81
+2025-11-01,2921,Amine Compounds,93.56
+2025-12-01,2921,Amine Compounds,92.33
+2026-01-01,2921,Amine Compounds,94.89
+2026-02-01,2921,Amine Compounds,99.39
+2026-03-01,2921,Amine Compounds,95.91
+2026-04-01,2921,Amine Compounds,95.81
+2026-05-01,2921,Amine Compounds,99.9
+2026-06-01,2921,Amine Compounds,102.76
+2026-07-01,2921,Amine Compounds,111.76
+2025-01-01,2924,Carboxyamide Compounds,98.91
+2025-02-01,2924,Carboxyamide Compounds,101.48
+2025-03-01,2924,Carboxyamide Compounds,100
+2025-04-01,2924,Carboxyamide Compounds,98.32
+2025-05-01,2924,Carboxyamide Compounds,103.07
+2025-06-01,2924,Carboxyamide Compounds,98.71
+2025-07-01,2924,Carboxyamide Compounds,99.6
+2025-08-01,2924,Carboxyamide Compounds,98.91
+2025-09-01,2924,Carboxyamide Compounds,95.94
+2025-11-01,2924,Carboxyamide Compounds,94.96
+2025-12-01,2924,Carboxyamide Compounds,85.95
+2026-01-01,2924,Carboxyamide Compounds,90.11
+2026-02-01,2924,Carboxyamide Compounds,90.41
+2026-03-01,2924,Carboxyamide Compounds,93.27
+2026-04-01,2924,Carboxyamide Compounds,96.54
+2026-05-01,2924,Carboxyamide Compounds,99.51
+2026-06-01,2924,Carboxyamide Compounds,97.13
+2026-07-01,2924,Carboxyamide Compounds,99.6
+2023-01-01,2933,Nitrogen Heterocyclic Compounds,104.55
+2023-02-01,2933,Nitrogen Heterocyclic Compounds,104.46
+2023-03-01,2933,Nitrogen Heterocyclic Compounds,104.36
+2023-04-01,2933,Nitrogen Heterocyclic Compounds,107.87
+2023-05-01,2933,Nitrogen Heterocyclic Compounds,107.69
+2023-06-01,2933,Nitrogen Heterocyclic Compounds,107.4
+2023-07-01,2933,Nitrogen Heterocyclic Compounds,107.31
+2023-08-01,2933,Nitrogen Heterocyclic Compounds,107.21
+2023-09-01,2933,Nitrogen Heterocyclic Compounds,107.02
+2023-10-01,2933,Nitrogen Heterocyclic Compounds,106.64
+2023-11-01,2933,Nitrogen Heterocyclic Compounds,106.64
+2023-12-01,2933,Nitrogen Heterocyclic Compounds,106.64
+2024-01-01,2933,Nitrogen Heterocyclic Compounds,101.52
+2024-02-01,2933,Nitrogen Heterocyclic Compounds,101.04
+2024-03-01,2933,Nitrogen Heterocyclic Compounds,101.04
+2024-04-01,2933,Nitrogen Heterocyclic Compounds,100.76
+2024-05-01,2933,Nitrogen Heterocyclic Compounds,100.76
+2024-06-01,2933,Nitrogen Heterocyclic Compounds,100.66
+2024-07-01,2933,Nitrogen Heterocyclic Compounds,102.85
+2024-08-01,2933,Nitrogen Heterocyclic Compounds,102.85
+2024-09-01,2933,Nitrogen Heterocyclic Compounds,102.85
+2024-10-01,2933,Nitrogen Heterocyclic Compounds,102.85
+2024-11-01,2933,Nitrogen Heterocyclic Compounds,102.85
+2024-12-01,2933,Nitrogen Heterocyclic Compounds,102.85
+2025-01-01,2933,Nitrogen Heterocyclic Compounds,101.04
+2025-02-01,2933,Nitrogen Heterocyclic Compounds,100
+2025-03-01,2933,Nitrogen Heterocyclic Compounds,100
+2025-04-01,2933,Nitrogen Heterocyclic Compounds,92.5
+2025-05-01,2933,Nitrogen Heterocyclic Compounds,93.74
+2025-06-01,2933,Nitrogen Heterocyclic Compounds,96.02
+2025-07-01,2933,Nitrogen Heterocyclic Compounds,93.83
+2025-08-01,2933,Nitrogen Heterocyclic Compounds,96.49
+2025-09-01,2933,Nitrogen Heterocyclic Compounds,90.61
+2025-11-01,2933,Nitrogen Heterocyclic Compounds,99.81
+2025-12-01,2933,Nitrogen Heterocyclic Compounds,92.22
+2026-01-01,2933,Nitrogen Heterocyclic Compounds,100.95
+2026-02-01,2933,Nitrogen Heterocyclic Compounds,100.38
+2026-03-01,2933,Nitrogen Heterocyclic Compounds,100.95
+2026-04-01,2933,Nitrogen Heterocyclic Compounds,101.04
+2026-05-01,2933,Nitrogen Heterocyclic Compounds,101.14
+2026-06-01,2933,Nitrogen Heterocyclic Compounds,101.52
+2026-07-01,2933,Nitrogen Heterocyclic Compounds,101.33
+2023-01-01,2934,Nucleic Acids,97.94
+2023-02-01,2934,Nucleic Acids,97.94
+2023-03-01,2934,Nucleic Acids,96.4
+2023-04-01,2934,Nucleic Acids,96.65
+2023-05-01,2934,Nucleic Acids,96.65
+2023-06-01,2934,Nucleic Acids,96.65
+2023-07-01,2934,Nucleic Acids,96.4
+2023-08-01,2934,Nucleic Acids,96.4
+2023-09-01,2934,Nucleic Acids,96.27
+2023-10-01,2934,Nucleic Acids,96.14
+2023-11-01,2934,Nucleic Acids,96.65
+2023-12-01,2934,Nucleic Acids,97.3
+2024-01-01,2934,Nucleic Acids,98.33
+2024-02-01,2934,Nucleic Acids,98.33
+2024-03-01,2934,Nucleic Acids,96.65
+2024-04-01,2934,Nucleic Acids,96.65
+2024-05-01,2934,Nucleic Acids,96.65
+2024-06-01,2934,Nucleic Acids,96.65
+2024-07-01,2934,Nucleic Acids,96.78
+2024-08-01,2934,Nucleic Acids,96.78
+2024-09-01,2934,Nucleic Acids,96.4
+2024-10-01,2934,Nucleic Acids,96.4
+2024-11-01,2934,Nucleic Acids,96.4
+2024-12-01,2934,Nucleic Acids,96.4
+2025-01-01,2934,Nucleic Acids,100.39
+2025-02-01,2934,Nucleic Acids,99.49
+2025-03-01,2934,Nucleic Acids,100
+2025-04-01,2934,Nucleic Acids,100.26
+2025-05-01,2934,Nucleic Acids,97.55
+2025-06-01,2934,Nucleic Acids,98.58
+2025-07-01,2934,Nucleic Acids,100.39
+2025-08-01,2934,Nucleic Acids,99.87
+2025-09-01,2934,Nucleic Acids,99.49
+2025-11-01,2934,Nucleic Acids,94.34
+2025-12-01,2934,Nucleic Acids,96.53
+2026-01-01,2934,Nucleic Acids,94.08
+2026-02-01,2934,Nucleic Acids,94.98
+2026-03-01,2934,Nucleic Acids,95.11
+2026-04-01,2934,Nucleic Acids,97.3
+2026-05-01,2934,Nucleic Acids,92.92
+2026-06-01,2934,Nucleic Acids,93.82
+2026-07-01,2934,Nucleic Acids,97.55
+2023-01-01,3002,"Vaccines, blood, antisera, toxins and cultures",87.9
+2023-02-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.36
+2023-03-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.36
+2023-04-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.87
+2023-05-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.87
+2023-06-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.8
+2023-07-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.11
+2023-08-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.17
+2023-09-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.17
+2023-10-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.04
+2023-11-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.36
+2023-12-01,3002,"Vaccines, blood, antisera, toxins and cultures",89.36
+2024-01-01,3002,"Vaccines, blood, antisera, toxins and cultures",97.21
+2024-02-01,3002,"Vaccines, blood, antisera, toxins and cultures",98.23
+2024-03-01,3002,"Vaccines, blood, antisera, toxins and cultures",98.1
+2024-04-01,3002,"Vaccines, blood, antisera, toxins and cultures",97.97
+2024-05-01,3002,"Vaccines, blood, antisera, toxins and cultures",98.04
+2024-06-01,3002,"Vaccines, blood, antisera, toxins and cultures",98.48
+2024-07-01,3002,"Vaccines, blood, antisera, toxins and cultures",99.43
+2024-08-01,3002,"Vaccines, blood, antisera, toxins and cultures",99.49
+2024-09-01,3002,"Vaccines, blood, antisera, toxins and cultures",99.62
+2024-10-01,3002,"Vaccines, blood, antisera, toxins and cultures",99.68
+2024-11-01,3002,"Vaccines, blood, antisera, toxins and cultures",100.51
+2024-12-01,3002,"Vaccines, blood, antisera, toxins and cultures",100.38
+2025-01-01,3002,"Vaccines, blood, antisera, toxins and cultures",100.32
+2025-02-01,3002,"Vaccines, blood, antisera, toxins and cultures",100
+2025-03-01,3002,"Vaccines, blood, antisera, toxins and cultures",100
+2025-04-01,3002,"Vaccines, blood, antisera, toxins and cultures",102.28
+2025-05-01,3002,"Vaccines, blood, antisera, toxins and cultures",103.04
+2025-06-01,3002,"Vaccines, blood, antisera, toxins and cultures",102.72
+2025-07-01,3002,"Vaccines, blood, antisera, toxins and cultures",103.17
+2025-08-01,3002,"Vaccines, blood, antisera, toxins and cultures",103.29
+2025-09-01,3002,"Vaccines, blood, antisera, toxins and cultures",104.12
+2025-11-01,3002,"Vaccines, blood, antisera, toxins and cultures",104.18
+2025-12-01,3002,"Vaccines, blood, antisera, toxins and cultures",104.12
+2026-01-01,3002,"Vaccines, blood, antisera, toxins and cultures",105.76
+2026-02-01,3002,"Vaccines, blood, antisera, toxins and cultures",105.76
+2026-03-01,3002,"Vaccines, blood, antisera, toxins and cultures",106.46
+2026-04-01,3002,"Vaccines, blood, antisera, toxins and cultures",114.63
+2026-05-01,3002,"Vaccines, blood, antisera, toxins and cultures",114.69
+2026-06-01,3002,"Vaccines, blood, antisera, toxins and cultures",114.63
+2026-07-01,3002,"Vaccines, blood, antisera, toxins and cultures",113.93
+2023-01-01,3004,Packaged Medicaments,101.99
+2023-02-01,3004,Packaged Medicaments,101.91
+2023-03-01,3004,Packaged Medicaments,101.91
+2023-04-01,3004,Packaged Medicaments,102.07
+2023-05-01,3004,Packaged Medicaments,102.31
+2023-06-01,3004,Packaged Medicaments,102.23
+2023-07-01,3004,Packaged Medicaments,101.67
+2023-08-01,3004,Packaged Medicaments,101.43
+2023-09-01,3004,Packaged Medicaments,101.59
+2023-10-01,3004,Packaged Medicaments,101.75
+2023-11-01,3004,Packaged Medicaments,101.99
+2023-12-01,3004,Packaged Medicaments,102.23
+2024-01-01,3004,Packaged Medicaments,103.98
+2024-02-01,3004,Packaged Medicaments,104.22
+2024-03-01,3004,Packaged Medicaments,104.38
+2024-04-01,3004,Packaged Medicaments,105.5
+2024-05-01,3004,Packaged Medicaments,105.74
+2024-06-01,3004,Packaged Medicaments,105.9
+2024-07-01,3004,Packaged Medicaments,104.14
+2024-08-01,3004,Packaged Medicaments,103.9
+2024-09-01,3004,Packaged Medicaments,103.75
+2024-10-01,3004,Packaged Medicaments,102.87
+2024-11-01,3004,Packaged Medicaments,102.79
+2024-12-01,3004,Packaged Medicaments,102.79
+2025-01-01,3004,Packaged Medicaments,100.8
+2025-02-01,3004,Packaged Medicaments,100.56
+2025-03-01,3004,Packaged Medicaments,100
+2025-04-01,3004,Packaged Medicaments,100.64
+2025-05-01,3004,Packaged Medicaments,101.04
+2025-06-01,3004,Packaged Medicaments,100.96
+2025-07-01,3004,Packaged Medicaments,101.67
+2025-08-01,3004,Packaged Medicaments,103.43
+2025-09-01,3004,Packaged Medicaments,101.67
+2025-11-01,3004,Packaged Medicaments,102.07
+2025-12-01,3004,Packaged Medicaments,102.31
+2026-01-01,3004,Packaged Medicaments,104.3
+2026-02-01,3004,Packaged Medicaments,104.14
+2026-03-01,3004,Packaged Medicaments,105.34
+2026-04-01,3004,Packaged Medicaments,104.62
+2026-05-01,3004,Packaged Medicaments,104.38
+2026-06-01,3004,Packaged Medicaments,103.43
+2026-07-01,3004,Packaged Medicaments,102.39
+2025-01-01,3102,Nitrogenous Fertilizers,92.85
+2025-02-01,3102,Nitrogenous Fertilizers,94.8
+2025-03-01,3102,Nitrogenous Fertilizers,100
+2025-04-01,3102,Nitrogenous Fertilizers,105.94
+2025-05-01,3102,Nitrogenous Fertilizers,106.78
+2025-06-01,3102,Nitrogenous Fertilizers,105.48
+2025-07-01,3102,Nitrogenous Fertilizers,106.13
+2025-08-01,3102,Nitrogenous Fertilizers,116.34
+2025-09-01,3102,Nitrogenous Fertilizers,111.79
+2025-10-01,3102,Nitrogenous Fertilizers,110.21
+2025-11-01,3102,Nitrogenous Fertilizers,104.83
+2025-12-01,3102,Nitrogenous Fertilizers,97.21
+2026-01-01,3102,Nitrogenous Fertilizers,102.41
+2026-02-01,3102,Nitrogenous Fertilizers,105.76
+2026-03-01,3102,Nitrogenous Fertilizers,112.07
+2026-04-01,3102,Nitrogenous Fertilizers,128.6
+2026-05-01,3102,Nitrogenous Fertilizers,151.81
+2026-06-01,3102,Nitrogenous Fertilizers,132.59
+2026-07-01,3102,Nitrogenous Fertilizers,116.81
+2025-01-01,3301,Essential Oils,96.99
+2025-02-01,3301,Essential Oils,94.37
+2025-03-01,3301,Essential Oils,100
+2025-04-01,3301,Essential Oils,101.94
+2025-05-01,3301,Essential Oils,99.32
+2025-06-01,3301,Essential Oils,88.55
+2025-07-01,3301,Essential Oils,104.46
+2025-08-01,3301,Essential Oils,98.64
+2025-09-01,3301,Essential Oils,95.15
+2025-10-01,3301,Essential Oils,97.58
+2025-11-01,3301,Essential Oils,93.5
+2025-12-01,3301,Essential Oils,100.68
+2026-01-01,3301,Essential Oils,101.75
+2026-02-01,3301,Essential Oils,96.99
+2026-03-01,3301,Essential Oils,103.01
+2026-04-01,3301,Essential Oils,90.98
+2026-05-01,3301,Essential Oils,90.3
+2026-06-01,3301,Essential Oils,90.49
+2026-07-01,3301,Essential Oils,97.38
+2025-01-01,3307,Shaving Products,101.21
+2025-02-01,3307,Shaving Products,102.13
+2025-03-01,3307,Shaving Products,100
+2025-04-01,3307,Shaving Products,99.39
+2025-05-01,3307,Shaving Products,97.98
+2025-06-01,3307,Shaving Products,96.76
+2025-07-01,3307,Shaving Products,98.48
+2025-08-01,3307,Shaving Products,96.56
+2025-09-01,3307,Shaving Products,92.11
+2025-10-01,3307,Shaving Products,89.78
+2025-11-01,3307,Shaving Products,87.55
+2025-12-01,3307,Shaving Products,91.3
+2026-01-01,3307,Shaving Products,95.85
+2026-02-01,3307,Shaving Products,93.62
+2026-03-01,3307,Shaving Products,93.42
+2026-04-01,3307,Shaving Products,97.06
+2026-05-01,3307,Shaving Products,94.53
+2026-06-01,3307,Shaving Products,96.36
+2026-07-01,3307,Shaving Products,96.36
+2025-01-01,3402,Cleaning Products,101.83
+2025-02-01,3402,Cleaning Products,99.08
+2025-03-01,3402,Cleaning Products,100
+2025-04-01,3402,Cleaning Products,99.29
+2025-05-01,3402,Cleaning Products,98.88
+2025-06-01,3402,Cleaning Products,100.71
+2025-07-01,3402,Cleaning Products,101.02
+2025-08-01,3402,Cleaning Products,101.02
+2025-09-01,3402,Cleaning Products,102.44
+2025-11-01,3402,Cleaning Products,101.73
+2025-12-01,3402,Cleaning Products,103.16
+2026-01-01,3402,Cleaning Products,103.97
+2026-02-01,3402,Cleaning Products,101.12
+2026-03-01,3402,Cleaning Products,102.85
+2026-04-01,3402,Cleaning Products,100.92
+2026-05-01,3402,Cleaning Products,102.95
+2026-06-01,3402,Cleaning Products,103.87
+2026-07-01,3402,Cleaning Products,104.89
+2025-01-01,3406,Candles,96.34
+2025-02-01,3406,Candles,97.88
+2025-03-01,3406,Candles,100
+2025-04-01,3406,Candles,107.61
+2025-05-01,3406,Candles,107.42
+2025-06-01,3406,Candles,105.39
+2025-07-01,3406,Candles,102.89
+2025-08-01,3406,Candles,106.36
+2025-09-01,3406,Candles,105.68
+2025-10-01,3406,Candles,106.74
+2025-11-01,3406,Candles,102.99
+2025-12-01,3406,Candles,101.06
+2026-01-01,3406,Candles,98.55
+2026-02-01,3406,Candles,99.33
+2026-03-01,3406,Candles,101.73
+2026-04-01,3406,Candles,101.83
+2026-05-01,3406,Candles,113.87
+2026-06-01,3406,Candles,129.48
+2026-07-01,3406,Candles,127.07
+2025-01-01,3808,Pesticides,108.11
+2025-02-01,3808,Pesticides,110.92
+2025-03-01,3808,Pesticides,100
+2025-04-01,3808,Pesticides,104.22
+2025-05-01,3808,Pesticides,105.08
+2025-06-01,3808,Pesticides,100.86
+2025-07-01,3808,Pesticides,102.38
+2025-08-01,3808,Pesticides,104
+2025-09-01,3808,Pesticides,108.11
+2025-11-01,3808,Pesticides,115.68
+2025-12-01,3808,Pesticides,101.41
+2026-01-01,3808,Pesticides,102.27
+2026-02-01,3808,Pesticides,101.84
+2026-03-01,3808,Pesticides,94.16
+2026-04-01,3808,Pesticides,104.54
+2026-05-01,3808,Pesticides,100.43
+2026-06-01,3808,Pesticides,105.08
+2026-07-01,3808,Pesticides,110.59
+2025-01-01,3901,Ethylene Polymers,97.66
+2025-02-01,3901,Ethylene Polymers,100.68
+2025-03-01,3901,Ethylene Polymers,100
+2025-04-01,3901,Ethylene Polymers,103.52
+2025-05-01,3901,Ethylene Polymers,98.05
+2025-06-01,3901,Ethylene Polymers,93.85
+2025-07-01,3901,Ethylene Polymers,94.92
+2025-08-01,3901,Ethylene Polymers,93.16
+2025-09-01,3901,Ethylene Polymers,92.09
+2025-10-01,3901,Ethylene Polymers,89.75
+2025-11-01,3901,Ethylene Polymers,87.79
+2025-12-01,3901,Ethylene Polymers,84.77
+2026-01-01,3901,Ethylene Polymers,88.28
+2026-02-01,3901,Ethylene Polymers,90.14
+2026-03-01,3901,Ethylene Polymers,91.8
+2026-04-01,3901,Ethylene Polymers,103.22
+2026-05-01,3901,Ethylene Polymers,126.17
+2026-06-01,3901,Ethylene Polymers,133.69
+2026-07-01,3901,Ethylene Polymers,135.16
+2025-01-01,3902,Propylene Polymers,99.7
+2025-02-01,3902,Propylene Polymers,105.98
+2025-03-01,3902,Propylene Polymers,100
+2025-04-01,3902,Propylene Polymers,92.22
+2025-05-01,3902,Propylene Polymers,87.94
+2025-06-01,3902,Propylene Polymers,91.53
+2025-07-01,3902,Propylene Polymers,89.03
+2025-08-01,3902,Propylene Polymers,89.73
+2025-09-01,3902,Propylene Polymers,87.74
+2025-10-01,3902,Propylene Polymers,86.34
+2025-11-01,3902,Propylene Polymers,87.34
+2025-12-01,3902,Propylene Polymers,90.63
+2026-01-01,3902,Propylene Polymers,86.44
+2026-02-01,3902,Propylene Polymers,86.74
+2026-03-01,3902,Propylene Polymers,87.54
+2026-04-01,3902,Propylene Polymers,86.84
+2026-05-01,3902,Propylene Polymers,93.42
+2026-06-01,3902,Propylene Polymers,96.91
+2026-07-01,3902,Propylene Polymers,100.4
+2025-01-01,3903,Styrene Polymers,101.21
+2025-02-01,3903,Styrene Polymers,100.51
+2025-03-01,3903,Styrene Polymers,100
+2025-04-01,3903,Styrene Polymers,101.62
+2025-05-01,3903,Styrene Polymers,100.81
+2025-06-01,3903,Styrene Polymers,97.77
+2025-07-01,3903,Styrene Polymers,98.99
+2025-08-01,3903,Styrene Polymers,98.08
+2025-09-01,3903,Styrene Polymers,100.1
+2025-10-01,3903,Styrene Polymers,96.05
+2025-11-01,3903,Styrene Polymers,92.51
+2025-12-01,3903,Styrene Polymers,88.36
+2026-01-01,3903,Styrene Polymers,90.99
+2026-02-01,3903,Styrene Polymers,91.8
+2026-03-01,3903,Styrene Polymers,94.94
+2026-04-01,3903,Styrene Polymers,100.71
+2026-05-01,3903,Styrene Polymers,111.34
+2026-06-01,3903,Styrene Polymers,114.88
+2026-07-01,3903,Styrene Polymers,115.08
+2025-01-01,3904,Vinyl Chloride Polymers,99.21
+2025-02-01,3904,Vinyl Chloride Polymers,99.8
+2025-03-01,3904,Vinyl Chloride Polymers,100
+2025-04-01,3904,Vinyl Chloride Polymers,98.71
+2025-05-01,3904,Vinyl Chloride Polymers,96.63
+2025-06-01,3904,Vinyl Chloride Polymers,95.73
+2025-07-01,3904,Vinyl Chloride Polymers,93.25
+2025-08-01,3904,Vinyl Chloride Polymers,96.83
+2025-09-01,3904,Vinyl Chloride Polymers,91.77
+2025-10-01,3904,Vinyl Chloride Polymers,93.35
+2025-11-01,3904,Vinyl Chloride Polymers,91.57
+2025-12-01,3904,Vinyl Chloride Polymers,93.85
+2026-01-01,3904,Vinyl Chloride Polymers,88.39
+2026-02-01,3904,Vinyl Chloride Polymers,89.98
+2026-03-01,3904,Vinyl Chloride Polymers,92.16
+2026-04-01,3904,Vinyl Chloride Polymers,92.56
+2026-05-01,3904,Vinyl Chloride Polymers,98.81
+2026-06-01,3904,Vinyl Chloride Polymers,103.57
+2026-07-01,3904,Vinyl Chloride Polymers,112
+2025-01-01,3906,Acrylic Polymers,101.42
+2025-02-01,3906,Acrylic Polymers,100.2
+2025-03-01,3906,Acrylic Polymers,100
+2025-04-01,3906,Acrylic Polymers,101.22
+2025-05-01,3906,Acrylic Polymers,99.49
+2025-06-01,3906,Acrylic Polymers,100.91
+2025-07-01,3906,Acrylic Polymers,100.91
+2025-08-01,3906,Acrylic Polymers,98.58
+2025-09-01,3906,Acrylic Polymers,95.03
+2025-10-01,3906,Acrylic Polymers,98.99
+2025-11-01,3906,Acrylic Polymers,100.3
+2025-12-01,3906,Acrylic Polymers,98.28
+2026-01-01,3906,Acrylic Polymers,96.86
+2026-02-01,3906,Acrylic Polymers,101.93
+2026-03-01,3906,Acrylic Polymers,92.09
+2026-04-01,3906,Acrylic Polymers,97.67
+2026-05-01,3906,Acrylic Polymers,92.8
+2026-06-01,3906,Acrylic Polymers,105.27
+2026-07-01,3906,Acrylic Polymers,106.19
+2025-01-01,3907,Polyacetals,100
+2025-02-01,3907,Polyacetals,101.5
+2025-03-01,3907,Polyacetals,100
+2025-04-01,3907,Polyacetals,102.2
+2025-05-01,3907,Polyacetals,101.1
+2025-06-01,3907,Polyacetals,99.6
+2025-07-01,3907,Polyacetals,99.6
+2025-08-01,3907,Polyacetals,99.4
+2025-09-01,3907,Polyacetals,97
+2025-10-01,3907,Polyacetals,97.2
+2025-11-01,3907,Polyacetals,95.3
+2025-12-01,3907,Polyacetals,96.7
+2026-01-01,3907,Polyacetals,93
+2026-02-01,3907,Polyacetals,95.4
+2026-03-01,3907,Polyacetals,95.1
+2026-04-01,3907,Polyacetals,96.2
+2026-05-01,3907,Polyacetals,101.5
+2026-06-01,3907,Polyacetals,104.1
+2026-07-01,3907,Polyacetals,105.5
+2025-01-01,3917,Plastic Pipes,103.52
+2025-02-01,3917,Plastic Pipes,103.52
+2025-03-01,3917,Plastic Pipes,100
+2025-04-01,3917,Plastic Pipes,100.31
+2025-05-01,3917,Plastic Pipes,101.04
+2025-06-01,3917,Plastic Pipes,97.83
+2025-07-01,3917,Plastic Pipes,100
+2025-08-01,3917,Plastic Pipes,98.45
+2025-09-01,3917,Plastic Pipes,100.21
+2025-10-01,3917,Plastic Pipes,100.72
+2025-11-01,3917,Plastic Pipes,101.86
+2025-12-01,3917,Plastic Pipes,101.66
+2026-01-01,3917,Plastic Pipes,102.9
+2026-02-01,3917,Plastic Pipes,102.8
+2026-03-01,3917,Plastic Pipes,102.48
+2026-04-01,3917,Plastic Pipes,101.24
+2026-05-01,3917,Plastic Pipes,103.42
+2026-06-01,3917,Plastic Pipes,105.18
+2026-07-01,3917,Plastic Pipes,107.56
+2025-01-01,3918,Plastic Floor Coverings,98.72
+2025-02-01,3918,Plastic Floor Coverings,100.3
+2025-03-01,3918,Plastic Floor Coverings,100
+2025-04-01,3918,Plastic Floor Coverings,97.93
+2025-05-01,3918,Plastic Floor Coverings,97.43
+2025-06-01,3918,Plastic Floor Coverings,98.12
+2025-07-01,3918,Plastic Floor Coverings,95.95
+2025-08-01,3918,Plastic Floor Coverings,93.88
+2025-09-01,3918,Plastic Floor Coverings,94.77
+2025-10-01,3918,Plastic Floor Coverings,92
+2025-11-01,3918,Plastic Floor Coverings,90.23
+2025-12-01,3918,Plastic Floor Coverings,91.91
+2026-01-01,3918,Plastic Floor Coverings,90.62
+2026-02-01,3918,Plastic Floor Coverings,92.4
+2026-03-01,3918,Plastic Floor Coverings,93.48
+2026-04-01,3918,Plastic Floor Coverings,91.71
+2026-05-01,3918,Plastic Floor Coverings,90.72
+2026-06-01,3918,Plastic Floor Coverings,92
+2026-07-01,3918,Plastic Floor Coverings,90.82
+2025-01-01,3920,Raw Plastic Sheeting,101.83
+2025-02-01,3920,Raw Plastic Sheeting,100.71
+2025-03-01,3920,Raw Plastic Sheeting,100
+2025-04-01,3920,Raw Plastic Sheeting,99.59
+2025-05-01,3920,Raw Plastic Sheeting,99.49
+2025-06-01,3920,Raw Plastic Sheeting,96.44
+2025-07-01,3920,Raw Plastic Sheeting,97.45
+2025-08-01,3920,Raw Plastic Sheeting,97.05
+2025-09-01,3920,Raw Plastic Sheeting,98.07
+2025-10-01,3920,Raw Plastic Sheeting,96.74
+2025-11-01,3920,Raw Plastic Sheeting,97.15
+2025-12-01,3920,Raw Plastic Sheeting,96.95
+2026-01-01,3920,Raw Plastic Sheeting,95.42
+2026-02-01,3920,Raw Plastic Sheeting,97.66
+2026-03-01,3920,Raw Plastic Sheeting,95.32
+2026-04-01,3920,Raw Plastic Sheeting,96.95
+2026-05-01,3920,Raw Plastic Sheeting,98.17
+2026-06-01,3920,Raw Plastic Sheeting,103.77
+2026-07-01,3920,Raw Plastic Sheeting,108.96
+2025-01-01,3921,Other Plastic Sheetings,103.84
+2025-02-01,3921,Other Plastic Sheetings,104.47
+2025-03-01,3921,Other Plastic Sheetings,100
+2025-04-01,3921,Other Plastic Sheetings,100.62
+2025-05-01,3921,Other Plastic Sheetings,101.87
+2025-06-01,3921,Other Plastic Sheetings,103.53
+2025-07-01,3921,Other Plastic Sheetings,102.39
+2025-08-01,3921,Other Plastic Sheetings,100.83
+2025-09-01,3921,Other Plastic Sheetings,103.63
+2025-10-01,3921,Other Plastic Sheetings,102.6
+2025-11-01,3921,Other Plastic Sheetings,109.97
+2025-12-01,3921,Other Plastic Sheetings,107.89
+2026-01-01,3921,Other Plastic Sheetings,103.74
+2026-02-01,3921,Other Plastic Sheetings,107.17
+2026-03-01,3921,Other Plastic Sheetings,106.65
+2026-04-01,3921,Other Plastic Sheetings,108.1
+2026-05-01,3921,Other Plastic Sheetings,107.58
+2026-06-01,3921,Other Plastic Sheetings,106.75
+2026-07-01,3921,Other Plastic Sheetings,107.06
+2024-12-01,3924,Plastic Housewares,100.81
+2025-01-01,3924,Plastic Housewares,100.81
+2025-02-01,3924,Plastic Housewares,100
+2025-03-01,3924,Plastic Housewares,100
+2025-04-01,3924,Plastic Housewares,97.28
+2025-05-01,3924,Plastic Housewares,93.85
+2025-06-01,3924,Plastic Housewares,94.05
+2025-07-01,3924,Plastic Housewares,92.64
+2025-08-01,3924,Plastic Housewares,93.15
+2025-09-01,3924,Plastic Housewares,92.94
+2025-11-01,3924,Plastic Housewares,92.24
+2025-12-01,3924,Plastic Housewares,90.32
+2026-01-01,3924,Plastic Housewares,93.04
+2026-02-01,3924,Plastic Housewares,90.52
+2026-03-01,3924,Plastic Housewares,93.25
+2026-04-01,3924,Plastic Housewares,96.47
+2026-05-01,3924,Plastic Housewares,95.46
+2026-06-01,3924,Plastic Housewares,97.28
+2026-07-01,3924,Plastic Housewares,99.5
+2023-01-01,3926,Other Plastic Products,98.81
+2023-02-01,3926,Other Plastic Products,100.4
+2023-03-01,3926,Other Plastic Products,100.89
+2023-04-01,3926,Other Plastic Products,100.3
+2023-05-01,3926,Other Plastic Products,100.3
+2023-06-01,3926,Other Plastic Products,100.3
+2023-07-01,3926,Other Plastic Products,99.8
+2023-08-01,3926,Other Plastic Products,100.3
+2023-09-01,3926,Other Plastic Products,99.8
+2023-10-01,3926,Other Plastic Products,99.9
+2023-11-01,3926,Other Plastic Products,99.8
+2023-12-01,3926,Other Plastic Products,99.9
+2024-01-01,3926,Other Plastic Products,99.9
+2024-02-01,3926,Other Plastic Products,100
+2024-03-01,3926,Other Plastic Products,99.9
+2024-04-01,3926,Other Plastic Products,100
+2024-05-01,3926,Other Plastic Products,100.3
+2024-06-01,3926,Other Plastic Products,100.4
+2024-07-01,3926,Other Plastic Products,100
+2024-08-01,3926,Other Plastic Products,100
+2024-09-01,3926,Other Plastic Products,100.2
+2024-10-01,3926,Other Plastic Products,100.2
+2024-11-01,3926,Other Plastic Products,100.1
+2024-12-01,3926,Other Plastic Products,100.1
+2025-01-01,3926,Other Plastic Products,99.5
+2025-02-01,3926,Other Plastic Products,100.69
+2025-03-01,3926,Other Plastic Products,100
+2025-04-01,3926,Other Plastic Products,100.69
+2025-05-01,3926,Other Plastic Products,98.51
+2025-06-01,3926,Other Plastic Products,98.71
+2025-07-01,3926,Other Plastic Products,97.92
+2025-08-01,3926,Other Plastic Products,99.01
+2025-09-01,3926,Other Plastic Products,99.8
+2025-11-01,3926,Other Plastic Products,98.61
+2025-12-01,3926,Other Plastic Products,100
+2026-01-01,3926,Other Plastic Products,101.98
+2026-02-01,3926,Other Plastic Products,101.78
+2026-03-01,3926,Other Plastic Products,100.59
+2026-04-01,3926,Other Plastic Products,100.4
+2026-05-01,3926,Other Plastic Products,102.38
+2026-06-01,3926,Other Plastic Products,100.1
+2026-07-01,3926,Other Plastic Products,105.45
+2025-01-01,4001,Rubber,99.3
+2025-02-01,4001,Rubber,100.7
+2025-03-01,4001,Rubber,100
+2025-04-01,4001,Rubber,99.8
+2025-05-01,4001,Rubber,100.6
+2025-06-01,4001,Rubber,100.6
+2025-07-01,4001,Rubber,96.52
+2025-08-01,4001,Rubber,91.86
+2025-09-01,4001,Rubber,88.38
+2025-10-01,4001,Rubber,89.08
+2025-11-01,4001,Rubber,89.08
+2025-12-01,4001,Rubber,89.87
+2026-01-01,4001,Rubber,90.17
+2026-02-01,4001,Rubber,90.27
+2026-03-01,4001,Rubber,90.57
+2026-04-01,4001,Rubber,92.75
+2026-05-01,4001,Rubber,94.84
+2026-06-01,4001,Rubber,97.82
+2026-07-01,4001,Rubber,100.3
+2025-01-01,4002,Synthetic Rubber,99.9
+2025-02-01,4002,Synthetic Rubber,100.7
+2025-03-01,4002,Synthetic Rubber,100
+2025-04-01,4002,Synthetic Rubber,99.8
+2025-05-01,4002,Synthetic Rubber,98.5
+2025-06-01,4002,Synthetic Rubber,94.71
+2025-07-01,4002,Synthetic Rubber,96.2
+2025-08-01,4002,Synthetic Rubber,95.9
+2025-09-01,4002,Synthetic Rubber,97.1
+2025-10-01,4002,Synthetic Rubber,93.41
+2025-11-01,4002,Synthetic Rubber,93.31
+2025-12-01,4002,Synthetic Rubber,92.11
+2026-01-01,4002,Synthetic Rubber,90.71
+2026-02-01,4002,Synthetic Rubber,89.71
+2026-03-01,4002,Synthetic Rubber,90.81
+2026-04-01,4002,Synthetic Rubber,93.11
+2026-05-01,4002,Synthetic Rubber,101.5
+2026-06-01,4002,Synthetic Rubber,107.49
+2026-07-01,4002,Synthetic Rubber,108.29
+2023-01-01,4011,Rubber Tires,100.26
+2023-02-01,4011,Rubber Tires,100.39
+2023-03-01,4011,Rubber Tires,99.74
+2023-04-01,4011,Rubber Tires,100.77
+2023-05-01,4011,Rubber Tires,103.08
+2023-06-01,4011,Rubber Tires,103.15
+2023-07-01,4011,Rubber Tires,103.02
+2023-08-01,4011,Rubber Tires,103.21
+2023-09-01,4011,Rubber Tires,103.73
+2023-10-01,4011,Rubber Tires,103.47
+2023-11-01,4011,Rubber Tires,103.4
+2023-12-01,4011,Rubber Tires,104.37
+2024-01-01,4011,Rubber Tires,103.21
+2024-02-01,4011,Rubber Tires,103.15
+2024-03-01,4011,Rubber Tires,103.47
+2024-04-01,4011,Rubber Tires,103.92
+2024-05-01,4011,Rubber Tires,103.47
+2024-06-01,4011,Rubber Tires,103.73
+2024-07-01,4011,Rubber Tires,103.92
+2024-08-01,4011,Rubber Tires,104.11
+2024-09-01,4011,Rubber Tires,104.11
+2024-10-01,4011,Rubber Tires,103.08
+2024-11-01,4011,Rubber Tires,102.63
+2024-12-01,4011,Rubber Tires,102.5
+2025-01-01,4011,Rubber Tires,102.06
+2025-02-01,4011,Rubber Tires,101.67
+2025-03-01,4011,Rubber Tires,100
+2025-04-01,4011,Rubber Tires,100.26
+2025-05-01,4011,Rubber Tires,100.58
+2025-06-01,4011,Rubber Tires,100.64
+2025-07-01,4011,Rubber Tires,99.61
+2025-08-01,4011,Rubber Tires,99.23
+2025-09-01,4011,Rubber Tires,98.97
+2025-11-01,4011,Rubber Tires,97.82
+2025-12-01,4011,Rubber Tires,97.43
+2026-01-01,4011,Rubber Tires,98.01
+2026-02-01,4011,Rubber Tires,97.24
+2026-03-01,4011,Rubber Tires,96.4
+2026-04-01,4011,Rubber Tires,95.12
+2026-05-01,4011,Rubber Tires,95.25
+2026-06-01,4011,Rubber Tires,95.18
+2026-07-01,4011,Rubber Tires,95.63
+2025-01-01,4407,Sawn Wood,97.37
+2025-02-01,4407,Sawn Wood,97.47
+2025-03-01,4407,Sawn Wood,100
+2025-04-01,4407,Sawn Wood,101.46
+2025-05-01,4407,Sawn Wood,96.11
+2025-06-01,4407,Sawn Wood,95.33
+2025-07-01,4407,Sawn Wood,96.11
+2025-08-01,4407,Sawn Wood,92.11
+2025-09-01,4407,Sawn Wood,86.76
+2025-10-01,4407,Sawn Wood,82.57
+2025-11-01,4407,Sawn Wood,81.11
+2025-12-01,4407,Sawn Wood,79.26
+2026-01-01,4407,Sawn Wood,80.62
+2026-02-01,4407,Sawn Wood,83.84
+2026-03-01,4407,Sawn Wood,84.03
+2026-04-01,4407,Sawn Wood,85.88
+2026-05-01,4407,Sawn Wood,87.54
+2026-06-01,4407,Sawn Wood,89.29
+2026-07-01,4407,Sawn Wood,92.89
+2025-01-01,4411,Wood Fiberboard,102.56
+2025-02-01,4411,Wood Fiberboard,102.15
+2025-03-01,4411,Wood Fiberboard,100
+2025-04-01,4411,Wood Fiberboard,100.1
+2025-05-01,4411,Wood Fiberboard,100.41
+2025-06-01,4411,Wood Fiberboard,100.1
+2025-07-01,4411,Wood Fiberboard,98.56
+2025-08-01,4411,Wood Fiberboard,100.82
+2025-09-01,4411,Wood Fiberboard,98.87
+2025-10-01,4411,Wood Fiberboard,99.38
+2025-11-01,4411,Wood Fiberboard,97.23
+2025-12-01,4411,Wood Fiberboard,94.87
+2026-01-01,4411,Wood Fiberboard,96
+2026-02-01,4411,Wood Fiberboard,99.28
+2026-03-01,4411,Wood Fiberboard,94.87
+2026-04-01,4411,Wood Fiberboard,91.49
+2026-05-01,4411,Wood Fiberboard,94.05
+2026-06-01,4411,Wood Fiberboard,94.97
+2026-07-01,4411,Wood Fiberboard,104
+2025-01-01,4412,Plywood,99.8
+2025-02-01,4412,Plywood,101
+2025-03-01,4412,Plywood,100
+2025-04-01,4412,Plywood,100
+2025-05-01,4412,Plywood,98.7
+2025-06-01,4412,Plywood,99.8
+2025-07-01,4412,Plywood,99.5
+2025-08-01,4412,Plywood,99.1
+2025-09-01,4412,Plywood,98.7
+2025-10-01,4412,Plywood,99.3
+2025-11-01,4412,Plywood,97.5
+2025-12-01,4412,Plywood,97.5
+2026-01-01,4412,Plywood,96.11
+2026-02-01,4412,Plywood,96.41
+2026-03-01,4412,Plywood,97.01
+2026-04-01,4412,Plywood,97.21
+2026-05-01,4412,Plywood,96.91
+2026-06-01,4412,Plywood,98.5
+2026-07-01,4412,Plywood,99.5
+2025-01-01,4418,Wood Carpentry,100
+2025-02-01,4418,Wood Carpentry,99.1
+2025-03-01,4418,Wood Carpentry,100
+2025-04-01,4418,Wood Carpentry,98.6
+2025-05-01,4418,Wood Carpentry,100
+2025-06-01,4418,Wood Carpentry,98.2
+2025-07-01,4418,Wood Carpentry,98.4
+2025-08-01,4418,Wood Carpentry,95.8
+2025-09-01,4418,Wood Carpentry,97.5
+2025-10-01,4418,Wood Carpentry,98.4
+2025-11-01,4418,Wood Carpentry,99.4
+2025-12-01,4418,Wood Carpentry,100
+2026-01-01,4418,Wood Carpentry,100.5
+2026-02-01,4418,Wood Carpentry,99.6
+2026-03-01,4418,Wood Carpentry,101
+2026-04-01,4418,Wood Carpentry,103.2
+2026-05-01,4418,Wood Carpentry,102.2
+2026-06-01,4418,Wood Carpentry,102.7
+2026-07-01,4418,Wood Carpentry,104.3
+2025-01-01,4703,Sulfate Chemical Woodpulp,101.52
+2025-02-01,4703,Sulfate Chemical Woodpulp,100.3
+2025-03-01,4703,Sulfate Chemical Woodpulp,100
+2025-04-01,4703,Sulfate Chemical Woodpulp,102.74
+2025-05-01,4703,Sulfate Chemical Woodpulp,106.4
+2025-06-01,4703,Sulfate Chemical Woodpulp,102.94
+2025-07-01,4703,Sulfate Chemical Woodpulp,99.09
+2025-08-01,4703,Sulfate Chemical Woodpulp,94.11
+2025-09-01,4703,Sulfate Chemical Woodpulp,91.98
+2025-10-01,4703,Sulfate Chemical Woodpulp,92.79
+2025-11-01,4703,Sulfate Chemical Woodpulp,93.6
+2025-12-01,4703,Sulfate Chemical Woodpulp,90.46
+2026-01-01,4703,Sulfate Chemical Woodpulp,89.14
+2026-02-01,4703,Sulfate Chemical Woodpulp,89.04
+2026-03-01,4703,Sulfate Chemical Woodpulp,87.41
+2026-04-01,4703,Sulfate Chemical Woodpulp,87.82
+2026-05-01,4703,Sulfate Chemical Woodpulp,87.61
+2026-06-01,4703,Sulfate Chemical Woodpulp,90.76
+2026-07-01,4703,Sulfate Chemical Woodpulp,90.86
+2025-01-01,4802,Uncoated Paper,102.46
+2025-02-01,4802,Uncoated Paper,101.23
+2025-03-01,4802,Uncoated Paper,100
+2025-04-01,4802,Uncoated Paper,100.72
+2025-05-01,4802,Uncoated Paper,99.9
+2025-06-01,4802,Uncoated Paper,97.95
+2025-07-01,4802,Uncoated Paper,98.16
+2025-08-01,4802,Uncoated Paper,98.98
+2025-09-01,4802,Uncoated Paper,99.08
+2025-10-01,4802,Uncoated Paper,98.67
+2025-11-01,4802,Uncoated Paper,96.93
+2025-12-01,4802,Uncoated Paper,96.21
+2026-01-01,4802,Uncoated Paper,98.46
+2026-02-01,4802,Uncoated Paper,97.64
+2026-03-01,4802,Uncoated Paper,98.26
+2026-04-01,4802,Uncoated Paper,97.34
+2026-05-01,4802,Uncoated Paper,97.03
+2026-06-01,4802,Uncoated Paper,97.85
+2026-07-01,4802,Uncoated Paper,97.75
+2025-01-01,4805,Other Uncoated Paper,99.5
+2025-02-01,4805,Other Uncoated Paper,100.8
+2025-03-01,4805,Other Uncoated Paper,100
+2025-04-01,4805,Other Uncoated Paper,102.79
+2025-05-01,4805,Other Uncoated Paper,101.49
+2025-06-01,4805,Other Uncoated Paper,101
+2025-07-01,4805,Other Uncoated Paper,99.7
+2025-08-01,4805,Other Uncoated Paper,99
+2025-09-01,4805,Other Uncoated Paper,98.71
+2025-10-01,4805,Other Uncoated Paper,98.41
+2025-11-01,4805,Other Uncoated Paper,97.91
+2025-12-01,4805,Other Uncoated Paper,96.92
+2026-01-01,4805,Other Uncoated Paper,98.01
+2026-02-01,4805,Other Uncoated Paper,97.61
+2026-03-01,4805,Other Uncoated Paper,97.11
+2026-04-01,4805,Other Uncoated Paper,97.01
+2026-05-01,4805,Other Uncoated Paper,98.11
+2026-06-01,4805,Other Uncoated Paper,99.9
+2026-07-01,4805,Other Uncoated Paper,101.69
+2025-01-01,4810,Kaolin Coated Paper,100.2
+2025-02-01,4810,Kaolin Coated Paper,101
+2025-03-01,4810,Kaolin Coated Paper,100
+2025-04-01,4810,Kaolin Coated Paper,100
+2025-05-01,4810,Kaolin Coated Paper,97.09
+2025-06-01,4810,Kaolin Coated Paper,95.19
+2025-07-01,4810,Kaolin Coated Paper,95.39
+2025-08-01,4810,Kaolin Coated Paper,95.69
+2025-09-01,4810,Kaolin Coated Paper,95.39
+2025-10-01,4810,Kaolin Coated Paper,95.89
+2025-11-01,4810,Kaolin Coated Paper,93.49
+2025-12-01,4810,Kaolin Coated Paper,93.39
+2026-01-01,4810,Kaolin Coated Paper,93.39
+2026-02-01,4810,Kaolin Coated Paper,93.29
+2026-03-01,4810,Kaolin Coated Paper,93.89
+2026-04-01,4810,Kaolin Coated Paper,93.59
+2026-05-01,4810,Kaolin Coated Paper,92.18
+2026-06-01,4810,Kaolin Coated Paper,91.38
+2026-07-01,4810,Kaolin Coated Paper,93.59
+2025-01-01,4811,Cellulose Fibers Paper,100.5
+2025-02-01,4811,Cellulose Fibers Paper,99.6
+2025-03-01,4811,Cellulose Fibers Paper,100
+2025-04-01,4811,Cellulose Fibers Paper,97.69
+2025-05-01,4811,Cellulose Fibers Paper,95.98
+2025-06-01,4811,Cellulose Fibers Paper,95.58
+2025-07-01,4811,Cellulose Fibers Paper,95.38
+2025-08-01,4811,Cellulose Fibers Paper,97.09
+2025-09-01,4811,Cellulose Fibers Paper,95.58
+2025-10-01,4811,Cellulose Fibers Paper,96.58
+2025-11-01,4811,Cellulose Fibers Paper,98.69
+2025-12-01,4811,Cellulose Fibers Paper,99.1
+2026-01-01,4811,Cellulose Fibers Paper,96.88
+2026-02-01,4811,Cellulose Fibers Paper,99.2
+2026-03-01,4811,Cellulose Fibers Paper,98.39
+2026-04-01,4811,Cellulose Fibers Paper,100
+2026-05-01,4811,Cellulose Fibers Paper,99.7
+2026-06-01,4811,Cellulose Fibers Paper,101.41
+2026-07-01,4811,Cellulose Fibers Paper,100.7
+2025-01-01,4818,Toilet Paper,114.29
+2025-02-01,4818,Toilet Paper,100.46
+2025-03-01,4818,Toilet Paper,100
+2025-04-01,4818,Toilet Paper,99.2
+2025-05-01,4818,Toilet Paper,97.49
+2025-06-01,4818,Toilet Paper,95.54
+2025-07-01,4818,Toilet Paper,108.91
+2025-08-01,4818,Toilet Paper,110.17
+2025-09-01,4818,Toilet Paper,110.86
+2025-10-01,4818,Toilet Paper,111.89
+2025-11-01,4818,Toilet Paper,109.14
+2025-12-01,4818,Toilet Paper,108.8
+2026-01-01,4818,Toilet Paper,110.4
+2026-02-01,4818,Toilet Paper,110.17
+2026-03-01,4818,Toilet Paper,109.94
+2026-04-01,4818,Toilet Paper,109.83
+2026-05-01,4818,Toilet Paper,109.37
+2026-06-01,4818,Toilet Paper,111.89
+2026-07-01,4818,Toilet Paper,114.29
+2025-01-01,4823,Shaped Paper,99.21
+2025-02-01,4823,Shaped Paper,99.7
+2025-03-01,4823,Shaped Paper,100
+2025-04-01,4823,Shaped Paper,99.8
+2025-05-01,4823,Shaped Paper,99.21
+2025-06-01,4823,Shaped Paper,98.51
+2025-07-01,4823,Shaped Paper,97.52
+2025-08-01,4823,Shaped Paper,98.61
+2025-09-01,4823,Shaped Paper,95.93
+2025-10-01,4823,Shaped Paper,95.44
+2025-11-01,4823,Shaped Paper,95.54
+2025-12-01,4823,Shaped Paper,96.33
+2026-01-01,4823,Shaped Paper,96.23
+2026-02-01,4823,Shaped Paper,96.03
+2026-03-01,4823,Shaped Paper,96.73
+2026-04-01,4823,Shaped Paper,96.73
+2026-05-01,4823,Shaped Paper,98.02
+2026-06-01,4823,Shaped Paper,98.31
+2026-07-01,4823,Shaped Paper,98.21
+2025-01-01,5402,Non-Retail Synthetic Filament Yarn,103.84
+2025-02-01,5402,Non-Retail Synthetic Filament Yarn,102.18
+2025-03-01,5402,Non-Retail Synthetic Filament Yarn,100
+2025-04-01,5402,Non-Retail Synthetic Filament Yarn,100.73
+2025-05-01,5402,Non-Retail Synthetic Filament Yarn,101.04
+2025-06-01,5402,Non-Retail Synthetic Filament Yarn,101.97
+2025-07-01,5402,Non-Retail Synthetic Filament Yarn,99.27
+2025-08-01,5402,Non-Retail Synthetic Filament Yarn,97.4
+2025-09-01,5402,Non-Retail Synthetic Filament Yarn,97.4
+2025-10-01,5402,Non-Retail Synthetic Filament Yarn,98.23
+2025-11-01,5402,Non-Retail Synthetic Filament Yarn,97.92
+2025-12-01,5402,Non-Retail Synthetic Filament Yarn,96.05
+2026-01-01,5402,Non-Retail Synthetic Filament Yarn,95.64
+2026-02-01,5402,Non-Retail Synthetic Filament Yarn,98.23
+2026-03-01,5402,Non-Retail Synthetic Filament Yarn,96.78
+2026-04-01,5402,Non-Retail Synthetic Filament Yarn,95.95
+2026-05-01,5402,Non-Retail Synthetic Filament Yarn,101.45
+2026-06-01,5402,Non-Retail Synthetic Filament Yarn,100.1
+2026-07-01,5402,Non-Retail Synthetic Filament Yarn,106.44
+2025-01-01,5603,Non-woven Textiles,100.4
+2025-02-01,5603,Non-woven Textiles,101
+2025-03-01,5603,Non-woven Textiles,100
+2025-04-01,5603,Non-woven Textiles,100.6
+2025-05-01,5603,Non-woven Textiles,99
+2025-06-01,5603,Non-woven Textiles,97.29
+2025-07-01,5603,Non-woven Textiles,96.29
+2025-08-01,5603,Non-woven Textiles,97.99
+2025-09-01,5603,Non-woven Textiles,97.29
+2025-10-01,5603,Non-woven Textiles,96.49
+2025-11-01,5603,Non-woven Textiles,96.99
+2025-12-01,5603,Non-woven Textiles,96.99
+2026-01-01,5603,Non-woven Textiles,94.78
+2026-02-01,5603,Non-woven Textiles,97.79
+2026-03-01,5603,Non-woven Textiles,95.78
+2026-04-01,5603,Non-woven Textiles,96.69
+2026-05-01,5603,Non-woven Textiles,98.19
+2026-06-01,5603,Non-woven Textiles,104.72
+2026-07-01,5603,Non-woven Textiles,102.11
+2025-01-01,5903,Plastic Coated Textile Fabric,103.2
+2025-02-01,5903,Plastic Coated Textile Fabric,103.1
+2025-03-01,5903,Plastic Coated Textile Fabric,100
+2025-04-01,5903,Plastic Coated Textile Fabric,101.03
+2025-05-01,5903,Plastic Coated Textile Fabric,99.17
+2025-06-01,5903,Plastic Coated Textile Fabric,97.73
+2025-07-01,5903,Plastic Coated Textile Fabric,101.86
+2025-08-01,5903,Plastic Coated Textile Fabric,103.41
+2025-09-01,5903,Plastic Coated Textile Fabric,102.89
+2025-10-01,5903,Plastic Coated Textile Fabric,102.48
+2025-11-01,5903,Plastic Coated Textile Fabric,106.19
+2025-12-01,5903,Plastic Coated Textile Fabric,103.1
+2026-01-01,5903,Plastic Coated Textile Fabric,98.56
+2026-02-01,5903,Plastic Coated Textile Fabric,101.86
+2026-03-01,5903,Plastic Coated Textile Fabric,102.68
+2026-04-01,5903,Plastic Coated Textile Fabric,107.53
+2026-05-01,5903,Plastic Coated Textile Fabric,106.19
+2026-06-01,5903,Plastic Coated Textile Fabric,111.25
+2026-07-01,5903,Plastic Coated Textile Fabric,121.78
+2025-01-01,6101,Knit Men's Coats,99.7
+2025-02-01,6101,Knit Men's Coats,97.91
+2025-03-01,6101,Knit Men's Coats,100
+2025-04-01,6101,Knit Men's Coats,96.81
+2025-05-01,6101,Knit Men's Coats,97.71
+2025-06-01,6101,Knit Men's Coats,95.41
+2025-07-01,6101,Knit Men's Coats,96.71
+2025-08-01,6101,Knit Men's Coats,95.91
+2025-09-01,6101,Knit Men's Coats,96.31
+2025-10-01,6101,Knit Men's Coats,97.31
+2025-11-01,6101,Knit Men's Coats,96.11
+2025-12-01,6101,Knit Men's Coats,94.62
+2026-01-01,6101,Knit Men's Coats,98.4
+2026-02-01,6101,Knit Men's Coats,100.1
+2026-03-01,6101,Knit Men's Coats,92.42
+2026-04-01,6101,Knit Men's Coats,98.4
+2026-05-01,6101,Knit Men's Coats,98.9
+2026-06-01,6101,Knit Men's Coats,94.62
+2026-07-01,6101,Knit Men's Coats,94.72
+2025-01-01,6103,Knit Men's Suits,100.6
+2025-02-01,6103,Knit Men's Suits,99.6
+2025-03-01,6103,Knit Men's Suits,100
+2025-04-01,6103,Knit Men's Suits,97.69
+2025-05-01,6103,Knit Men's Suits,96.88
+2025-06-01,6103,Knit Men's Suits,100.2
+2025-07-01,6103,Knit Men's Suits,97.08
+2025-08-01,6103,Knit Men's Suits,96.28
+2025-09-01,6103,Knit Men's Suits,96.58
+2025-10-01,6103,Knit Men's Suits,95.67
+2025-11-01,6103,Knit Men's Suits,96.48
+2025-12-01,6103,Knit Men's Suits,99.3
+2026-01-01,6103,Knit Men's Suits,97.89
+2026-02-01,6103,Knit Men's Suits,96.58
+2026-03-01,6103,Knit Men's Suits,97.08
+2026-04-01,6103,Knit Men's Suits,96.08
+2026-05-01,6103,Knit Men's Suits,95.07
+2026-06-01,6103,Knit Men's Suits,96.58
+2026-07-01,6103,Knit Men's Suits,96.18
+2023-12-01,6104,Knit Women's Suits,101.63
+2024-01-01,6104,Knit Women's Suits,102.74
+2024-02-01,6104,Knit Women's Suits,102.74
+2024-03-01,6104,Knit Women's Suits,102.74
+2024-04-01,6104,Knit Women's Suits,102.74
+2024-05-01,6104,Knit Women's Suits,102.74
+2024-06-01,6104,Knit Women's Suits,102.54
+2024-07-01,6104,Knit Women's Suits,102.85
+2024-08-01,6104,Knit Women's Suits,102.85
+2024-09-01,6104,Knit Women's Suits,102.85
+2024-10-01,6104,Knit Women's Suits,102.85
+2024-11-01,6104,Knit Women's Suits,102.85
+2024-12-01,6104,Knit Women's Suits,102.85
+2025-01-01,6104,Knit Women's Suits,102.85
+2025-02-01,6104,Knit Women's Suits,102.44
+2025-03-01,6104,Knit Women's Suits,100
+2025-04-01,6104,Knit Women's Suits,100.71
+2025-05-01,6104,Knit Women's Suits,99.19
+2025-06-01,6104,Knit Women's Suits,98.17
+2025-07-01,6104,Knit Women's Suits,101.02
+2025-08-01,6104,Knit Women's Suits,101.73
+2025-09-01,6104,Knit Women's Suits,104.07
+2025-10-01,6104,Knit Women's Suits,102.24
+2025-11-01,6104,Knit Women's Suits,101.22
+2025-12-01,6104,Knit Women's Suits,102.24
+2026-01-01,6104,Knit Women's Suits,99.8
+2026-02-01,6104,Knit Women's Suits,100.51
+2026-03-01,6104,Knit Women's Suits,96.65
+2026-04-01,6104,Knit Women's Suits,98.07
+2026-05-01,6104,Knit Women's Suits,98.07
+2026-06-01,6104,Knit Women's Suits,98.68
+2026-07-01,6104,Knit Women's Suits,98.07
+2025-01-01,6105,Knit Men's Shirts,100.91
+2025-02-01,6105,Knit Men's Shirts,100.81
+2025-03-01,6105,Knit Men's Shirts,100
+2025-04-01,6105,Knit Men's Shirts,97.58
+2025-05-01,6105,Knit Men's Shirts,98.28
+2025-06-01,6105,Knit Men's Shirts,99.29
+2025-07-01,6105,Knit Men's Shirts,100.4
+2025-08-01,6105,Knit Men's Shirts,101.92
+2025-09-01,6105,Knit Men's Shirts,102.62
+2025-10-01,6105,Knit Men's Shirts,99.09
+2025-11-01,6105,Knit Men's Shirts,99.7
+2025-12-01,6105,Knit Men's Shirts,96.87
+2026-01-01,6105,Knit Men's Shirts,96.97
+2026-02-01,6105,Knit Men's Shirts,98.08
+2026-03-01,6105,Knit Men's Shirts,94.15
+2026-04-01,6105,Knit Men's Shirts,95.36
+2026-05-01,6105,Knit Men's Shirts,96.37
+2026-06-01,6105,Knit Men's Shirts,98.59
+2026-07-01,6105,Knit Men's Shirts,98.79
+2025-01-01,6107,Knit Men's Undergarments,102.88
+2025-02-01,6107,Knit Men's Undergarments,104.22
+2025-03-01,6107,Knit Men's Undergarments,100
+2025-04-01,6107,Knit Men's Undergarments,102.16
+2025-05-01,6107,Knit Men's Undergarments,104.42
+2025-06-01,6107,Knit Men's Undergarments,102.47
+2025-07-01,6107,Knit Men's Undergarments,101.54
+2025-08-01,6107,Knit Men's Undergarments,105.04
+2025-09-01,6107,Knit Men's Undergarments,105.86
+2025-10-01,6107,Knit Men's Undergarments,102.37
+2025-11-01,6107,Knit Men's Undergarments,99.59
+2025-12-01,6107,Knit Men's Undergarments,98.15
+2026-01-01,6107,Knit Men's Undergarments,100.51
+2026-02-01,6107,Knit Men's Undergarments,101.44
+2026-03-01,6107,Knit Men's Undergarments,99.49
+2026-04-01,6107,Knit Men's Undergarments,101.34
+2026-05-01,6107,Knit Men's Undergarments,102.98
+2026-06-01,6107,Knit Men's Undergarments,101.44
+2026-07-01,6107,Knit Men's Undergarments,105.14
+2025-01-01,6108,Knit Women's Undergarments,99.6
+2025-02-01,6108,Knit Women's Undergarments,101.59
+2025-03-01,6108,Knit Women's Undergarments,100
+2025-04-01,6108,Knit Women's Undergarments,98.61
+2025-05-01,6108,Knit Women's Undergarments,97.21
+2025-06-01,6108,Knit Women's Undergarments,99
+2025-07-01,6108,Knit Women's Undergarments,100.7
+2025-08-01,6108,Knit Women's Undergarments,102.49
+2025-09-01,6108,Knit Women's Undergarments,105.28
+2025-10-01,6108,Knit Women's Undergarments,105.58
+2025-11-01,6108,Knit Women's Undergarments,103.29
+2025-12-01,6108,Knit Women's Undergarments,100
+2026-01-01,6108,Knit Women's Undergarments,98.11
+2026-02-01,6108,Knit Women's Undergarments,96.81
+2026-03-01,6108,Knit Women's Undergarments,97.61
+2026-04-01,6108,Knit Women's Undergarments,95.92
+2026-05-01,6108,Knit Women's Undergarments,99.7
+2026-06-01,6108,Knit Women's Undergarments,106.87
+2026-07-01,6108,Knit Women's Undergarments,103.59
+2023-12-01,6109,Knit T-shirts,105.6
+2024-01-01,6109,Knit T-shirts,106.44
+2024-02-01,6109,Knit T-shirts,105.81
+2024-03-01,6109,Knit T-shirts,105.91
+2024-04-01,6109,Knit T-shirts,105.07
+2024-05-01,6109,Knit T-shirts,104.33
+2024-06-01,6109,Knit T-shirts,104.12
+2024-07-01,6109,Knit T-shirts,103.8
+2024-08-01,6109,Knit T-shirts,103.8
+2024-09-01,6109,Knit T-shirts,103.91
+2024-10-01,6109,Knit T-shirts,102.64
+2024-11-01,6109,Knit T-shirts,102.64
+2024-12-01,6109,Knit T-shirts,102.64
+2025-01-01,6109,Knit T-shirts,101.8
+2025-02-01,6109,Knit T-shirts,100.95
+2025-03-01,6109,Knit T-shirts,100
+2025-04-01,6109,Knit T-shirts,99.37
+2025-05-01,6109,Knit T-shirts,99.37
+2025-06-01,6109,Knit T-shirts,101.37
+2025-07-01,6109,Knit T-shirts,99.58
+2025-08-01,6109,Knit T-shirts,98.2
+2025-09-01,6109,Knit T-shirts,98.1
+2025-10-01,6109,Knit T-shirts,96.73
+2025-11-01,6109,Knit T-shirts,96.52
+2025-12-01,6109,Knit T-shirts,98.2
+2026-01-01,6109,Knit T-shirts,97.04
+2026-02-01,6109,Knit T-shirts,98.63
+2026-03-01,6109,Knit T-shirts,98.31
+2026-04-01,6109,Knit T-shirts,99.26
+2026-05-01,6109,Knit T-shirts,98.73
+2026-06-01,6109,Knit T-shirts,100
+2026-07-01,6109,Knit T-shirts,100.32
+2025-01-01,6110,Knit Sweaters,102.04
+2025-02-01,6110,Knit Sweaters,100.41
+2025-03-01,6110,Knit Sweaters,100
+2025-04-01,6110,Knit Sweaters,98.88
+2025-05-01,6110,Knit Sweaters,97.76
+2025-06-01,6110,Knit Sweaters,99.9
+2025-07-01,6110,Knit Sweaters,102.45
+2025-08-01,6110,Knit Sweaters,104.39
+2025-09-01,6110,Knit Sweaters,105.71
+2025-11-01,6110,Knit Sweaters,104.08
+2025-12-01,6110,Knit Sweaters,100.61
+2026-01-01,6110,Knit Sweaters,99.39
+2026-02-01,6110,Knit Sweaters,97.76
+2026-03-01,6110,Knit Sweaters,96.73
+2026-04-01,6110,Knit Sweaters,97.45
+2026-05-01,6110,Knit Sweaters,98.98
+2026-06-01,6110,Knit Sweaters,102.45
+2026-07-01,6110,Knit Sweaters,104.18
+2025-01-01,6111,Knit Babies' Garments,100.6
+2025-02-01,6111,Knit Babies' Garments,100.1
+2025-03-01,6111,Knit Babies' Garments,100
+2025-04-01,6111,Knit Babies' Garments,102.62
+2025-05-01,6111,Knit Babies' Garments,101.41
+2025-06-01,6111,Knit Babies' Garments,103.92
+2025-07-01,6111,Knit Babies' Garments,104.93
+2025-08-01,6111,Knit Babies' Garments,104.53
+2025-09-01,6111,Knit Babies' Garments,104.02
+2025-10-01,6111,Knit Babies' Garments,106.24
+2025-11-01,6111,Knit Babies' Garments,101.31
+2025-12-01,6111,Knit Babies' Garments,100.3
+2026-01-01,6111,Knit Babies' Garments,101.21
+2026-02-01,6111,Knit Babies' Garments,97.69
+2026-03-01,6111,Knit Babies' Garments,96.78
+2026-04-01,6111,Knit Babies' Garments,96.98
+2026-05-01,6111,Knit Babies' Garments,99.3
+2026-06-01,6111,Knit Babies' Garments,103.22
+2026-07-01,6111,Knit Babies' Garments,104.63
+2025-01-01,6114,Other Knit Garments,100.7
+2025-02-01,6114,Other Knit Garments,98.99
+2025-03-01,6114,Other Knit Garments,100
+2025-04-01,6114,Other Knit Garments,98.89
+2025-05-01,6114,Other Knit Garments,95.37
+2025-06-01,6114,Other Knit Garments,96.27
+2025-07-01,6114,Other Knit Garments,99.7
+2025-08-01,6114,Other Knit Garments,98.69
+2025-09-01,6114,Other Knit Garments,101.51
+2025-10-01,6114,Other Knit Garments,97.48
+2025-11-01,6114,Other Knit Garments,101.11
+2025-12-01,6114,Other Knit Garments,96.27
+2026-01-01,6114,Other Knit Garments,93.96
+2026-02-01,6114,Other Knit Garments,96.07
+2026-03-01,6114,Other Knit Garments,95.47
+2026-04-01,6114,Other Knit Garments,96.48
+2026-05-01,6114,Other Knit Garments,97.48
+2026-06-01,6114,Other Knit Garments,97.48
+2026-07-01,6114,Other Knit Garments,98.39
+2025-01-01,6201,Non-Knit Men's Coats,106.04
+2025-02-01,6201,Non-Knit Men's Coats,102.55
+2025-03-01,6201,Non-Knit Men's Coats,100
+2025-04-01,6201,Non-Knit Men's Coats,100.74
+2025-05-01,6201,Non-Knit Men's Coats,101.91
+2025-06-01,6201,Non-Knit Men's Coats,104.03
+2025-07-01,6201,Non-Knit Men's Coats,102.44
+2025-08-01,6201,Non-Knit Men's Coats,106.15
+2025-09-01,6201,Non-Knit Men's Coats,106.26
+2025-11-01,6201,Non-Knit Men's Coats,104.77
+2025-12-01,6201,Non-Knit Men's Coats,100.85
+2026-01-01,6201,Non-Knit Men's Coats,100.64
+2026-02-01,6201,Non-Knit Men's Coats,101.7
+2026-03-01,6201,Non-Knit Men's Coats,99.58
+2026-04-01,6201,Non-Knit Men's Coats,98.52
+2026-05-01,6201,Non-Knit Men's Coats,101.8
+2026-06-01,6201,Non-Knit Men's Coats,99.68
+2026-07-01,6201,Non-Knit Men's Coats,100.32
+2025-01-01,6202,Non-Knit Women's Coats,107.07
+2025-02-01,6202,Non-Knit Women's Coats,107.49
+2025-03-01,6202,Non-Knit Women's Coats,100
+2025-04-01,6202,Non-Knit Women's Coats,103.32
+2025-05-01,6202,Non-Knit Women's Coats,102.68
+2025-06-01,6202,Non-Knit Women's Coats,105.25
+2025-07-01,6202,Non-Knit Women's Coats,105.46
+2025-08-01,6202,Non-Knit Women's Coats,111.46
+2025-09-01,6202,Non-Knit Women's Coats,111.03
+2025-11-01,6202,Non-Knit Women's Coats,108.78
+2025-12-01,6202,Non-Knit Women's Coats,105.57
+2026-01-01,6202,Non-Knit Women's Coats,105.03
+2026-02-01,6202,Non-Knit Women's Coats,100.43
+2026-03-01,6202,Non-Knit Women's Coats,97.22
+2026-04-01,6202,Non-Knit Women's Coats,98.5
+2026-05-01,6202,Non-Knit Women's Coats,98.93
+2026-06-01,6202,Non-Knit Women's Coats,101.07
+2026-07-01,6202,Non-Knit Women's Coats,102.68
+2023-01-01,6203,Non-Knit Men's Suits,97.53
+2023-02-01,6203,Non-Knit Men's Suits,97.53
+2023-03-01,6203,Non-Knit Men's Suits,97.45
+2023-04-01,6203,Non-Knit Men's Suits,97.45
+2023-05-01,6203,Non-Knit Men's Suits,97.45
+2023-06-01,6203,Non-Knit Men's Suits,97.45
+2023-07-01,6203,Non-Knit Men's Suits,97.53
+2023-08-01,6203,Non-Knit Men's Suits,97.28
+2023-09-01,6203,Non-Knit Men's Suits,97.28
+2023-10-01,6203,Non-Knit Men's Suits,97.28
+2023-11-01,6203,Non-Knit Men's Suits,97.36
+2023-12-01,6203,Non-Knit Men's Suits,97.45
+2024-01-01,6203,Non-Knit Men's Suits,97.45
+2024-02-01,6203,Non-Knit Men's Suits,97.7
+2024-03-01,6203,Non-Knit Men's Suits,97.7
+2024-04-01,6203,Non-Knit Men's Suits,97.79
+2024-05-01,6203,Non-Knit Men's Suits,98.04
+2024-06-01,6203,Non-Knit Men's Suits,98.13
+2024-07-01,6203,Non-Knit Men's Suits,98.04
+2024-08-01,6203,Non-Knit Men's Suits,98.04
+2024-09-01,6203,Non-Knit Men's Suits,98.13
+2024-10-01,6203,Non-Knit Men's Suits,98.64
+2024-11-01,6203,Non-Knit Men's Suits,98.81
+2024-12-01,6203,Non-Knit Men's Suits,98.81
+2025-01-01,6203,Non-Knit Men's Suits,98.81
+2025-02-01,6203,Non-Knit Men's Suits,100
+2025-03-01,6203,Non-Knit Men's Suits,100
+2025-04-01,6203,Non-Knit Men's Suits,99.32
+2025-05-01,6203,Non-Knit Men's Suits,98.13
+2025-06-01,6203,Non-Knit Men's Suits,97.28
+2025-07-01,6203,Non-Knit Men's Suits,98.64
+2025-08-01,6203,Non-Knit Men's Suits,98.47
+2025-09-01,6203,Non-Knit Men's Suits,98.89
+2025-11-01,6203,Non-Knit Men's Suits,97.62
+2025-12-01,6203,Non-Knit Men's Suits,98.81
+2026-01-01,6203,Non-Knit Men's Suits,95.41
+2026-02-01,6203,Non-Knit Men's Suits,97.53
+2026-03-01,6203,Non-Knit Men's Suits,96.34
+2026-04-01,6203,Non-Knit Men's Suits,95.66
+2026-05-01,6203,Non-Knit Men's Suits,96.6
+2026-06-01,6203,Non-Knit Men's Suits,96
+2026-07-01,6203,Non-Knit Men's Suits,98.04
+2023-01-01,6204,Non-Knit Women's Suits,101.89
+2023-02-01,6204,Non-Knit Women's Suits,101.89
+2023-03-01,6204,Non-Knit Women's Suits,101.98
+2023-04-01,6204,Non-Knit Women's Suits,102.27
+2023-05-01,6204,Non-Knit Women's Suits,101.79
+2023-06-01,6204,Non-Knit Women's Suits,101.32
+2023-07-01,6204,Non-Knit Women's Suits,101.32
+2023-08-01,6204,Non-Knit Women's Suits,101.32
+2023-09-01,6204,Non-Knit Women's Suits,101.7
+2023-10-01,6204,Non-Knit Women's Suits,101.98
+2023-11-01,6204,Non-Knit Women's Suits,101.98
+2023-12-01,6204,Non-Knit Women's Suits,101.98
+2024-01-01,6204,Non-Knit Women's Suits,101.98
+2024-02-01,6204,Non-Knit Women's Suits,101.98
+2024-03-01,6204,Non-Knit Women's Suits,101.98
+2024-04-01,6204,Non-Knit Women's Suits,101.98
+2024-05-01,6204,Non-Knit Women's Suits,101.98
+2024-06-01,6204,Non-Knit Women's Suits,101.98
+2024-07-01,6204,Non-Knit Women's Suits,102.17
+2024-08-01,6204,Non-Knit Women's Suits,102.17
+2024-09-01,6204,Non-Knit Women's Suits,101.79
+2024-10-01,6204,Non-Knit Women's Suits,101.89
+2024-11-01,6204,Non-Knit Women's Suits,101.89
+2024-12-01,6204,Non-Knit Women's Suits,102.27
+2025-01-01,6204,Non-Knit Women's Suits,100.76
+2025-02-01,6204,Non-Knit Women's Suits,101.04
+2025-03-01,6204,Non-Knit Women's Suits,100
+2025-04-01,6204,Non-Knit Women's Suits,99.24
+2025-05-01,6204,Non-Knit Women's Suits,97.83
+2025-06-01,6204,Non-Knit Women's Suits,99.53
+2025-07-01,6204,Non-Knit Women's Suits,100.38
+2025-08-01,6204,Non-Knit Women's Suits,101.51
+2025-09-01,6204,Non-Knit Women's Suits,100.38
+2025-11-01,6204,Non-Knit Women's Suits,99.24
+2025-12-01,6204,Non-Knit Women's Suits,98.21
+2026-01-01,6204,Non-Knit Women's Suits,97.17
+2026-02-01,6204,Non-Knit Women's Suits,97.17
+2026-03-01,6204,Non-Knit Women's Suits,95.66
+2026-04-01,6204,Non-Knit Women's Suits,96.41
+2026-05-01,6204,Non-Knit Women's Suits,97.07
+2026-06-01,6204,Non-Knit Women's Suits,99.24
+2026-07-01,6204,Non-Knit Women's Suits,99.91
+2025-01-01,6205,Non-Knit Men's Shirts,101.21
+2025-02-01,6205,Non-Knit Men's Shirts,103.04
+2025-03-01,6205,Non-Knit Men's Shirts,100
+2025-04-01,6205,Non-Knit Men's Shirts,99.29
+2025-05-01,6205,Non-Knit Men's Shirts,98.38
+2025-06-01,6205,Non-Knit Men's Shirts,99.7
+2025-07-01,6205,Non-Knit Men's Shirts,100.4
+2025-08-01,6205,Non-Knit Men's Shirts,101.82
+2025-09-01,6205,Non-Knit Men's Shirts,100
+2025-10-01,6205,Non-Knit Men's Shirts,100.51
+2025-11-01,6205,Non-Knit Men's Shirts,99.8
+2025-12-01,6205,Non-Knit Men's Shirts,96.86
+2026-01-01,6205,Non-Knit Men's Shirts,97.06
+2026-02-01,6205,Non-Knit Men's Shirts,95.34
+2026-03-01,6205,Non-Knit Men's Shirts,97.37
+2026-04-01,6205,Non-Knit Men's Shirts,98.79
+2026-05-01,6205,Non-Knit Men's Shirts,100
+2026-06-01,6205,Non-Knit Men's Shirts,102.94
+2026-07-01,6205,Non-Knit Men's Shirts,101.01
+2025-01-01,6206,Non-Knit Women's Shirts,101.52
+2025-02-01,6206,Non-Knit Women's Shirts,101.02
+2025-03-01,6206,Non-Knit Women's Shirts,100
+2025-04-01,6206,Non-Knit Women's Shirts,96.75
+2025-05-01,6206,Non-Knit Women's Shirts,96.45
+2025-06-01,6206,Non-Knit Women's Shirts,98.78
+2025-07-01,6206,Non-Knit Women's Shirts,101.12
+2025-08-01,6206,Non-Knit Women's Shirts,103.25
+2025-09-01,6206,Non-Knit Women's Shirts,104.77
+2025-10-01,6206,Non-Knit Women's Shirts,102.54
+2025-11-01,6206,Non-Knit Women's Shirts,99.7
+2025-12-01,6206,Non-Knit Women's Shirts,95.33
+2026-01-01,6206,Non-Knit Women's Shirts,93.81
+2026-02-01,6206,Non-Knit Women's Shirts,93.81
+2026-03-01,6206,Non-Knit Women's Shirts,93.4
+2026-04-01,6206,Non-Knit Women's Shirts,92.49
+2026-05-01,6206,Non-Knit Women's Shirts,93.91
+2026-06-01,6206,Non-Knit Women's Shirts,96.35
+2026-07-01,6206,Non-Knit Women's Shirts,98.38
+2025-01-01,6402,Rubber Footwear,101.32
+2025-02-01,6402,Rubber Footwear,100.1
+2025-03-01,6402,Rubber Footwear,100
+2025-04-01,6402,Rubber Footwear,97.87
+2025-05-01,6402,Rubber Footwear,97.26
+2025-06-01,6402,Rubber Footwear,98.78
+2025-07-01,6402,Rubber Footwear,98.89
+2025-08-01,6402,Rubber Footwear,101.52
+2025-09-01,6402,Rubber Footwear,103.34
+2025-10-01,6402,Rubber Footwear,102.84
+2025-11-01,6402,Rubber Footwear,100.1
+2025-12-01,6402,Rubber Footwear,101.62
+2026-01-01,6402,Rubber Footwear,103.55
+2026-02-01,6402,Rubber Footwear,101.01
+2026-03-01,6402,Rubber Footwear,101.32
+2026-04-01,6402,Rubber Footwear,101.42
+2026-05-01,6402,Rubber Footwear,103.75
+2026-06-01,6402,Rubber Footwear,104.05
+2026-07-01,6402,Rubber Footwear,105.07
+2023-01-01,6403,Leather Footwear,98.67
+2023-02-01,6403,Leather Footwear,98.67
+2023-03-01,6403,Leather Footwear,98.13
+2023-04-01,6403,Leather Footwear,98.13
+2023-05-01,6403,Leather Footwear,98.21
+2023-06-01,6403,Leather Footwear,98.21
+2023-07-01,6403,Leather Footwear,98.05
+2023-08-01,6403,Leather Footwear,98.13
+2023-09-01,6403,Leather Footwear,98.05
+2023-10-01,6403,Leather Footwear,98.6
+2023-11-01,6403,Leather Footwear,99.3
+2023-12-01,6403,Leather Footwear,99.3
+2024-01-01,6403,Leather Footwear,99.45
+2024-02-01,6403,Leather Footwear,99.45
+2024-03-01,6403,Leather Footwear,99.3
+2024-04-01,6403,Leather Footwear,99.45
+2024-05-01,6403,Leather Footwear,99.06
+2024-06-01,6403,Leather Footwear,98.99
+2024-07-01,6403,Leather Footwear,98.44
+2024-08-01,6403,Leather Footwear,98.36
+2024-09-01,6403,Leather Footwear,98.21
+2024-10-01,6403,Leather Footwear,98.75
+2024-11-01,6403,Leather Footwear,98.75
+2024-12-01,6403,Leather Footwear,98.75
+2025-01-01,6403,Leather Footwear,98.75
+2025-02-01,6403,Leather Footwear,98.91
+2025-03-01,6403,Leather Footwear,100
+2025-04-01,6403,Leather Footwear,98.67
+2025-05-01,6403,Leather Footwear,98.52
+2025-06-01,6403,Leather Footwear,99.38
+2025-07-01,6403,Leather Footwear,99.84
+2025-08-01,6403,Leather Footwear,101.01
+2025-09-01,6403,Leather Footwear,102.42
+2025-10-01,6403,Leather Footwear,104.52
+2025-11-01,6403,Leather Footwear,102.96
+2025-12-01,6403,Leather Footwear,103.51
+2026-01-01,6403,Leather Footwear,102.42
+2026-02-01,6403,Leather Footwear,102.57
+2026-03-01,6403,Leather Footwear,104.13
+2026-04-01,6403,Leather Footwear,100.86
+2026-05-01,6403,Leather Footwear,102.03
+2026-06-01,6403,Leather Footwear,101.33
+2026-07-01,6403,Leather Footwear,102.49
+2025-01-01,6404,Textile Footwear,101.63
+2025-02-01,6404,Textile Footwear,100.51
+2025-03-01,6404,Textile Footwear,100
+2025-04-01,6404,Textile Footwear,100.61
+2025-05-01,6404,Textile Footwear,101.02
+2025-06-01,6404,Textile Footwear,101.12
+2025-07-01,6404,Textile Footwear,102.34
+2025-08-01,6404,Textile Footwear,102.54
+2025-09-01,6404,Textile Footwear,101.93
+2025-10-01,6404,Textile Footwear,103.35
+2025-11-01,6404,Textile Footwear,102.85
+2025-12-01,6404,Textile Footwear,102.24
+2026-01-01,6404,Textile Footwear,102.03
+2026-02-01,6404,Textile Footwear,101.02
+2026-03-01,6404,Textile Footwear,101.32
+2026-04-01,6404,Textile Footwear,101.12
+2026-05-01,6404,Textile Footwear,101.52
+2026-06-01,6404,Textile Footwear,102.95
+2026-07-01,6404,Textile Footwear,103.05
+2025-01-01,6405,Other Footwear,99.6
+2025-02-01,6405,Other Footwear,102.09
+2025-03-01,6405,Other Footwear,100
+2025-04-01,6405,Other Footwear,92.43
+2025-05-01,6405,Other Footwear,92.03
+2025-06-01,6405,Other Footwear,96.02
+2025-07-01,6405,Other Footwear,95.32
+2025-08-01,6405,Other Footwear,97.51
+2025-09-01,6405,Other Footwear,101.2
+2025-10-01,6405,Other Footwear,99.5
+2025-11-01,6405,Other Footwear,100.1
+2025-12-01,6405,Other Footwear,95.52
+2026-01-01,6405,Other Footwear,94.82
+2026-02-01,6405,Other Footwear,93.92
+2026-03-01,6405,Other Footwear,91.93
+2026-04-01,6405,Other Footwear,89.04
+2026-05-01,6405,Other Footwear,91.73
+2026-06-01,6405,Other Footwear,97.11
+2026-07-01,6405,Other Footwear,99
+2025-01-01,6505,Knitted Hats,102.04
+2025-02-01,6505,Knitted Hats,100.92
+2025-03-01,6505,Knitted Hats,100
+2025-04-01,6505,Knitted Hats,100
+2025-05-01,6505,Knitted Hats,100.2
+2025-06-01,6505,Knitted Hats,100.71
+2025-07-01,6505,Knitted Hats,100.61
+2025-08-01,6505,Knitted Hats,100
+2025-09-01,6505,Knitted Hats,100.92
+2025-11-01,6505,Knitted Hats,99.18
+2025-12-01,6505,Knitted Hats,101.53
+2026-01-01,6505,Knitted Hats,102.24
+2026-02-01,6505,Knitted Hats,101.53
+2026-03-01,6505,Knitted Hats,103.78
+2026-04-01,6505,Knitted Hats,103.16
+2026-05-01,6505,Knitted Hats,102.45
+2026-06-01,6505,Knitted Hats,105.61
+2026-07-01,6505,Knitted Hats,103.57
+2025-01-01,6907,Unglazed Ceramics,103.2
+2025-02-01,6907,Unglazed Ceramics,103.51
+2025-03-01,6907,Unglazed Ceramics,100
+2025-04-01,6907,Unglazed Ceramics,98.76
+2025-05-01,6907,Unglazed Ceramics,98.56
+2025-06-01,6907,Unglazed Ceramics,97.32
+2025-07-01,6907,Unglazed Ceramics,97.32
+2025-08-01,6907,Unglazed Ceramics,96.9
+2025-09-01,6907,Unglazed Ceramics,97.21
+2025-10-01,6907,Unglazed Ceramics,97.11
+2025-11-01,6907,Unglazed Ceramics,98.35
+2025-12-01,6907,Unglazed Ceramics,98.14
+2026-01-01,6907,Unglazed Ceramics,97.21
+2026-02-01,6907,Unglazed Ceramics,97.42
+2026-03-01,6907,Unglazed Ceramics,98.25
+2026-04-01,6907,Unglazed Ceramics,98.14
+2026-05-01,6907,Unglazed Ceramics,97.83
+2026-06-01,6907,Unglazed Ceramics,98.66
+2026-07-01,6907,Unglazed Ceramics,98.76
+2025-01-01,6910,Bathroom Ceramics,99.4
+2025-02-01,6910,Bathroom Ceramics,99.9
+2025-03-01,6910,Bathroom Ceramics,100
+2025-04-01,6910,Bathroom Ceramics,98.51
+2025-05-01,6910,Bathroom Ceramics,97.32
+2025-06-01,6910,Bathroom Ceramics,97.32
+2025-07-01,6910,Bathroom Ceramics,94.23
+2025-08-01,6910,Bathroom Ceramics,97.12
+2025-09-01,6910,Bathroom Ceramics,97.91
+2025-10-01,6910,Bathroom Ceramics,93.94
+2025-11-01,6910,Bathroom Ceramics,93.44
+2025-12-01,6910,Bathroom Ceramics,95.73
+2026-01-01,6910,Bathroom Ceramics,98.61
+2026-02-01,6910,Bathroom Ceramics,98.11
+2026-03-01,6910,Bathroom Ceramics,98.61
+2026-04-01,6910,Bathroom Ceramics,98.51
+2026-05-01,6910,Bathroom Ceramics,99.9
+2026-06-01,6910,Bathroom Ceramics,100.4
+2026-07-01,6910,Bathroom Ceramics,100.99
+2025-01-01,7019,Glass Fibers,101.73
+2025-02-01,7019,Glass Fibers,99.39
+2025-03-01,7019,Glass Fibers,100
+2025-04-01,7019,Glass Fibers,98.27
+2025-05-01,7019,Glass Fibers,101.63
+2025-06-01,7019,Glass Fibers,101.22
+2025-07-01,7019,Glass Fibers,99.59
+2025-08-01,7019,Glass Fibers,99.39
+2025-09-01,7019,Glass Fibers,99.8
+2025-11-01,7019,Glass Fibers,100.51
+2025-12-01,7019,Glass Fibers,105.09
+2026-01-01,7019,Glass Fibers,103.36
+2026-02-01,7019,Glass Fibers,102.95
+2026-03-01,7019,Glass Fibers,107.02
+2026-04-01,7019,Glass Fibers,101.83
+2026-05-01,7019,Glass Fibers,108.44
+2026-06-01,7019,Glass Fibers,109.05
+2026-07-01,7019,Glass Fibers,106.41
+2023-01-01,7102,Diamonds,115.25
+2023-02-01,7102,Diamonds,115.25
+2023-03-01,7102,Diamonds,114.66
+2023-04-01,7102,Diamonds,113.78
+2023-05-01,7102,Diamonds,113.78
+2023-06-01,7102,Diamonds,112.41
+2023-07-01,7102,Diamonds,111.63
+2023-08-01,7102,Diamonds,110.17
+2023-09-01,7102,Diamonds,108.6
+2023-10-01,7102,Diamonds,108.6
+2023-11-01,7102,Diamonds,108.6
+2023-12-01,7102,Diamonds,108.6
+2024-01-01,7102,Diamonds,108.6
+2024-02-01,7102,Diamonds,108.6
+2024-03-01,7102,Diamonds,108.31
+2024-04-01,7102,Diamonds,107.82
+2024-05-01,7102,Diamonds,107.62
+2024-06-01,7102,Diamonds,104.5
+2024-07-01,7102,Diamonds,104.5
+2024-08-01,7102,Diamonds,101.96
+2024-09-01,7102,Diamonds,101.96
+2024-10-01,7102,Diamonds,101.96
+2024-11-01,7102,Diamonds,101.96
+2024-12-01,7102,Diamonds,101.96
+2025-01-01,7102,Diamonds,100
+2025-02-01,7102,Diamonds,100
+2025-03-01,7102,Diamonds,100
+2025-04-01,7102,Diamonds,100
+2025-05-01,7102,Diamonds,100
+2025-06-01,7102,Diamonds,100
+2025-07-01,7102,Diamonds,100
+2025-08-01,7102,Diamonds,100.1
+2025-09-01,7102,Diamonds,100
+2025-11-01,7102,Diamonds,99.41
+2025-12-01,7102,Diamonds,99.41
+2026-01-01,7102,Diamonds,99.41
+2026-02-01,7102,Diamonds,99.41
+2026-03-01,7102,Diamonds,95.31
+2026-04-01,7102,Diamonds,95.31
+2026-05-01,7102,Diamonds,95.31
+2026-06-01,7102,Diamonds,95.41
+2026-07-01,7102,Diamonds,95.41
+2023-01-01,7106,Silver,74.77
+2023-02-01,7106,Silver,73.77
+2023-03-01,7106,Silver,65.53
+2023-04-01,7106,Silver,77.19
+2023-05-01,7106,Silver,79.96
+2023-06-01,7106,Silver,74.7
+2023-07-01,7106,Silver,72
+2023-08-01,7106,Silver,75.48
+2023-09-01,7106,Silver,73.13
+2023-10-01,7106,Silver,66.52
+2023-11-01,7106,Silver,72.07
+2023-12-01,7106,Silver,75.55
+2024-01-01,7106,Silver,72.99
+2024-02-01,7106,Silver,70.43
+2024-03-01,7106,Silver,75.41
+2024-04-01,7106,Silver,83.01
+2024-05-01,7106,Silver,83.72
+2024-06-01,7106,Silver,94.53
+2024-07-01,7106,Silver,94.31
+2024-08-01,7106,Silver,85.36
+2024-09-01,7106,Silver,88.98
+2024-10-01,7106,Silver,99.22
+2024-11-01,7106,Silver,100.36
+2024-12-01,7106,Silver,97.37
+2025-01-01,7106,Silver,95.59
+2025-02-01,7106,Silver,97.73
+2025-03-01,7106,Silver,100
+2025-04-01,7106,Silver,100.78
+2025-05-01,7106,Silver,101.85
+2025-06-01,7106,Silver,111.16
+2025-07-01,7106,Silver,119.62
+2025-08-01,7106,Silver,109.31
+2025-09-01,7106,Silver,124.95
+2025-10-01,7106,Silver,139.59
+2025-11-01,7106,Silver,145.49
+2025-12-01,7106,Silver,174.63
+2026-01-01,7106,Silver,195.88
+2026-02-01,7106,Silver,212.22
+2026-03-01,7106,Silver,211.02
+2026-04-01,7106,Silver,200.36
+2026-05-01,7106,Silver,210.95
+2026-06-01,7106,Silver,205.05
+2026-07-01,7106,Silver,172.07
+2023-01-01,7108,Gold,61.05
+2023-02-01,7108,Gold,63.32
+2023-03-01,7108,Gold,60.61
+2023-04-01,7108,Gold,66.29
+2023-05-01,7108,Gold,66.55
+2023-06-01,7108,Gold,64.89
+2023-07-01,7108,Gold,63.58
+2023-08-01,7108,Gold,64.37
+2023-09-01,7108,Gold,63.67
+2023-10-01,7108,Gold,60.26
+2023-11-01,7108,Gold,65.85
+2023-12-01,7108,Gold,66.99
+2024-01-01,7108,Gold,67.86
+2024-02-01,7108,Gold,67.07
+2024-03-01,7108,Gold,70.74
+2024-04-01,7108,Gold,75.55
+2024-05-01,7108,Gold,76.24
+2024-06-01,7108,Gold,77.21
+2024-07-01,7108,Gold,77.73
+2024-08-01,7108,Gold,79.56
+2024-09-01,7108,Gold,82.53
+2024-10-01,7108,Gold,87.69
+2024-11-01,7108,Gold,89.43
+2024-12-01,7108,Gold,87.34
+2025-01-01,7108,Gold,87.95
+2025-02-01,7108,Gold,96.16
+2025-03-01,7108,Gold,100
+2025-04-01,7108,Gold,106.9
+2025-05-01,7108,Gold,109.87
+2025-06-01,7108,Gold,112.14
+2025-07-01,7108,Gold,111.09
+2025-08-01,7108,Gold,113.54
+2025-09-01,7108,Gold,122.71
+2025-10-01,7108,Gold,133.8
+2025-11-01,7108,Gold,136.59
+2025-12-01,7108,Gold,145.41
+2026-01-01,7108,Gold,146.11
+2026-02-01,7108,Gold,160
+2026-03-01,7108,Gold,159.04
+2026-04-01,7108,Gold,150.83
+2026-05-01,7108,Gold,148.82
+2026-06-01,7108,Gold,142.01
+2026-07-01,7108,Gold,136.59
+2023-01-01,7110,Platinum,182.39
+2023-02-01,7110,Platinum,176.28
+2023-03-01,7110,Platinum,145.17
+2023-04-01,7110,Platinum,133.38
+2023-05-01,7110,Platinum,140.06
+2023-06-01,7110,Platinum,125.57
+2023-07-01,7110,Platinum,96.88
+2023-08-01,7110,Platinum,101.7
+2023-09-01,7110,Platinum,101.42
+2023-10-01,7110,Platinum,99.43
+2023-11-01,7110,Platinum,97.73
+2023-12-01,7110,Platinum,95.45
+2024-01-01,7110,Platinum,99.72
+2024-02-01,7110,Platinum,95.03
+2024-03-01,7110,Platinum,96.16
+2024-04-01,7110,Platinum,100.28
+2024-05-01,7110,Platinum,99.15
+2024-06-01,7110,Platinum,99.01
+2024-07-01,7110,Platinum,100.99
+2024-08-01,7110,Platinum,96.73
+2024-09-01,7110,Platinum,97.73
+2024-10-01,7110,Platinum,101.56
+2024-11-01,7110,Platinum,104.26
+2024-12-01,7110,Platinum,99.15
+2025-01-01,7110,Platinum,96.88
+2025-02-01,7110,Platinum,98.44
+2025-03-01,7110,Platinum,100
+2025-04-01,7110,Platinum,103.12
+2025-05-01,7110,Platinum,102.98
+2025-06-01,7110,Platinum,103.69
+2025-07-01,7110,Platinum,116.05
+2025-08-01,7110,Platinum,128.55
+2025-09-01,7110,Platinum,130.4
+2025-10-01,7110,Platinum,142.9
+2025-11-01,7110,Platinum,150.57
+2025-12-01,7110,Platinum,152.84
+2026-01-01,7110,Platinum,168.18
+2026-02-01,7110,Platinum,189.91
+2026-03-01,7110,Platinum,195.31
+2026-04-01,7110,Platinum,188.07
+2026-05-01,7110,Platinum,183.52
+2026-06-01,7110,Platinum,169.18
+2026-07-01,7110,Platinum,157.24
+2025-01-01,7115,Other Precious Metal Products,90.33
+2025-02-01,7115,Other Precious Metal Products,95.3
+2025-03-01,7115,Other Precious Metal Products,100
+2025-04-01,7115,Other Precious Metal Products,104.7
+2025-05-01,7115,Other Precious Metal Products,110.75
+2025-06-01,7115,Other Precious Metal Products,114.63
+2025-07-01,7115,Other Precious Metal Products,114
+2025-08-01,7115,Other Precious Metal Products,113.55
+2025-09-01,7115,Other Precious Metal Products,106.32
+2025-10-01,7115,Other Precious Metal Products,131.35
+2025-11-01,7115,Other Precious Metal Products,130.08
+2025-12-01,7115,Other Precious Metal Products,145.08
+2026-01-01,7115,Other Precious Metal Products,161.43
+2026-02-01,7115,Other Precious Metal Products,162.24
+2026-03-01,7115,Other Precious Metal Products,142.82
+2026-04-01,7115,Other Precious Metal Products,154.83
+2026-05-01,7115,Other Precious Metal Products,148.06
+2026-06-01,7115,Other Precious Metal Products,143.9
+2026-07-01,7115,Other Precious Metal Products,133.15
+2025-01-01,7202,Ferroalloys,100.3
+2025-02-01,7202,Ferroalloys,99.1
+2025-03-01,7202,Ferroalloys,100
+2025-04-01,7202,Ferroalloys,99.2
+2025-05-01,7202,Ferroalloys,99.6
+2025-06-01,7202,Ferroalloys,97.79
+2025-07-01,7202,Ferroalloys,97.59
+2025-08-01,7202,Ferroalloys,100.2
+2025-09-01,7202,Ferroalloys,99
+2025-10-01,7202,Ferroalloys,102.61
+2025-11-01,7202,Ferroalloys,102.91
+2025-12-01,7202,Ferroalloys,103.21
+2026-01-01,7202,Ferroalloys,100.3
+2026-02-01,7202,Ferroalloys,98.6
+2026-03-01,7202,Ferroalloys,98.9
+2026-04-01,7202,Ferroalloys,100.9
+2026-05-01,7202,Ferroalloys,100.9
+2026-06-01,7202,Ferroalloys,102.61
+2026-07-01,7202,Ferroalloys,102.51
+2025-01-01,7204,Scrap Iron,95.88
+2025-02-01,7204,Scrap Iron,96.07
+2025-03-01,7204,Scrap Iron,100
+2025-04-01,7204,Scrap Iron,100.1
+2025-05-01,7204,Scrap Iron,100.48
+2025-06-01,7204,Scrap Iron,98.66
+2025-07-01,7204,Scrap Iron,99.42
+2025-08-01,7204,Scrap Iron,98.37
+2025-09-01,7204,Scrap Iron,95.88
+2025-10-01,7204,Scrap Iron,94.06
+2025-11-01,7204,Scrap Iron,92.33
+2025-12-01,7204,Scrap Iron,95.11
+2026-01-01,7204,Scrap Iron,96.55
+2026-02-01,7204,Scrap Iron,99.52
+2026-03-01,7204,Scrap Iron,103.55
+2026-04-01,7204,Scrap Iron,106.14
+2026-05-01,7204,Scrap Iron,105.18
+2026-06-01,7204,Scrap Iron,107.57
+2026-07-01,7204,Scrap Iron,104.79
+2025-01-01,7209,Cold-Rolled Iron,99.7
+2025-02-01,7209,Cold-Rolled Iron,99
+2025-03-01,7209,Cold-Rolled Iron,100
+2025-04-01,7209,Cold-Rolled Iron,99.7
+2025-05-01,7209,Cold-Rolled Iron,100.2
+2025-06-01,7209,Cold-Rolled Iron,100.6
+2025-07-01,7209,Cold-Rolled Iron,99
+2025-08-01,7209,Cold-Rolled Iron,92.12
+2025-09-01,7209,Cold-Rolled Iron,88.04
+2025-10-01,7209,Cold-Rolled Iron,85.24
+2025-11-01,7209,Cold-Rolled Iron,82.45
+2025-12-01,7209,Cold-Rolled Iron,83.25
+2026-01-01,7209,Cold-Rolled Iron,85.84
+2026-02-01,7209,Cold-Rolled Iron,87.84
+2026-03-01,7209,Cold-Rolled Iron,85.64
+2026-04-01,7209,Cold-Rolled Iron,90.53
+2026-05-01,7209,Cold-Rolled Iron,92.42
+2026-06-01,7209,Cold-Rolled Iron,96.41
+2026-07-01,7209,Cold-Rolled Iron,92.82
+2025-01-01,7210,Coated Flat-Rolled Iron,102.25
+2025-02-01,7210,Coated Flat-Rolled Iron,101.64
+2025-03-01,7210,Coated Flat-Rolled Iron,100
+2025-04-01,7210,Coated Flat-Rolled Iron,99.39
+2025-05-01,7210,Coated Flat-Rolled Iron,97.03
+2025-06-01,7210,Coated Flat-Rolled Iron,97.03
+2025-07-01,7210,Coated Flat-Rolled Iron,96.01
+2025-08-01,7210,Coated Flat-Rolled Iron,89.78
+2025-09-01,7210,Coated Flat-Rolled Iron,90.08
+2025-10-01,7210,Coated Flat-Rolled Iron,90.39
+2025-11-01,7210,Coated Flat-Rolled Iron,87.42
+2025-12-01,7210,Coated Flat-Rolled Iron,86.4
+2026-01-01,7210,Coated Flat-Rolled Iron,87.12
+2026-02-01,7210,Coated Flat-Rolled Iron,85.99
+2026-03-01,7210,Coated Flat-Rolled Iron,85.58
+2026-04-01,7210,Coated Flat-Rolled Iron,86.3
+2026-05-01,7210,Coated Flat-Rolled Iron,87.32
+2026-06-01,7210,Coated Flat-Rolled Iron,87.63
+2026-07-01,7210,Coated Flat-Rolled Iron,87.53
+2025-01-01,7213,Hot-Rolled Iron Bars,97.47
+2025-02-01,7213,Hot-Rolled Iron Bars,98.05
+2025-03-01,7213,Hot-Rolled Iron Bars,100
+2025-04-01,7213,Hot-Rolled Iron Bars,103.22
+2025-05-01,7213,Hot-Rolled Iron Bars,95.32
+2025-06-01,7213,Hot-Rolled Iron Bars,97.27
+2025-07-01,7213,Hot-Rolled Iron Bars,99.42
+2025-08-01,7213,Hot-Rolled Iron Bars,99.61
+2025-09-01,7213,Hot-Rolled Iron Bars,99.61
+2025-10-01,7213,Hot-Rolled Iron Bars,98.15
+2025-11-01,7213,Hot-Rolled Iron Bars,98.05
+2025-12-01,7213,Hot-Rolled Iron Bars,100.58
+2026-01-01,7213,Hot-Rolled Iron Bars,93.96
+2026-02-01,7213,Hot-Rolled Iron Bars,92.2
+2026-03-01,7213,Hot-Rolled Iron Bars,92.98
+2026-04-01,7213,Hot-Rolled Iron Bars,92.88
+2026-05-01,7213,Hot-Rolled Iron Bars,95.03
+2026-06-01,7213,Hot-Rolled Iron Bars,97.47
+2026-07-01,7213,Hot-Rolled Iron Bars,95.81
+2025-01-01,7214,Raw Iron Bars,98.72
+2025-02-01,7214,Raw Iron Bars,101.58
+2025-03-01,7214,Raw Iron Bars,100
+2025-04-01,7214,Raw Iron Bars,99.7
+2025-05-01,7214,Raw Iron Bars,95.36
+2025-06-01,7214,Raw Iron Bars,95.36
+2025-07-01,7214,Raw Iron Bars,88.94
+2025-08-01,7214,Raw Iron Bars,88.65
+2025-09-01,7214,Raw Iron Bars,93.88
+2025-10-01,7214,Raw Iron Bars,90.42
+2025-11-01,7214,Raw Iron Bars,86.87
+2025-12-01,7214,Raw Iron Bars,90.23
+2026-01-01,7214,Raw Iron Bars,92.79
+2026-02-01,7214,Raw Iron Bars,90.52
+2026-03-01,7214,Raw Iron Bars,88.75
+2026-04-01,7214,Raw Iron Bars,92
+2026-05-01,7214,Raw Iron Bars,92.99
+2026-06-01,7214,Raw Iron Bars,89.83
+2026-07-01,7214,Raw Iron Bars,91.71
+2025-01-01,7216,Iron Blocks,101.01
+2025-02-01,7216,Iron Blocks,99.8
+2025-03-01,7216,Iron Blocks,100
+2025-04-01,7216,Iron Blocks,97.58
+2025-05-01,7216,Iron Blocks,96.06
+2025-06-01,7216,Iron Blocks,93.33
+2025-07-01,7216,Iron Blocks,93.03
+2025-08-01,7216,Iron Blocks,93.74
+2025-09-01,7216,Iron Blocks,95.05
+2025-10-01,7216,Iron Blocks,90.3
+2025-11-01,7216,Iron Blocks,89.19
+2025-12-01,7216,Iron Blocks,91.41
+2026-01-01,7216,Iron Blocks,93.13
+2026-02-01,7216,Iron Blocks,94.75
+2026-03-01,7216,Iron Blocks,95.25
+2026-04-01,7216,Iron Blocks,97.58
+2026-05-01,7216,Iron Blocks,99.8
+2026-06-01,7216,Iron Blocks,101.52
+2026-07-01,7216,Iron Blocks,102.83
+2025-01-01,7219,Large Flat-Rolled Stainless Steel,102.46
+2025-02-01,7219,Large Flat-Rolled Stainless Steel,100.1
+2025-03-01,7219,Large Flat-Rolled Stainless Steel,100
+2025-04-01,7219,Large Flat-Rolled Stainless Steel,98.87
+2025-05-01,7219,Large Flat-Rolled Stainless Steel,98.16
+2025-06-01,7219,Large Flat-Rolled Stainless Steel,96.31
+2025-07-01,7219,Large Flat-Rolled Stainless Steel,96.21
+2025-08-01,7219,Large Flat-Rolled Stainless Steel,96.72
+2025-09-01,7219,Large Flat-Rolled Stainless Steel,97.44
+2025-10-01,7219,Large Flat-Rolled Stainless Steel,97.75
+2025-11-01,7219,Large Flat-Rolled Stainless Steel,97.23
+2025-12-01,7219,Large Flat-Rolled Stainless Steel,95.59
+2026-01-01,7219,Large Flat-Rolled Stainless Steel,95.9
+2026-02-01,7219,Large Flat-Rolled Stainless Steel,95.49
+2026-03-01,7219,Large Flat-Rolled Stainless Steel,95.59
+2026-04-01,7219,Large Flat-Rolled Stainless Steel,96.41
+2026-05-01,7219,Large Flat-Rolled Stainless Steel,96.31
+2026-06-01,7219,Large Flat-Rolled Stainless Steel,99.39
+2026-07-01,7219,Large Flat-Rolled Stainless Steel,103.48
+2025-01-01,7225,Flat Flat-Rolled Steel,102.25
+2025-02-01,7225,Flat Flat-Rolled Steel,104.4
+2025-03-01,7225,Flat Flat-Rolled Steel,100
+2025-04-01,7225,Flat Flat-Rolled Steel,98.16
+2025-05-01,7225,Flat Flat-Rolled Steel,97.55
+2025-06-01,7225,Flat Flat-Rolled Steel,95.71
+2025-07-01,7225,Flat Flat-Rolled Steel,94.38
+2025-08-01,7225,Flat Flat-Rolled Steel,89.88
+2025-09-01,7225,Flat Flat-Rolled Steel,89.57
+2025-10-01,7225,Flat Flat-Rolled Steel,85.17
+2025-11-01,7225,Flat Flat-Rolled Steel,86.91
+2025-12-01,7225,Flat Flat-Rolled Steel,85.58
+2026-01-01,7225,Flat Flat-Rolled Steel,85.79
+2026-02-01,7225,Flat Flat-Rolled Steel,87.01
+2026-03-01,7225,Flat Flat-Rolled Steel,86.4
+2026-04-01,7225,Flat Flat-Rolled Steel,88.65
+2026-05-01,7225,Flat Flat-Rolled Steel,91.82
+2026-06-01,7225,Flat Flat-Rolled Steel,93.46
+2026-07-01,7225,Flat Flat-Rolled Steel,90.49
+2025-01-01,7228,Other Steel Bars,100.91
+2025-02-01,7228,Other Steel Bars,100.1
+2025-03-01,7228,Other Steel Bars,100
+2025-04-01,7228,Other Steel Bars,101.21
+2025-05-01,7228,Other Steel Bars,102.02
+2025-06-01,7228,Other Steel Bars,99.29
+2025-07-01,7228,Other Steel Bars,97.38
+2025-08-01,7228,Other Steel Bars,96.57
+2025-09-01,7228,Other Steel Bars,96.87
+2025-10-01,7228,Other Steel Bars,98.08
+2025-11-01,7228,Other Steel Bars,97.68
+2025-12-01,7228,Other Steel Bars,98.49
+2026-01-01,7228,Other Steel Bars,96.77
+2026-02-01,7228,Other Steel Bars,97.17
+2026-03-01,7228,Other Steel Bars,99.7
+2026-04-01,7228,Other Steel Bars,104.14
+2026-05-01,7228,Other Steel Bars,102.52
+2026-06-01,7228,Other Steel Bars,108.27
+2026-07-01,7228,Other Steel Bars,104.54
+2025-01-01,7307,Iron Pipe Fittings,102.56
+2025-02-01,7307,Iron Pipe Fittings,104
+2025-03-01,7307,Iron Pipe Fittings,100
+2025-04-01,7307,Iron Pipe Fittings,106.36
+2025-05-01,7307,Iron Pipe Fittings,102.77
+2025-06-01,7307,Iron Pipe Fittings,102.97
+2025-07-01,7307,Iron Pipe Fittings,98.56
+2025-08-01,7307,Iron Pipe Fittings,99.79
+2025-09-01,7307,Iron Pipe Fittings,97.13
+2025-10-01,7307,Iron Pipe Fittings,96.92
+2025-11-01,7307,Iron Pipe Fittings,95.18
+2025-12-01,7307,Iron Pipe Fittings,96.82
+2026-01-01,7307,Iron Pipe Fittings,96.92
+2026-02-01,7307,Iron Pipe Fittings,98.15
+2026-03-01,7307,Iron Pipe Fittings,97.13
+2026-04-01,7307,Iron Pipe Fittings,95.9
+2026-05-01,7307,Iron Pipe Fittings,95.79
+2026-06-01,7307,Iron Pipe Fittings,95.08
+2026-07-01,7307,Iron Pipe Fittings,96.31
+2025-01-01,7312,Stranded Iron Wire,103.84
+2025-02-01,7312,Stranded Iron Wire,101.25
+2025-03-01,7312,Stranded Iron Wire,100
+2025-04-01,7312,Stranded Iron Wire,95.85
+2025-05-01,7312,Stranded Iron Wire,97.4
+2025-06-01,7312,Stranded Iron Wire,99.27
+2025-07-01,7312,Stranded Iron Wire,94.7
+2025-08-01,7312,Stranded Iron Wire,94.81
+2025-09-01,7312,Stranded Iron Wire,96.16
+2025-10-01,7312,Stranded Iron Wire,97.72
+2025-11-01,7312,Stranded Iron Wire,98.13
+2025-12-01,7312,Stranded Iron Wire,100
+2026-01-01,7312,Stranded Iron Wire,93.04
+2026-02-01,7312,Stranded Iron Wire,95.64
+2026-03-01,7312,Stranded Iron Wire,93.35
+2026-04-01,7312,Stranded Iron Wire,94.81
+2026-05-01,7312,Stranded Iron Wire,99.07
+2026-06-01,7312,Stranded Iron Wire,96.68
+2026-07-01,7312,Stranded Iron Wire,99.07
+2025-01-01,7317,Iron Nails,103.2
+2025-02-01,7317,Iron Nails,104.85
+2025-03-01,7317,Iron Nails,100
+2025-04-01,7317,Iron Nails,94.84
+2025-05-01,7317,Iron Nails,96.08
+2025-06-01,7317,Iron Nails,92.98
+2025-07-01,7317,Iron Nails,86.07
+2025-08-01,7317,Iron Nails,83.8
+2025-09-01,7317,Iron Nails,84.73
+2025-10-01,7317,Iron Nails,85.04
+2025-11-01,7317,Iron Nails,87.31
+2025-12-01,7317,Iron Nails,85.14
+2026-01-01,7317,Iron Nails,87.2
+2026-02-01,7317,Iron Nails,88.34
+2026-03-01,7317,Iron Nails,90.61
+2026-04-01,7317,Iron Nails,92.16
+2026-05-01,7317,Iron Nails,92.67
+2026-06-01,7317,Iron Nails,93.81
+2026-07-01,7317,Iron Nails,96.8
+2023-12-01,7403,Refined Copper,83.06
+2024-01-01,7403,Refined Copper,84.22
+2024-02-01,7403,Refined Copper,82.06
+2024-03-01,7403,Refined Copper,85.05
+2024-04-01,7403,Refined Copper,91.28
+2024-05-01,7403,Refined Copper,100.33
+2024-06-01,7403,Refined Copper,101.16
+2024-07-01,7403,Refined Copper,99.09
+2024-08-01,7403,Refined Copper,87.21
+2024-09-01,7403,Refined Copper,88.62
+2024-10-01,7403,Refined Copper,99.5
+2024-11-01,7403,Refined Copper,95.6
+2024-12-01,7403,Refined Copper,90.61
+2025-01-01,7403,Refined Copper,92.52
+2025-02-01,7403,Refined Copper,92.86
+2025-03-01,7403,Refined Copper,100
+2025-04-01,7403,Refined Copper,103.82
+2025-05-01,7403,Refined Copper,100.25
+2025-06-01,7403,Refined Copper,101.66
+2025-07-01,7403,Refined Copper,107.48
+2025-08-01,7403,Refined Copper,110.05
+2025-09-01,7403,Refined Copper,104.65
+2025-10-01,7403,Refined Copper,104.07
+2025-11-01,7403,Refined Copper,111.79
+2025-12-01,7403,Refined Copper,113.37
+2026-01-01,7403,Refined Copper,121.76
+2026-02-01,7403,Refined Copper,131.4
+2026-03-01,7403,Refined Copper,132.31
+2026-04-01,7403,Refined Copper,129.15
+2026-05-01,7403,Refined Copper,130.73
+2026-06-01,7403,Refined Copper,138.37
+2026-07-01,7403,Refined Copper,140.86
+2025-01-01,7409,Copper Plating,98.81
+2025-02-01,7409,Copper Plating,100.79
+2025-03-01,7409,Copper Plating,100
+2025-04-01,7409,Copper Plating,96.64
+2025-05-01,7409,Copper Plating,97.73
+2025-06-01,7409,Copper Plating,97.53
+2025-07-01,7409,Copper Plating,100.79
+2025-08-01,7409,Copper Plating,97.92
+2025-09-01,7409,Copper Plating,94.96
+2025-10-01,7409,Copper Plating,92.19
+2025-11-01,7409,Copper Plating,98.62
+2025-12-01,7409,Copper Plating,96.05
+2026-01-01,7409,Copper Plating,93.68
+2026-02-01,7409,Copper Plating,111.96
+2026-03-01,7409,Copper Plating,102.87
+2026-04-01,7409,Copper Plating,124.51
+2026-05-01,7409,Copper Plating,128.36
+2026-06-01,7409,Copper Plating,129.74
+2026-07-01,7409,Copper Plating,135.28
+2025-01-01,7412,Copper Pipe Fittings,96.9
+2025-02-01,7412,Copper Pipe Fittings,98.64
+2025-03-01,7412,Copper Pipe Fittings,100
+2025-04-01,7412,Copper Pipe Fittings,97.58
+2025-05-01,7412,Copper Pipe Fittings,100.97
+2025-06-01,7412,Copper Pipe Fittings,97.19
+2025-07-01,7412,Copper Pipe Fittings,95.35
+2025-08-01,7412,Copper Pipe Fittings,93.41
+2025-09-01,7412,Copper Pipe Fittings,89.73
+2025-10-01,7412,Copper Pipe Fittings,89.24
+2025-11-01,7412,Copper Pipe Fittings,82.27
+2025-12-01,7412,Copper Pipe Fittings,91.76
+2026-01-01,7412,Copper Pipe Fittings,94.86
+2026-02-01,7412,Copper Pipe Fittings,83.82
+2026-03-01,7412,Copper Pipe Fittings,85.95
+2026-04-01,7412,Copper Pipe Fittings,95.74
+2026-05-01,7412,Copper Pipe Fittings,98.35
+2026-06-01,7412,Copper Pipe Fittings,101.26
+2026-07-01,7412,Copper Pipe Fittings,98.06
+2023-01-01,7601,Raw Aluminium,98.22
+2023-02-01,7601,Raw Aluminium,102.96
+2023-03-01,7601,Raw Aluminium,99.08
+2023-04-01,7601,Raw Aluminium,97.3
+2023-05-01,7601,Raw Aluminium,96.69
+2023-06-01,7601,Raw Aluminium,93.93
+2023-07-01,7601,Raw Aluminium,91.48
+2023-08-01,7601,Raw Aluminium,90.21
+2023-09-01,7601,Raw Aluminium,87.81
+2023-10-01,7601,Raw Aluminium,87.71
+2023-11-01,7601,Raw Aluminium,85.98
+2023-12-01,7601,Raw Aluminium,85.06
+2024-01-01,7601,Raw Aluminium,86.89
+2024-02-01,7601,Raw Aluminium,87.1
+2024-03-01,7601,Raw Aluminium,87.2
+2024-04-01,7601,Raw Aluminium,90.46
+2024-05-01,7601,Raw Aluminium,94.8
+2024-06-01,7601,Raw Aluminium,98.73
+2024-07-01,7601,Raw Aluminium,96.38
+2024-08-01,7601,Raw Aluminium,93.93
+2024-09-01,7601,Raw Aluminium,95.67
+2024-10-01,7601,Raw Aluminium,98.57
+2024-11-01,7601,Raw Aluminium,98.88
+2024-12-01,7601,Raw Aluminium,98.52
+2025-01-01,7601,Raw Aluminium,97.45
+2025-02-01,7601,Raw Aluminium,98.62
+2025-03-01,7601,Raw Aluminium,100
+2025-04-01,7601,Raw Aluminium,95.21
+2025-05-01,7601,Raw Aluminium,89.24
+2025-06-01,7601,Raw Aluminium,84.65
+2025-07-01,7601,Raw Aluminium,83.12
+2025-08-01,7601,Raw Aluminium,85.36
+2025-09-01,7601,Raw Aluminium,88.53
+2025-10-01,7601,Raw Aluminium,90.97
+2025-11-01,7601,Raw Aluminium,94.8
+2025-12-01,7601,Raw Aluminium,97.35
+2026-01-01,7601,Raw Aluminium,101.53
+2026-02-01,7601,Raw Aluminium,107.9
+2026-03-01,7601,Raw Aluminium,110.3
+2026-04-01,7601,Raw Aluminium,117.29
+2026-05-01,7601,Raw Aluminium,123.66
+2026-06-01,7601,Raw Aluminium,127.13
+2026-07-01,7601,Raw Aluminium,125.19
+2025-01-01,7604,Aluminium Bars,98.91
+2025-02-01,7604,Aluminium Bars,99.01
+2025-03-01,7604,Aluminium Bars,100
+2025-04-01,7604,Aluminium Bars,100
+2025-05-01,7604,Aluminium Bars,97.73
+2025-06-01,7604,Aluminium Bars,96.54
+2025-07-01,7604,Aluminium Bars,95.55
+2025-08-01,7604,Aluminium Bars,94.26
+2025-09-01,7604,Aluminium Bars,95.85
+2025-10-01,7604,Aluminium Bars,94.36
+2025-11-01,7604,Aluminium Bars,91
+2025-12-01,7604,Aluminium Bars,98.71
+2026-01-01,7604,Aluminium Bars,96.24
+2026-02-01,7604,Aluminium Bars,99.21
+2026-03-01,7604,Aluminium Bars,101.29
+2026-04-01,7604,Aluminium Bars,106.82
+2026-05-01,7604,Aluminium Bars,112.46
+2026-06-01,7604,Aluminium Bars,114.54
+2026-07-01,7604,Aluminium Bars,115.13
+2025-01-01,7606,Aluminium Plating,99.11
+2025-02-01,7606,Aluminium Plating,99.41
+2025-03-01,7606,Aluminium Plating,100
+2025-04-01,7606,Aluminium Plating,100.4
+2025-05-01,7606,Aluminium Plating,99.41
+2025-06-01,7606,Aluminium Plating,97.03
+2025-07-01,7606,Aluminium Plating,97.52
+2025-08-01,7606,Aluminium Plating,98.41
+2025-09-01,7606,Aluminium Plating,101.78
+2025-10-01,7606,Aluminium Plating,98.81
+2025-11-01,7606,Aluminium Plating,97.32
+2025-12-01,7606,Aluminium Plating,102.58
+2026-01-01,7606,Aluminium Plating,102.28
+2026-02-01,7606,Aluminium Plating,105.45
+2026-03-01,7606,Aluminium Plating,107.23
+2026-04-01,7606,Aluminium Plating,116.35
+2026-05-01,7606,Aluminium Plating,120.71
+2026-06-01,7606,Aluminium Plating,125.17
+2026-07-01,7606,Aluminium Plating,128.84
+2025-01-01,7607,Aluminium Foil,98.52
+2025-02-01,7607,Aluminium Foil,99.51
+2025-03-01,7607,Aluminium Foil,100
+2025-04-01,7607,Aluminium Foil,100.39
+2025-05-01,7607,Aluminium Foil,101.18
+2025-06-01,7607,Aluminium Foil,103.45
+2025-07-01,7607,Aluminium Foil,98.82
+2025-08-01,7607,Aluminium Foil,98.03
+2025-09-01,7607,Aluminium Foil,99.61
+2025-11-01,7607,Aluminium Foil,104.14
+2025-12-01,7607,Aluminium Foil,98.62
+2026-01-01,7607,Aluminium Foil,101.58
+2026-02-01,7607,Aluminium Foil,100.39
+2026-03-01,7607,Aluminium Foil,102.76
+2026-04-01,7607,Aluminium Foil,108.37
+2026-05-01,7607,Aluminium Foil,110.15
+2026-06-01,7607,Aluminium Foil,112.61
+2026-07-01,7607,Aluminium Foil,117.14
+2025-01-01,7801,Raw Lead,99.21
+2025-02-01,7801,Raw Lead,106.55
+2025-03-01,7801,Raw Lead,100
+2025-04-01,7801,Raw Lead,101.98
+2025-05-01,7801,Raw Lead,101.39
+2025-06-01,7801,Raw Lead,102.28
+2025-07-01,7801,Raw Lead,104.17
+2025-08-01,7801,Raw Lead,103.97
+2025-09-01,7801,Raw Lead,106.25
+2025-10-01,7801,Raw Lead,103.77
+2025-11-01,7801,Raw Lead,99.21
+2025-12-01,7801,Raw Lead,101.29
+2026-01-01,7801,Raw Lead,103.67
+2026-02-01,7801,Raw Lead,104.76
+2026-03-01,7801,Raw Lead,103.47
+2026-04-01,7801,Raw Lead,99.8
+2026-05-01,7801,Raw Lead,104.46
+2026-06-01,7801,Raw Lead,105.56
+2026-07-01,7801,Raw Lead,102.78
+2025-01-01,7901,Raw Zinc,102.35
+2025-02-01,7901,Raw Zinc,101.23
+2025-03-01,7901,Raw Zinc,100
+2025-04-01,7901,Raw Zinc,95.5
+2025-05-01,7901,Raw Zinc,95.7
+2025-06-01,7901,Raw Zinc,92.63
+2025-07-01,7901,Raw Zinc,94.47
+2025-08-01,7901,Raw Zinc,95.09
+2025-09-01,7901,Raw Zinc,97.24
+2025-10-01,7901,Raw Zinc,101.33
+2025-11-01,7901,Raw Zinc,104.91
+2025-12-01,7901,Raw Zinc,109.42
+2026-01-01,7901,Raw Zinc,109.72
+2026-02-01,7901,Raw Zinc,111.26
+2026-03-01,7901,Raw Zinc,111.46
+2026-04-01,7901,Raw Zinc,113.31
+2026-05-01,7901,Raw Zinc,113.92
+2026-06-01,7901,Raw Zinc,117.4
+2026-07-01,7901,Raw Zinc,120.27
+2025-01-01,8001,Raw Tin,98.52
+2025-02-01,8001,Raw Tin,97.64
+2025-03-01,8001,Raw Tin,100
+2025-04-01,8001,Raw Tin,105.02
+2025-05-01,8001,Raw Tin,107
+2025-06-01,8001,Raw Tin,106.11
+2025-07-01,8001,Raw Tin,106.7
+2025-08-01,8001,Raw Tin,109.75
+2025-09-01,8001,Raw Tin,111.03
+2025-10-01,8001,Raw Tin,113.5
+2025-11-01,8001,Raw Tin,116.75
+2025-12-01,8001,Raw Tin,119.51
+2026-01-01,8001,Raw Tin,130.94
+2026-02-01,8001,Raw Tin,146.11
+2026-03-01,8001,Raw Tin,152.61
+2026-04-01,8001,Raw Tin,154.38
+2026-05-01,8001,Raw Tin,157.54
+2026-06-01,8001,Raw Tin,167
+2026-07-01,8001,Raw Tin,174.38
+2023-01-01,8302,Metal Mountings,108.33
+2023-02-01,8302,Metal Mountings,107.4
+2023-03-01,8302,Metal Mountings,107.4
+2023-04-01,8302,Metal Mountings,105.73
+2023-05-01,8302,Metal Mountings,105.21
+2023-06-01,8302,Metal Mountings,105.1
+2023-07-01,8302,Metal Mountings,105.21
+2023-08-01,8302,Metal Mountings,105.1
+2023-09-01,8302,Metal Mountings,105.1
+2023-10-01,8302,Metal Mountings,102.5
+2023-11-01,8302,Metal Mountings,102.4
+2023-12-01,8302,Metal Mountings,101.98
+2024-01-01,8302,Metal Mountings,101.98
+2024-02-01,8302,Metal Mountings,101.98
+2024-03-01,8302,Metal Mountings,101.88
+2024-04-01,8302,Metal Mountings,101.35
+2024-05-01,8302,Metal Mountings,101.25
+2024-06-01,8302,Metal Mountings,101.35
+2024-07-01,8302,Metal Mountings,101.35
+2024-08-01,8302,Metal Mountings,101.46
+2024-09-01,8302,Metal Mountings,101.56
+2024-10-01,8302,Metal Mountings,101.56
+2024-11-01,8302,Metal Mountings,101.25
+2024-12-01,8302,Metal Mountings,101.25
+2025-01-01,8302,Metal Mountings,100.73
+2025-02-01,8302,Metal Mountings,101.25
+2025-03-01,8302,Metal Mountings,100
+2025-04-01,8302,Metal Mountings,101.04
+2025-05-01,8302,Metal Mountings,102.29
+2025-06-01,8302,Metal Mountings,101.25
+2025-07-01,8302,Metal Mountings,102.19
+2025-08-01,8302,Metal Mountings,101.98
+2025-09-01,8302,Metal Mountings,101.88
+2025-11-01,8302,Metal Mountings,103.02
+2025-12-01,8302,Metal Mountings,102.92
+2026-01-01,8302,Metal Mountings,102.92
+2026-02-01,8302,Metal Mountings,104.58
+2026-03-01,8302,Metal Mountings,105.63
+2026-04-01,8302,Metal Mountings,104.17
+2026-05-01,8302,Metal Mountings,104.79
+2026-06-01,8302,Metal Mountings,103.65
+2026-07-01,8302,Metal Mountings,104.69
+2025-01-01,8309,Metal Stoppers,98.04
+2025-02-01,8309,Metal Stoppers,100.1
+2025-03-01,8309,Metal Stoppers,100
+2025-04-01,8309,Metal Stoppers,98.73
+2025-05-01,8309,Metal Stoppers,98.33
+2025-06-01,8309,Metal Stoppers,100.49
+2025-07-01,8309,Metal Stoppers,100.88
+2025-08-01,8309,Metal Stoppers,101.57
+2025-09-01,8309,Metal Stoppers,99.71
+2025-10-01,8309,Metal Stoppers,100.29
+2025-11-01,8309,Metal Stoppers,96.76
+2025-12-01,8309,Metal Stoppers,99.9
+2026-01-01,8309,Metal Stoppers,99.8
+2026-02-01,8309,Metal Stoppers,101.57
+2026-03-01,8309,Metal Stoppers,103.14
+2026-04-01,8309,Metal Stoppers,101.47
+2026-05-01,8309,Metal Stoppers,105.78
+2026-06-01,8309,Metal Stoppers,104.9
+2026-07-01,8309,Metal Stoppers,100.98
+2023-01-01,8407,Spark-Ignition Engines,101.88
+2023-02-01,8407,Spark-Ignition Engines,101.98
+2023-03-01,8407,Spark-Ignition Engines,101.78
+2023-04-01,8407,Spark-Ignition Engines,101.38
+2023-05-01,8407,Spark-Ignition Engines,102.37
+2023-06-01,8407,Spark-Ignition Engines,102.08
+2023-07-01,8407,Spark-Ignition Engines,101.29
+2023-08-01,8407,Spark-Ignition Engines,101.09
+2023-09-01,8407,Spark-Ignition Engines,100.4
+2023-10-01,8407,Spark-Ignition Engines,99.51
+2023-11-01,8407,Spark-Ignition Engines,99.21
+2023-12-01,8407,Spark-Ignition Engines,99.6
+2024-01-01,8407,Spark-Ignition Engines,102.37
+2024-02-01,8407,Spark-Ignition Engines,102.47
+2024-03-01,8407,Spark-Ignition Engines,102.18
+2024-04-01,8407,Spark-Ignition Engines,102.97
+2024-05-01,8407,Spark-Ignition Engines,102.27
+2024-06-01,8407,Spark-Ignition Engines,102.18
+2024-07-01,8407,Spark-Ignition Engines,101.68
+2024-08-01,8407,Spark-Ignition Engines,101.78
+2024-09-01,8407,Spark-Ignition Engines,101.98
+2024-10-01,8407,Spark-Ignition Engines,101.88
+2024-11-01,8407,Spark-Ignition Engines,101.38
+2024-12-01,8407,Spark-Ignition Engines,100.79
+2025-01-01,8407,Spark-Ignition Engines,100.49
+2025-02-01,8407,Spark-Ignition Engines,100
+2025-03-01,8407,Spark-Ignition Engines,100
+2025-04-01,8407,Spark-Ignition Engines,100.2
+2025-05-01,8407,Spark-Ignition Engines,100.79
+2025-06-01,8407,Spark-Ignition Engines,100.49
+2025-07-01,8407,Spark-Ignition Engines,100.59
+2025-08-01,8407,Spark-Ignition Engines,100.89
+2025-09-01,8407,Spark-Ignition Engines,100.59
+2025-11-01,8407,Spark-Ignition Engines,100.4
+2025-12-01,8407,Spark-Ignition Engines,100.2
+2026-01-01,8407,Spark-Ignition Engines,101.58
+2026-02-01,8407,Spark-Ignition Engines,101.58
+2026-03-01,8407,Spark-Ignition Engines,101.88
+2026-04-01,8407,Spark-Ignition Engines,101.68
+2026-05-01,8407,Spark-Ignition Engines,101.58
+2026-06-01,8407,Spark-Ignition Engines,101.78
+2026-07-01,8407,Spark-Ignition Engines,102.87
+2023-01-01,8409,Engine Parts,89.65
+2023-02-01,8409,Engine Parts,89.98
+2023-03-01,8409,Engine Parts,89.65
+2023-04-01,8409,Engine Parts,89.58
+2023-05-01,8409,Engine Parts,89.51
+2023-06-01,8409,Engine Parts,89.18
+2023-07-01,8409,Engine Parts,91.45
+2023-08-01,8409,Engine Parts,91.52
+2023-09-01,8409,Engine Parts,92.05
+2023-10-01,8409,Engine Parts,92.65
+2023-11-01,8409,Engine Parts,93.32
+2023-12-01,8409,Engine Parts,94.19
+2024-01-01,8409,Engine Parts,96.93
+2024-02-01,8409,Engine Parts,97.26
+2024-03-01,8409,Engine Parts,96.86
+2024-04-01,8409,Engine Parts,96.79
+2024-05-01,8409,Engine Parts,96.79
+2024-06-01,8409,Engine Parts,96.66
+2024-07-01,8409,Engine Parts,96.53
+2024-08-01,8409,Engine Parts,96.73
+2024-09-01,8409,Engine Parts,97.46
+2024-10-01,8409,Engine Parts,97.8
+2024-11-01,8409,Engine Parts,97.33
+2024-12-01,8409,Engine Parts,97.26
+2025-01-01,8409,Engine Parts,99.73
+2025-02-01,8409,Engine Parts,99.87
+2025-03-01,8409,Engine Parts,100
+2025-04-01,8409,Engine Parts,100.6
+2025-05-01,8409,Engine Parts,101.6
+2025-06-01,8409,Engine Parts,102.74
+2025-07-01,8409,Engine Parts,105.08
+2025-08-01,8409,Engine Parts,104.41
+2025-09-01,8409,Engine Parts,103.94
+2025-11-01,8409,Engine Parts,102.67
+2025-12-01,8409,Engine Parts,102.47
+2026-01-01,8409,Engine Parts,102.61
+2026-02-01,8409,Engine Parts,102.81
+2026-03-01,8409,Engine Parts,102.81
+2026-04-01,8409,Engine Parts,102.74
+2026-05-01,8409,Engine Parts,103.07
+2026-06-01,8409,Engine Parts,103.67
+2026-07-01,8409,Engine Parts,104.28
+2023-01-01,8411,Gas Turbines,90.25
+2023-02-01,8411,Gas Turbines,91.4
+2023-03-01,8411,Gas Turbines,92.15
+2023-04-01,8411,Gas Turbines,94.38
+2023-05-01,8411,Gas Turbines,94.96
+2023-06-01,8411,Gas Turbines,95.45
+2023-07-01,8411,Gas Turbines,95.87
+2023-08-01,8411,Gas Turbines,95.87
+2023-09-01,8411,Gas Turbines,95.79
+2023-10-01,8411,Gas Turbines,95.7
+2023-11-01,8411,Gas Turbines,95.54
+2023-12-01,8411,Gas Turbines,95.79
+2024-01-01,8411,Gas Turbines,98.76
+2024-02-01,8411,Gas Turbines,101.49
+2024-03-01,8411,Gas Turbines,104.63
+2024-04-01,8411,Gas Turbines,102.89
+2024-05-01,8411,Gas Turbines,101.24
+2024-06-01,8411,Gas Turbines,99.59
+2024-07-01,8411,Gas Turbines,97.85
+2024-08-01,8411,Gas Turbines,98.02
+2024-09-01,8411,Gas Turbines,98.1
+2024-10-01,8411,Gas Turbines,98.51
+2024-11-01,8411,Gas Turbines,98.51
+2024-12-01,8411,Gas Turbines,98.43
+2025-01-01,8411,Gas Turbines,99.34
+2025-02-01,8411,Gas Turbines,99.59
+2025-03-01,8411,Gas Turbines,100
+2025-04-01,8411,Gas Turbines,100.5
+2025-05-01,8411,Gas Turbines,100.74
+2025-06-01,8411,Gas Turbines,100.83
+2025-07-01,8411,Gas Turbines,100.99
+2025-08-01,8411,Gas Turbines,101.07
+2025-09-01,8411,Gas Turbines,101.07
+2025-11-01,8411,Gas Turbines,101.07
+2025-12-01,8411,Gas Turbines,101.16
+2026-01-01,8411,Gas Turbines,101.82
+2026-02-01,8411,Gas Turbines,102.23
+2026-03-01,8411,Gas Turbines,102.4
+2026-04-01,8411,Gas Turbines,102.48
+2026-05-01,8411,Gas Turbines,102.73
+2026-06-01,8411,Gas Turbines,102.73
+2026-07-01,8411,Gas Turbines,102.81
+2023-01-01,8413,Liquid Pumps,93.21
+2023-02-01,8413,Liquid Pumps,93.77
+2023-03-01,8413,Liquid Pumps,94.05
+2023-04-01,8413,Liquid Pumps,94.68
+2023-05-01,8413,Liquid Pumps,94.82
+2023-06-01,8413,Liquid Pumps,94.89
+2023-07-01,8413,Liquid Pumps,95.73
+2023-08-01,8413,Liquid Pumps,96.36
+2023-09-01,8413,Liquid Pumps,96.15
+2023-10-01,8413,Liquid Pumps,96.36
+2023-11-01,8413,Liquid Pumps,96.64
+2023-12-01,8413,Liquid Pumps,97.2
+2024-01-01,8413,Liquid Pumps,97.62
+2024-02-01,8413,Liquid Pumps,97.62
+2024-03-01,8413,Liquid Pumps,97.62
+2024-04-01,8413,Liquid Pumps,98.46
+2024-05-01,8413,Liquid Pumps,98.74
+2024-06-01,8413,Liquid Pumps,99.16
+2024-07-01,8413,Liquid Pumps,99.3
+2024-08-01,8413,Liquid Pumps,99.23
+2024-09-01,8413,Liquid Pumps,99.3
+2024-10-01,8413,Liquid Pumps,99.51
+2024-11-01,8413,Liquid Pumps,99.02
+2024-12-01,8413,Liquid Pumps,98.46
+2025-01-01,8413,Liquid Pumps,98.11
+2025-02-01,8413,Liquid Pumps,98.11
+2025-03-01,8413,Liquid Pumps,100
+2025-04-01,8413,Liquid Pumps,100.35
+2025-05-01,8413,Liquid Pumps,100.7
+2025-06-01,8413,Liquid Pumps,101.54
+2025-07-01,8413,Liquid Pumps,104.34
+2025-08-01,8413,Liquid Pumps,105.32
+2025-09-01,8413,Liquid Pumps,105.46
+2025-11-01,8413,Liquid Pumps,105.6
+2025-12-01,8413,Liquid Pumps,105.39
+2026-01-01,8413,Liquid Pumps,105.74
+2026-02-01,8413,Liquid Pumps,106.44
+2026-03-01,8413,Liquid Pumps,106.65
+2026-04-01,8413,Liquid Pumps,105.88
+2026-05-01,8413,Liquid Pumps,105.74
+2026-06-01,8413,Liquid Pumps,104.83
+2026-07-01,8413,Liquid Pumps,104.55
+2023-01-01,8421,Centrifuges,102.35
+2023-02-01,8421,Centrifuges,100.49
+2023-03-01,8421,Centrifuges,100.24
+2023-04-01,8421,Centrifuges,100.16
+2023-05-01,8421,Centrifuges,100.49
+2023-06-01,8421,Centrifuges,100.57
+2023-07-01,8421,Centrifuges,100.57
+2023-08-01,8421,Centrifuges,100.89
+2023-09-01,8421,Centrifuges,100.81
+2023-10-01,8421,Centrifuges,101.05
+2023-11-01,8421,Centrifuges,99.51
+2023-12-01,8421,Centrifuges,98.3
+2024-01-01,8421,Centrifuges,98.62
+2024-02-01,8421,Centrifuges,99.6
+2024-03-01,8421,Centrifuges,99.43
+2024-04-01,8421,Centrifuges,99.68
+2024-05-01,8421,Centrifuges,99.51
+2024-06-01,8421,Centrifuges,100
+2024-07-01,8421,Centrifuges,99.92
+2024-08-01,8421,Centrifuges,100.16
+2024-09-01,8421,Centrifuges,100.4
+2024-10-01,8421,Centrifuges,100.65
+2024-11-01,8421,Centrifuges,100.65
+2024-12-01,8421,Centrifuges,100.4
+2025-01-01,8421,Centrifuges,100.24
+2025-02-01,8421,Centrifuges,100.89
+2025-03-01,8421,Centrifuges,100
+2025-04-01,8421,Centrifuges,100.73
+2025-05-01,8421,Centrifuges,101.13
+2025-06-01,8421,Centrifuges,100.81
+2025-07-01,8421,Centrifuges,100.73
+2025-08-01,8421,Centrifuges,100.57
+2025-09-01,8421,Centrifuges,100.57
+2025-11-01,8421,Centrifuges,100.57
+2025-12-01,8421,Centrifuges,100.4
+2026-01-01,8421,Centrifuges,101.86
+2026-02-01,8421,Centrifuges,99.92
+2026-03-01,8421,Centrifuges,99.84
+2026-04-01,8421,Centrifuges,99.19
+2026-05-01,8421,Centrifuges,99.35
+2026-06-01,8421,Centrifuges,99.35
+2026-07-01,8421,Centrifuges,99.11
+2023-01-01,8429,Large Construction Vehicles,97.7
+2023-02-01,8429,Large Construction Vehicles,99.82
+2023-03-01,8429,Large Construction Vehicles,99.82
+2023-04-01,8429,Large Construction Vehicles,99.82
+2023-05-01,8429,Large Construction Vehicles,99.82
+2023-06-01,8429,Large Construction Vehicles,99.82
+2023-07-01,8429,Large Construction Vehicles,99.91
+2023-08-01,8429,Large Construction Vehicles,99.91
+2023-09-01,8429,Large Construction Vehicles,100
+2023-10-01,8429,Large Construction Vehicles,97.61
+2023-11-01,8429,Large Construction Vehicles,97.61
+2023-12-01,8429,Large Construction Vehicles,97.61
+2024-01-01,8429,Large Construction Vehicles,99.73
+2024-02-01,8429,Large Construction Vehicles,99.73
+2024-03-01,8429,Large Construction Vehicles,99.73
+2024-04-01,8429,Large Construction Vehicles,99.73
+2024-05-01,8429,Large Construction Vehicles,99.91
+2024-06-01,8429,Large Construction Vehicles,99.91
+2024-07-01,8429,Large Construction Vehicles,100.09
+2024-08-01,8429,Large Construction Vehicles,100.09
+2024-09-01,8429,Large Construction Vehicles,99.91
+2024-10-01,8429,Large Construction Vehicles,100
+2024-11-01,8429,Large Construction Vehicles,100
+2024-12-01,8429,Large Construction Vehicles,100
+2025-01-01,8429,Large Construction Vehicles,100
+2025-02-01,8429,Large Construction Vehicles,100
+2025-03-01,8429,Large Construction Vehicles,100
+2025-04-01,8429,Large Construction Vehicles,100.09
+2025-05-01,8429,Large Construction Vehicles,100.09
+2025-06-01,8429,Large Construction Vehicles,100.09
+2025-07-01,8429,Large Construction Vehicles,101.51
+2025-08-01,8429,Large Construction Vehicles,101.59
+2025-09-01,8429,Large Construction Vehicles,101.77
+2025-11-01,8429,Large Construction Vehicles,101.77
+2025-12-01,8429,Large Construction Vehicles,101.77
+2026-01-01,8429,Large Construction Vehicles,103.37
+2026-02-01,8429,Large Construction Vehicles,103.37
+2026-03-01,8429,Large Construction Vehicles,103.37
+2026-04-01,8429,Large Construction Vehicles,103.37
+2026-05-01,8429,Large Construction Vehicles,103.37
+2026-06-01,8429,Large Construction Vehicles,103.37
+2026-07-01,8429,Large Construction Vehicles,103.63
+2023-01-01,8479,Machinery Having Individual Functions,99.52
+2023-02-01,8479,Machinery Having Individual Functions,99.9
+2023-03-01,8479,Machinery Having Individual Functions,99.81
+2023-04-01,8479,Machinery Having Individual Functions,99.71
+2023-05-01,8479,Machinery Having Individual Functions,99.71
+2023-06-01,8479,Machinery Having Individual Functions,99.42
+2023-07-01,8479,Machinery Having Individual Functions,99.13
+2023-08-01,8479,Machinery Having Individual Functions,98.94
+2023-09-01,8479,Machinery Having Individual Functions,98.45
+2023-10-01,8479,Machinery Having Individual Functions,98.36
+2023-11-01,8479,Machinery Having Individual Functions,98.26
+2023-12-01,8479,Machinery Having Individual Functions,98.07
+2024-01-01,8479,Machinery Having Individual Functions,99.23
+2024-02-01,8479,Machinery Having Individual Functions,99.52
+2024-03-01,8479,Machinery Having Individual Functions,99.13
+2024-04-01,8479,Machinery Having Individual Functions,99.13
+2024-05-01,8479,Machinery Having Individual Functions,98.84
+2024-06-01,8479,Machinery Having Individual Functions,98.84
+2024-07-01,8479,Machinery Having Individual Functions,98.94
+2024-08-01,8479,Machinery Having Individual Functions,99.23
+2024-09-01,8479,Machinery Having Individual Functions,100.1
+2024-10-01,8479,Machinery Having Individual Functions,100.39
+2024-11-01,8479,Machinery Having Individual Functions,99.52
+2024-12-01,8479,Machinery Having Individual Functions,99.32
+2025-01-01,8479,Machinery Having Individual Functions,99.81
+2025-02-01,8479,Machinery Having Individual Functions,99.71
+2025-03-01,8479,Machinery Having Individual Functions,100
+2025-04-01,8479,Machinery Having Individual Functions,99.71
+2025-05-01,8479,Machinery Having Individual Functions,100
+2025-06-01,8479,Machinery Having Individual Functions,100.1
+2025-07-01,8479,Machinery Having Individual Functions,101.06
+2025-08-01,8479,Machinery Having Individual Functions,100.48
+2025-09-01,8479,Machinery Having Individual Functions,100.87
+2025-11-01,8479,Machinery Having Individual Functions,100.68
+2025-12-01,8479,Machinery Having Individual Functions,100.97
+2026-01-01,8479,Machinery Having Individual Functions,101.64
+2026-02-01,8479,Machinery Having Individual Functions,102.03
+2026-03-01,8479,Machinery Having Individual Functions,101.74
+2026-04-01,8479,Machinery Having Individual Functions,102.22
+2026-05-01,8479,Machinery Having Individual Functions,102.32
+2026-06-01,8479,Machinery Having Individual Functions,102.13
+2026-07-01,8479,Machinery Having Individual Functions,101.74
+2023-01-01,8501,Electric Motors,98.24
+2023-02-01,8501,Electric Motors,98.24
+2023-03-01,8501,Electric Motors,98.17
+2023-04-01,8501,Electric Motors,98.71
+2023-05-01,8501,Electric Motors,98.44
+2023-06-01,8501,Electric Motors,98.31
+2023-07-01,8501,Electric Motors,98.51
+2023-08-01,8501,Electric Motors,98.51
+2023-09-01,8501,Electric Motors,98.64
+2023-10-01,8501,Electric Motors,98.98
+2023-11-01,8501,Electric Motors,98.98
+2023-12-01,8501,Electric Motors,98.98
+2024-01-01,8501,Electric Motors,99.73
+2024-02-01,8501,Electric Motors,99.8
+2024-03-01,8501,Electric Motors,99.73
+2024-04-01,8501,Electric Motors,100
+2024-05-01,8501,Electric Motors,100
+2024-06-01,8501,Electric Motors,100.07
+2024-07-01,8501,Electric Motors,100
+2024-08-01,8501,Electric Motors,99.93
+2024-09-01,8501,Electric Motors,100.41
+2024-10-01,8501,Electric Motors,100.68
+2024-11-01,8501,Electric Motors,100.75
+2024-12-01,8501,Electric Motors,100.41
+2025-01-01,8501,Electric Motors,99.73
+2025-02-01,8501,Electric Motors,99.8
+2025-03-01,8501,Electric Motors,100
+2025-04-01,8501,Electric Motors,100.47
+2025-05-01,8501,Electric Motors,100.34
+2025-06-01,8501,Electric Motors,100.54
+2025-07-01,8501,Electric Motors,100.81
+2025-08-01,8501,Electric Motors,100.88
+2025-09-01,8501,Electric Motors,100.47
+2025-11-01,8501,Electric Motors,101.08
+2025-12-01,8501,Electric Motors,101.22
+2026-01-01,8501,Electric Motors,101.29
+2026-02-01,8501,Electric Motors,101.42
+2026-03-01,8501,Electric Motors,101.56
+2026-04-01,8501,Electric Motors,101.56
+2026-05-01,8501,Electric Motors,101.49
+2026-06-01,8501,Electric Motors,101.56
+2026-07-01,8501,Electric Motors,101.63
+2023-01-01,8516,Electric Heaters,102.44
+2023-02-01,8516,Electric Heaters,104.03
+2023-03-01,8516,Electric Heaters,104.22
+2023-04-01,8516,Electric Heaters,104.69
+2023-05-01,8516,Electric Heaters,105.06
+2023-06-01,8516,Electric Heaters,104.97
+2023-07-01,8516,Electric Heaters,105.06
+2023-08-01,8516,Electric Heaters,105.34
+2023-09-01,8516,Electric Heaters,105.53
+2023-10-01,8516,Electric Heaters,105.34
+2023-11-01,8516,Electric Heaters,104.97
+2023-12-01,8516,Electric Heaters,104.59
+2024-01-01,8516,Electric Heaters,102.53
+2024-02-01,8516,Electric Heaters,102.34
+2024-03-01,8516,Electric Heaters,102.44
+2024-04-01,8516,Electric Heaters,102.25
+2024-05-01,8516,Electric Heaters,102.25
+2024-06-01,8516,Electric Heaters,102.25
+2024-07-01,8516,Electric Heaters,101.69
+2024-08-01,8516,Electric Heaters,100.47
+2024-09-01,8516,Electric Heaters,100.28
+2024-10-01,8516,Electric Heaters,100.84
+2024-11-01,8516,Electric Heaters,100.37
+2024-12-01,8516,Electric Heaters,100.37
+2025-01-01,8516,Electric Heaters,100.09
+2025-02-01,8516,Electric Heaters,100.09
+2025-03-01,8516,Electric Heaters,100
+2025-04-01,8516,Electric Heaters,100.09
+2025-05-01,8516,Electric Heaters,100.47
+2025-06-01,8516,Electric Heaters,100.37
+2025-07-01,8516,Electric Heaters,100.56
+2025-08-01,8516,Electric Heaters,100.37
+2025-09-01,8516,Electric Heaters,100.66
+2025-11-01,8516,Electric Heaters,98.41
+2025-12-01,8516,Electric Heaters,98.41
+2026-01-01,8516,Electric Heaters,99.06
+2026-02-01,8516,Electric Heaters,98.88
+2026-03-01,8516,Electric Heaters,99.16
+2026-04-01,8516,Electric Heaters,99.06
+2026-05-01,8516,Electric Heaters,98.97
+2026-06-01,8516,Electric Heaters,99.06
+2026-07-01,8516,Electric Heaters,99.06
+2023-01-01,8528,Video Displays,113.42
+2023-02-01,8528,Video Displays,112.64
+2023-03-01,8528,Video Displays,112.3
+2023-04-01,8528,Video Displays,111.63
+2023-05-01,8528,Video Displays,111.3
+2023-06-01,8528,Video Displays,110.63
+2023-07-01,8528,Video Displays,110.51
+2023-08-01,8528,Video Displays,110.29
+2023-09-01,8528,Video Displays,109.51
+2023-10-01,8528,Video Displays,101.68
+2023-11-01,8528,Video Displays,101.57
+2023-12-01,8528,Video Displays,102.13
+2024-01-01,8528,Video Displays,101.79
+2024-02-01,8528,Video Displays,101.34
+2024-03-01,8528,Video Displays,98.88
+2024-04-01,8528,Video Displays,100
+2024-05-01,8528,Video Displays,99.55
+2024-06-01,8528,Video Displays,99.78
+2024-07-01,8528,Video Displays,99.78
+2024-08-01,8528,Video Displays,100.22
+2024-09-01,8528,Video Displays,100.45
+2024-10-01,8528,Video Displays,100.56
+2024-11-01,8528,Video Displays,100.11
+2024-12-01,8528,Video Displays,100
+2025-01-01,8528,Video Displays,100.34
+2025-02-01,8528,Video Displays,100.11
+2025-03-01,8528,Video Displays,100
+2025-04-01,8528,Video Displays,99.78
+2025-05-01,8528,Video Displays,99.55
+2025-06-01,8528,Video Displays,99.44
+2025-07-01,8528,Video Displays,98.55
+2025-08-01,8528,Video Displays,98.55
+2025-09-01,8528,Video Displays,98.43
+2025-11-01,8528,Video Displays,98.43
+2025-12-01,8528,Video Displays,98.43
+2026-01-01,8528,Video Displays,98.43
+2026-02-01,8528,Video Displays,97.76
+2026-03-01,8528,Video Displays,97.76
+2026-04-01,8528,Video Displays,97.65
+2026-05-01,8528,Video Displays,97.76
+2026-06-01,8528,Video Displays,97.76
+2026-07-01,8528,Video Displays,97.76
+2023-01-01,8536,Low-voltage Protection Equipment,92.49
+2023-02-01,8536,Low-voltage Protection Equipment,93.94
+2023-03-01,8536,Low-voltage Protection Equipment,93.94
+2023-04-01,8536,Low-voltage Protection Equipment,93.94
+2023-05-01,8536,Low-voltage Protection Equipment,94.19
+2023-06-01,8536,Low-voltage Protection Equipment,93.22
+2023-07-01,8536,Low-voltage Protection Equipment,92.91
+2023-08-01,8536,Low-voltage Protection Equipment,96.18
+2023-09-01,8536,Low-voltage Protection Equipment,95.46
+2023-10-01,8536,Low-voltage Protection Equipment,94.19
+2023-11-01,8536,Low-voltage Protection Equipment,94.12
+2023-12-01,8536,Low-voltage Protection Equipment,94.25
+2024-01-01,8536,Low-voltage Protection Equipment,97.33
+2024-02-01,8536,Low-voltage Protection Equipment,98.12
+2024-03-01,8536,Low-voltage Protection Equipment,98.3
+2024-04-01,8536,Low-voltage Protection Equipment,97.82
+2024-05-01,8536,Low-voltage Protection Equipment,97.7
+2024-06-01,8536,Low-voltage Protection Equipment,97.94
+2024-07-01,8536,Low-voltage Protection Equipment,99.39
+2024-08-01,8536,Low-voltage Protection Equipment,100.3
+2024-09-01,8536,Low-voltage Protection Equipment,100.91
+2024-10-01,8536,Low-voltage Protection Equipment,101.51
+2024-11-01,8536,Low-voltage Protection Equipment,100.73
+2024-12-01,8536,Low-voltage Protection Equipment,99.94
+2025-01-01,8536,Low-voltage Protection Equipment,100.73
+2025-02-01,8536,Low-voltage Protection Equipment,100.42
+2025-03-01,8536,Low-voltage Protection Equipment,100
+2025-04-01,8536,Low-voltage Protection Equipment,99.45
+2025-05-01,8536,Low-voltage Protection Equipment,99.64
+2025-06-01,8536,Low-voltage Protection Equipment,99.76
+2025-07-01,8536,Low-voltage Protection Equipment,100.06
+2025-08-01,8536,Low-voltage Protection Equipment,100.18
+2025-09-01,8536,Low-voltage Protection Equipment,99.64
+2025-11-01,8536,Low-voltage Protection Equipment,100.24
+2025-12-01,8536,Low-voltage Protection Equipment,101.09
+2026-01-01,8536,Low-voltage Protection Equipment,101.33
+2026-02-01,8536,Low-voltage Protection Equipment,104.24
+2026-03-01,8536,Low-voltage Protection Equipment,104.36
+2026-04-01,8536,Low-voltage Protection Equipment,104.66
+2026-05-01,8536,Low-voltage Protection Equipment,105.88
+2026-06-01,8536,Low-voltage Protection Equipment,106.66
+2026-07-01,8536,Low-voltage Protection Equipment,106.66
+2023-01-01,8703,Cars,97.7
+2023-02-01,8703,Cars,97.7
+2023-03-01,8703,Cars,97.36
+2023-04-01,8703,Cars,97.45
+2023-05-01,8703,Cars,97.45
+2023-06-01,8703,Cars,97.45
+2023-07-01,8703,Cars,98.47
+2023-08-01,8703,Cars,98.47
+2023-09-01,8703,Cars,98.47
+2023-10-01,8703,Cars,99.06
+2023-11-01,8703,Cars,99.15
+2023-12-01,8703,Cars,99.06
+2024-01-01,8703,Cars,99.74
+2024-02-01,8703,Cars,99.74
+2024-03-01,8703,Cars,99.74
+2024-04-01,8703,Cars,100.09
+2024-05-01,8703,Cars,100
+2024-06-01,8703,Cars,100.09
+2024-07-01,8703,Cars,100.68
+2024-08-01,8703,Cars,100.68
+2024-09-01,8703,Cars,100.6
+2024-10-01,8703,Cars,100.26
+2024-11-01,8703,Cars,100.26
+2024-12-01,8703,Cars,100.26
+2025-01-01,8703,Cars,99.74
+2025-02-01,8703,Cars,100
+2025-03-01,8703,Cars,100
+2025-04-01,8703,Cars,99.4
+2025-05-01,8703,Cars,98.38
+2025-06-01,8703,Cars,98.38
+2025-07-01,8703,Cars,97.87
+2025-08-01,8703,Cars,96.68
+2025-09-01,8703,Cars,96.68
+2025-11-01,8703,Cars,95.91
+2025-12-01,8703,Cars,96
+2026-01-01,8703,Cars,96.17
+2026-02-01,8703,Cars,96.6
+2026-03-01,8703,Cars,96.6
+2026-04-01,8703,Cars,96.43
+2026-05-01,8703,Cars,96.34
+2026-06-01,8703,Cars,96.26
+2026-07-01,8703,Cars,96.43
+2023-01-01,8708,Motor Vehicles; parts & accessories,100.16
+2023-02-01,8708,Motor Vehicles; parts & accessories,100
+2023-03-01,8708,Motor Vehicles; parts & accessories,100.16
+2023-04-01,8708,Motor Vehicles; parts & accessories,99.61
+2023-05-01,8708,Motor Vehicles; parts & accessories,100.16
+2023-06-01,8708,Motor Vehicles; parts & accessories,99.84
+2023-07-01,8708,Motor Vehicles; parts & accessories,99.77
+2023-08-01,8708,Motor Vehicles; parts & accessories,99.69
+2023-09-01,8708,Motor Vehicles; parts & accessories,100
+2023-10-01,8708,Motor Vehicles; parts & accessories,99.69
+2023-11-01,8708,Motor Vehicles; parts & accessories,99.53
+2023-12-01,8708,Motor Vehicles; parts & accessories,99.38
+2024-01-01,8708,Motor Vehicles; parts & accessories,99.84
+2024-02-01,8708,Motor Vehicles; parts & accessories,99.84
+2024-03-01,8708,Motor Vehicles; parts & accessories,100.23
+2024-04-01,8708,Motor Vehicles; parts & accessories,100.55
+2024-05-01,8708,Motor Vehicles; parts & accessories,100.31
+2024-06-01,8708,Motor Vehicles; parts & accessories,100.31
+2024-07-01,8708,Motor Vehicles; parts & accessories,100.23
+2024-08-01,8708,Motor Vehicles; parts & accessories,100.31
+2024-09-01,8708,Motor Vehicles; parts & accessories,100.55
+2024-10-01,8708,Motor Vehicles; parts & accessories,101.17
+2024-11-01,8708,Motor Vehicles; parts & accessories,100.94
+2024-12-01,8708,Motor Vehicles; parts & accessories,100.55
+2025-01-01,8708,Motor Vehicles; parts & accessories,100.16
+2025-02-01,8708,Motor Vehicles; parts & accessories,99.92
+2025-03-01,8708,Motor Vehicles; parts & accessories,100
+2025-04-01,8708,Motor Vehicles; parts & accessories,100.08
+2025-05-01,8708,Motor Vehicles; parts & accessories,100
+2025-06-01,8708,Motor Vehicles; parts & accessories,99.92
+2025-07-01,8708,Motor Vehicles; parts & accessories,99.77
+2025-08-01,8708,Motor Vehicles; parts & accessories,100.23
+2025-09-01,8708,Motor Vehicles; parts & accessories,100.47
+2025-11-01,8708,Motor Vehicles; parts & accessories,101.25
+2025-12-01,8708,Motor Vehicles; parts & accessories,101.33
+2026-01-01,8708,Motor Vehicles; parts & accessories,101.56
+2026-02-01,8708,Motor Vehicles; parts & accessories,101.56
+2026-03-01,8708,Motor Vehicles; parts & accessories,101.56
+2026-04-01,8708,Motor Vehicles; parts & accessories,101.72
+2026-05-01,8708,Motor Vehicles; parts & accessories,101.95
+2026-06-01,8708,Motor Vehicles; parts & accessories,101.25
+2026-07-01,8708,Motor Vehicles; parts & accessories,101.09
+2024-12-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",99.8
+2025-01-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",100
+2025-02-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",100
+2025-03-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",100
+2025-04-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",99.9
+2025-05-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",99.9
+2025-06-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",99.9
+2025-07-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",99.9
+2025-08-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",99.9
+2025-09-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",102.5
+2025-11-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",102.89
+2025-12-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",103.69
+2026-01-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",100.1
+2026-02-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",100.2
+2026-03-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",104.29
+2026-04-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",104.39
+2026-05-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",107.19
+2026-06-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",109.58
+2026-07-01,8716,"Trailers and semi-trailers, not mechanically propelled vehicles",109.58
+2023-01-01,9021,Orthopedic Appliances,99.88
+2023-02-01,9021,Orthopedic Appliances,100
+2023-03-01,9021,Orthopedic Appliances,101.24
+2023-04-01,9021,Orthopedic Appliances,101.11
+2023-05-01,9021,Orthopedic Appliances,101.24
+2023-06-01,9021,Orthopedic Appliances,101.24
+2023-07-01,9021,Orthopedic Appliances,100.99
+2023-08-01,9021,Orthopedic Appliances,101.24
+2023-09-01,9021,Orthopedic Appliances,101.11
+2023-10-01,9021,Orthopedic Appliances,100.87
+2023-11-01,9021,Orthopedic Appliances,100.74
+2023-12-01,9021,Orthopedic Appliances,100.74
+2024-01-01,9021,Orthopedic Appliances,102.1
+2024-02-01,9021,Orthopedic Appliances,101.48
+2024-03-01,9021,Orthopedic Appliances,100.99
+2024-04-01,9021,Orthopedic Appliances,100.87
+2024-05-01,9021,Orthopedic Appliances,100.37
+2024-06-01,9021,Orthopedic Appliances,100
+2024-07-01,9021,Orthopedic Appliances,100
+2024-08-01,9021,Orthopedic Appliances,100.25
+2024-09-01,9021,Orthopedic Appliances,100.37
+2024-10-01,9021,Orthopedic Appliances,100.49
+2024-11-01,9021,Orthopedic Appliances,100.49
+2024-12-01,9021,Orthopedic Appliances,100.87
+2025-01-01,9021,Orthopedic Appliances,99.51
+2025-02-01,9021,Orthopedic Appliances,99.63
+2025-03-01,9021,Orthopedic Appliances,100
+2025-04-01,9021,Orthopedic Appliances,100.49
+2025-05-01,9021,Orthopedic Appliances,100.74
+2025-06-01,9021,Orthopedic Appliances,100.74
+2025-07-01,9021,Orthopedic Appliances,100.87
+2025-08-01,9021,Orthopedic Appliances,100.99
+2025-09-01,9021,Orthopedic Appliances,100.87
+2025-11-01,9021,Orthopedic Appliances,100.74
+2025-12-01,9021,Orthopedic Appliances,100.49
+2026-01-01,9021,Orthopedic Appliances,100.25
+2026-02-01,9021,Orthopedic Appliances,100.12
+2026-03-01,9021,Orthopedic Appliances,100.12
+2026-04-01,9021,Orthopedic Appliances,99.88
+2026-05-01,9021,Orthopedic Appliances,99.88
+2026-06-01,9021,Orthopedic Appliances,99.88
+2026-07-01,9021,Orthopedic Appliances,97.65
+2023-01-01,9027,Chemical Analysis Instruments,99.09
+2023-02-01,9027,Chemical Analysis Instruments,99.4
+2023-03-01,9027,Chemical Analysis Instruments,99.5
+2023-04-01,9027,Chemical Analysis Instruments,98.89
+2023-05-01,9027,Chemical Analysis Instruments,99.4
+2023-06-01,9027,Chemical Analysis Instruments,98.59
+2023-07-01,9027,Chemical Analysis Instruments,98.29
+2023-08-01,9027,Chemical Analysis Instruments,98.59
+2023-09-01,9027,Chemical Analysis Instruments,97.98
+2023-10-01,9027,Chemical Analysis Instruments,98.69
+2023-11-01,9027,Chemical Analysis Instruments,98.89
+2023-12-01,9027,Chemical Analysis Instruments,98.99
+2024-01-01,9027,Chemical Analysis Instruments,100.1
+2024-02-01,9027,Chemical Analysis Instruments,100
+2024-03-01,9027,Chemical Analysis Instruments,100.71
+2024-04-01,9027,Chemical Analysis Instruments,101.41
+2024-05-01,9027,Chemical Analysis Instruments,101.11
+2024-06-01,9027,Chemical Analysis Instruments,101.01
+2024-07-01,9027,Chemical Analysis Instruments,101.51
+2024-08-01,9027,Chemical Analysis Instruments,101.61
+2024-09-01,9027,Chemical Analysis Instruments,102.12
+2024-10-01,9027,Chemical Analysis Instruments,102.22
+2024-11-01,9027,Chemical Analysis Instruments,102.02
+2024-12-01,9027,Chemical Analysis Instruments,101.51
+2025-01-01,9027,Chemical Analysis Instruments,100.3
+2025-02-01,9027,Chemical Analysis Instruments,99.9
+2025-03-01,9027,Chemical Analysis Instruments,100
+2025-04-01,9027,Chemical Analysis Instruments,102.12
+2025-05-01,9027,Chemical Analysis Instruments,103.33
+2025-06-01,9027,Chemical Analysis Instruments,103.23
+2025-07-01,9027,Chemical Analysis Instruments,103.93
+2025-08-01,9027,Chemical Analysis Instruments,104.03
+2025-09-01,9027,Chemical Analysis Instruments,103.93
+2025-11-01,9027,Chemical Analysis Instruments,103.73
+2025-12-01,9027,Chemical Analysis Instruments,103.33
+2026-01-01,9027,Chemical Analysis Instruments,104.84
+2026-02-01,9027,Chemical Analysis Instruments,104.84
+2026-03-01,9027,Chemical Analysis Instruments,105.04
+2026-04-01,9027,Chemical Analysis Instruments,105.54
+2026-05-01,9027,Chemical Analysis Instruments,105.75
+2026-06-01,9027,Chemical Analysis Instruments,105.75
+2026-07-01,9027,Chemical Analysis Instruments,105.04
+2023-12-01,9503,Other toys,97.75
+2024-01-01,9503,Other toys,98.14
+2024-02-01,9503,Other toys,98.04
+2024-03-01,9503,Other toys,98.83
+2024-04-01,9503,Other toys,98.73
+2024-05-01,9503,Other toys,98.73
+2024-06-01,9503,Other toys,98.73
+2024-07-01,9503,Other toys,98.92
+2024-08-01,9503,Other toys,98.92
+2024-09-01,9503,Other toys,99.02
+2024-10-01,9503,Other toys,99.22
+2024-11-01,9503,Other toys,99.12
+2024-12-01,9503,Other toys,99.12
+2025-01-01,9503,Other toys,98.92
+2025-02-01,9503,Other toys,99.41
+2025-03-01,9503,Other toys,100
+2025-04-01,9503,Other toys,100.49
+2025-05-01,9503,Other toys,101.66
+2025-06-01,9503,Other toys,100.78
+2025-07-01,9503,Other toys,101.08
+2025-08-01,9503,Other toys,101.17
+2025-09-01,9503,Other toys,101.47
+2025-11-01,9503,Other toys,100.98
+2025-12-01,9503,Other toys,100.98
+2026-01-01,9503,Other toys,100.98
+2026-02-01,9503,Other toys,100.78
+2026-03-01,9503,Other toys,100.59
+2026-04-01,9503,Other toys,100.39
+2026-05-01,9503,Other toys,100.49
+2026-06-01,9503,Other toys,100.49
+2026-07-01,9503,Other toys,100.29
+2023-01-01,9504,Video and Card Games,106.28
+2023-02-01,9504,Video and Card Games,106.28
+2023-03-01,9504,Video and Card Games,106.28
+2023-04-01,9504,Video and Card Games,104.27
+2023-05-01,9504,Video and Card Games,104.03
+2023-06-01,9504,Video and Card Games,103.55
+2023-07-01,9504,Video and Card Games,103.32
+2023-08-01,9504,Video and Card Games,103.32
+2023-09-01,9504,Video and Card Games,103.2
+2023-10-01,9504,Video and Card Games,103.2
+2023-11-01,9504,Video and Card Games,103.2
+2023-12-01,9504,Video and Card Games,103.08
+2024-01-01,9504,Video and Card Games,103.44
+2024-02-01,9504,Video and Card Games,103.55
+2024-03-01,9504,Video and Card Games,103.55
+2024-04-01,9504,Video and Card Games,103.67
+2024-05-01,9504,Video and Card Games,103.67
+2024-06-01,9504,Video and Card Games,103.67
+2024-07-01,9504,Video and Card Games,101.78
+2024-08-01,9504,Video and Card Games,100.59
+2024-09-01,9504,Video and Card Games,100.71
+2024-10-01,9504,Video and Card Games,100.71
+2024-11-01,9504,Video and Card Games,100.71
+2024-12-01,9504,Video and Card Games,100.59
+2025-01-01,9504,Video and Card Games,99.76
+2025-02-01,9504,Video and Card Games,99.88
+2025-03-01,9504,Video and Card Games,100
+2025-04-01,9504,Video and Card Games,99.88
+2025-05-01,9504,Video and Card Games,99.41
+2025-06-01,9504,Video and Card Games,98.58
+2025-07-01,9504,Video and Card Games,98.34
+2025-08-01,9504,Video and Card Games,98.82
+2025-09-01,9504,Video and Card Games,98.82
+2025-11-01,9504,Video and Card Games,99.64
+2025-12-01,9504,Video and Card Games,99.53
+2026-01-01,9504,Video and Card Games,100
+2026-02-01,9504,Video and Card Games,100.12
+2026-03-01,9504,Video and Card Games,100.12
+2026-04-01,9504,Video and Card Games,100
+2026-05-01,9504,Video and Card Games,100
+2026-06-01,9504,Video and Card Games,99.88
+2026-07-01,9504,Video and Card Games,99.88
+2023-01-01,9506,Sports Equipment,92.63
+2023-02-01,9506,Sports Equipment,92.57
+2023-03-01,9506,Sports Equipment,92.7
+2023-04-01,9506,Sports Equipment,92.9
+2023-05-01,9506,Sports Equipment,93.37
+2023-06-01,9506,Sports Equipment,93.44
+2023-07-01,9506,Sports Equipment,93.24
+2023-08-01,9506,Sports Equipment,96.18
+2023-09-01,9506,Sports Equipment,96.12
+2023-10-01,9506,Sports Equipment,96.05
+2023-11-01,9506,Sports Equipment,95.98
+2023-12-01,9506,Sports Equipment,96.52
+2024-01-01,9506,Sports Equipment,97.52
+2024-02-01,9506,Sports Equipment,97.32
+2024-03-01,9506,Sports Equipment,97.25
+2024-04-01,9506,Sports Equipment,96.99
+2024-05-01,9506,Sports Equipment,96.92
+2024-06-01,9506,Sports Equipment,96.99
+2024-07-01,9506,Sports Equipment,96.85
+2024-08-01,9506,Sports Equipment,96.78
+2024-09-01,9506,Sports Equipment,96.92
+2024-10-01,9506,Sports Equipment,96.92
+2024-11-01,9506,Sports Equipment,96.72
+2024-12-01,9506,Sports Equipment,97.86
+2025-01-01,9506,Sports Equipment,99
+2025-02-01,9506,Sports Equipment,100
+2025-03-01,9506,Sports Equipment,100
+2025-04-01,9506,Sports Equipment,99
+2025-05-01,9506,Sports Equipment,95.71
+2025-06-01,9506,Sports Equipment,95.71
+2025-07-01,9506,Sports Equipment,95.58
+2025-08-01,9506,Sports Equipment,95.98
+2025-09-01,9506,Sports Equipment,96.05
+2025-11-01,9506,Sports Equipment,96.12
+2025-12-01,9506,Sports Equipment,96.12
+2026-01-01,9506,Sports Equipment,98.26
+2026-02-01,9506,Sports Equipment,98.26
+2026-03-01,9506,Sports Equipment,97.79
+2026-04-01,9506,Sports Equipment,98.12
+2026-05-01,9506,Sports Equipment,98.06
+2026-06-01,9506,Sports Equipment,97.99
+2026-07-01,9506,Sports Equipment,97.99
+2025-01-01,9617,Vacuum Flask,104.93
+2025-02-01,9617,Vacuum Flask,103.04
+2025-03-01,9617,Vacuum Flask,100
+2025-04-01,9617,Vacuum Flask,102.62
+2025-05-01,9617,Vacuum Flask,96.22
+2025-06-01,9617,Vacuum Flask,98.43
+2025-07-01,9617,Vacuum Flask,96.12
+2025-08-01,9617,Vacuum Flask,103.25
+2025-09-01,9617,Vacuum Flask,104.83
+2025-10-01,9617,Vacuum Flask,109.02
+2025-11-01,9617,Vacuum Flask,105.35
+2025-12-01,9617,Vacuum Flask,100.73
+2026-01-01,9617,Vacuum Flask,99.69
+2026-02-01,9617,Vacuum Flask,101.57
+2026-03-01,9617,Vacuum Flask,99.9
+2026-04-01,9617,Vacuum Flask,101.99
+2026-05-01,9617,Vacuum Flask,100.73
+2026-06-01,9617,Vacuum Flask,103.46
+2026-07-01,9617,Vacuum Flask,106.3
+2025-01-01,9619,Sanitary towels (pads),99.4
+2025-02-01,9619,Sanitary towels (pads),100.5
+2025-03-01,9619,Sanitary towels (pads),100
+2025-04-01,9619,Sanitary towels (pads),98.81
+2025-05-01,9619,Sanitary towels (pads),98.21
+2025-06-01,9619,Sanitary towels (pads),97.32
+2025-07-01,9619,Sanitary towels (pads),91.35
+2025-08-01,9619,Sanitary towels (pads),97.61
+2025-09-01,9619,Sanitary towels (pads),97.91
+2025-10-01,9619,Sanitary towels (pads),97.32
+2025-11-01,9619,Sanitary towels (pads),94.14
+2025-12-01,9619,Sanitary towels (pads),94.14
+2026-01-01,9619,Sanitary towels (pads),94.63
+2026-02-01,9619,Sanitary towels (pads),94.53
+2026-03-01,9619,Sanitary towels (pads),95.73
+2026-04-01,9619,Sanitary towels (pads),95.03
+2026-05-01,9619,Sanitary towels (pads),95.33
+2026-06-01,9619,Sanitary towels (pads),96.82
+2026-07-01,9619,Sanitary towels (pads),94.73

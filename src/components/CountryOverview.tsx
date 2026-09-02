@@ -1,25 +1,14 @@
-import {
-  importsInYear,
-  latestImportYoY,
-  type CountryData,
-} from "@/data/tracker"
+import { monthLabel, type CountryData } from "@/data/tracker"
 import { Card, CardContent } from "@/components/ui/card"
 
-// The year the headline import total covers. 2024 per the researcher's ask,
-// which also matches the OEC share year the product selection uses.
+// The year the headline import total covers — fixed by the researcher's file
+// (us_imports_2024), and the same year the OEC export shares use.
 const IMPORTS_YEAR = 2024
 
-function usdBn(n: number): string {
-  if (n >= 1) return `$${n.toFixed(1)}B`
-  if (n >= 0.001) return `$${(n * 1000).toFixed(0)}M`
-  return `$${(n * 1e6).toFixed(0)}K`
-}
-
-function monthLabel(ym: string): string {
-  const [y, m] = ym.split("-")
-  const names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-  return `${names[parseInt(m, 10) - 1]} ${y}`
+function usd(n: number): string {
+  if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`
+  if (n >= 1e6) return `$${(n / 1e6).toFixed(0)}M`
+  return `$${(n / 1e3).toFixed(0)}K`
 }
 
 function Stat({
@@ -46,12 +35,10 @@ function Stat({
 
 // At-a-glance country summary the researcher asked for: how much the U.S.
 // imports from the country, how much of its qualifying basket is tariffed vs
-// exempt, and the freshest import-value signal.
+// exempt, and the freshest import-value signal. All four figures come
+// precomputed on the researcher's country_summary row.
 export function CountryOverview({ data }: { data: CountryData }) {
-  const total = importsInYear(data.importValue, IMPORTS_YEAR)
-  const yoy = latestImportYoY(data.importValue)
-  const tariffed = data.products.filter((p) => p.exemptPct === 0).length
-  const exempt = data.products.filter((p) => p.exemptPct === 100).length
+  const yoy = data.latestYoy
 
   return (
     // 2-up even on phones (the tiles are compact enough), 4-up once the
@@ -59,17 +46,17 @@ export function CountryOverview({ data }: { data: CountryData }) {
     <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
       <Stat
         label={`U.S. imports (${IMPORTS_YEAR})`}
-        value={total === null ? "—" : usdBn(total)}
+        value={data.usImports2024 === null ? "—" : usd(data.usImports2024)}
         detail="All goods, U.S. Census"
       />
       <Stat
         label="Tariffed products"
-        value={String(tariffed)}
-        detail={`of ${data.products.length} qualifying, no Annex II exemption`}
+        value={String(data.tariffedCount)}
+        detail={`of ${data.qualifyingCount} qualifying, no Annex II exemption`}
       />
       <Stat
         label="Exempt products"
-        value={String(exempt)}
+        value={String(data.exemptCount)}
         detail="fully exempt under Annex II"
       />
       <Stat

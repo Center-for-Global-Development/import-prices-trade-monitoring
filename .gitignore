@@ -30,8 +30,13 @@ reference/
 .claude/
 .playwright-mcp/
 
-# Fetch-script output (regenerated CSVs for researcher inspection)
-scripts/output/
+# Local-only tooling: legacy fetch/convert scripts and their output. The
+# committed data pipeline is scripts/build_app_data.mjs (data/*.csv → src/data).
+scripts/*
+!scripts/build_app_data.mjs
+!scripts/build_world_map.mjs
+!scripts/README.md
 
-scripts/
+# Researcher working files (email attachments, docx, superseded data drops).
+# The canonical inputs live in data/.
 researcher data/
