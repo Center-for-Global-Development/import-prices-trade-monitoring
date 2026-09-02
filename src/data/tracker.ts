@@ -45,6 +45,23 @@ export type Product = {
   usImportsYtd: number | null
 }
 
+// One-letter tariff status used to tag products in chart legends/pickers so
+// readers can compare tariffed vs exempt price paths at a glance. Mirrors the
+// three-way badge in the products table: T = tariffed (0% exempt), E = exempt
+// (100%), P = partially exempt (anything between). Null when unclassified.
+export type TariffCode = "T" | "E" | "P"
+export function tariffCode(p: Product): TariffCode | null {
+  if (p.exemptPct === null) return null
+  if (p.exemptPct === 0) return "T"
+  if (p.exemptPct === 100) return "E"
+  return "P"
+}
+export const TARIFF_CODE_LABEL: Record<TariffCode, string> = {
+  T: "tariffed",
+  E: "exempt",
+  P: "partially exempt",
+}
+
 export type CountryData = {
   iso: string
   name: string

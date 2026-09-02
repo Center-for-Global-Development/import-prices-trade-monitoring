@@ -5,12 +5,11 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
 } from "@/components/ui/chart"
 import type { ChartConfig } from "@/components/ui/chart"
 import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 import { ProductPicker } from "@/components/ProductPicker"
+import { LineLegend } from "@/components/LineLegend"
 
 const MONTH_LABELS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -128,6 +127,7 @@ export function ProductImportChart({ products }: { products: Product[] }) {
             />
           ))}
           <ChartTooltip
+            wrapperStyle={{ zIndex: 20 }}
             content={
               <ChartTooltipContent
                 formatter={(value, name) => (
@@ -143,7 +143,6 @@ export function ProductImportChart({ products }: { products: Product[] }) {
               />
             }
           />
-          <ChartLegend content={<ChartLegendContent />} />
           {active.map((p) => (
             <Line
               key={p.hs}
@@ -162,6 +161,14 @@ export function ProductImportChart({ products }: { products: Product[] }) {
           ))}
         </LineChart>
       </ChartContainer>
+      <LineLegend
+        items={active.map((p) => ({
+          key: p.hs,
+          label: String(config[p.hs]?.label ?? p.hs),
+          color: String(config[p.hs]?.color ?? "currentColor"),
+          marker: "dot",
+        }))}
+      />
     </div>
   )
 }
