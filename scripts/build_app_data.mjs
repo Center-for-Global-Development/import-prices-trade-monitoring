@@ -185,12 +185,23 @@ for (const r of rows) {
       if (c.summary) fail(`duplicate country_summary for ${r.country_iso3}`)
       const month = ym(r.latest_import_period, ctx)
       const pct = num(r.latest_import_yoy_pct, ctx)
+      const qualifying = int(r.qualifying_products_n, ctx) ?? 0
+      const tariffed = int(r.tariffed_products_n, ctx) ?? 0
+      const exempt = int(r.exempt_products_n, ctx) ?? 0
+      // The file gives tariffed (0% exempt) and fully exempt (100%) counts;
+      // everything else in the qualifying basket is partially exempt. This
+      // assumes every qualifying product has an exemption share (true for all
+      // tracked products; the RA has been asked to confirm for unpriced ones,
+      // or to add a partial count to the summary row).
+      const partial = qualifying - tariffed - exempt
+      if (partial < 0) warn(`${ctx}: tariffed (${tariffed}) + exempt (${exempt}) exceed qualifying (${qualifying})`)
       c.summary = {
         usImports2024: num(r.us_imports_2024, ctx),
-        qualifying: int(r.qualifying_products_n, ctx) ?? 0,
+        qualifying,
         tracked: int(r.tracked_products_n, ctx) ?? 0,
-        tariffed: int(r.tariffed_products_n, ctx) ?? 0,
-        exempt: int(r.exempt_products_n, ctx) ?? 0,
+        tariffed,
+        partial: Math.max(0, partial),
+        exempt,
         latestYoy: month && pct !== null ? { month, pct: round(pct, 2) } : null,
       }
       break

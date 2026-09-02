@@ -39,7 +39,8 @@ export function Home() {
                 >
                   <span>{c.name}</span>
                   <span className="text-xs text-muted-foreground tabular-nums">
-                    {c.tariffedCount} tariffed · {c.exemptCount} exempt
+                    {c.tariffedCount} tariffed · {c.partialCount} partially exempt ·{" "}
+                    {c.exemptCount} exempt
                   </span>
                 </CommandItem>
               ))}

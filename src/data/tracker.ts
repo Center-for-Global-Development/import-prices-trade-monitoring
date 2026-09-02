@@ -69,10 +69,11 @@ export type CountryData = {
   // researcher's file has none.
   usImports2024: number | null
   // Basket counts over ALL qualifying products (with or without a BLS price
-  // series). tariffed = no Annex II exemption; exempt = fully exempt.
-  // Partially exempt products sit in neither, so they need not sum.
+  // series). tariffed = no exemption (0%); exempt = fully exempt (100%);
+  // partial = everything in between. The three sum to qualifyingCount.
   qualifyingCount: number
   tariffedCount: number
+  partialCount: number
   exemptCount: number
   // Freshest cumulative-YTD import YoY and the month it runs through.
   latestYoy: { month: string; pct: number } | null
@@ -102,6 +103,7 @@ type CountryRaw = {
   qualifying: number
   tracked: number
   tariffed: number
+  partial: number
   exempt: number
   latestYoy: { month: string; pct: number } | null
   months: [string, number | null][]
@@ -148,6 +150,7 @@ export type Country = {
   qualifyingCount: number
   trackedCount: number
   tariffedCount: number
+  partialCount: number
   exemptCount: number
 }
 
@@ -158,6 +161,7 @@ export const COUNTRIES: Country[] = Object.entries(DATA.countries)
     qualifyingCount: c.qualifying,
     trackedCount: c.products.length,
     tariffedCount: c.tariffed,
+    partialCount: c.partial,
     exemptCount: c.exempt,
   }))
   .sort((a, b) => a.name.localeCompare(b.name))
@@ -181,6 +185,7 @@ export function getCountryData(iso: string): CountryData | undefined {
     usImports2024: c.usImports2024,
     qualifyingCount: c.qualifying,
     tariffedCount: c.tariffed,
+    partialCount: c.partial,
     exemptCount: c.exempt,
     latestYoy: c.latestYoy,
     importValue: c.months.map(([date, cumYoy]) => ({ date, cumYoy })),

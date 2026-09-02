@@ -42,7 +42,7 @@ populated. Blank cells are intentional. Percentages are already percentages
 | `qualifying_products_n` | HS4s where ≥10% of the country's exports go to the U.S. (OEC 2024), before requiring BLS data |
 | `tracked_products_n` | qualifying products that also have a BLS series = number of `country_product` rows |
 | `tariffed_products_n` | qualifying products with no Annex II exemption |
-| `exempt_products_n` | qualifying products fully exempt under Annex II (partials sit in neither bucket) |
+| `exempt_products_n` | qualifying products fully exempt under Annex II. The converter derives the partially exempt count as qualifying − tariffed − exempt, so the three tiles sum; this assumes every qualifying product has an exemption share. |
 | `latest_import_yoy_pct` | latest cumulative-YTD YoY change in total imports from the country, % |
 | `latest_import_period` | month that value runs through |
 

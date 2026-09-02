@@ -68,7 +68,8 @@ export function WorldMap() {
         >
           <div className="font-medium">{hovered.name}</div>
           <div className="text-muted-foreground">
-            {hovered.tariffedCount} tariffed · {hovered.exemptCount} exempt
+            {hovered.tariffedCount} tariffed · {hovered.partialCount} partially exempt ·{" "}
+            {hovered.exemptCount} exempt
           </div>
         </div>
       )}

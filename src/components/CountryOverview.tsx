@@ -43,18 +43,25 @@ export function CountryOverview({ data }: { data: CountryData }) {
 
   return (
     <div className="space-y-2">
-    {/* 2-up even on phones (the tiles are compact enough), 4-up once the
-        full-width row fits; gap stays tighter than the page's card spacing. */}
-    <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+    {/* 2-up on phones, 3-up on tablets, all five in one row on desktop; gap
+        stays tighter than the page's card spacing. */}
+    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5">
       <Stat
         label={`US imports (${IMPORTS_YEAR})`}
         value={data.usImports2024 === null ? "—" : usd(data.usImports2024)}
         detail="All goods, US Census"
       />
+      {/* The three status tiles sit together and sum to the qualifying
+          count, so readers can check the arithmetic at a glance. */}
       <Stat
         label="Tariffed products"
         value={String(data.tariffedCount)}
         detail={`of ${data.qualifyingCount} qualifying products, no exemptions`}
+      />
+      <Stat
+        label="Partially exempt products"
+        value={String(data.partialCount)}
+        detail="partly exempt under Executive Orders"
       />
       <Stat
         label="Exempt products"
