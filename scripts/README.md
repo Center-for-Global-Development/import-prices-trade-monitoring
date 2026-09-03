@@ -10,7 +10,8 @@ the start of `npm run dev` and `npm run build`; run it by hand with
 | Output (src/data/) | Source | Contents |
 |---|---|---|
 | `prices.json` | `data/PRICE_DATA.csv` | BLS import price indexes by HS4, monthly, March 2025 = 100. |
-| `countries.json` | `data/COUNTRY_PRODUCT_DATA.csv` | Per country: summary tiles, monthly cumulative-YTD import YoY, and the tracked products (share, tariff status, price change, YTD imports) as compact rows. |
+| `countries.json` | `data/COUNTRY_PRODUCT_DATA.csv` | Per country: summary tiles, monthly cumulative-YTD import YoY, and the tracked products (share, tariff status, average tariff, price change, YTD imports) as compact rows. Also the period the headline import total covers (`usImportsPeriod`). |
+| `product_months.json` | `data/COUNTRY_PRODUCT_DATA.csv` (`country_product_month` rows) | Per country × HS4: monthly cumulative-YTD import YoY packed as `[firstMonth, [pct or null per month]]`. |
 
 The app's data layer is `src/data/tracker.ts`; it is the only module that
 reads these files.

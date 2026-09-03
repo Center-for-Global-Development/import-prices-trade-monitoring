@@ -8,7 +8,7 @@
 //                   March 2025 = 100). BLS publishes these for ALL US
 //                   imports of an HS4, not by origin country, so a series is
 //                   shared by every country that exports the product.
-//   countries.json  Per country: the summary tiles (2024 import total,
+//   countries.json  Per country: the summary tiles (headline import total,
 //                   qualifying / tracked / tariffed / exempt counts, latest
 //                   cumulative-YTD import YoY), the monthly cumulative YoY
 //                   series, and the tracked products — the country×HS4 pairs
@@ -16,9 +16,14 @@
 //                   to the US (OEC 2024) AND a BLS price series exists —
 //                   each with share, exemption status, latest price change
 //                   and YTD US imports.
+//   product_months.json  Per country×HS4: monthly cumulative-YTD import YoY
+//                   for that product from that country (US Census), packed
+//                   as [firstMonth, [pct | null per month]]. Not every
+//                   tracked product has one (no year-earlier imports).
 
 import pricesRaw from "./prices.json"
 import countriesRaw from "./countries.json"
+import productMonthsRaw from "./product_months.json"
 
 export type PricePoint = { date: string; idx: number }
 // Cumulative year-to-date US imports vs the same months a year earlier, %.
@@ -43,6 +48,9 @@ export type Product = {
   // Cumulative US imports of this HS4 from the country, Jan through
   // IMPORTS_YTD_THROUGH, USD. A real zero is a real zero.
   usImportsYtd: number | null
+  // Average applied US tariff rate on the HS4 from this country, % (added
+  // by the researcher in Sep 2026; null in older drops or when unclassified).
+  avgTariffPct: number | null
 }
 
 // One-letter tariff status used to tag products in chart legends/pickers so
@@ -65,9 +73,10 @@ export const TARIFF_CODE_LABEL: Record<TariffCode, string> = {
 export type CountryData = {
   iso: string
   name: string
-  // Total US goods imports from the country in 2024, USD. Null when the
-  // researcher's file has none.
-  usImports2024: number | null
+  // Headline US goods imports from the country, USD, over the period
+  // US_IMPORTS_LABEL describes (calendar 2024 in the August 2026 drop,
+  // Jan–Jul 2026 YTD since September). Null when the file has none.
+  usImports: number | null
   // Basket counts over ALL qualifying products (with or without a BLS price
   // series). tariffed = no exemption (0%); exempt = fully exempt (100%);
   // partial = everything in between. The three sum to qualifyingCount.
@@ -95,11 +104,12 @@ type ProductRow = [
   priceMonth: string | null,
   priceChangePct: number | null,
   usImportsYtd: number | null,
+  avgTariffPct: number | null,
 ]
 type CountryRaw = {
   name: string
   ctyCode: string
-  usImports2024: number | null
+  usImports: number | null
   qualifying: number
   tracked: number
   tariffed: number
@@ -114,11 +124,17 @@ type CountriesRaw = {
   threshold: number
   importsYtdThrough: string
   priceThrough: string
+  // Year the headline import total covers, and the month it runs through
+  // when it is a year-to-date figure (null = full calendar year).
+  usImportsPeriod: { year: string; through: string | null }
   hs4Names: Record<string, string>
   countries: Record<string, CountryRaw>
 }
+// ISO3 -> hs4 -> [firstMonth "YYYY-MM", values (null = no ratio that month)]
+type ProductMonthsRaw = Record<string, Record<string, [string, (number | null)[]]>>
 const PRICES = pricesRaw as unknown as PricesRaw
 const DATA = countriesRaw as unknown as CountriesRaw
+const PRODUCT_MONTHS = productMonthsRaw as unknown as ProductMonthsRaw
 
 export const BASE_LABEL = PRICES.baseLabel
 // The year the export shares refer to (OEC bilateral trade), e.g. "2024".
@@ -143,6 +159,10 @@ export function ytdLabel(ym: string): string {
   const end = MONTHS[parseInt(m, 10) - 1]
   return end === "Jan" ? `Jan ${y}` : `Jan–${end} ${y}`
 }
+// Period the headline import tile covers, e.g. "2024" or "Jan–Jul 2026".
+export const US_IMPORTS_LABEL = DATA.usImportsPeriod.through
+  ? ytdLabel(DATA.usImportsPeriod.through)
+  : DATA.usImportsPeriod.year
 
 export type Country = {
   iso: string
@@ -182,7 +202,7 @@ export function getCountryData(iso: string): CountryData | undefined {
   return {
     iso,
     name: c.name,
-    usImports2024: c.usImports2024,
+    usImports: c.usImports,
     qualifyingCount: c.qualifying,
     tariffedCount: c.tariffed,
     partialCount: c.partial,
@@ -190,7 +210,7 @@ export function getCountryData(iso: string): CountryData | undefined {
     latestYoy: c.latestYoy,
     importValue: c.months.map(([date, cumYoy]) => ({ date, cumYoy })),
     products: c.products.map(
-      ([hs, share, exempt, tariffStatus, priceMonth, priceChangePct, usImportsYtd]) => ({
+      ([hs, share, exempt, tariffStatus, priceMonth, priceChangePct, usImportsYtd, avgTariffPct]) => ({
         hs,
         name: DATA.hs4Names[hs] ?? PRICES.series[hs]?.name ?? hs,
         shareToUS: share,
@@ -199,9 +219,29 @@ export function getCountryData(iso: string): CountryData | undefined {
         priceChangePct,
         priceMonth,
         usImportsYtd,
+        avgTariffPct: avgTariffPct ?? null,
       }),
     ),
   }
+}
+
+// Monthly cumulative-YTD YoY of US imports of one product from one country,
+// in month order, including null gaps where the file has no ratio. Empty when
+// the researcher's file carries no series for the pair.
+export function getProductImportSeries(iso: string, hs: string): ImportPoint[] {
+  const packed = PRODUCT_MONTHS[iso]?.[hs]
+  if (!packed) return []
+  const [first, values] = packed
+  let y = parseInt(first, 10)
+  let m = parseInt(first.slice(5), 10)
+  return values.map((cumYoy) => {
+    const date = `${y}-${String(m).padStart(2, "0")}`
+    if (++m > 12) {
+      m = 1
+      y++
+    }
+    return { date, cumYoy }
+  })
 }
 
 export type HS2 = { code: string; name: string }

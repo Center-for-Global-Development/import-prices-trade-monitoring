@@ -16,6 +16,7 @@ import type { ChartConfig } from "@/components/ui/chart"
 import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 import { ProductPicker } from "@/components/ProductPicker"
 import { LineLegend } from "@/components/LineLegend"
+import { DASH } from "@/lib/tariffDash"
 
 const PALETTE = [
   "var(--chart-1)",
@@ -25,14 +26,6 @@ const PALETTE = [
   "var(--chart-5)",
 ]
 
-// Tariff status is encoded twice so it survives both colour-blindness and a
-// crowded legend: a letter after the product name, and the line's dash
-// pattern. Colour stays reserved for telling products apart.
-const DASH: Record<TariffCode, string | undefined> = {
-  T: undefined, // solid
-  E: "8 5", // dashed
-  P: "2 4", // dotted
-}
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
   // Only products with a BLS price series can be plotted. The researcher's
@@ -230,7 +223,7 @@ function TrimmedTooltip(props: React.ComponentProps<typeof ChartTooltipContent>)
 
 // What the legend letters and line styles mean. Kept next to the chart so
 // readers don't have to scroll to the table's key.
-function TariffLineKey() {
+export function TariffLineKey() {
   const sample = (dash?: string) => (
     <svg width="28" height="8" aria-hidden="true" className="shrink-0">
       <line

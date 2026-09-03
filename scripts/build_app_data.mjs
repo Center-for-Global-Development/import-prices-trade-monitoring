@@ -13,26 +13,39 @@
 //                             BLS import price indexes by HS4, monthly,
 //                             rebased so March 2025 = 100. Product-level
 //                             (all U.S. imports of the HS4), not by country.
-//   COUNTRY_PRODUCT_DATA.csv  long file with three record_types:
-//     country_summary   one row per country: 2024 import total, qualifying /
-//                       tracked / tariffed / exempt product counts, latest
-//                       cumulative-YTD import YoY and its month.
+//   COUNTRY_PRODUCT_DATA.csv  long file with four record_types:
+//     country_summary   one row per country: headline import total (column
+//                       us_imports_<YEAR>; the September 2026 drop renamed
+//                       it from us_imports_2024 = calendar 2024 to
+//                       us_imports_2026 = Jan..latest_import_period YTD),
+//                       qualifying / tracked / tariffed / exempt product
+//                       counts, latest cumulative-YTD import YoY and its month.
 //     country_month     one row per country-month: cumulative YTD import YoY
 //                       (Jan..M this year vs Jan..M a year earlier), %.
 //     country_product   one row per country×HS4 already filtered to the
 //                       tracker's basket (≥10% of the country's exports of
 //                       the product went to the U.S., OEC 2024) AND having a
 //                       usable BLS price series. Carries share, exemption
-//                       share + preformatted tariff status, latest price
-//                       change since Mar 2025, and YTD U.S. imports.
+//                       share + preformatted tariff status (+ average tariff
+//                       rate since Sep 2026), latest price change since
+//                       Mar 2025, and YTD U.S. imports.
+//     country_product_month  (added Sep 2026) one row per country×HS4×month:
+//                       cumulative YTD import YoY for that product from that
+//                       country, same definition as country_month. Only
+//                       months with a defined ratio are present, so series
+//                       have gaps and not every tracked product has one.
 //
 // Outputs (src/data/):
 //   prices.json     { baseLabel, through, series: { hs4: { name, points: [[YYYY-MM, idx]] } } }
 //   countries.json  { shareBasis, threshold, importsYtdThrough, priceThrough,
-//                     hs4Names, productColumns, countries: { ISO3: {...} } }
+//                     usImportsPeriod, hs4Names, productColumns,
+//                     countries: { ISO3: {...} } }
 //                   products are stored as compact rows in productColumns
 //                   order to keep the bundle small; src/data/tracker.ts
 //                   expands them.
+//   product_months.json  { ISO3: { hs4: [firstMonth, [pct | null, ...]] } }
+//                   per-product cumulative YoY, one slot per month from the
+//                   first to the last observed month (null = no ratio).
 //
 // Exit code 1 on structural problems (missing files/columns, duplicate keys,
 // products pointing at a price series that isn't in PRICE_DATA). Softer
@@ -155,12 +168,23 @@ for (const [hs4, s] of Object.entries(series)) {
 
 const rows = readCsv("COUNTRY_PRODUCT_DATA.csv", [
   "record_type", "country_iso3", "cty_code", "cty_name",
-  "us_imports_2024", "qualifying_products_n", "tracked_products_n",
+  "qualifying_products_n", "tracked_products_n",
   "tariffed_products_n", "exempt_products_n", "latest_import_yoy_pct",
   "latest_import_period", "date", "import_yoy_pct", "hs2", "hs4", "product",
   "us_share_pct", "exempt_share_pct", "tariff_status", "price_date",
   "price_change_since_mar2025", "us_imports_ytd", "imports_ytd_date",
 ])
+
+// The headline import total's column carries its year in its name
+// (us_imports_2024 in the August 2026 drop, us_imports_2026 since
+// September). Whether it is a full calendar year or a year-to-date figure is
+// decided below from latest_import_period.
+const usImportsCol = Object.keys(rows[0]).find((c) => /^us_imports_\d{4}$/.test(c))
+if (!usImportsCol) fail("COUNTRY_PRODUCT_DATA.csv has no us_imports_<YEAR> column")
+const usImportsYear = usImportsCol.slice(-4)
+// Optional: not in the August 2026 drop, present since September.
+const hasAvgTariff = "average_tariff_pct" in rows[0]
+if (!hasAvgTariff) warn("COUNTRY_PRODUCT_DATA.csv has no average_tariff_pct column; products will carry null")
 
 const countries = {}
 const hs4Names = {}
@@ -172,6 +196,7 @@ const country = (r) => {
     summary: null,
     months: new Map(),
     products: new Map(),
+    productMonths: new Map(), // hs4 -> Map(YYYY-MM -> pct)
   })
 }
 
@@ -196,7 +221,7 @@ for (const r of rows) {
       const partial = qualifying - tariffed - exempt
       if (partial < 0) warn(`${ctx}: tariffed (${tariffed}) + exempt (${exempt}) exceed qualifying (${qualifying})`)
       c.summary = {
-        usImports2024: num(r.us_imports_2024, ctx),
+        usImports: num(r[usImportsCol], ctx),
         qualifying,
         tracked: int(r.tracked_products_n, ctx) ?? 0,
         tariffed,
@@ -229,9 +254,14 @@ for (const r of rows) {
       if (share !== null && share < SHARE_THRESHOLD * 100 - 0.05) warn(`${pctx} share ${share}% is below the ${SHARE_THRESHOLD * 100}% threshold`)
       if (share !== null && share > 100) warn(`${pctx} share ${share}% exceeds 100`)
       // The preformatted status should agree with the numeric share.
+      // R rounds 12.5 to 12 and JS to 13, so compare the label's number
+      // to the share with half a point of tolerance.
       if (exempt !== null) {
-        const expect = exempt === 0 ? "Tariffed" : exempt === 100 ? "Exempt" : `${Math.round(exempt)}% exempt`
-        if (r.tariff_status !== expect) warn(`${pctx} tariff_status "${r.tariff_status}" vs exempt_share_pct ${exempt}`)
+        const m = /^(\d+)% exempt$/.exec(r.tariff_status)
+        const ok = exempt === 0 ? r.tariff_status === "Tariffed"
+          : exempt === 100 ? r.tariff_status === "Exempt"
+          : m !== null && Math.abs(Number(m[1]) - exempt) <= 0.5
+        if (!ok) warn(`${pctx} tariff_status "${r.tariff_status}" vs exempt_share_pct ${exempt}`)
       }
       // The file's price change should be the series' latest point − 100.
       if (change !== null && priceMonth) {
@@ -247,7 +277,20 @@ for (const r of rows) {
         priceMonth,
         round(change, 2),
         num(r.us_imports_ytd, pctx),
+        hasAvgTariff ? round(num(r.average_tariff_pct, pctx), 2) : null,
       ])
+      break
+    }
+    case "country_product_month": {
+      if (!/^\d{4}$/.test(r.hs4)) fail(`${ctx} hs4 "${r.hs4}" is not a 4-digit code (leading zeros lost?)`)
+      const month = ym(r.date, `${ctx} ${r.hs4}`)
+      if (!month) fail(`${ctx} ${r.hs4} has no date`)
+      const pct = num(r.import_yoy_pct, `${ctx} ${r.hs4} ${month}`)
+      if (pct === null) break // no ratio for that month; leave the gap
+      const pm = c.productMonths.get(r.hs4) ?? new Map()
+      if (pm.has(month)) fail(`duplicate country_product_month ${r.country_iso3} ${r.hs4} ${month}`)
+      pm.set(month, round(pct, 2))
+      c.productMonths.set(r.hs4, pm)
       break
     }
     default:
@@ -261,7 +304,26 @@ for (const [hs4, s] of Object.entries(series)) {
   if (hs4Names[hs4] !== s.name) warn(`hs4 ${hs4} named "${hs4Names[hs4]}" in COUNTRY_PRODUCT_DATA but "${s.name}" in PRICE_DATA (using the former)`)
 }
 
+// Headline import total: a full calendar year when the column's year is
+// before the data's latest month, otherwise Jan..latest month of that year.
+let latestPeriod = ""
+for (const c of Object.values(countries)) {
+  const m = c.summary?.latestYoy?.month
+  if (m && m > latestPeriod) latestPeriod = m
+}
+const usImportsPeriod = {
+  year: usImportsYear,
+  through: latestPeriod.startsWith(usImportsYear) ? latestPeriod : null,
+}
+
+// "YYYY-MM" -> months since year 0, for laying gappy series into arrays.
+const monthIndex = (m) => parseInt(m.slice(0, 4), 10) * 12 + parseInt(m.slice(5, 7), 10) - 1
+
 const out = {}
+const productMonthsOut = {}
+let nProductMonths = 0
+let nUnpriced = 0 // monthly series for a country×HS4 that isn't a tracked product
+let nNoMonths = 0 // tracked products with no monthly series at all
 let dropped = []
 for (const [iso, c] of Object.entries(countries).sort()) {
   if (!c.summary) {
@@ -281,7 +343,23 @@ for (const [iso, c] of Object.entries(countries).sort()) {
   const products = [...c.products.values()].sort((a, b) => b[1] - a[1])
   for (const p of products) {
     if (p[4] && p[4] !== priceThrough) warn(`${iso} ${p[0]} price_date ${p[4]} lags the latest BLS month ${priceThrough}`)
+    if (!c.productMonths.has(p[0])) nNoMonths++
   }
+  // Per-product monthly YoY, packed as [firstMonth, [value|null per month]].
+  const pmOut = {}
+  for (const [hs4, pm] of [...c.productMonths.entries()].sort()) {
+    if (!c.products.has(hs4)) {
+      nUnpriced++
+      continue
+    }
+    const keys = [...pm.keys()].sort()
+    const first = monthIndex(keys[0])
+    const values = Array(monthIndex(keys[keys.length - 1]) - first + 1).fill(null)
+    for (const k of keys) values[monthIndex(k) - first] = pm.get(k)
+    nProductMonths += keys.length
+    pmOut[hs4] = [keys[0], values]
+  }
+  if (Object.keys(pmOut).length) productMonthsOut[iso] = pmOut
   out[iso] = {
     name: c.name,
     ctyCode: c.ctyCode,
@@ -303,19 +381,24 @@ const countriesJson = {
   threshold: SHARE_THRESHOLD,
   importsYtdThrough,
   priceThrough,
+  usImportsPeriod,
   hs4Names: Object.fromEntries(Object.entries(hs4Names).sort()),
-  productColumns: ["hs4", "usSharePct", "exemptSharePct", "tariffStatus", "priceMonth", "priceChangePct", "usImportsYtd"],
+  productColumns: ["hs4", "usSharePct", "exemptSharePct", "tariffStatus", "priceMonth", "priceChangePct", "usImportsYtd", "avgTariffPct"],
   countries: out,
 }
+if (nUnpriced) warn(`${nUnpriced} country_product_month series belong to country×HS4 pairs with no country_product row — ignored`)
+if (nNoMonths) warn(`${nNoMonths} tracked country×HS4 pairs have no country_product_month rows (no year-earlier imports to compare against)`)
 writeFileSync(join(OUT, "prices.json"), JSON.stringify(prices))
 writeFileSync(join(OUT, "countries.json"), JSON.stringify(countriesJson))
+writeFileSync(join(OUT, "product_months.json"), JSON.stringify(productMonthsOut))
 
 const nProducts = Object.values(out).reduce((n, c) => n + c.products.length, 0)
 const nPriced = Object.values(out).filter((c) => c.products.length > 0).length
 console.log(
   `build_app_data: ${Object.keys(series).length} price series through ${priceThrough}; ` +
   `${Object.keys(out).length} countries (${nPriced} with tracked products), ` +
-  `${nProducts} country-products; imports YTD through ${importsYtdThrough}`,
+  `${nProducts} country-products with ${nProductMonths} product-months; imports YTD through ${importsYtdThrough}; ` +
+  `headline imports ${usImportsPeriod.through ? `Jan..${usImportsPeriod.through}` : usImportsPeriod.year}`,
 )
 if (dropped.length) console.log(`  dropped ${dropped.length} countries with no qualifying products: ${dropped.join(" ")}`)
 if (warnings.length) {

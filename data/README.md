@@ -6,7 +6,7 @@ and are the canonical handoff format: when a new drop arrives, replace both
 files here with the new versions, keeping the same file names, and rebuild.
 
 ```bash
-npm run data     # validates the CSVs and writes src/data/prices.json + countries.json
+npm run data     # validates the CSVs and writes src/data/{prices,countries,product_months}.json
 npm run build    # runs `data` first, then the normal app build
 ```
 
@@ -38,7 +38,7 @@ populated. Blank cells are intentional. Percentages are already percentages
 
 | column | notes |
 |---|---|
-| `us_imports_2024` | total U.S. goods imports from the country in 2024, USD |
+| `us_imports_<YEAR>` | headline U.S. goods imports from the country, USD. The column name carries the year: the August 2026 drop had `us_imports_2024` (calendar 2024); the September 2026 drop has `us_imports_2026`, which the converter reads as Jan through `latest_import_period` (year-to-date) because the year matches the data's latest month. The tile label follows automatically. |
 | `qualifying_products_n` | HS4s where ≥10% of the country's exports go to the U.S. (OEC 2024), before requiring BLS data |
 | `tracked_products_n` | qualifying products that also have a BLS series = number of `country_product` rows |
 | `tariffed_products_n` | qualifying products with no Annex II exemption |
@@ -61,18 +61,54 @@ table and the price-chart product picker. Already filtered upstream to the
 |---|---|
 | `hs2`, `hs4`, `product` | chapter, product code (the join key to `PRICE_DATA.csv`), display name |
 | `us_share_pct` | share of the country's exports of the HS4 going to the U.S., % (OEC 2024, capped at 100) |
-| `exempt_share_pct` | share of the HS4's U.S. import value exempt under Annex II, % |
-| `tariff_status` | preformatted: `Tariffed`, `Exempt`, or e.g. `80% exempt` |
+| `exempt_share_pct` | share of the HS4's U.S. import value exempt from tariffs, %. Since the September 2026 drop this varies by country for the same HS4 and is blank for ~415 unclassified pairs. |
+| `average_tariff_pct` | (since September 2026) average applied U.S. tariff rate on the HS4 from this country, %; blank when unclassified. Passed through to the app as `avgTariffPct`, not yet displayed. |
+| `tariff_status` | preformatted: `Tariffed`, `Exempt`, or e.g. `80% exempt` (blank when unclassified) |
 | `price_date` | latest BLS month behind the price change |
 | `price_change_since_mar2025` | latest index − 100, % |
 | `us_imports_ytd` | U.S. imports of the HS4 from the country, Jan through `imports_ytd_date`, USD (0 is a real zero) |
 | `imports_ytd_date` | last month included in `us_imports_ytd`; drives the table heading |
+
+**`country_product_month`** (since the September 2026 drop) — one row per
+country × HS4 × month, feeds the import-value-by-product chart. Same
+definition as `country_month`, per product.
+
+| column | notes |
+|---|---|
+| `hs2`, `hs4`, `product` | as in `country_product` |
+| `date` | month |
+| `import_yoy_pct` | cumulative YTD U.S. imports of the HS4 from the country (Jan..M) vs the same months a year earlier, % |
+
+Only months with a defined ratio are present: a pair with zero imports in the
+year-earlier months has no row, so series start late, have gaps, and 844 of
+the 5,283 tracked pairs (mostly with zero YTD imports) have no rows at all.
+Tiny flows swing by thousands of percent; the chart's axis follows whatever
+is selected.
 
 ## Methodology constants not in the files
 
 Set at the top of `scripts/build_app_data.mjs`: the share year (2024, OEC),
 the 10% threshold, and the March 2025 = 100 base. Change them only when the
 researcher's methodology changes.
+
+## Changes in the September 2026 drop
+
+- `record_type` gains `country_product_month` (118,471 rows).
+- `us_imports_2024` renamed to `us_imports_2026` with new values (YTD, see
+  above). The researcher's note did not mention this; confirm the definition.
+- New `average_tariff_pct` column on `country_product` rows.
+- Tariff classification changed substantially without a note: 3,027 of 5,283
+  tracked pairs changed `exempt_share_pct` (1,485 Tariffed → Exempt, 625
+  Tariffed → partial, 415 now blank), the same HS4 can now differ by country
+  (169 HS4s do), and the summary tariffed/exempt counts moved accordingly.
+  The `average_tariff_pct` values cluster at 0 / 10 / 12.5 / 25 / 32.5 / 50,
+  which looks like current applied rates rather than the Annex II exemption
+  shares of the August drop. The site's "exempt under Executive Orders"
+  wording may need revisiting once the researcher confirms the definition.
+- `country_month`, `us_imports_ytd` and `imports_ytd_date` extended to July
+  2026; existing values unchanged. `PRICE_DATA.csv` unchanged.
+- Labels like `12% exempt` for 12.5 are R's round-half-even; the converter
+  tolerates half a point.
 
 ## Known quirks in the August 2026 drop
 

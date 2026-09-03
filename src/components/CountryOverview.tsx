@@ -1,9 +1,10 @@
-import { monthLabel, QUALIFYING_THRESHOLD, type CountryData } from "@/data/tracker"
+import {
+  monthLabel,
+  QUALIFYING_THRESHOLD,
+  US_IMPORTS_LABEL,
+  type CountryData,
+} from "@/data/tracker"
 import { Card, CardContent } from "@/components/ui/card"
-
-// The year the headline import total covers — fixed by the researcher's file
-// (us_imports_2024), and the same year the OEC export shares use.
-const IMPORTS_YEAR = 2024
 
 function usd(n: number): string {
   if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`
@@ -47,8 +48,8 @@ export function CountryOverview({ data }: { data: CountryData }) {
         stays tighter than the page's card spacing. */}
     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5">
       <Stat
-        label={`US imports (${IMPORTS_YEAR})`}
-        value={data.usImports2024 === null ? "—" : usd(data.usImports2024)}
+        label={`US imports (${US_IMPORTS_LABEL})`}
+        value={data.usImports === null ? "—" : usd(data.usImports)}
         detail="All goods, US Census"
       />
       {/* The three status tiles sit together and sum to the qualifying
