@@ -42,14 +42,17 @@ export type Product = {
   // Preformatted by the researcher: "Tariffed", "Exempt" or "n% exempt".
   tariffStatus: string
   // Latest BLS index − 100, i.e. % change since March 2025, and the month it
-  // refers to. Null when the series has no usable latest value.
+  // refers to. Null when the series has no usable latest value. Carried
+  // through but not shown since Sep 2026: the researcher dropped the table
+  // column pending a better price-change comparison.
   priceChangePct: number | null
   priceMonth: string | null
   // Cumulative US imports of this HS4 from the country, Jan through
   // IMPORTS_YTD_THROUGH, USD. A real zero is a real zero.
   usImportsYtd: number | null
-  // Average applied US tariff rate on the HS4 from this country, % (added
-  // by the researcher in Sep 2026; null in older drops or when unclassified).
+  // Average applied US tariff rate on the HS4 from this country, %: the mean
+  // of the HS10 rates under the HS4 (added by the researcher in Sep 2026;
+  // null in older drops or when unclassified).
   avgTariffPct: number | null
 }
 

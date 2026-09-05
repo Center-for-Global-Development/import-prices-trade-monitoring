@@ -62,10 +62,10 @@ table and the price-chart product picker. Already filtered upstream to the
 | `hs2`, `hs4`, `product` | chapter, product code (the join key to `PRICE_DATA.csv`), display name |
 | `us_share_pct` | share of the country's exports of the HS4 going to the U.S., % (OEC 2024, capped at 100) |
 | `exempt_share_pct` | share of the HS4's U.S. import value exempt from tariffs, %. Since the September 2026 drop this varies by country for the same HS4 and is blank for ~415 unclassified pairs. |
-| `average_tariff_pct` | (since September 2026) average applied U.S. tariff rate on the HS4 from this country, %; blank when unclassified. Passed through to the app as `avgTariffPct`, not yet displayed. |
+| `average_tariff_pct` | (since September 2026) average applied U.S. tariff rate on the HS4 from this country, %: for each country × HS4 pair, the mean of the underlying HS10 tariff rates. Blank when unclassified. Shown in the tracked-products table as "Average tariff rate at the HS4 level (%)". |
 | `tariff_status` | preformatted: `Tariffed`, `Exempt`, or e.g. `80% exempt` (blank when unclassified) |
 | `price_date` | latest BLS month behind the price change |
-| `price_change_since_mar2025` | latest index − 100, % |
+| `price_change_since_mar2025` | latest index − 100, %. Still converted (as `priceChangePct`) but no longer shown in the table since September 2026; the researcher wants a different price-change comparison before it returns. |
 | `us_imports_ytd` | U.S. imports of the HS4 from the country, Jan through `imports_ytd_date`, USD (0 is a real zero) |
 | `imports_ytd_date` | last month included in `us_imports_ytd`; drives the table heading |
 
