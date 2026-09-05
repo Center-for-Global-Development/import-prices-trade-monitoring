@@ -48,14 +48,16 @@ function TariffBadge({ product: p }: { product: Product }) {
   )
 }
 
-function fmtChange(delta: number): string {
-  const sign = delta >= 0 ? "+" : "−"
-  return `${sign}${Math.abs(delta).toFixed(1)}%`
+// The researcher's average_tariff_pct is the mean of the HS10 rates under
+// the HS4 for this country, so it can land on 8.33 or 4.17; one decimal is
+// enough for reading across rows. The header carries the "%" unit.
+function fmtRate(pct: number): string {
+  return pct.toFixed(1)
 }
 
 // ---------------------------------------------------------------- sorting
 
-type SortKey = "hs" | "name" | "share" | "tariff" | "price" | "imports"
+type SortKey = "hs" | "name" | "share" | "tariff" | "rate" | "imports"
 type Dir = "asc" | "desc"
 type Sort = { key: SortKey; dir: Dir }
 
@@ -70,7 +72,7 @@ const FIRST_DIR: Record<SortKey, Dir> = {
   name: "asc",
   share: "desc",
   tariff: "asc",
-  price: "desc",
+  rate: "desc",
   imports: "desc",
 }
 
@@ -79,7 +81,7 @@ const VALUE: Record<SortKey, (p: Product) => string | number | null> = {
   name: (p) => p.name,
   share: (p) => p.shareToUS,
   tariff: (p) => p.exemptPct,
-  price: (p) => p.priceChangePct,
+  rate: (p) => p.avgTariffPct,
   imports: (p) => p.usImportsYtd,
 }
 
@@ -180,8 +182,9 @@ export function TopProductsTable({ products }: { products: Product[] }) {
             <SortHead col="tariff" sort={sort} onSort={onSort} align="right">
               Tariff status
             </SortHead>
-            <SortHead col="price" sort={sort} onSort={onSort} align="right">
-              Price change since Mar 2025
+            <SortHead col="rate" sort={sort} onSort={onSort} align="right" wrap>
+              Average tariff rate at the HS4 level (%)
+              <sup className="font-normal">1</sup>
             </SortHead>
             <SortHead col="imports" sort={sort} onSort={onSort} align="right">
               US imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
@@ -214,17 +217,25 @@ export function TopProductsTable({ products }: { products: Product[] }) {
         </Button>
       )}
       <TariffKey />
+      <p className="text-xs text-muted-foreground">
+        <sup>1</sup> For every specified country-HS4 combination, the figure
+        represents the average of the underlying HS10 tariff rates.
+      </p>
     </div>
   )
 }
 
 // Clickable column header. The whole cell is the button so the hit target is
-// generous; aria-sort tells screen readers the current order.
+// generous; aria-sort tells screen readers the current order. `wrap` lets a
+// long label break onto two lines instead of widening the table; the label
+// is one span so a footnote marker stays after the text in the reversed
+// (right-aligned) flex row.
 function SortHead({
   col,
   sort,
   onSort,
   align,
+  wrap,
   className,
   children,
 }: {
@@ -232,6 +243,7 @@ function SortHead({
   sort: Sort
   onSort: (key: SortKey) => void
   align?: "right"
+  wrap?: boolean
   className?: string
   children: React.ReactNode
 }) {
@@ -246,12 +258,13 @@ function SortHead({
         type="button"
         onClick={() => onSort(col)}
         className={[
-          "inline-flex items-center gap-1 whitespace-nowrap hover:text-foreground",
-          align === "right" ? "flex-row-reverse" : "",
+          "inline-flex items-center gap-1 hover:text-foreground",
+          wrap ? "whitespace-normal" : "whitespace-nowrap",
+          align === "right" ? "flex-row-reverse text-right" : "",
           active ? "text-foreground" : "",
         ].join(" ")}
       >
-        {children}
+        <span>{children}</span>
         <Icon
           className={["h-3.5 w-3.5 shrink-0", active ? "" : "opacity-40"].join(" ")}
           aria-hidden="true"
@@ -281,10 +294,10 @@ function ProductRow({ product: p, indented }: { product: Product; indented: bool
         <TariffBadge product={p} />
       </TableCell>
       <TableCell className="text-right tabular-nums">
-        {p.priceChangePct === null ? (
+        {p.avgTariffPct === null ? (
           <span className="text-muted-foreground">—</span>
         ) : (
-          fmtChange(p.priceChangePct)
+          fmtRate(p.avgTariffPct)
         )}
       </TableCell>
       <TableCell className="text-right tabular-nums">
