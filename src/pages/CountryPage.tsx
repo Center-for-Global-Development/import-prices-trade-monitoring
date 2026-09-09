@@ -112,7 +112,9 @@ export function CountryPage() {
             {data.name}, each month showing the year so far vs the same months
             a year earlier (US Census). Products with no imports in the
             year-earlier months have no comparison and are left out.
-            Multi-select to compare products.
+            Multi-select to compare products. The products shown for each country
+            may differ from those in the “Price trends” tracker because the two
+            trackers use different databases (US Census and BLS, respectively).
           </CardDescription>
         </CardHeader>
         <CardContent>
