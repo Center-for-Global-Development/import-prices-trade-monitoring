@@ -67,6 +67,16 @@ US Census Intl Trade API  ─▶  scripts/fetch_import_values.py  ─▶  src/da
   original 10-country pilot) still works but nothing reads its output anymore.
   See `scripts/README.md` for details.
 
+## Current data updates and loading
+
+Replace the two canonical researcher files in `data/` (`PRICE_DATA.csv` and
+`COUNTRY_PRODUCT_DATA.csv`) and run `npm run build`. The Node pipeline validates
+and regenerates the directory, shared prices, and individual country payloads.
+The homepage loads summaries; country details and chart code load on demand.
+Vite fingerprints each data asset to prevent reuse of stale data after updates.
+Deploy the complete `dist/` build together. See [scripts/README.md](scripts/README.md)
+for the current pipeline; the earlier data-flow notes above describe the legacy setup.
+
 ## Running it
 
 ```bash
@@ -79,8 +89,7 @@ npm run deploy     # build + wrangler deploy (Cloudflare Workers)
 Regenerating data (only needed when inputs change):
 
 ```bash
-python3 scripts/build_app_data.py       # researcher files -> app JSON (stdlib only)
-python3 scripts/fetch_import_values.py  # Census -> import_values.json
+npm run data  # canonical researcher CSVs -> all app JSON
 ```
 
 Stack: Vite + React + TypeScript, Tailwind, shadcn/ui, Recharts.

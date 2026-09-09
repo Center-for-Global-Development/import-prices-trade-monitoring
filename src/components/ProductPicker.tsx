@@ -33,7 +33,7 @@ export function ProductPicker({
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80" align="end">
+      <PopoverContent className="w-80 max-w-[calc(100vw-2rem)]" align="end">
         <div className="space-y-2">
           <div className="text-sm font-medium">Show products</div>
           {onSetSelected && quickSelects && quickSelects.length > 0 && (

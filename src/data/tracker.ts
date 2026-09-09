@@ -3,27 +3,13 @@
 // by scripts/build_app_data.mjs. Everything analytical — product selection,
 // tariff classification, cumulative YoY, latest-period handling — is done
 // upstream in the researcher's R workflow; this module only reshapes.
-//
-//   prices.json     BLS import price indexes by HS4 (monthly, rebased to
-//                   March 2025 = 100). BLS publishes these for ALL US
-//                   imports of an HS4, not by origin country, so a series is
-//                   shared by every country that exports the product.
-//   countries.json  Per country: the summary tiles (headline import total,
-//                   qualifying / tracked / tariffed / exempt counts, latest
-//                   cumulative-YTD import YoY), the monthly cumulative YoY
-//                   series, and the tracked products — the country×HS4 pairs
-//                   where ≥10% of the country's exports of the product went
-//                   to the US (OEC 2024) AND a BLS price series exists —
-//                   each with share, exemption status, latest price change
-//                   and YTD US imports.
-//   product_months.json  Per country×HS4: monthly cumulative-YTD import YoY
-//                   for that product from that country (US Census), packed
-//                   as [firstMonth, [pct | null per month]]. Not every
-//                   tracked product has one (no year-earlier imports).
+// Generated directory is eager; shared prices and country histories load on demand.
+import directoryRaw from "./directory.json"
+import pricesUrl from "./prices.json?url"
 
-import pricesRaw from "./prices.json"
-import countriesRaw from "./countries.json"
-import productMonthsRaw from "./product_months.json"
+const countryUrls = import.meta.glob<string>("./details/*.json", {
+  query: "?url", import: "default", eager: true,
+})
 
 export type PricePoint = { date: string; idx: number }
 // Cumulative year-to-date US imports vs the same months a year earlier, %.
@@ -131,13 +117,41 @@ type CountriesRaw = {
   // when it is a year-to-date figure (null = full calendar year).
   usImportsPeriod: { year: string; through: string | null }
   hs4Names: Record<string, string>
-  countries: Record<string, CountryRaw>
+  baseLabel: string
+  countries: Record<string, Omit<CountryRaw, "products" | "months">>
 }
 // ISO3 -> hs4 -> [firstMonth "YYYY-MM", values (null = no ratio that month)]
 type ProductMonthsRaw = Record<string, Record<string, [string, (number | null)[]]>>
-const PRICES = pricesRaw as unknown as PricesRaw
-const DATA = countriesRaw as unknown as CountriesRaw
-const PRODUCT_MONTHS = productMonthsRaw as unknown as ProductMonthsRaw
+let PRICES: PricesRaw = { baseLabel: directoryRaw.baseLabel, through: directoryRaw.priceThrough, series: {} }
+const DATA = directoryRaw as unknown as CountriesRaw
+const PRODUCT_MONTHS: ProductMonthsRaw = {}
+const DETAILS: Record<string, CountryRaw> = {}
+let pricesRequest: Promise<void> | undefined
+const requests = new Map<string, Promise<void>>()
+
+async function readJson<T>(url: string): Promise<T> {
+  const response = await fetch(url)
+  if (!response.ok) throw new Error(`Data request failed (${response.status})`)
+  return response.json() as Promise<T>
+}
+
+export async function loadCountryData(iso: string): Promise<void> {
+  if (!DATA.countries[iso]) return
+  if (!pricesRequest) {
+    pricesRequest = readJson<PricesRaw>(pricesUrl).then((data) => { PRICES = data })
+      .catch((error) => { pricesRequest = undefined; throw error })
+  }
+  if (!requests.has(iso)) {
+    const url = countryUrls[`./details/${iso}.json`]
+    if (!url) throw new Error("Country data is unavailable")
+    requests.set(iso, readJson<{country: CountryRaw; productMonths: ProductMonthsRaw[string]}>(url)
+      .then(({ country, productMonths }) => {
+        DETAILS[iso] = country
+        PRODUCT_MONTHS[iso] = productMonths
+      }).catch((error) => { requests.delete(iso); throw error }))
+  }
+  await Promise.all([pricesRequest, requests.get(iso)])
+}
 
 export const BASE_LABEL = PRICES.baseLabel
 // The year the export shares refer to (OEC bilateral trade), e.g. "2024".
@@ -182,7 +196,7 @@ export const COUNTRIES: Country[] = Object.entries(DATA.countries)
     iso,
     name: c.name,
     qualifyingCount: c.qualifying,
-    trackedCount: c.products.length,
+    trackedCount: c.tracked,
     tariffedCount: c.tariffed,
     partialCount: c.partial,
     exemptCount: c.exempt,
@@ -200,7 +214,7 @@ export function getPriceSeries(hs: string): PricePoint[] {
 }
 
 export function getCountryData(iso: string): CountryData | undefined {
-  const c = DATA.countries[iso]
+  const c = DETAILS[iso]
   if (!c) return undefined
   return {
     iso,

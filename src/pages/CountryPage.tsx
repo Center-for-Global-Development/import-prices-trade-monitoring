@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import {
   getCountryData,
+  loadCountryData,
+  COUNTRY_BY_ISO,
   monthLabel,
   PRICES_THROUGH,
   QUALIFYING_THRESHOLD,
@@ -17,7 +20,34 @@ import { CountryOverview } from "@/components/CountryOverview"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
-  const data = getCountryData(iso.toUpperCase())
+  return <CountryContent key={iso.toUpperCase()} iso={iso.toUpperCase()} />
+}
+
+function CountryContent({ iso }: { iso: string }) {
+  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
+  const [attempt, setAttempt] = useState(0)
+  useEffect(() => {
+    let cancelled = false
+    loadCountryData(iso).then(
+      () => { if (!cancelled) setStatus("ready") },
+      () => { if (!cancelled) setStatus("error") },
+    )
+    return () => { cancelled = true }
+  }, [iso, attempt])
+  if (COUNTRY_BY_ISO[iso] && status !== "ready") {
+    return (
+      <div className="container mx-auto max-w-6xl p-4 sm:p-8" role="status">
+        {status === "loading" ? <p>Loading {COUNTRY_BY_ISO[iso].name}…</p> : (
+          <div className="space-y-3">
+            <p>Could not load country data. Please try again.</p>
+            <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
+            <Link to="/" className="ml-4 underline">All countries</Link>
+          </div>
+        )}
+      </div>
+    )
+  }
+  const data = getCountryData(iso)
 
   if (!data) {
     return (
@@ -37,7 +67,7 @@ export function CountryPage() {
   const priced = data.products
 
   return (
-    <div className="container mx-auto max-w-6xl space-y-8 p-8">
+    <div className="container mx-auto max-w-6xl space-y-6 p-4 sm:space-y-8 sm:p-8">
       <div className="flex items-center justify-between">
         <div>
           <Button asChild variant="ghost" size="sm" className="-ml-2 mb-2">

@@ -51,7 +51,7 @@
 // products pointing at a price series that isn't in PRICE_DATA). Softer
 // inconsistencies are printed as warnings so the RA can be told about them.
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs"
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -391,6 +391,23 @@ if (nNoMonths) warn(`${nNoMonths} tracked country×HS4 pairs have no country_pro
 writeFileSync(join(OUT, "prices.json"), JSON.stringify(prices))
 writeFileSync(join(OUT, "countries.json"), JSON.stringify(countriesJson))
 writeFileSync(join(OUT, "product_months.json"), JSON.stringify(productMonthsOut))
+
+// Browser payloads: a tiny directory, shared prices, and one file per country.
+// Vite fingerprints these assets, so a data rebuild also invalidates caches.
+const detailDir = join(OUT, "details")
+mkdirSync(detailDir, { recursive: true })
+for (const file of readdirSync(detailDir)) {
+  if (/^[A-Z]{3}\.json$/.test(file) && !out[file.slice(0, 3)]) unlinkSync(join(detailDir, file))
+}
+const directory = { ...countriesJson, baseLabel: BASE_LABEL, countries: {} }
+for (const [iso, country] of Object.entries(out)) {
+  const { products, months, ...summary } = country
+  directory.countries[iso] = { ...summary, tracked: products.length }
+  writeFileSync(join(detailDir, `${iso}.json`), JSON.stringify({
+    country, productMonths: productMonthsOut[iso] ?? {},
+  }))
+}
+writeFileSync(join(OUT, "directory.json"), JSON.stringify(directory))
 
 const nProducts = Object.values(out).reduce((n, c) => n + c.products.length, 0)
 const nPriced = Object.values(out).filter((c) => c.products.length > 0).length

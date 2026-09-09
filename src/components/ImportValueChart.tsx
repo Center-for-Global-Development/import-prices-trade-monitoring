@@ -1,3 +1,4 @@
+import { TariffEventKey } from "@/components/TariffEventKey"
 import type { ImportPoint } from "@/data/tracker"
 import { TARIFF_EVENTS } from "@/data/events"
 import {
@@ -62,9 +63,10 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
   ]
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="space-y-3">
+    <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {panels.map((p) => (
-        <div key={p.year}>
+        <div key={p.year} className="min-w-0">
           <div className="mb-1 text-sm font-medium">{p.year}</div>
           <ChartContainer config={config} className="h-44 w-full">
             <LineChart data={p.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
@@ -93,8 +95,8 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
                     stroke="var(--cgd-teal-gray)"
                     strokeDasharray="10 4"
                     label={{
-                      value: e.label,
-                      position: "insideTopLeft",
+                      value: String(TARIFF_EVENTS.indexOf(e) + 1),
+                      position: "insideTopRight",
                       fontSize: 10,
                       fill: "var(--muted-foreground)",
                     }}
@@ -119,6 +121,8 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
           </ChartContainer>
         </div>
       ))}
+    </div>
+    <TariffEventKey />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { TariffEventKey } from "@/components/TariffEventKey"
 import { useMemo, useState } from "react"
 import {
   BASE_LABEL,
@@ -101,7 +102,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="text-sm text-muted-foreground">
           Indexed to {BASE_LABEL}
         </div>
@@ -141,8 +142,8 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
               stroke="var(--cgd-teal-gray)"
               strokeDasharray="10 4"
               label={{
-                value: e.label,
-                position: "insideTopLeft",
+                value: String(TARIFF_EVENTS.indexOf(e) + 1),
+                position: "insideTopRight",
                 fontSize: 11,
                 fill: "var(--muted-foreground)",
               }}
@@ -176,6 +177,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
       {/* Legend lives outside the fixed-height chart so long selections wrap
           and grow the card instead of overflowing sideways. Samples show the
           line's colour AND dash, so the legend doubles as a status key. */}
+      <TariffEventKey />
       <LineLegend
         items={active.map((p) => {
           const code = tariffCode(p)

@@ -13,7 +13,7 @@ import {
 export function Home() {
   const navigate = useNavigate()
   return (
-    <div className="container mx-auto max-w-5xl p-8">
+    <div className="container mx-auto max-w-5xl p-4 sm:p-8">
       <Card>
         <CardHeader>
           <CardTitle>Country</CardTitle>
@@ -35,7 +35,7 @@ export function Home() {
                   key={c.iso}
                   value={c.name}
                   onSelect={() => navigate(`/country/${c.iso}`)}
-                  className="flex justify-between"
+                  className="flex flex-wrap justify-between gap-x-3 gap-y-1"
                 >
                   <span>{c.name}</span>
                   <span className="text-xs text-muted-foreground tabular-nums">

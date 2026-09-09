@@ -1,3 +1,4 @@
+import { TariffEventKey } from "@/components/TariffEventKey"
 import { useMemo, useState } from "react"
 import {
   getProductImportSeries,
@@ -146,7 +147,7 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="text-sm text-muted-foreground">
           Cumulative year-to-date vs a year earlier, %
         </div>
@@ -159,9 +160,9 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
           tag={tariffCode}
         />
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {panels.map((panel) => (
-          <div key={panel.year}>
+          <div key={panel.year} className="min-w-0">
             <div className="mb-1 text-sm font-medium">{panel.year}</div>
             <ChartContainer config={config} className="h-56 w-full">
               <LineChart data={panel.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
@@ -189,8 +190,8 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
                     stroke="var(--cgd-teal-gray)"
                     strokeDasharray="10 4"
                     label={{
-                      value: e.label,
-                      position: "insideTopLeft",
+                      value: String(TARIFF_EVENTS.indexOf(e) + 1),
+                      position: "insideTopRight",
                       fontSize: 10,
                       fill: "var(--muted-foreground)",
                     }}
@@ -224,6 +225,7 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
           </div>
         ))}
       </div>
+      <TariffEventKey />
       <LineLegend
         items={active.map((p) => {
           const code = tariffCode(p)

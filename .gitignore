@@ -40,3 +40,7 @@ scripts/*
 # Researcher working files (email attachments, docx, superseded data drops).
 # The canonical inputs live in data/.
 researcher data/
+
+# Regenerated from canonical CSVs by npm run data (also runs before dev/build).
+src/data/details/
+src/data/directory.json
