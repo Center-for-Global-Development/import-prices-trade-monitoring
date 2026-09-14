@@ -178,13 +178,14 @@ export function TopProductsTable({ products }: { products: Product[] }) {
             </SortHead>
             <SortHead col="share" sort={sort} onSort={onSort} align="right">
               Share of exports to the US ({SHARE_BASIS})
+              <sup className="font-normal">1</sup>
             </SortHead>
             <SortHead col="tariff" sort={sort} onSort={onSort} align="right">
               Tariff status
             </SortHead>
             <SortHead col="rate" sort={sort} onSort={onSort} align="right" wrap>
               Average tariff rate at the HS4 level (%)
-              <sup className="font-normal">1</sup>
+              <sup className="font-normal">2</sup>
             </SortHead>
             <SortHead col="imports" sort={sort} onSort={onSort} align="right">
               US imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
@@ -218,10 +219,18 @@ export function TopProductsTable({ products }: { products: Product[] }) {
       )}
       <TariffKey />
       <ValueKey />
-      <p className="text-xs text-muted-foreground">
-        <sup>1</sup> For every specified country-HS4 combination, the figure
-        represents the average of the underlying HS10 tariff rates.
-      </p>
+      {/* Footnotes are numbered in column reading order, so the share note
+          comes before the tariff-rate note. */}
+      <div className="space-y-1 text-xs text-muted-foreground">
+        <p>
+          <sup>1</sup> The percentage of the country's exports of that HS4
+          product that were sold to the United States in {SHARE_BASIS}.
+        </p>
+        <p>
+          <sup>2</sup> For every specified country-HS4 combination, the figure
+          represents the average of the underlying HS10 tariff rates.
+        </p>
+      </div>
     </div>
   )
 }
