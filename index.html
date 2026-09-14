@@ -19,5 +19,43 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- CGD iframe resize contract: report content height to the cgdev.org
+         parent so the embed grows and shrinks with its content. Kept inline
+         and framework-free so it still runs if the app bundle fails to load.
+         See the CGD Interactive Coding Standard, "Iframe Resizing". -->
+    <script>
+      (function () {
+        var PARENT_ORIGIN = 'https://www.cgdev.org';
+        var lastHeight = -1;
+
+        function measure() {
+          // The host sets height on the <iframe> element, not on <body>, so
+          // <body> is never stretched and this value shrinks as well as grows.
+          return Math.ceil(document.body.getBoundingClientRect().height);
+        }
+
+        function report() {
+          var height = measure();
+          if (height <= 0 || height === lastHeight) return;
+          lastHeight = height;
+          window.parent.postMessage({ type: 'cgd-iframe-resize', height: height }, PARENT_ORIGIN);
+        }
+
+        // Initial layout, plus a re-report once web fonts settle (Sofia Pro and
+        // Bitter can change text wrapping and therefore height).
+        window.addEventListener('load', report);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(report);
+        }
+
+        // Any later change to content height: React mounting, the lazily loaded
+        // country route and its data, responsive chart reflow, product filters.
+        if (window.ResizeObserver) {
+          new ResizeObserver(report).observe(document.body);
+        } else {
+          window.addEventListener('resize', report);
+        }
+      })();
+    </script>
   </body>
 </html>

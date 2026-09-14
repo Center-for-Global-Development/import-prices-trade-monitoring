@@ -12,6 +12,7 @@ import {
 } from "@/data/tracker"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { RouteFallback } from "@/components/RouteFallback"
 import { ChevronLeft } from "lucide-react"
 import { TopProductsTable } from "@/components/TopProductsTable"
 import { PriceTrendsChart } from "@/components/PriceTrendsChart"
@@ -36,15 +37,18 @@ function CountryContent({ iso }: { iso: string }) {
     return () => { cancelled = true }
   }, [iso, attempt])
   if (COUNTRY_BY_ISO[iso] && status !== "ready") {
+    if (status === "loading") {
+      return <RouteFallback>Loading {COUNTRY_BY_ISO[iso].name}…</RouteFallback>
+    }
+    // The error state keeps its natural height: it is where navigation stops,
+    // so padding it out to a full screen would just look broken.
     return (
       <div className="container mx-auto max-w-6xl p-4 sm:p-8" role="status">
-        {status === "loading" ? <p>Loading {COUNTRY_BY_ISO[iso].name}…</p> : (
-          <div className="space-y-3">
-            <p>Could not load country data. Please try again.</p>
-            <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
-            <Link to="/" className="ml-4 underline">All countries</Link>
-          </div>
-        )}
+        <div className="space-y-3">
+          <p>Could not load country data. Please try again.</p>
+          <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
+          <Link to="/" className="ml-4 underline">All countries</Link>
+        </div>
       </div>
     )
   }
