@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import type { Product } from "@/data/tracker"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
@@ -10,6 +11,9 @@ export type QuickSelect = { label: string; hs: string[] }
 // import value). Selection state lives in the parent so each chart keeps its
 // own set. Optional extras: a short tag per product (e.g. tariff status
 // letter) and quick-select buttons that replace the whole selection.
+//
+// Rows are listed by HS4 code so readers can find a product in the list; the
+// parent's own order (share to US, desc) still drives defaults and colors.
 export function ProductPicker({
   products,
   selected,
@@ -25,6 +29,10 @@ export function ProductPicker({
   quickSelects?: QuickSelect[]
   tag?: (p: Product) => string | null
 }) {
+  const rows = useMemo(
+    () => [...products].sort((a, b) => a.hs.localeCompare(b.hs)),
+    [products],
+  )
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -64,7 +72,7 @@ export function ProductPicker({
           {/* Right padding keeps the scrollbar (always visible on some
               platforms) off the status letters at the end of each row. */}
           <div className="max-h-72 space-y-2 overflow-y-auto pr-3">
-            {products.map((p) => {
+            {rows.map((p) => {
               const t = tag?.(p)
               return (
                 <label
