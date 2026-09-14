@@ -170,6 +170,12 @@ export function monthLabel(ym: string): string {
   const [y, m] = ym.split("-")
   return `${MONTHS[parseInt(m, 10) - 1]} ${y}`
 }
+// "2026-07" with day 24 -> "Jul 24, 2026"; without a day, same as monthLabel.
+export function dateLabel(ym: string, day?: number): string {
+  if (day === undefined) return monthLabel(ym)
+  const [y, m] = ym.split("-")
+  return `${MONTHS[parseInt(m, 10) - 1]} ${day}, ${y}`
+}
 // "2026-06" -> "Jan–Jun 2026" (the YTD window ending that month).
 export function ytdLabel(ym: string): string {
   const [y, m] = ym.split("-")
