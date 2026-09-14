@@ -8,7 +8,7 @@ import type { ReactNode } from "react"
 // keeps that transition steady.
 export function RouteFallback({ children }: { children: ReactNode }) {
   return (
-    <div className="container mx-auto min-h-[800px] max-w-6xl p-4 sm:p-8" role="status">
+    <div className="min-h-[800px]" role="status">
       <p>{children}</p>
     </div>
   )

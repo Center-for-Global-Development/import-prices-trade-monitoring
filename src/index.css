@@ -122,6 +122,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Embedded in an iframe on cgdev.org: suppress a horizontal scrollbar
+       inside the frame. Only the x axis — hiding overflow on both would clip
+       content if the resize script in index.html ever failed to report a
+       height. Wide tables scroll in their own container (ui/table.tsx). */
+    overflow-x: hidden;
   }
   /* Brand type roles: teal headings, serif body copy (Bitter), sans UI. */
   [data-slot="card-title"] {

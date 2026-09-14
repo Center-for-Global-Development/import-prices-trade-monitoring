@@ -43,12 +43,10 @@ function CountryContent({ iso }: { iso: string }) {
     // The error state keeps its natural height: it is where navigation stops,
     // so padding it out to a full screen would just look broken.
     return (
-      <div className="container mx-auto max-w-6xl p-4 sm:p-8" role="status">
-        <div className="space-y-3">
-          <p>Could not load country data. Please try again.</p>
-          <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
-          <Link to="/" className="ml-4 underline">All countries</Link>
-        </div>
+      <div className="space-y-3" role="status">
+        <p>Could not load country data. Please try again.</p>
+        <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
+        <Link to="/" className="ml-4 underline">All countries</Link>
       </div>
     )
   }
@@ -56,7 +54,7 @@ function CountryContent({ iso }: { iso: string }) {
 
   if (!data) {
     return (
-      <div className="container mx-auto max-w-3xl p-8">
+      <div>
         <p>Country not found.</p>
         <Link to="/" className="underline">
           Back to home
@@ -72,10 +70,12 @@ function CountryContent({ iso }: { iso: string }) {
   const priced = data.products
 
   return (
-    <div className="container mx-auto max-w-6xl space-y-6 p-4 sm:space-y-8 sm:p-8">
+    // No outer padding or max-width: this is the inside of an iframe on
+    // cgdev.org and the host page's column already provides the margins.
+    <div className="space-y-6 sm:space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <Button asChild variant="ghost" size="sm" className="-ml-2 mb-2">
+          <Button asChild variant="ghost" size="sm" className="mb-2 pl-0">
             <Link to="/">
               <ChevronLeft className="mr-1 h-4 w-4" />
               All countries
