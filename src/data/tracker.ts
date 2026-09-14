@@ -176,6 +176,11 @@ export function ytdLabel(ym: string): string {
   const end = MONTHS[parseInt(m, 10) - 1]
   return end === "Jan" ? `Jan ${y}` : `Jan–${end} ${y}`
 }
+// Product counts run past 1,000 for a handful of countries, so they get
+// thousands separators wherever they're shown.
+export function countLabel(n: number): string {
+  return n.toLocaleString("en-US")
+}
 // Period the headline import tile covers, e.g. "2024" or "Jan–Jul 2026".
 export const US_IMPORTS_LABEL = DATA.usImportsPeriod.through
   ? ytdLabel(DATA.usImportsPeriod.through)

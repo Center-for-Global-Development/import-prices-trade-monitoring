@@ -1,4 +1,5 @@
 import {
+  countLabel,
   monthLabel,
   QUALIFYING_THRESHOLD,
   US_IMPORTS_LABEL,
@@ -56,17 +57,17 @@ export function CountryOverview({ data }: { data: CountryData }) {
           count, so readers can check the arithmetic at a glance. */}
       <Stat
         label="Tariffed products"
-        value={String(data.tariffedCount)}
-        detail={`of ${data.qualifyingCount} qualifying products, no exemptions`}
+        value={countLabel(data.tariffedCount)}
+        detail={`of ${countLabel(data.qualifyingCount)} qualifying products, no exemptions`}
       />
       <Stat
         label="Partially exempt products"
-        value={String(data.partialCount)}
+        value={countLabel(data.partialCount)}
         detail="partly exempt under Executive Orders"
       />
       <Stat
         label="Exempt products"
-        value={String(data.exemptCount)}
+        value={countLabel(data.exemptCount)}
         detail="fully exempt under Executive Orders"
       />
       <Stat
@@ -86,7 +87,7 @@ export function CountryOverview({ data }: { data: CountryData }) {
     {/* "Qualifying" is the tracker's term of art; the research lead asked
         for it to be defined where the tiles use it. */}
     <p className="text-xs text-muted-foreground">
-      Qualifying products: HS4 products for which ≥{thresholdPct}% of{" "}
+      *Qualifying products: HS4 products for which ≥{thresholdPct}% of{" "}
       {data.name}'s exports are destined for the US.
     </p>
     </div>

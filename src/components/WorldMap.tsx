@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import worldRaw from "@/data/world_map.json"
-import { COUNTRY_BY_ISO } from "@/data/tracker"
+import { COUNTRY_BY_ISO, countLabel } from "@/data/tracker"
 
 type MapCountry = { iso: string; name: string; d: string }
 const WORLD = worldRaw as { width: number; height: number; countries: MapCountry[] }
@@ -68,8 +68,9 @@ export function WorldMap() {
         >
           <div className="font-medium">{hovered.name}</div>
           <div className="text-muted-foreground">
-            {hovered.tariffedCount} tariffed · {hovered.partialCount} partially exempt ·{" "}
-            {hovered.exemptCount} exempt
+            {countLabel(hovered.tariffedCount)} tariffed ·{" "}
+            {countLabel(hovered.partialCount)} partially exempt ·{" "}
+            {countLabel(hovered.exemptCount)} exempt
           </div>
         </div>
       )}

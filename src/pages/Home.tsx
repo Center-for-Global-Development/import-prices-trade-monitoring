@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { COUNTRIES } from "@/data/tracker"
+import { COUNTRIES, countLabel } from "@/data/tracker"
 import { WorldMap } from "@/components/WorldMap"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import {
@@ -20,8 +20,8 @@ export function Home() {
           <CardDescription>
             {COUNTRIES.length} countries with at least one product sending ≥10%
             of its estimated exports to the US. Click the
-            map or search the list — smaller territories appear in the list
-            only.
+            map or search the list — smaller territories only appear in the 
+            list.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -39,8 +39,9 @@ export function Home() {
                 >
                   <span>{c.name}</span>
                   <span className="text-xs text-muted-foreground tabular-nums">
-                    {c.tariffedCount} tariffed · {c.partialCount} partially exempt ·{" "}
-                    {c.exemptCount} exempt
+                    {countLabel(c.tariffedCount)} tariffed ·{" "}
+                    {countLabel(c.partialCount)} partially exempt ·{" "}
+                    {countLabel(c.exemptCount)} exempt
                   </span>
                 </CommandItem>
               ))}

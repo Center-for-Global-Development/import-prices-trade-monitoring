@@ -217,6 +217,7 @@ export function TopProductsTable({ products }: { products: Product[] }) {
         </Button>
       )}
       <TariffKey />
+      <ValueKey />
       <p className="text-xs text-muted-foreground">
         <sup>1</sup> For every specified country-HS4 combination, the figure
         represents the average of the underlying HS10 tariff rates.
@@ -308,6 +309,22 @@ function ProductRow({ product: p, indented }: { product: Product; indented: bool
         )}
       </TableCell>
     </TableRow>
+  )
+}
+
+// Units and placeholders used in the numeric columns. The research lead
+// asked for the $ abbreviations to be spelled out; the two missing-value
+// marks are here for the same reason.
+function ValueKey() {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+      <span className="font-medium">Value key:</span>
+      <span>B = billion USD</span>
+      <span>M = million USD</span>
+      <span>K = thousand USD</span>
+      <span>— = not available</span>
+      <span>n/a = tariff status not available</span>
+    </div>
   )
 }
 

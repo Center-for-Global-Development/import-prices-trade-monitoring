@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import {
+  countLabel,
   getCountryData,
   loadCountryData,
   COUNTRY_BY_ISO,
@@ -92,15 +93,16 @@ function CountryContent({ iso }: { iso: string }) {
         <CardHeader>
           <CardTitle>Price trends</CardTitle>
           <CardDescription>
-            BLS import price indices, monthly from Jan 2023 or the earliest
+            US Bureau of Labor Statistics (BLS) import price indexes, 
+            monthly from Jan 2023 or the earliest
             available month through {monthLabel(PRICES_THROUGH)}, indexed to
-            March 2025 = 100. BLS indices cover all US imports of a
+            March 2025 = 100. BLS indexes cover all US imports of a
             product, not imports from {data.name} alone.{" "}
             <strong>
               Only products with a BLS import price index can be shown, so
-              the number of products here ({priced.length}) may be lower than
+              the number of products displayed here ({priced.length}) may be lower than
               the number that otherwise qualify for inclusion (
-              {data.qualifyingCount}).
+              {countLabel(data.qualifyingCount)}).
             </strong>{" "}
             Multi-select to compare products.
           </CardDescription>
@@ -162,8 +164,8 @@ function CountryContent({ iso }: { iso: string }) {
           <CardDescription>
             HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
             {data.name}'s exports went to the US in {SHARE_BASIS} ({priced.length} of{" "}
-            {data.qualifyingCount} qualifying products). Export shares are from
-            OEC bilateral trade data for {SHARE_BASIS}. Tariff status is the
+            {countLabel(data.qualifyingCount)} qualifying products). Export shares
+            are from OEC bilateral trade data for {SHARE_BASIS}. Tariff status is the
             import-value-weighted share of the HS4 exempt under Executive Orders
             (0% = fully tariffed, 100% = not tariffed).
           </CardDescription>
@@ -171,8 +173,8 @@ function CountryContent({ iso }: { iso: string }) {
         <CardContent>
           {priced.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              None of {data.name}'s {data.qualifyingCount} qualifying products
-              have a BLS import price index.
+              None of {data.name}'s {countLabel(data.qualifyingCount)} qualifying
+              products have a BLS import price index.
             </p>
           ) : (
             <TopProductsTable products={priced} />
