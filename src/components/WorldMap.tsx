@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Minus, Plus, RotateCcw } from "lucide-react"
 import worldRaw from "@/data/world_map.json"
 import { COUNTRY_BY_ISO, countLabel } from "@/data/tracker"
@@ -56,6 +56,8 @@ function zoomAt(view: View, factor: number, ux: number, uy: number): View {
 // accessible path (the SVG is aria-hidden).
 export function WorldMap() {
   const navigate = useNavigate()
+  // Query string carries design-review flags (see CountryPage); keep it.
+  const { search } = useLocation()
   const wrapRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const [hover, setHover] = useState<Hover | null>(null)
@@ -180,7 +182,7 @@ export function WorldMap() {
 
   const open = (iso: string) => () => {
     if (drag.current?.moved) return
-    navigate(`/country/${iso}`)
+    navigate({ pathname: `/country/${iso}`, search })
   }
 
   const viewBox = `${view.x} ${view.y} ${WORLD.width / view.k} ${WORLD.height / view.k}`

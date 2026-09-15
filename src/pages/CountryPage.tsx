@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useSearchParams } from "react-router-dom"
+import { cn } from "@/lib/utils"
 import {
   countLabel,
   getCountryData,
@@ -20,6 +21,17 @@ import { ImportValueChart } from "@/components/ImportValueChart"
 import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
 
+// Design-review variants for marking the country view as one unit when it is
+// embedded among other content on cgdev.org (?rail=teal | ?rail=gold). The
+// default renders no rail. Remove once one is chosen.
+type Rail = "none" | "teal" | "gold"
+
+function useRail(): Rail {
+  const [params] = useSearchParams()
+  const v = params.get("rail")
+  return v === "teal" || v === "gold" ? v : "none"
+}
+
 export function CountryPage() {
   const { iso = "" } = useParams()
   return <CountryContent key={iso.toUpperCase()} iso={iso.toUpperCase()} />
@@ -28,6 +40,7 @@ export function CountryPage() {
 function CountryContent({ iso }: { iso: string }) {
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [attempt, setAttempt] = useState(0)
+  const rail = useRail()
   useEffect(() => {
     let cancelled = false
     loadCountryData(iso).then(
@@ -74,21 +87,44 @@ function CountryContent({ iso }: { iso: string }) {
   return (
     // No outer padding or max-width: this is the inside of an iframe on
     // cgdev.org and the host page's column already provides the margins.
-    <div className="space-y-6 sm:space-y-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <BackToCountries className="mb-3" />
-          <h1 className="text-3xl font-semibold tracking-tight text-primary">
-            {data.name}
-          </h1>
-          <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
-          <p className="font-serif">
-            US import prices &amp; trade flows
-          </p>
+    <div
+      className={cn(
+        "space-y-6 sm:space-y-8",
+        // teal: a 4px primary rail down the whole view, back button to back
+        // button, so the tool's start and end are both marked.
+        rail === "teal" && "border-l-4 border-primary pl-3 sm:pl-6",
+        // gold: no rail on the body, but the same indent as the header block
+        // below (8px rail + its padding) so the cards hang under it.
+        rail === "gold" && "pl-5 sm:pl-8"
+      )}
+    >
+      <div
+        className={cn(
+          "space-y-6 sm:space-y-8",
+          // gold: the site's standfirst treatment on the header + stats only.
+          // Pulls back out of the body indent so the rail sits on the edge.
+          rail === "gold" &&
+            "-ml-5 border-l-8 border-(--cgd-gold) pl-3 sm:-ml-8 sm:pl-6"
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <BackToCountries className="mb-3" />
+            <h1 className="text-3xl font-semibold tracking-tight text-primary">
+              {data.name}
+            </h1>
+            {/* The gold standfirst rail already supplies the gold accent. */}
+            {rail !== "gold" && (
+              <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
+            )}
+            <p className={cn("font-serif", rail === "gold" && "mt-2")}>
+              US import prices &amp; trade flows
+            </p>
+          </div>
         </div>
-      </div>
 
-      <CountryOverview data={data} />
+        <CountryOverview data={data} />
+      </div>
 
       <Card>
         <CardHeader>

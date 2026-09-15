@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils"
 // gold rather than a quiet text link — repeated at the foot of the country
 // page because the page is long enough to scroll the top one out of sight.
 export function BackToCountries({ className }: { className?: string }) {
+  // Query string carries design-review flags (see CountryPage); keep it.
+  const { search } = useLocation()
   return (
     <Button
       asChild
@@ -16,7 +18,7 @@ export function BackToCountries({ className }: { className?: string }) {
         className
       )}
     >
-      <Link to="/">
+      <Link to={{ pathname: "/", search }}>
         <ChevronLeft className="mr-1 h-5 w-5" />
         All countries
       </Link>
