@@ -26,7 +26,7 @@ function Stat({
     <Card className="py-3 sm:py-4">
       <CardContent className="px-3 sm:px-4">
         <div className="text-xs text-muted-foreground sm:text-sm">{label}</div>
-        <div className="mt-0.5 text-xl font-semibold sm:text-2xl">{value}</div>
+        <div className="mt-0.5 text-xl font-semibold text-primary sm:text-2xl">{value}</div>
         {detail && (
           <div className="mt-0.5 text-xs text-muted-foreground">{detail}</div>
         )}
