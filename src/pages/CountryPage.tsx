@@ -90,41 +90,31 @@ function CountryContent({ iso }: { iso: string }) {
     <div
       className={cn(
         "space-y-6 sm:space-y-8",
-        // teal: a 4px primary rail down the whole view, back button to back
-        // button, so the tool's start and end are both marked.
+        // Both rails run the whole view, back button to back button, so the
+        // tool's start and end are both marked.
+        // teal: 4px in the primary heading color.
         rail === "teal" && "border-l-4 border-primary pl-3 sm:pl-6",
-        // gold: no rail on the body, but the same indent as the header block
-        // below (8px rail + its padding) so the cards hang under it.
-        rail === "gold" && "pl-5 sm:pl-8"
+        // gold: the site's 8px standfirst treatment.
+        rail === "gold" && "border-l-8 border-(--cgd-gold) pl-3 sm:pl-6"
       )}
     >
-      <div
-        className={cn(
-          "space-y-6 sm:space-y-8",
-          // gold: the site's standfirst treatment on the header + stats only.
-          // Pulls back out of the body indent so the rail sits on the edge.
-          rail === "gold" &&
-            "-ml-5 border-l-8 border-(--cgd-gold) pl-3 sm:-ml-8 sm:pl-6"
-        )}
-      >
-        <div className="flex items-center justify-between">
-          <div>
-            <BackToCountries className="mb-3" />
-            <h1 className="text-3xl font-semibold tracking-tight text-primary">
-              {data.name}
-            </h1>
-            {/* The gold standfirst rail already supplies the gold accent. */}
-            {rail !== "gold" && (
-              <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
-            )}
-            <p className={cn("font-serif", rail === "gold" && "mt-2")}>
-              US import prices &amp; trade flows
-            </p>
-          </div>
+      <div className="flex items-center justify-between">
+        <div>
+          <BackToCountries className="mb-3" />
+          <h1 className="text-3xl font-semibold tracking-tight text-primary">
+            {data.name}
+          </h1>
+          {/* The gold rail already supplies the gold accent. */}
+          {rail !== "gold" && (
+            <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
+          )}
+          <p className={cn("font-serif", rail === "gold" && "mt-2")}>
+            US import prices &amp; trade flows
+          </p>
         </div>
-
-        <CountryOverview data={data} />
       </div>
+
+      <CountryOverview data={data} />
 
       <Card>
         <CardHeader>
