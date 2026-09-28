@@ -145,3 +145,16 @@
     font-family: var(--font-serif);
   }
 }
+
+/* macOS hides scrollbars until you scroll, so a long list that happens to
+   end on a row boundary looks complete. Always draw the bar. */
+.scrollbar-visible::-webkit-scrollbar {
+  width: 8px;
+}
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted-foreground) 45%, transparent);
+  border-radius: 4px;
+}
+.scrollbar-visible::-webkit-scrollbar-track {
+  background: transparent;
+}

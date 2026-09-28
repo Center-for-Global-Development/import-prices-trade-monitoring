@@ -7,6 +7,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import type { ChartConfig } from "@/components/ui/chart"
+import { useChartExpanded } from "@/lib/chartExpanded"
 import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 
 const MONTH_LABELS = [
@@ -43,6 +44,7 @@ function toPanels(data: ImportPoint[]): Panel[] {
 }
 
 export function ImportValueChart({ data }: { data: ImportPoint[] }) {
+  const expanded = useChartExpanded()
   const panels = toPanels(data)
   if (panels.length === 0) {
     return (
@@ -68,7 +70,7 @@ export function ImportValueChart({ data }: { data: ImportPoint[] }) {
       {panels.map((p) => (
         <div key={p.year} className="min-w-0">
           <div className="mb-1 text-sm font-medium">{p.year}</div>
-          <ChartContainer config={config} className="h-44 w-full">
+          <ChartContainer config={config} className={`${expanded ? "h-[min(50vh,560px)]" : "h-44"} w-full`}>
             <LineChart data={p.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
               <CartesianGrid vertical={false} stroke="var(--border)" />
               <XAxis

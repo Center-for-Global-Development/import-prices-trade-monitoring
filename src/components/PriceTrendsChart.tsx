@@ -19,6 +19,7 @@ import { ProductPicker } from "@/components/ProductPicker"
 import { LineLegend } from "@/components/LineLegend"
 import { DASH } from "@/lib/tariffDash"
 import { useSeriesColors } from "@/lib/seriesColors"
+import { useChartExpanded } from "@/lib/chartExpanded"
 
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
@@ -32,6 +33,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
   const [selected, setSelected] = useState<string[]>(() =>
     plottable.slice(0, 3).map((p) => p.hs),
   )
+  const expanded = useChartExpanded()
 
   const colors = useSeriesColors(selected)
   const config = useMemo<ChartConfig>(() => {
@@ -96,20 +98,16 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="text-sm text-muted-foreground">
-          Indexed to {BASE_LABEL}
-        </div>
-        <ProductPicker
-          products={plottable}
-          selected={selected}
-          onToggle={toggle}
-          onSetSelected={setSelected}
-          quickSelects={quickSelects}
-          tag={tariffCode}
-        />
-      </div>
-      <ChartContainer config={config} className="h-80 w-full">
+      <ProductPicker
+        label={<>Indexed to {BASE_LABEL}</>}
+        products={plottable}
+        selected={selected}
+        onToggle={toggle}
+        onSetSelected={setSelected}
+        quickSelects={quickSelects}
+        tag={tariffCode}
+      />
+      <ChartContainer config={config} className={`${expanded ? "h-[min(65vh,720px)]" : "h-80"} w-full`}>
         <LineChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
           {/* CGD chart furniture: solid light-gray horizontal grid only,
               teal-black axis text, teal-gray separators/indicators. */}
@@ -244,8 +242,8 @@ export function TariffLineKey() {
       </span>
       <span className="flex items-center gap-1.5">
         {sample(DASH.P)} <span className="font-mono">P</span> partially exempt
+        (share of the HS4's US import value exempt under Executive Orders)
       </span>
-      <span>Share of the HS4's US import value exempt under Executive Orders.</span>
     </div>
   )
 }

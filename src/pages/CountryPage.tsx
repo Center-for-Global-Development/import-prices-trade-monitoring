@@ -19,6 +19,7 @@ import { PriceTrendsChart } from "@/components/PriceTrendsChart"
 import { ImportValueChart } from "@/components/ImportValueChart"
 import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
+import { ChartCard } from "@/components/ChartCard"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
@@ -93,10 +94,10 @@ function CountryContent({ iso }: { iso: string }) {
 
       <CountryOverview data={data} />
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{data.name}: Price trends</CardTitle>
-          <CardDescription>
+      <ChartCard
+        title={<>{data.name}: Price trends</>}
+        description={
+          <>
             US Bureau of Labor Statistics (BLS) import price indexes, 
             monthly from Jan 2023 or the earliest
             available month through {monthLabel(PRICES_THROUGH)}, indexed to
@@ -109,58 +110,54 @@ function CountryContent({ iso }: { iso: string }) {
               {countLabel(data.qualifyingCount)}).
             </strong>{" "}
             Multi-select to compare products.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {priced.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No qualifying products to plot.</p>
-          ) : (
-            <PriceTrendsChart products={priced} />
-          )}
-        </CardContent>
-      </Card>
+          </>
+        }
+      >
+        {priced.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No qualifying products to plot.</p>
+        ) : (
+          <PriceTrendsChart products={priced} />
+        )}
+      </ChartCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{data.name}: Import value</CardTitle>
-          <CardDescription>
+      <ChartCard
+        title={<>{data.name}: Import value</>}
+        description={
+          <>
             Cumulative year-to-date US goods imports from {data.name}, each
             month showing the year so far vs the same months a year earlier
             (US Census).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {data.importValue.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No monthly Census import value data for {data.name}.
-            </p>
-          ) : (
-            <ImportValueChart data={data.importValue} />
-          )}
-        </CardContent>
-      </Card>
+          </>
+        }
+      >
+        {data.importValue.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            No monthly Census import value data for {data.name}.
+          </p>
+        ) : (
+          <ImportValueChart data={data.importValue} />
+        )}
+      </ChartCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{data.name}: Import value by product</CardTitle>
-          <CardDescription>
-            Cumulative year-to-date US imports of each tracked product from{" "}
-            {data.name}, each month showing the year so far vs the same months
-            a year earlier (US Census). Products with no imports in the
-            year-earlier months have no comparison and are left out.
-            Multi-select to compare products. The products shown for each country
-            may differ from those in the “Price trends” tracker because the two
-            trackers use different databases (US Census and BLS, respectively).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {priced.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No tracked products to plot.</p>
-          ) : (
-            <ProductImportChart iso={data.iso} products={priced} />
-          )}
-        </CardContent>
-      </Card>
+      <ChartCard
+        title={<>{data.name}: Import value by product</>}
+        description={
+          <>
+            Cumulative year-to-date US imports of each tracked product from the
+            selected country, with each month comparing the year to date with
+            the same period one year earlier (US Census). Products with no
+            imports during the corresponding year-earlier period are omitted
+            because no comparison is available. Select multiple products to
+            compare them.
+          </>
+        }
+      >
+        {priced.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No tracked products to plot.</p>
+        ) : (
+          <ProductImportChart iso={data.iso} products={priced} />
+        )}
+      </ChartCard>
 
       <Card>
         <CardHeader>
