@@ -50,7 +50,7 @@ export function CountryOverview({ data }: { data: CountryData }) {
     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5">
       <Stat
         label={`US imports (${US_IMPORTS_LABEL})`}
-        value={data.usImports === null ? "—" : usd(data.usImports)}
+        value={data.usImports === null ? "n/a" : usd(data.usImports)}
         detail="All goods, US Census"
       />
       {/* The three status tiles sit together and sum to the qualifying
@@ -74,7 +74,7 @@ export function CountryOverview({ data }: { data: CountryData }) {
         label="Imports YTD vs year earlier"
         value={
           yoy === null
-            ? "—"
+            ? "n/a"
             : `${yoy.pct >= 0 ? "+" : "−"}${Math.abs(yoy.pct).toFixed(1)}%`
         }
         detail={

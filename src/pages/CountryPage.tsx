@@ -166,7 +166,7 @@ function CountryContent({ iso }: { iso: string }) {
             HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
             {data.name}'s exports went to the US in {SHARE_BASIS} ({priced.length} of{" "}
             {countLabel(data.qualifyingCount)} qualifying products). Export shares
-            are from Observatory of Economic Complexity bilateral trade data for {SHARE_BASIS}. Tariff status is the
+            are from Observatory of Economic Complexity (OEC) bilateral trade data for {SHARE_BASIS}. Tariff status is the
             import-value-weighted share of the HS4 exempt under Executive Orders
             (0% = fully tariffed, 100% = not tariffed).
           </CardDescription>

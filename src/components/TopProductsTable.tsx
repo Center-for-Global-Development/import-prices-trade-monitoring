@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import {
   hs2For,
   IMPORTS_YTD_THROUGH,
@@ -16,7 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react"
+import { ArrowDown, ArrowUp, ArrowUpDown, Search } from "lucide-react"
 
 function usd(n: number) {
   if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`
@@ -26,24 +26,52 @@ function usd(n: number) {
 }
 
 // CGD stoplight palette: tariffed = bad, partially exempt = caution, fully
-// exempt = good. The label text is the researcher's preformatted
-// tariff_status; the numeric exempt share only picks the colour. Meaning is
-// carried by the label, never colour alone.
+// exempt = good. All three are solid fills so they read as three distinct
+// statuses at a glance (researchers found the earlier pale tints for exempt
+// and partial too close to each other and to the share pills). The label
+// text is the researcher's preformatted tariff_status; the numeric exempt
+// share only picks the colour. Meaning is carried by the label, never colour
+// alone.
+type Status = "T" | "P" | "E"
+
+function statusOf(p: Product): Status | null {
+  if (p.exemptPct === null) return null
+  return p.exemptPct === 0 ? "T" : p.exemptPct === 100 ? "E" : "P"
+}
+
+const STATUS_BADGE: Record<Status, string> = {
+  T: "border-transparent bg-(--status-bad) text-white",
+  P: "border-transparent bg-(--status-caution) text-foreground",
+  E: "border-transparent bg-(--status-good) text-white",
+}
+
 function TariffBadge({ product: p }: { product: Product }) {
-  if (p.exemptPct === null) {
+  const status = statusOf(p)
+  if (status === null) {
     return <span className="text-xs text-muted-foreground">{p.tariffStatus || "n/a"}</span>
   }
-  if (p.exemptPct === 0) return <Badge variant="destructive">{p.tariffStatus}</Badge>
-  if (p.exemptPct === 100) {
-    return (
-      <Badge className="border-transparent bg-(--status-good)/12 text-(--status-good)">
-        {p.tariffStatus}
-      </Badge>
-    )
-  }
+  return <Badge className={STATUS_BADGE[status]}>{p.tariffStatus}</Badge>
+}
+
+// Share of exports to the US on a light-to-dark teal scale so high and low
+// shares stand apart. Tracked products all clear the qualifying threshold,
+// so the bins span 10–100%. Stepped rather than continuous: every mid-range
+// teal is too dark for dark text and too light for white at badge size, so
+// the steps skip that band and each label holds ≥4.5:1. The number stays
+// printed, so colour is never the only cue.
+const SHARE_BINS: { min: number; background: string; color: string }[] = [
+  { min: 90, background: "var(--cgd-teal)", color: "#ffffff" },
+  { min: 70, background: "color-mix(in srgb, var(--cgd-light-teal) 88%, var(--card))", color: "#ffffff" },
+  { min: 50, background: "color-mix(in srgb, var(--cgd-light-teal) 45%, var(--card))", color: "var(--foreground)" },
+  { min: 30, background: "color-mix(in srgb, var(--cgd-light-teal) 28%, var(--card))", color: "var(--foreground)" },
+  { min: 0, background: "color-mix(in srgb, var(--cgd-light-teal) 12%, var(--card))", color: "var(--foreground)" },
+]
+const shareBin = (pct: number) => SHARE_BINS.find((b) => pct >= b.min) ?? SHARE_BINS[SHARE_BINS.length - 1]
+
+function ShareBadge({ pct }: { pct: number }) {
   return (
-    <Badge className="border-transparent bg-(--status-caution)/25 text-foreground">
-      {p.tariffStatus}
+    <Badge className="border-transparent tabular-nums" style={shareBin(pct)}>
+      {Math.round(pct)}%
     </Badge>
   )
 }
@@ -132,11 +160,47 @@ function buildRows(products: Product[], sort: Sort): Row[] {
   return rows
 }
 
+// ---------------------------------------------------------------- filtering
+
+type StatusFilter = "all" | Status
+
+const STATUS_FILTERS: { value: StatusFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "T", label: "Tariffed" },
+  { value: "P", label: "Partially exempt" },
+  { value: "E", label: "Exempt" },
+]
+
+// Digits match HS codes from the start (so "07" finds chapter 07 and "0702"
+// one product); anything else matches within the product name.
+function matchesQuery(p: Product, query: string): boolean {
+  const q = query.trim().toLowerCase()
+  if (!q) return true
+  if (/^\d+$/.test(q)) return p.hs.startsWith(q)
+  return p.name.toLowerCase().includes(q) || p.hs.startsWith(q)
+}
+
 // ---------------------------------------------------------------- table
 
-export function TopProductsTable({ products }: { products: Product[] }) {
+export function TopProductsTable({ products: all }: { products: Product[] }) {
   const [showAll, setShowAll] = useState(false)
   const [sort, setSort] = useState<Sort>(DEFAULT_SORT)
+  const [query, setQuery] = useState("")
+  const [status, setStatus] = useState<StatusFilter>("all")
+
+  const statusCounts = useMemo(() => {
+    const c: Record<StatusFilter, number> = { all: all.length, T: 0, P: 0, E: 0 }
+    for (const p of all) {
+      const s = statusOf(p)
+      if (s) c[s]++
+    }
+    return c
+  }, [all])
+
+  const products = all.filter(
+    (p) => (status === "all" || statusOf(p) === status) && matchesQuery(p, query),
+  )
+  const filtered = products.length !== all.length
 
   const rows = buildRows(products, sort)
   let visible = rows
@@ -167,46 +231,88 @@ export function TopProductsTable({ products }: { products: Product[] }) {
 
   return (
     <div className="space-y-3">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <SortHead className="w-[80px]" col="hs" sort={sort} onSort={onSort}>
-              HS
-            </SortHead>
-            <SortHead col="name" sort={sort} onSort={onSort}>
-              Product
-            </SortHead>
-            <SortHead col="share" sort={sort} onSort={onSort} align="right">
-              Share of exports to the US ({SHARE_BASIS})
-              <sup className="font-normal">1</sup>
-            </SortHead>
-            <SortHead col="tariff" sort={sort} onSort={onSort} align="right">
-              Tariff status
-            </SortHead>
-            <SortHead col="rate" sort={sort} onSort={onSort} align="right" wrap>
-              Average tariff rate at the HS4 level (%)
-              <sup className="font-normal">2</sup>
-            </SortHead>
-            <SortHead col="imports" sort={sort} onSort={onSort} align="right">
-              US imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
-            </SortHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {visible.map((r) =>
-            r.kind === "chapter" ? (
-              <TableRow key={`ch-${r.code}`} className="bg-muted/50 hover:bg-muted/50">
-                <TableCell className="font-mono font-medium">{r.code}</TableCell>
-                <TableCell className="font-medium" colSpan={5}>
-                  {r.name}
-                </TableCell>
-              </TableRow>
-            ) : (
-              <ProductRow key={r.product.hs} product={r.product} indented={grouped} />
-            ),
-          )}
-        </TableBody>
-      </Table>
+      <div className="flex flex-wrap items-center gap-3">
+        <label className="relative w-full max-w-xs">
+          <span className="sr-only">Search by HS code or product name</span>
+          <Search
+            className="pointer-events-none absolute top-1/2 left-2.5 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search HS code or product"
+            className="h-8 w-full rounded-md border border-input bg-transparent pr-3 pl-8 text-sm outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+          />
+        </label>
+        <div
+          role="radiogroup"
+          aria-label="Filter by tariff status"
+          className="flex flex-wrap gap-1.5"
+        >
+          {STATUS_FILTERS.map((f) => (
+            <Button
+              key={f.value}
+              role="radio"
+              aria-checked={status === f.value}
+              variant={status === f.value ? "default" : "outline"}
+              size="sm"
+              className="h-8 px-2.5 text-xs"
+              onClick={() => setStatus(f.value)}
+            >
+              {f.label} ({statusCounts[f.value]})
+            </Button>
+          ))}
+        </div>
+      </div>
+      {filtered && (
+        <p className="text-xs text-muted-foreground" aria-live="polite">
+          {products.length} of {all.length} products match.
+        </p>
+      )}
+      {products.length > 0 && (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <SortHead className="w-[80px]" col="hs" sort={sort} onSort={onSort}>
+                HS
+              </SortHead>
+              <SortHead col="name" sort={sort} onSort={onSort}>
+                Product
+              </SortHead>
+              <SortHead col="share" sort={sort} onSort={onSort} align="right">
+                Share of exports to the US ({SHARE_BASIS})
+                <sup className="font-normal">1</sup>
+              </SortHead>
+              <SortHead col="tariff" sort={sort} onSort={onSort} align="right">
+                Tariff status
+              </SortHead>
+              <SortHead col="rate" sort={sort} onSort={onSort} align="right" wrap>
+                Average tariff rate at the HS4 level (%)
+                <sup className="font-normal">2</sup>
+              </SortHead>
+              <SortHead col="imports" sort={sort} onSort={onSort} align="right">
+                US imports ({ytdLabel(IMPORTS_YTD_THROUGH)})
+              </SortHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {visible.map((r) =>
+              r.kind === "chapter" ? (
+                <TableRow key={`ch-${r.code}`} className="bg-muted/50 hover:bg-muted/50">
+                  <TableCell className="font-mono font-medium">{r.code}</TableCell>
+                  <TableCell className="font-medium" colSpan={5}>
+                    {r.name}
+                  </TableCell>
+                </TableRow>
+              ) : (
+                <ProductRow key={r.product.hs} product={r.product} indented={grouped} />
+              ),
+            )}
+          </TableBody>
+        </Table>
+      )}
       {hiddenCount > 0 && (
         <Button variant="outline" size="sm" onClick={() => setShowAll(true)}>
           Show all {products.length} products ({hiddenCount} more)
@@ -218,6 +324,7 @@ export function TopProductsTable({ products }: { products: Product[] }) {
         </Button>
       )}
       <TariffKey />
+      <ShareKey />
       <ValueKey />
       {/* Footnotes are numbered in column reading order, so the share note
           comes before the tariff-rate note. */}
@@ -295,9 +402,9 @@ function ProductRow({ product: p, indented }: { product: Product; indented: bool
       <TableCell className="max-w-[340px] whitespace-normal">{p.name}</TableCell>
       <TableCell className="text-right">
         {p.shareToUS === null ? (
-          <span className="text-muted-foreground">—</span>
+          <span className="text-muted-foreground">n/a</span>
         ) : (
-          <Badge variant="secondary">{Math.round(p.shareToUS)}%</Badge>
+          <ShareBadge pct={p.shareToUS} />
         )}
       </TableCell>
       <TableCell className="text-right">
@@ -305,14 +412,14 @@ function ProductRow({ product: p, indented }: { product: Product; indented: bool
       </TableCell>
       <TableCell className="text-right tabular-nums">
         {p.avgTariffPct === null ? (
-          <span className="text-muted-foreground">—</span>
+          <span className="text-muted-foreground">n/a</span>
         ) : (
           fmtRate(p.avgTariffPct)
         )}
       </TableCell>
       <TableCell className="text-right tabular-nums">
         {p.usImportsYtd === null ? (
-          <span className="text-muted-foreground">—</span>
+          <span className="text-muted-foreground">n/a</span>
         ) : (
           usd(p.usImportsYtd)
         )}
@@ -321,18 +428,32 @@ function ProductRow({ product: p, indented }: { product: Product; indented: bool
   )
 }
 
-// Units and placeholders used in the numeric columns. The research lead
-// asked for the $ abbreviations to be spelled out; the two missing-value
-// marks are here for the same reason.
+// Researchers asked for the key to carry only the missing-value mark
+// (Sep 2026 beta feedback).
 function ValueKey() {
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
       <span className="font-medium">Value key:</span>
-      <span>B = billion USD</span>
-      <span>M = million USD</span>
-      <span>K = thousand USD</span>
-      <span>— = not available</span>
-      <span>n/a = tariff status not available</span>
+      <span>n/a = not available</span>
+    </div>
+  )
+}
+
+// The share bins, lowest first, drawn with the same fills as the cells.
+function ShareKey() {
+  const labels = ["10–29%", "30–49%", "50–69%", "70–89%", "90–100%"]
+  return (
+    <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-muted-foreground">
+      <span className="mr-2.5 font-medium">Share of exports key:</span>
+      {[...SHARE_BINS].reverse().map((b, i) => (
+        <Badge
+          key={b.min}
+          className="border-transparent tabular-nums"
+          style={{ background: b.background, color: b.color }}
+        >
+          {labels[i]}
+        </Badge>
+      ))}
     </div>
   )
 }
@@ -343,18 +464,14 @@ function TariffKey() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t pt-3 text-xs text-muted-foreground">
       <span className="font-medium">Tariff status key:</span>
       <span className="flex items-center gap-1.5">
-        <Badge variant="destructive">Tariffed</Badge> no exemption under Executive Orders
+        <Badge className={STATUS_BADGE.T}>Tariffed</Badge> no exemption under Executive Orders
       </span>
       <span className="flex items-center gap-1.5">
-        <Badge className="border-transparent bg-(--status-caution)/25 text-foreground">
-          n% exempt
-        </Badge>{" "}
+        <Badge className={STATUS_BADGE.P}>n% exempt</Badge>{" "}
         share of the HS4's US import value that is exempt
       </span>
       <span className="flex items-center gap-1.5">
-        <Badge className="border-transparent bg-(--status-good)/12 text-(--status-good)">
-          Exempt
-        </Badge>{" "}
+        <Badge className={STATUS_BADGE.E}>Exempt</Badge>{" "}
         fully exempt under Executive Orders
       </span>
     </div>
