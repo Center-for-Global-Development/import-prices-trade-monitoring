@@ -20,9 +20,9 @@ export function Home() {
         <CardTitle>Country</CardTitle>
         <CardDescription>
           {COUNTRIES.length} countries with at least one product sending ≥10%
-          of its estimated exports to the US. Click the
-          map or search the list — smaller territories only appear in the 
-          list.
+          of its estimated exports to the US. Click the map (zoom in for
+          smaller countries) or search the list — the smallest territories
+          only appear in the list.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

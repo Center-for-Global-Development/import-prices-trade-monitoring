@@ -13,7 +13,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { RouteFallback } from "@/components/RouteFallback"
-import { ChevronLeft } from "lucide-react"
+import { BackToCountries } from "@/components/BackToCountries"
 import { TopProductsTable } from "@/components/TopProductsTable"
 import { PriceTrendsChart } from "@/components/PriceTrendsChart"
 import { ImportValueChart } from "@/components/ImportValueChart"
@@ -45,8 +45,10 @@ function CountryContent({ iso }: { iso: string }) {
     return (
       <div className="space-y-3" role="status">
         <p>Could not load country data. Please try again.</p>
-        <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
-        <Link to="/" className="ml-4 underline">All countries</Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button onClick={() => { setStatus("loading"); setAttempt((n) => n + 1) }}>Retry</Button>
+          <BackToCountries />
+        </div>
       </div>
     )
   }
@@ -72,20 +74,18 @@ function CountryContent({ iso }: { iso: string }) {
   return (
     // No outer padding or max-width: this is the inside of an iframe on
     // cgdev.org and the host page's column already provides the margins.
-    <div className="space-y-6 sm:space-y-8">
+    // The rail marks the view as one unit among the host page's other
+    // content; it runs back button to back button so start and end are both
+    // marked.
+    <div className="space-y-6 sm:space-y-8 border-l-8 border-(--cgd-light-blue) pl-3 sm:pl-6">
       <div className="flex items-center justify-between">
         <div>
-          <Button asChild variant="ghost" size="sm" className="mb-2 pl-0">
-            <Link to="/">
-              <ChevronLeft className="mr-1 h-4 w-4" />
-              All countries
-            </Link>
-          </Button>
+          <BackToCountries className="mb-3" />
           <h1 className="text-3xl font-semibold tracking-tight text-primary">
             {data.name}
           </h1>
           <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
-          <p className="font-serif text-muted-foreground">
+          <p className="font-serif">
             US import prices &amp; trade flows
           </p>
         </div>
@@ -95,7 +95,7 @@ function CountryContent({ iso }: { iso: string }) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Price trends</CardTitle>
+          <CardTitle>{data.name}: Price trends</CardTitle>
           <CardDescription>
             US Bureau of Labor Statistics (BLS) import price indexes, 
             monthly from Jan 2023 or the earliest
@@ -122,7 +122,7 @@ function CountryContent({ iso }: { iso: string }) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Import value</CardTitle>
+          <CardTitle>{data.name}: Import value</CardTitle>
           <CardDescription>
             Cumulative year-to-date US goods imports from {data.name}, each
             month showing the year so far vs the same months a year earlier
@@ -142,7 +142,7 @@ function CountryContent({ iso }: { iso: string }) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Import value by product</CardTitle>
+          <CardTitle>{data.name}: Import value by product</CardTitle>
           <CardDescription>
             Cumulative year-to-date US imports of each tracked product from{" "}
             {data.name}, each month showing the year so far vs the same months
@@ -164,7 +164,7 @@ function CountryContent({ iso }: { iso: string }) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Tracked products</CardTitle>
+          <CardTitle>{data.name}: Tracked products</CardTitle>
           <CardDescription>
             HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
             {data.name}'s exports went to the US in {SHARE_BASIS} ({priced.length} of{" "}
@@ -185,6 +185,10 @@ function CountryContent({ iso }: { iso: string }) {
           )}
         </CardContent>
       </Card>
+
+      <div className="flex justify-center pt-2">
+        <BackToCountries />
+      </div>
     </div>
   )
 }
