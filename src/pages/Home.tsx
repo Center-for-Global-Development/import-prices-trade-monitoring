@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { COUNTRIES, countLabel } from "@/data/tracker"
 import { WorldMap } from "@/components/WorldMap"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -12,8 +12,6 @@ import {
 
 export function Home() {
   const navigate = useNavigate()
-  // Query string carries design-review flags (see CountryPage); keep it.
-  const { search } = useLocation()
   // No outer padding or max-width: this is the inside of an iframe on
   // cgdev.org and the host page's column already provides the margins.
   return (
@@ -37,7 +35,7 @@ export function Home() {
               <CommandItem
                 key={c.iso}
                 value={c.name}
-                onSelect={() => navigate({ pathname: `/country/${c.iso}`, search })}
+                onSelect={() => navigate(`/country/${c.iso}`)}
                 className="flex flex-wrap justify-between gap-x-3 gap-y-1"
               >
                 <span>{c.name}</span>

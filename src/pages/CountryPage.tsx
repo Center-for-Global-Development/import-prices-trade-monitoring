@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useParams, useSearchParams } from "react-router-dom"
-import { cn } from "@/lib/utils"
+import { Link, useParams } from "react-router-dom"
 import {
   countLabel,
   getCountryData,
@@ -21,17 +20,6 @@ import { ImportValueChart } from "@/components/ImportValueChart"
 import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
 
-// Design-review variants for marking the country view as one unit when it is
-// embedded among other content on cgdev.org (?rail=teal | ?rail=gold). The
-// default renders no rail. Remove once one is chosen.
-type Rail = "none" | "teal" | "gold"
-
-function useRail(): Rail {
-  const [params] = useSearchParams()
-  const v = params.get("rail")
-  return v === "teal" || v === "gold" ? v : "none"
-}
-
 export function CountryPage() {
   const { iso = "" } = useParams()
   return <CountryContent key={iso.toUpperCase()} iso={iso.toUpperCase()} />
@@ -40,7 +28,6 @@ export function CountryPage() {
 function CountryContent({ iso }: { iso: string }) {
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [attempt, setAttempt] = useState(0)
-  const rail = useRail()
   useEffect(() => {
     let cancelled = false
     loadCountryData(iso).then(
@@ -87,28 +74,18 @@ function CountryContent({ iso }: { iso: string }) {
   return (
     // No outer padding or max-width: this is the inside of an iframe on
     // cgdev.org and the host page's column already provides the margins.
-    <div
-      className={cn(
-        "space-y-6 sm:space-y-8",
-        // Both rails run the whole view, back button to back button, so the
-        // tool's start and end are both marked.
-        // teal: 4px in the primary heading color.
-        rail === "teal" && "border-l-4 border-primary pl-3 sm:pl-6",
-        // gold: the site's 8px standfirst treatment.
-        rail === "gold" && "border-l-8 border-(--cgd-gold) pl-3 sm:pl-6"
-      )}
-    >
+    // The rail marks the view as one unit among the host page's other
+    // content; it runs back button to back button so start and end are both
+    // marked.
+    <div className="space-y-6 sm:space-y-8 border-l-8 border-(--cgd-light-blue) pl-3 sm:pl-6">
       <div className="flex items-center justify-between">
         <div>
           <BackToCountries className="mb-3" />
           <h1 className="text-3xl font-semibold tracking-tight text-primary">
             {data.name}
           </h1>
-          {/* The gold rail already supplies the gold accent. */}
-          {rail !== "gold" && (
-            <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
-          )}
-          <p className={cn("font-serif", rail === "gold" && "mt-2")}>
+          <div className="mt-2 mb-2 h-1 w-12 rounded-full bg-(--cgd-gold)" />
+          <p className="font-serif">
             US import prices &amp; trade flows
           </p>
         </div>
