@@ -138,7 +138,10 @@ function CountryContent({ iso }: { iso: string }) {
           <>
             Cumulative year-to-date US goods imports from {data.name}, each
             month showing the year so far vs the same months a year earlier
-            (US Census).
+            (US Census). This country-level analysis covers all merchandise
+            imports, while the product-level analysis below focuses on
+            qualifying HS4 products for which a BLS import price index is also
+            available.
           </>
         }
       >

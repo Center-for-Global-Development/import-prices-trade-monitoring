@@ -20,13 +20,12 @@ export function Home() {
         <CardTitle>Country</CardTitle>
         <CardDescription>
           {COUNTRIES.length} countries with at least one product sending ≥10%
-          of its estimated exports to the US. Click the map (zoom in for
-          smaller countries) or search the list — the smallest territories
-          only appear in the list.
+          of its estimated exports to the US. Search the list or click the
+          map (zoom in for smaller countries) — the smallest territories only
+          appear in the list.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <WorldMap />
         <Command className="rounded-md border">
           <CommandInput placeholder="Search countries..." />
           <CommandList className="max-h-96">
@@ -48,6 +47,7 @@ export function Home() {
             ))}
           </CommandList>
         </Command>
+        <WorldMap />
       </CardContent>
     </Card>
   )
