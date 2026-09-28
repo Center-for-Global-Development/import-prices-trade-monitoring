@@ -19,18 +19,11 @@ import { ProductPicker } from "@/components/ProductPicker"
 import { LineLegend } from "@/components/LineLegend"
 import { TariffLineKey } from "@/components/PriceTrendsChart"
 import { DASH } from "@/lib/tariffDash"
+import { useSeriesColors } from "@/lib/seriesColors"
 
 const MONTH_LABELS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-]
-
-const PALETTE = [
-  "var(--chart-1)",
-  "var(--chart-2)",
-  "var(--chart-3)",
-  "var(--chart-4)",
-  "var(--chart-5)",
 ]
 
 const pct = (v: number) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1)}%`
@@ -65,17 +58,18 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
       .map((p) => p.hs),
   )
 
+  const colors = useSeriesColors(selected)
   const config = useMemo<ChartConfig>(() => {
     const c: ChartConfig = {}
-    plottable.forEach((p, i) => {
+    plottable.forEach((p) => {
       const code = tariffCode(p)
       c[p.hs] = {
         label: `${p.hs} · ${p.name}${code ? ` (${code})` : ""}`,
-        color: PALETTE[i % PALETTE.length],
+        color: colors[p.hs],
       }
     })
     return c
-  }, [plottable])
+  }, [plottable, colors])
 
   const quickSelects = useMemo(() => {
     const byCode = (code: TariffCode) =>

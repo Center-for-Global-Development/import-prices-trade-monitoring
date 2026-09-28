@@ -18,14 +18,7 @@ import { CartesianGrid, Line, LineChart, ReferenceLine, XAxis, YAxis } from "rec
 import { ProductPicker } from "@/components/ProductPicker"
 import { LineLegend } from "@/components/LineLegend"
 import { DASH } from "@/lib/tariffDash"
-
-const PALETTE = [
-  "var(--chart-1)",
-  "var(--chart-2)",
-  "var(--chart-3)",
-  "var(--chart-4)",
-  "var(--chart-5)",
-]
+import { useSeriesColors } from "@/lib/seriesColors"
 
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
@@ -40,17 +33,18 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
     plottable.slice(0, 3).map((p) => p.hs),
   )
 
+  const colors = useSeriesColors(selected)
   const config = useMemo<ChartConfig>(() => {
     const c: ChartConfig = {}
-    plottable.forEach((p, i) => {
+    plottable.forEach((p) => {
       const code = tariffCode(p)
       c[p.hs] = {
         label: `${p.hs} · ${p.name}${code ? ` (${code})` : ""}`,
-        color: PALETTE[i % PALETTE.length],
+        color: colors[p.hs],
       }
     })
     return c
-  }, [plottable])
+  }, [plottable, colors])
 
   // "All tariffed" / "All exempt" let readers compare the two groups without
   // ticking boxes one by one — the research lead's main ask for this chart.

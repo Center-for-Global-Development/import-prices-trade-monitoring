@@ -47,6 +47,11 @@
   --chart-3: var(--cgd-blue);
   --chart-4: var(--cgd-dark-gray);
   --chart-5: var(--cgd-teal-gray);
+  /* Overflow slots for a sixth and seventh line: the pale entries, faint on
+     white and close to each other, so the legend and dash patterns carry
+     identity once they're in use. Light gray stays out (it's the grid). */
+  --chart-6: var(--cgd-light-blue);
+  --chart-7: var(--cgd-light-gold);
   /* Stoplight palette: reserved for status (tariff badges), never series. */
   --status-good: var(--cgd-green);
   --status-caution: var(--cgd-gold);
@@ -81,6 +86,8 @@
   --chart-3: var(--cgd-light-blue);
   --chart-4: var(--cgd-teal-gray);
   --chart-5: var(--cgd-light-gold);
+  --chart-6: var(--cgd-light-teal);
+  --chart-7: var(--cgd-light-gray);
 }
 
 @theme inline {
@@ -110,6 +117,8 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
