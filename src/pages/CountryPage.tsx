@@ -20,6 +20,7 @@ import { ImportValueChart } from "@/components/ImportValueChart"
 import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
 import { ChartCard } from "@/components/ChartCard"
+import { SectionNav } from "@/components/SectionNav"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
@@ -94,7 +95,17 @@ function CountryContent({ iso }: { iso: string }) {
 
       <CountryOverview data={data} />
 
+      <SectionNav
+        sections={[
+          { id: "price-trends", label: "Price trends" },
+          { id: "import-value", label: "Import value" },
+          { id: "import-value-by-product", label: "Import value by product" },
+          { id: "tracked-products", label: "Tracked products" },
+        ]}
+      />
+
       <ChartCard
+        id="price-trends"
         title={<>{data.name}: Price trends</>}
         description={
           <>
@@ -121,6 +132,7 @@ function CountryContent({ iso }: { iso: string }) {
       </ChartCard>
 
       <ChartCard
+        id="import-value"
         title={<>{data.name}: Import value</>}
         description={
           <>
@@ -140,6 +152,7 @@ function CountryContent({ iso }: { iso: string }) {
       </ChartCard>
 
       <ChartCard
+        id="import-value-by-product"
         title={<>{data.name}: Import value by product</>}
         description={
           <>
@@ -159,7 +172,7 @@ function CountryContent({ iso }: { iso: string }) {
         )}
       </ChartCard>
 
-      <Card>
+      <Card id="tracked-products" tabIndex={-1} className="outline-none">
         <CardHeader>
           <CardTitle>{data.name}: Tracked products</CardTitle>
           <CardDescription>

@@ -19,10 +19,12 @@ import { ChartExpandedContext } from "@/lib/chartExpanded"
 // place. Covering the frame wouldn't work there: the iframe is as tall as the
 // whole page, so a fixed overlay would be thousands of pixels high.
 export function ChartCard({
+  id,
   title,
   description,
   children,
 }: {
+  id?: string
   title: ReactNode
   description: ReactNode
   children: ReactNode
@@ -68,7 +70,11 @@ export function ChartCard({
   return (
     <Card
       ref={ref}
-      className={native ? "overflow-y-auto rounded-none border-0" : undefined}
+      id={id}
+      tabIndex={id ? -1 : undefined}
+      // Focus lands here from the section nav; it's a jump target, not a
+      // control, so no focus ring.
+      className={`outline-none ${native ? "overflow-y-auto rounded-none border-0" : ""}`}
     >
       <CardHeader>
         <CardTitle>{title}</CardTitle>
