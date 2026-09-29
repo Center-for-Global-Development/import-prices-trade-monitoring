@@ -324,11 +324,10 @@ export function TopProductsTable({ products: all }: { products: Product[] }) {
         </Button>
       )}
       <TariffKey />
-      <ShareKey />
       <ValueKey />
       {/* Footnotes are numbered in column reading order, so the share note
           comes before the tariff-rate note. */}
-      <div className="space-y-1 text-xs text-muted-foreground">
+      <div className="space-y-2 text-xs text-muted-foreground">
         <p>
           <sup>1</sup> The percentage of the country's exports of that HS4
           product that were sold to the United States in {SHARE_BASIS}.
@@ -435,25 +434,6 @@ function ValueKey() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
       <span className="font-medium">Value key:</span>
       <span>n/a = not available</span>
-    </div>
-  )
-}
-
-// The share bins, lowest first, drawn with the same fills as the cells.
-function ShareKey() {
-  const labels = ["10–29%", "30–49%", "50–69%", "70–89%", "90–100%"]
-  return (
-    <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-muted-foreground">
-      <span className="mr-2.5 font-medium">Share of exports key:</span>
-      {[...SHARE_BINS].reverse().map((b, i) => (
-        <Badge
-          key={b.min}
-          className="border-transparent tabular-nums"
-          style={{ background: b.background, color: b.color }}
-        >
-          {labels[i]}
-        </Badge>
-      ))}
     </div>
   )
 }

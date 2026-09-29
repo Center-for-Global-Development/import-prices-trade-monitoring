@@ -79,7 +79,7 @@ function CountryContent({ iso }: { iso: string }) {
     // The rail marks the view as one unit among the host page's other
     // content; it runs back button to back button so start and end are both
     // marked.
-    <div className="space-y-6 sm:space-y-8 border-l-8 border-(--cgd-light-blue) pl-3 sm:pl-6">
+    <div className="space-y-8 sm:space-y-12 border-l-8 border-(--cgd-light-blue) pl-3 sm:pl-6">
       <div className="flex items-center justify-between">
         <div>
           <BackToCountries className="mb-3" />
@@ -109,10 +109,10 @@ function CountryContent({ iso }: { iso: string }) {
         title={<>{data.name}: Price trends</>}
         description={
           <>
-            US Bureau of Labor Statistics (BLS) import price indexes, 
+            <strong>US Bureau of Labor Statistics (BLS) import price indexes</strong>,
             monthly from Jan 2023 or the earliest
-            available month through {monthLabel(PRICES_THROUGH)}, indexed to
-            March 2025 = 100. BLS indexes cover all US imports of a
+            available month through {monthLabel(PRICES_THROUGH)}, indexed to{" "}
+            <strong>March 2025 = 100</strong>. BLS indexes cover all US imports of a
             product, not imports from {data.name} alone.{" "}
             <strong>
               Only products with a BLS import price index can be shown, so
@@ -136,12 +136,12 @@ function CountryContent({ iso }: { iso: string }) {
         title={<>{data.name}: Import value</>}
         description={
           <>
-            Cumulative year-to-date US goods imports from {data.name}, each
-            month showing the year so far vs the same months a year earlier
-            (US Census). This country-level analysis covers all merchandise
-            imports, while the product-level analysis below focuses on
-            qualifying HS4 products for which a BLS import price index is also
-            available.
+            <strong>Cumulative year-to-date US goods imports</strong> from{" "}
+            {data.name}, each month showing the year so far vs the same months a
+            year earlier (<strong>US Census</strong>). This country-level analysis
+            covers all merchandise imports, while the product-level analysis
+            below focuses on <strong>qualifying HS4 products</strong> for which a{" "}
+            <strong>BLS import price index</strong> is also available.
           </>
         }
       >
@@ -159,9 +159,10 @@ function CountryContent({ iso }: { iso: string }) {
         title={<>{data.name}: Import value by product</>}
         description={
           <>
-            Cumulative year-to-date US imports of each tracked product from the
-            selected country, with each month comparing the year to date with
-            the same period one year earlier (US Census). Products with no
+            <strong>Cumulative year-to-date US imports</strong> of each tracked
+            product from the selected country, with each month comparing the
+            year to date with the same period one year earlier (
+            <strong>US Census</strong>). Products with no
             imports during the corresponding year-earlier period are omitted
             because no comparison is available. Select multiple products to
             compare them.
@@ -179,10 +180,12 @@ function CountryContent({ iso }: { iso: string }) {
         <CardHeader>
           <CardTitle>{data.name}: Tracked products</CardTitle>
           <CardDescription>
-            HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
-            {data.name}'s exports went to the US in {SHARE_BASIS} ({priced.length} of{" "}
-            {countLabel(data.qualifyingCount)} qualifying products). Export shares
-            are from Observatory of Economic Complexity (OEC) bilateral trade data for {SHARE_BASIS}. Tariff status is the
+            <strong>HS4 products</strong> with a <strong>BLS import price index</strong>{" "}
+            where ≥{thresholdPct}% of {data.name}'s exports went to the US in{" "}
+            {SHARE_BASIS} ({priced.length} of {countLabel(data.qualifyingCount)}{" "}
+            <strong>qualifying products</strong>). Export shares are from{" "}
+            <strong>Observatory of Economic Complexity (OEC)</strong> bilateral
+            trade data for {SHARE_BASIS}. <strong>Tariff status</strong> is the
             import-value-weighted share of the HS4 exempt under Executive Orders
             (0% = fully tariffed, 100% = not tariffed).
           </CardDescription>
