@@ -21,6 +21,7 @@ import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
 import { ChartCard } from "@/components/ChartCard"
 import { SectionNav } from "@/components/SectionNav"
+import { Term } from "@/components/Term"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
@@ -140,7 +141,11 @@ function CountryContent({ iso }: { iso: string }) {
             {data.name}, each month showing the year so far vs the same months a
             year earlier (<strong>US Census</strong>). This country-level analysis
             covers all merchandise imports, while the product-level analysis
-            below focuses on <strong>qualifying HS4 products</strong> for which a{" "}
+            below focuses on{" "}
+            <strong>
+              <Term id="qualifying">qualifying</Term> <Term id="hs4">HS4</Term> products
+            </strong>{" "}
+            for which a{" "}
             <strong>BLS import price index</strong> is also available.
           </>
         }
@@ -159,10 +164,10 @@ function CountryContent({ iso }: { iso: string }) {
         title={<>{data.name}: Import value by product</>}
         description={
           <>
-            <strong>Cumulative year-to-date US imports</strong> of each tracked
-            product from the selected country, with each month comparing the
-            year to date with the same period one year earlier (
-            <strong>US Census</strong>). Products with no
+            <strong>Cumulative year-to-date US imports</strong> of each{" "}
+            <Term id="tracked">tracked product</Term> from the selected country,
+            with each month comparing the year to date with the same period one
+            year earlier (<strong>US Census</strong>). Products with no
             imports during the corresponding year-earlier period are omitted
             because no comparison is available. Select multiple products to
             compare them.
@@ -180,10 +185,17 @@ function CountryContent({ iso }: { iso: string }) {
         <CardHeader>
           <CardTitle>{data.name}: Tracked products</CardTitle>
           <CardDescription>
-            <strong>HS4 products</strong> with a <strong>BLS import price index</strong>{" "}
+            <strong>
+              <Term id="hs4">HS4</Term> products
+            </strong>{" "}
+            with a <strong>BLS import price index</strong>{" "}
             where ≥{thresholdPct}% of {data.name}'s exports went to the US in{" "}
             {SHARE_BASIS} ({priced.length} of {countLabel(data.qualifyingCount)}{" "}
-            <strong>qualifying products</strong>). Export shares are from{" "}
+            <strong>
+              <Term id="qualifying">qualifying products</Term>
+            </strong>
+            ). Sorted by HS code, products are grouped under their{" "}
+            <Term id="hs2">HS2</Term> category. Export shares are from{" "}
             <strong>Observatory of Economic Complexity (OEC)</strong> bilateral
             trade data for {SHARE_BASIS}. <strong>Tariff status</strong> is the
             import-value-weighted share of the HS4 exempt under Executive Orders

@@ -16,6 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { GLOSSARY, type TermId } from "@/data/glossary"
 import { ArrowDown, ArrowUp, ArrowUpDown, Search } from "lucide-react"
 
 function usd(n: number) {
@@ -438,22 +439,26 @@ function ValueKey() {
   )
 }
 
-// Placeholder key until the researcher's designer supplies one.
+// Placeholder key until the researcher's designer supplies one. The text is
+// the shared glossary definition, the same one the status-word popovers show.
+const KEY_ROWS: { status: Status; badge: string; term: TermId }[] = [
+  { status: "T", badge: "Tariffed", term: "tariffed" },
+  { status: "P", badge: "n% exempt", term: "partial" },
+  { status: "E", badge: "Exempt", term: "exempt" },
+]
+
 function TariffKey() {
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t pt-3 text-xs text-muted-foreground">
-      <span className="font-medium">Tariff status key:</span>
-      <span className="flex items-center gap-1.5">
-        <Badge className={STATUS_BADGE.T}>Tariffed</Badge> no exemption under Executive Orders
-      </span>
-      <span className="flex items-center gap-1.5">
-        <Badge className={STATUS_BADGE.P}>n% exempt</Badge>{" "}
-        share of the HS4's US import value that is exempt
-      </span>
-      <span className="flex items-center gap-1.5">
-        <Badge className={STATUS_BADGE.E}>Exempt</Badge>{" "}
-        fully exempt under Executive Orders
-      </span>
+    <div className="space-y-1.5 border-t pt-3 text-xs text-muted-foreground">
+      <div className="font-medium">Tariff status key:</div>
+      {KEY_ROWS.map((r) => (
+        <div key={r.status} className="flex items-start gap-2">
+          <Badge className={[STATUS_BADGE[r.status], "w-20 shrink-0"].join(" ")}>
+            {r.badge}
+          </Badge>
+          <span>{GLOSSARY[r.term].definition}</span>
+        </div>
+      ))}
     </div>
   )
 }

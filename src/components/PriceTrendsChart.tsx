@@ -20,6 +20,7 @@ import { LineLegend } from "@/components/LineLegend"
 import { DASH } from "@/lib/tariffDash"
 import { useSeriesColors } from "@/lib/seriesColors"
 import { useChartExpanded } from "@/lib/chartExpanded"
+import { Term } from "@/components/Term"
 
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
@@ -235,14 +236,14 @@ export function TariffLineKey() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t pt-3 text-xs text-muted-foreground">
       <span className="font-medium">Tariff status:</span>
       <span className="flex items-center gap-1.5">
-        {sample()} <span className="font-mono">T</span> tariffed
+        {sample()} <span className="font-mono">T</span> <Term id="tariffed">tariffed</Term>
       </span>
       <span className="flex items-center gap-1.5">
-        {sample(DASH.E)} <span className="font-mono">E</span> exempt
+        {sample(DASH.E)} <span className="font-mono">E</span> <Term id="exempt">exempt</Term>
       </span>
       <span className="flex items-center gap-1.5">
-        {sample(DASH.P)} <span className="font-mono">P</span> partially exempt
-        (share of the HS4's US import value exempt under Executive Orders)
+        {sample(DASH.P)} <span className="font-mono">P</span>{" "}
+        <Term id="partial">partially exempt</Term>
       </span>
     </div>
   )

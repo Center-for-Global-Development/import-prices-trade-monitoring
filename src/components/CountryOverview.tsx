@@ -5,7 +5,9 @@ import {
   US_IMPORTS_LABEL,
   type CountryData,
 } from "@/data/tracker"
+import type { ReactNode } from "react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Term } from "@/components/Term"
 
 function usd(n: number): string {
   if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`
@@ -18,7 +20,7 @@ function Stat({
   value,
   detail,
 }: {
-  label: string
+  label: ReactNode
   value: string
   detail?: string
 }) {
@@ -56,17 +58,17 @@ export function CountryOverview({ data }: { data: CountryData }) {
       {/* The three status tiles sit together and sum to the qualifying
           count, so readers can check the arithmetic at a glance. */}
       <Stat
-        label="Tariffed products"
+        label={<><Term id="tariffed">Tariffed</Term> products</>}
         value={countLabel(data.tariffedCount)}
-        detail={`of ${countLabel(data.qualifyingCount)} qualifying products, no exemptions`}
+        detail={`of ${countLabel(data.qualifyingCount)} qualifying products*, no exemptions`}
       />
       <Stat
-        label="Partially exempt products"
+        label={<><Term id="partial">Partially exempt</Term> products</>}
         value={countLabel(data.partialCount)}
         detail="partly exempt under Executive Orders"
       />
       <Stat
-        label="Exempt products"
+        label={<><Term id="exempt">Exempt</Term> products</>}
         value={countLabel(data.exemptCount)}
         detail="fully exempt under Executive Orders"
       />
