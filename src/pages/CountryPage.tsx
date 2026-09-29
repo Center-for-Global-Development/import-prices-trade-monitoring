@@ -194,8 +194,7 @@ function CountryContent({ iso }: { iso: string }) {
             <strong>
               <Term id="qualifying">qualifying products</Term>
             </strong>
-            ). Sorted by HS code, products are grouped under their{" "}
-            <Term id="hs2">HS2</Term> category. Export shares are from{" "}
+            ). Export shares are from{" "}
             <strong>Observatory of Economic Complexity (OEC)</strong> bilateral
             trade data for {SHARE_BASIS}. <strong>Tariff status</strong> is the
             import-value-weighted share of the HS4 exempt under Executive Orders

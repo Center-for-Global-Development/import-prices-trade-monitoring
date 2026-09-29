@@ -4,7 +4,6 @@ import { QUALIFYING_THRESHOLD } from "@/data/tracker"
 // hover-definition list (Sep 2026), in CGD "US" style. The <Term> popovers
 // and the tariff status keys both read from here so the wording can't drift.
 export type TermId =
-  | "hs2"
   | "hs4"
   | "qualifying"
   | "tracked"
@@ -15,11 +14,6 @@ export type TermId =
 const thresholdPct = Math.round(QUALIFYING_THRESHOLD * 100)
 
 export const GLOSSARY: Record<TermId, { term: string; definition: string }> = {
-  hs2: {
-    term: "HS2",
-    definition:
-      "A broad, 2-digit Harmonized System product category. Each HS2 category contains multiple, more specific HS4 products.",
-  },
   hs4: {
     term: "HS4",
     definition:
