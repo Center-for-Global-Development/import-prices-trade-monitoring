@@ -37,13 +37,14 @@
 //
 // Outputs (src/data/):
 //   prices.json     { baseLabel, through, series: { hs4: { name, points: [[YYYY-MM, idx]] } } }
-//   countries.json  { shareBasis, threshold, importsYtdThrough, priceThrough,
-//                     usImportsPeriod, hs4Names, productColumns,
-//                     countries: { ISO3: {...} } }
-//                   products are stored as compact rows in productColumns
-//                   order to keep the bundle small; src/data/tracker.ts
-//                   expands them.
-//   product_months.json  { ISO3: { hs4: [firstMonth, [pct | null, ...]] } }
+//   directory.json  { shareBasis, threshold, importsYtdThrough, priceThrough,
+//                     usImportsPeriod, hs4Names, productColumns, baseLabel,
+//                     countries: { ISO3: summary } }
+//                   loaded eagerly by the home page; no products or months.
+//   details/ISO3.json  { country, productMonths } for one country, fetched
+//                   when its page opens. Products are compact rows in
+//                   productColumns order; src/data/tracker.ts expands them.
+//                   productMonths is { hs4: [firstMonth, [pct | null, ...]] },
 //                   per-product cumulative YoY, one slot per month from the
 //                   first to the last observed month (null = no ratio).
 //
@@ -389,8 +390,6 @@ const countriesJson = {
 if (nUnpriced) warn(`${nUnpriced} country_product_month series belong to country×HS4 pairs with no country_product row — ignored`)
 if (nNoMonths) warn(`${nNoMonths} tracked country×HS4 pairs have no country_product_month rows (no year-earlier imports to compare against)`)
 writeFileSync(join(OUT, "prices.json"), JSON.stringify(prices))
-writeFileSync(join(OUT, "countries.json"), JSON.stringify(countriesJson))
-writeFileSync(join(OUT, "product_months.json"), JSON.stringify(productMonthsOut))
 
 // Browser payloads: a tiny directory, shared prices, and one file per country.
 // Vite fingerprints these assets, so a data rebuild also invalidates caches.
