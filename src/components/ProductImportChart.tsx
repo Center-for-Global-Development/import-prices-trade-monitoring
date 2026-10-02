@@ -34,7 +34,7 @@ const pct = (v: number) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1)}%`
 // percent doesn't flatten every other line (researcher request, Sep 2026).
 const OUTLIER_PCT = 500
 const OUTLIER_NOTE =
-  "Products marked with an asterisk have cumulative year-over-year changes greater than 500% and are displayed separately so they do not distort the scale of the main chart."
+  "Products marked with an asterisk have cumulative year-over-year changes greater than 500% and are displayed separately so they do not distort the scale of the main chart. In most cases, these large percentages reflect base effects: when a product's prior-year value was very low, even a small increase produces a very large percentage change."
 
 type Row = Record<string, string | number | null>
 type Panel = { year: number; rows: Row[] }
