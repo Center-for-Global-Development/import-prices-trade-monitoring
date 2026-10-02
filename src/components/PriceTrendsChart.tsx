@@ -55,9 +55,9 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
     const byCode = (code: TariffCode) =>
       plottable.filter((p) => tariffCode(p) === code).map((p) => p.hs)
     return [
-      { label: "All tariffed", hs: byCode("T") },
-      { label: "All exempt", hs: byCode("E") },
-      { label: "All partially exempt", hs: byCode("P") },
+      { id: "tariffed", label: "All tariffed", hs: byCode("T") },
+      { id: "exempt", label: "All exempt", hs: byCode("E") },
+      { id: "partially_exempt", label: "All partially exempt", hs: byCode("P") },
     ].filter((q) => q.hs.length > 0)
   }, [plottable])
 
@@ -100,6 +100,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
   return (
     <div className="space-y-4">
       <ProductPicker
+        trackingPrefix="price_trends"
         label={<>Indexed to {BASE_LABEL}</>}
         products={plottable}
         selected={selected}

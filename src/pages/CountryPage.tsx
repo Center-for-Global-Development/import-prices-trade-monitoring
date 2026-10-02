@@ -214,7 +214,7 @@ function CountryContent({ iso }: { iso: string }) {
       </Card>
 
       <div className="flex justify-center pt-2">
-        <BackToCountries />
+        <BackToCountries position="bottom" />
       </div>
     </div>
   )

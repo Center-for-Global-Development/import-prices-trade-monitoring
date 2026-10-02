@@ -108,9 +108,9 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
     const byCode = (code: TariffCode) =>
       plottable.filter((p) => tariffCode(p) === code).map((p) => p.hs)
     return [
-      { label: "All tariffed", hs: byCode("T") },
-      { label: "All exempt", hs: byCode("E") },
-      { label: "All partially exempt", hs: byCode("P") },
+      { id: "tariffed", label: "All tariffed", hs: byCode("T") },
+      { id: "exempt", label: "All exempt", hs: byCode("E") },
+      { id: "partially_exempt", label: "All partially exempt", hs: byCode("P") },
     ].filter((q) => q.hs.length > 0)
   }, [plottable])
 
@@ -155,6 +155,7 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
   return (
     <div className="space-y-4">
       <ProductPicker
+        trackingPrefix="product_imports"
         label="Cumulative year-to-date vs a year earlier, %"
         products={plottable}
         selected={selected}

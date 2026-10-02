@@ -123,6 +123,7 @@ data. Always deploy a complete `dist/`.
 | `src/lib/seriesColors.ts` | Stable colors for selected chart series |
 | `src/index.css` | CGD brand tokens (`--cgd-*`), status colors, light and dark themes |
 | `src/components/ui/` | shadcn/ui primitives. Edit them sparingly |
+| `src/lib/tracking.ts` + `TRACKING.md` | Analytics events (see below) |
 
 ## Embedding on cgdev.org
 
@@ -141,6 +142,13 @@ because of that. Test changes inside the embed, not just standalone.
   Safari doesn't support the Fullscreen API on elements, so `ChartCard`
   makes the chart taller in place instead. Expanded charts size themselves as
   `min(vh, px)` because inside the iframe `vh` is the whole page height.
+- **Analytics:** the iframe has no GA tag. `src/lib/tracking.ts` posts
+  events to the cgdev.org parent page, and GTM there forwards them to GA4,
+  per the CGD Interactive Analytics Tracking Standard. The parent's GTM
+  listener only accepts messages from known hosting domains (including
+  `*.workers.dev`), so moving the site to a custom domain means updating that
+  allowlist. [`TRACKING.md`](TRACKING.md) lists every event. Any PR that adds,
+  removes or renames a tracked control must update it.
 - **Fonts:** Sofia Pro comes from CGD's Adobe Fonts kit, and Bitter from
   Google Fonts. If the kit is ever restricted to certain domains, text falls
   back to the system sans.

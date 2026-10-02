@@ -1,4 +1,5 @@
 import type { MouseEvent } from "react"
+import { trackEngagement } from "@/lib/tracking"
 
 export type Section = { id: string; label: string }
 
@@ -12,6 +13,7 @@ export function SectionNav({ sections }: { sections: Section[] }) {
     const target = document.getElementById(id)
     if (!target) return
     e.preventDefault()
+    trackEngagement("navigate", "section_nav", id)
     target.scrollIntoView({ behavior: "smooth", block: "start" })
     target.focus({ preventScroll: true })
   }

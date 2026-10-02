@@ -3,8 +3,10 @@ import type { Product } from "@/data/tracker"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ChevronDown } from "lucide-react"
+import { trackEngagement } from "@/lib/tracking"
 
-export type QuickSelect = { label: string; hs: string[] }
+// `id` is the analytics value for the button (see TRACKING.md).
+export type QuickSelect = { id: string; label: string; hs: string[] }
 
 // Add/drop product selector shared by the per-product charts (price trends,
 // import value). Selection state lives in the parent so each chart keeps its
@@ -19,7 +21,11 @@ export type QuickSelect = { label: string; hs: string[] }
 // popover. Researchers found the popover covered the charts, and inside the
 // cgdev.org iframe (sized to the page's flow height) a popover near the
 // bottom of the page was clipped after about ten rows.
+//
+// `trackingPrefix` names the chart in analytics labels (e.g. "price_trends"),
+// since both charts use this picker.
 export function ProductPicker({
+  trackingPrefix,
   label,
   products,
   selected,
@@ -30,6 +36,7 @@ export function ProductPicker({
   mark,
   markNote,
 }: {
+  trackingPrefix: string
   label: ReactNode
   products: Product[]
   selected: string[]
@@ -41,6 +48,20 @@ export function ProductPicker({
   markNote?: ReactNode
 }) {
   const [open, setOpen] = useState(false)
+  const setPanel = (next: boolean) => {
+    if (next === open) return
+    trackEngagement(next ? "detail_open" : "detail_close", `${trackingPrefix}_product_picker`)
+    setOpen(next)
+  }
+  const toggle = (hs: string) => {
+    const action = selected.includes(hs) ? "remove" : "add"
+    trackEngagement("filter", `${trackingPrefix}_product_${action}`, hs)
+    onToggle(hs)
+  }
+  const quickSelect = (value: string, hs: string[]) => {
+    trackEngagement("preset", `${trackingPrefix}_quick_select`, value)
+    onSetSelected?.(hs)
+  }
   const panelId = useId()
   const rows = useMemo(
     () => [...products].sort((a, b) => a.hs.localeCompare(b.hs)),
@@ -55,7 +76,7 @@ export function ProductPicker({
           size="sm"
           aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpen((o) => !o)}
+          onClick={() => setPanel(!open)}
         >
           {selected.length} of {products.length} products
           <ChevronDown
@@ -68,7 +89,7 @@ export function ProductPicker({
           id={panelId}
           className="space-y-2 rounded-md border bg-popover p-4 text-popover-foreground"
           onKeyDown={(e) => {
-            if (e.key === "Escape") setOpen(false)
+            if (e.key === "Escape") setPanel(false)
           }}
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -82,7 +103,7 @@ export function ProductPicker({
               variant="ghost"
               size="sm"
               className="h-7 px-2 text-xs"
-              onClick={() => setOpen(false)}
+              onClick={() => setPanel(false)}
             >
               Done
             </Button>
@@ -96,7 +117,7 @@ export function ProductPicker({
                   size="sm"
                   className="h-7 px-2 text-xs"
                   disabled={q.hs.length === 0}
-                  onClick={() => onSetSelected(q.hs)}
+                  onClick={() => quickSelect(q.id, q.hs)}
                 >
                   {q.label} ({q.hs.length})
                 </Button>
@@ -106,7 +127,7 @@ export function ProductPicker({
                 size="sm"
                 className="h-7 px-2 text-xs"
                 disabled={selected.length === 0}
-                onClick={() => onSetSelected([])}
+                onClick={() => quickSelect("clear", [])}
               >
                 Clear
               </Button>
@@ -125,7 +146,7 @@ export function ProductPicker({
                 >
                   <Checkbox
                     checked={selected.includes(p.hs)}
-                    onCheckedChange={() => onToggle(p.hs)}
+                    onCheckedChange={() => toggle(p.hs)}
                   />
                   <span className="font-mono text-xs">{p.hs}</span>
                   <span className="truncate">

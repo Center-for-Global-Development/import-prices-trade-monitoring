@@ -4,6 +4,7 @@ import { Minus, Plus, RotateCcw } from "lucide-react"
 import worldRaw from "@/data/world_map.json"
 import { COUNTRY_BY_ISO, countLabel } from "@/data/tracker"
 import { Button } from "@/components/ui/button"
+import { trackEngagement } from "@/lib/tracking"
 
 type MapCountry = { iso: string; name: string; d: string }
 type MapArea = { name: string; d: string }
@@ -180,6 +181,7 @@ export function WorldMap() {
 
   const open = (iso: string) => () => {
     if (drag.current?.moved) return
+    trackEngagement("navigate", "country_map", iso)
     navigate(`/country/${iso}`)
   }
 
@@ -337,6 +339,7 @@ export function WorldMap() {
           href="https://datacatalog.worldbank.org/search/dataset/0038272"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEngagement("external_link", "map_boundaries_source")}
           className="underline underline-offset-2 hover:text-foreground"
         >
           World Bank Official Boundaries

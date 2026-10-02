@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { ChartExpandedContext } from "@/lib/chartExpanded"
+import { trackEngagement } from "@/lib/tracking"
 
 // Card for a chart with an expand button in its upper-right corner. Uses the
 // browser's Fullscreen API on the card itself, so the chart keeps its state
@@ -51,17 +52,30 @@ export function ChartCard({
     return () => document.removeEventListener("keydown", onKey)
   }, [inline])
 
+  // The value records which expansion the reader got, so we can see how
+  // often the cgdev.org embed falls back to expanding in place.
+  const track = (value: "fullscreen" | "inline" | "collapse") =>
+    trackEngagement("view_control", `${(id ?? "chart").replaceAll("-", "_")}_expand`, value)
+
   const toggle = async () => {
-    if (native) return void document.exitFullscreen()
-    if (inline) return setInline(false)
+    if (native) {
+      track("collapse")
+      return void document.exitFullscreen()
+    }
+    if (inline) {
+      track("collapse")
+      return setInline(false)
+    }
     if (document.fullscreenEnabled && ref.current?.requestFullscreen) {
       try {
         await ref.current.requestFullscreen()
+        track("fullscreen")
         return
       } catch {
         // Refused (permissions policy, no user gesture): expand in place.
       }
     }
+    track("inline")
     setInline(true)
   }
 

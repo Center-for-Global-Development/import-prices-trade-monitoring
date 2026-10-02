@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { GLOSSARY, type TermId } from "@/data/glossary"
+import { trackEngagement } from "@/lib/tracking"
 
 // Hover delay before a mouse-opened definition closes, long enough to move
 // the pointer from the term onto the popover.
@@ -46,6 +47,10 @@ export function Term({ id, children }: { id: TermId; children: ReactNode }) {
         onPointerEnter={hoverOpen}
         onPointerLeave={hoverClose}
         onClick={(e) => {
+          // Tracked on click, tap or Enter only: hover opens are excluded by
+          // the analytics standard. A click that pins a hover-opened popover
+          // counts, since the reader chose to read it.
+          if (byHover.current || !open) trackEngagement("detail_open", "glossary_term", id)
           if (byHover.current) {
             // Pin it: the hover already opened it, keep it open.
             e.preventDefault()

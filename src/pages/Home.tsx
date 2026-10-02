@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { COUNTRIES, countLabel } from "@/data/tracker"
 import { WorldMap } from "@/components/WorldMap"
+import { trackEngagement } from "@/lib/tracking"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import {
   Command,
@@ -34,7 +35,10 @@ export function Home() {
               <CommandItem
                 key={c.iso}
                 value={c.name}
-                onSelect={() => navigate(`/country/${c.iso}`)}
+                onSelect={() => {
+                  trackEngagement("navigate", "country_list", c.iso)
+                  navigate(`/country/${c.iso}`)
+                }}
                 className="flex flex-wrap justify-between gap-x-3 gap-y-1"
               >
                 <span>{c.name}</span>

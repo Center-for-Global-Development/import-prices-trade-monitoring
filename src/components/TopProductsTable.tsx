@@ -18,6 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { GLOSSARY, type TermId } from "@/data/glossary"
 import { ArrowDown, ArrowUp, ArrowUpDown, Search } from "lucide-react"
+import { trackEngagement } from "@/lib/tracking"
 
 function usd(n: number) {
   if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`
@@ -165,11 +166,12 @@ function buildRows(products: Product[], sort: Sort): Row[] {
 
 type StatusFilter = "all" | Status
 
-const STATUS_FILTERS: { value: StatusFilter; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "T", label: "Tariffed" },
-  { value: "P", label: "Partially exempt" },
-  { value: "E", label: "Exempt" },
+// `track` is the analytics value (see TRACKING.md).
+const STATUS_FILTERS: { value: StatusFilter; label: string; track: string }[] = [
+  { value: "all", label: "All", track: "all" },
+  { value: "T", label: "Tariffed", track: "tariffed" },
+  { value: "P", label: "Partially exempt", track: "partially_exempt" },
+  { value: "E", label: "Exempt", track: "exempt" },
 ]
 
 // Digits match HS codes from the start (so "07" finds chapter 07 and "0702"
@@ -221,12 +223,18 @@ export function TopProductsTable({ products: all }: { products: Product[] }) {
   const shown = visible.filter((r) => r.kind === "product").length
   const hiddenCount = products.length - shown
 
-  const onSort = (key: SortKey) =>
-    setSort((s) =>
-      s.key === key
-        ? { key, dir: s.dir === "asc" ? "desc" : "asc" }
-        : { key, dir: FIRST_DIR[key] },
-    )
+  const onSort = (key: SortKey) => {
+    const dir = sort.key === key ? (sort.dir === "asc" ? "desc" : "asc") : FIRST_DIR[key]
+    trackEngagement("view_control", "table_sort", `${key}_${dir}`)
+    setSort({ key, dir })
+  }
+
+  // Search text is free input, so it is never sent. One event marks the
+  // start of each search (the box going from empty to non-empty).
+  const onQuery = (next: string) => {
+    if (!query.trim() && next.trim()) trackEngagement("filter", "table_search")
+    setQuery(next)
+  }
 
   const grouped = sort.key === "hs"
 
@@ -242,7 +250,7 @@ export function TopProductsTable({ products: all }: { products: Product[] }) {
           <input
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => onQuery(e.target.value)}
             placeholder="Search HS code or product"
             className="h-8 w-full rounded-md border border-input bg-transparent pr-3 pl-8 text-sm outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
           />
@@ -260,7 +268,10 @@ export function TopProductsTable({ products: all }: { products: Product[] }) {
               variant={status === f.value ? "default" : "outline"}
               size="sm"
               className="h-8 px-2.5 text-xs"
-              onClick={() => setStatus(f.value)}
+              onClick={() => {
+                if (f.value !== status) trackEngagement("filter", "table_status_filter", f.track)
+                setStatus(f.value)
+              }}
             >
               {f.label} ({statusCounts[f.value]})
             </Button>
@@ -315,12 +326,18 @@ export function TopProductsTable({ products: all }: { products: Product[] }) {
         </Table>
       )}
       {hiddenCount > 0 && (
-        <Button variant="outline" size="sm" onClick={() => setShowAll(true)}>
+        <Button variant="outline" size="sm" onClick={() => {
+          trackEngagement("detail_open", "table_show_all")
+          setShowAll(true)
+        }}>
           Show all {products.length} products ({hiddenCount} more)
         </Button>
       )}
       {showAll && products.length > COLLAPSED_ROW_TARGET && (
-        <Button variant="ghost" size="sm" onClick={() => setShowAll(false)}>
+        <Button variant="ghost" size="sm" onClick={() => {
+          trackEngagement("detail_close", "table_show_all")
+          setShowAll(false)
+        }}>
           Collapse
         </Button>
       )}
