@@ -144,4 +144,22 @@
   [data-slot="card-description"] {
     font-family: var(--font-serif);
   }
+  /* Researchers asked for more room between paragraphs; ready for when the
+     intros are split into shorter ones. */
+  [data-slot="card-description"] > p + p {
+    margin-top: 0.75rem;
+  }
+}
+
+/* macOS hides scrollbars until you scroll, so a long list that happens to
+   end on a row boundary looks complete. Always draw the bar. */
+.scrollbar-visible::-webkit-scrollbar {
+  width: 8px;
+}
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted-foreground) 45%, transparent);
+  border-radius: 4px;
+}
+.scrollbar-visible::-webkit-scrollbar-track {
+  background: transparent;
 }

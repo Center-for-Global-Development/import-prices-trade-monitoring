@@ -1,121 +1,108 @@
 # Tracker input data
 
-The two CSVs in this folder are the tracker's only data inputs. They come
-straight out of the researcher's R workflow (CGD, first delivered August 2026)
-and are the canonical handoff format: when a new drop arrives, replace both
-files here with the new versions, keeping the same file names, and rebuild.
+These two CSVs are the tracker's only data inputs. They come out of the
+researchers' R workflow, already filtered and computed. The site only
+reshapes them. This file explains what each column means. For how to load
+a new drop, see [Updating the data](../README.md#updating-the-data) in the
+main README.
 
-```bash
-npm run data     # validates the CSVs and writes src/data/{prices,countries,product_months}.json
-npm run build    # runs `data` first, then the normal app build
-```
+General rules for both files:
 
-The converter (`scripts/build_app_data.mjs`) fails loudly on structural
-problems and prints warnings for softer inconsistencies worth passing back to
-the researcher. Read its output after every drop.
+- Percentages are already percentages (33.2 = 33.2%).
+- Dollar amounts are raw USD.
+- `cty_code`, `hs2` and `hs4` are text, and their leading zeros matter.
+- Blank cells are intentional and mean "no value".
 
 ## PRICE_DATA.csv
 
-One row per HS4 × month. Product-level BLS import price index for **all** U.S.
-imports of the HS4 (BLS does not publish by origin country), rebased so
-**March 2025 = 100**.
+One row per HS4 × month. Each row is the BLS import price index for **all**
+US imports of that HS4, rebased so **March 2025 = 100**. BLS doesn't publish
+these indexes by origin country.
 
 | column | notes |
 |---|---|
 | `date` | first of the month, `YYYY-MM-DD` |
-| `hs4` | 4-digit HS code, text (leading zeros matter) |
+| `hs4` | 4-digit HS code |
 | `product` | HS4 display name |
-| `price_index` | index value, Mar 2025 = 100 |
+| `price_index` | index value, March 2025 = 100 |
 
 ## COUNTRY_PRODUCT_DATA.csv
 
-One long file; `record_type` says how a row is used and which columns are
-populated. Blank cells are intentional. Percentages are already percentages
-(33.2 = 33.2%). Dollar fields are raw USD. `cty_code`, `hs2`, `hs4` are text.
-`country_iso3` is the country key.
+One long file. The `record_type` column says what each row is and which
+columns are filled in. `country_iso3` is the country key.
 
-**`country_summary`** — one row per country, feeds the overview tiles.
+### `country_summary`
+
+One row per country. These rows feed the summary tiles.
 
 | column | notes |
 |---|---|
-| `us_imports_<YEAR>` | headline U.S. goods imports from the country, USD. The column name carries the year: the August 2026 drop had `us_imports_2024` (calendar 2024); the September 2026 drop has `us_imports_2026`, which the converter reads as Jan through `latest_import_period` (year-to-date) because the year matches the data's latest month. The tile label follows automatically. |
-| `qualifying_products_n` | HS4s where ≥10% of the country's exports go to the U.S. (OEC 2024), before requiring BLS data |
-| `tracked_products_n` | qualifying products that also have a BLS series = number of `country_product` rows |
-| `tariffed_products_n` | qualifying products with no Annex II exemption |
-| `exempt_products_n` | qualifying products fully exempt under Annex II. The converter derives the partially exempt count as qualifying − tariffed − exempt, so the three tiles sum; this assumes every qualifying product has an exemption share. |
-| `latest_import_yoy_pct` | latest cumulative-YTD YoY change in total imports from the country, % |
-| `latest_import_period` | month that value runs through |
+| `us_imports_<YEAR>` | Total US goods imports from the country, USD. The year is part of the column name. If it matches the year of `latest_import_period`, the converter treats the value as year-to-date (Jan through that month). Otherwise it treats it as a full calendar year. The tile label follows automatically. |
+| `qualifying_products_n` | Number of HS4s where ≥10% of the country's exports go to the US (OEC 2024), whether or not they have a BLS index |
+| `tracked_products_n` | Number of qualifying products that also have a BLS index. Should equal the country's number of `country_product` rows |
+| `tariffed_products_n` | Number of qualifying products with no exemption |
+| `exempt_products_n` | Number of qualifying products that are fully exempt. The converter works out the partially exempt count as qualifying − tariffed − exempt, so the three tiles add up |
+| `latest_import_yoy_pct` | Latest cumulative-YTD change in total imports from the country, % |
+| `latest_import_period` | Month that value runs through |
 
-**`country_month`** — one row per country × month, feeds the import-value chart.
+### `country_month`
+
+One row per country × month. These rows feed the "Import value" chart.
 
 | column | notes |
 |---|---|
 | `date` | month |
-| `import_yoy_pct` | cumulative YTD imports (Jan..M) vs the same months a year earlier, %. Precomputed; the site does not recompute YoY. |
+| `import_yoy_pct` | Cumulative YTD imports (Jan..M) vs the same months a year earlier, %. The site doesn't recompute it |
 
-**`country_product`** — one row per country × HS4, feeds the tracked-products
-table and the price-chart product picker. Already filtered upstream to the
-≥10% share threshold **and** to HS4s with usable BLS data.
+### `country_product`
 
-| column | notes |
-|---|---|
-| `hs2`, `hs4`, `product` | chapter, product code (the join key to `PRICE_DATA.csv`), display name |
-| `us_share_pct` | share of the country's exports of the HS4 going to the U.S., % (OEC 2024, capped at 100) |
-| `exempt_share_pct` | share of the HS4's U.S. import value exempt from tariffs, %. Since the September 2026 drop this varies by country for the same HS4 and is blank for ~415 unclassified pairs. |
-| `average_tariff_pct` | (since September 2026) average applied U.S. tariff rate on the HS4 from this country, %: for each country × HS4 pair, the mean of the underlying HS10 tariff rates. Blank when unclassified. Shown in the tracked-products table as "Average tariff rate at the HS4 level (%)". |
-| `tariff_status` | preformatted: `Tariffed`, `Exempt`, or e.g. `80% exempt` (blank when unclassified) |
-| `price_date` | latest BLS month behind the price change |
-| `price_change_since_mar2025` | latest index − 100, %. Still converted (as `priceChangePct`) but no longer shown in the table since September 2026; the researcher wants a different price-change comparison before it returns. |
-| `us_imports_ytd` | U.S. imports of the HS4 from the country, Jan through `imports_ytd_date`, USD (0 is a real zero) |
-| `imports_ytd_date` | last month included in `us_imports_ytd`; drives the table heading |
-
-**`country_product_month`** (since the September 2026 drop) — one row per
-country × HS4 × month, feeds the import-value-by-product chart. Same
-definition as `country_month`, per product.
+One row per country × HS4. These rows feed the tracked products table and
+the chart pickers. They are already filtered to the ≥10% threshold **and**
+to HS4s with a BLS index.
 
 | column | notes |
 |---|---|
-| `hs2`, `hs4`, `product` | as in `country_product` |
-| `date` | month |
-| `import_yoy_pct` | cumulative YTD U.S. imports of the HS4 from the country (Jan..M) vs the same months a year earlier, % |
+| `hs2`, `hs4`, `product` | Chapter, product code (the join key to `PRICE_DATA.csv`) and display name |
+| `us_share_pct` | Share of the country's exports of the HS4 that go to the US, % (OEC 2024, capped at 100) |
+| `exempt_share_pct` | Share of the HS4's US import value that is exempt from the tariffs, %. Can differ by country for the same HS4. Blank when the pair is unclassified |
+| `average_tariff_pct` | Average applied US tariff rate on the HS4 from this country, %: the mean of the HS10 rates within the HS4. Shown in the table. Blank when unclassified |
+| `tariff_status` | Preformatted label: `Tariffed`, `Exempt`, or e.g. `80% exempt`. Shown as the table's status pill. Blank when unclassified |
+| `price_date` | Latest BLS month behind the price change |
+| `price_change_since_mar2025` | Latest index − 100, %. The converter carries it through as `priceChangePct`, but the site doesn't show it |
+| `us_imports_ytd` | US imports of the HS4 from the country, Jan through `imports_ytd_date`, USD. 0 is a real zero |
+| `imports_ytd_date` | Last month included in `us_imports_ytd`. Drives the table heading |
 
-Only months with a defined ratio are present: a pair with zero imports in the
-year-earlier months has no row, so series start late, have gaps, and 844 of
-the 5,283 tracked pairs (mostly with zero YTD imports) have no rows at all.
-Tiny flows swing by thousands of percent; the chart's axis follows whatever
-is selected.
+### `country_product_month`
 
-## Methodology constants not in the files
+One row per country × HS4 × month. These rows feed the "Import value by
+product" chart. They use the same measure as `country_month`, per product.
 
-Set at the top of `scripts/build_app_data.mjs`: the share year (2024, OEC),
-the 10% threshold, and the March 2025 = 100 base. Change them only when the
-researcher's methodology changes.
+| column | notes |
+|---|---|
+| `hs2`, `hs4`, `product` | As in `country_product` |
+| `date` | Month |
+| `import_yoy_pct` | Cumulative YTD US imports of the HS4 from the country (Jan..M) vs the same months a year earlier, % |
 
-## Changes in the September 2026 drop
+Rows exist only for months where the comparison is defined. A product with
+no imports in the year-earlier months has no row for that month. So series
+can start late or have gaps, and some tracked products have no rows at all.
 
-- `record_type` gains `country_product_month` (118,471 rows).
-- `us_imports_2024` renamed to `us_imports_2026` with new values (YTD, see
-  above). The researcher's note did not mention this; confirm the definition.
-- New `average_tariff_pct` column on `country_product` rows.
-- Tariff classification changed substantially without a note: 3,027 of 5,283
-  tracked pairs changed `exempt_share_pct` (1,485 Tariffed → Exempt, 625
-  Tariffed → partial, 415 now blank), the same HS4 can now differ by country
-  (169 HS4s do), and the summary tariffed/exempt counts moved accordingly.
-  The `average_tariff_pct` values cluster at 0 / 10 / 12.5 / 25 / 32.5 / 50,
-  which looks like current applied rates rather than the Annex II exemption
-  shares of the August drop. The site's "exempt under Executive Orders"
-  wording may need revisiting once the researcher confirms the definition.
-- `country_month`, `us_imports_ytd` and `imports_ytd_date` extended to July
-  2026; existing values unchanged. `PRICE_DATA.csv` unchanged.
-- Labels like `12% exempt` for 12.5 are R's round-half-even; the converter
-  tolerates half a point.
+## What to expect in the data
 
-## Known quirks in the August 2026 drop
-
-- Countries with zero qualifying products (12 small territories) are dropped
-  by the converter; 7 more have qualifying products but none with BLS data
-  and appear with an empty table.
-- Norfolk Island's monthly series ends Dec 2024, so its latest-YoY tile says
-  so. Heard and McDonald Islands has a summary row with no data.
-- The researcher still intends to subset to Tariff Tracker countries; until
-  then small islands are present.
+- **Countries with no qualifying products** get a summary row but nothing
+  else. The converter drops them.
+- **Tracked products without monthly rows:** several hundred tracked
+  products, mostly with zero YTD imports, have no `country_product_month`
+  rows. They don't appear in the "Import value by product" chart.
+- **Unclassified products:** a few hundred `country_product` rows have blank
+  `exempt_share_pct`, `average_tariff_pct` and `tariff_status`.
+- **Short series:** some small territories' monthly series end well before
+  the latest month (Norfolk Island stops in December 2024). The latest-change
+  tile then shows that earlier month.
+- **Rounding:** R rounds half to even, so a label like `12% exempt` can come
+  from a share of 12.5. The converter allows half a point either way.
+- **Name mismatches:** an HS4 can have slightly different names in the two
+  files. The converter warns and uses the name from
+  `COUNTRY_PRODUCT_DATA.csv`.
+- **Tiny product flows** can swing by thousands of percent. The chart moves
+  products above 500% into a separate panel.

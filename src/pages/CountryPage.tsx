@@ -19,6 +19,9 @@ import { PriceTrendsChart } from "@/components/PriceTrendsChart"
 import { ImportValueChart } from "@/components/ImportValueChart"
 import { ProductImportChart } from "@/components/ProductImportChart"
 import { CountryOverview } from "@/components/CountryOverview"
+import { ChartCard } from "@/components/ChartCard"
+import { SectionNav } from "@/components/SectionNav"
+import { Term } from "@/components/Term"
 
 export function CountryPage() {
   const { iso = "" } = useParams()
@@ -77,7 +80,7 @@ function CountryContent({ iso }: { iso: string }) {
     // The rail marks the view as one unit among the host page's other
     // content; it runs back button to back button so start and end are both
     // marked.
-    <div className="space-y-6 sm:space-y-8 border-l-8 border-(--cgd-light-blue) pl-3 sm:pl-6">
+    <div className="space-y-8 sm:space-y-12 border-l-8 border-(--cgd-light-blue) pl-3 sm:pl-6">
       <div className="flex items-center justify-between">
         <div>
           <BackToCountries className="mb-3" />
@@ -93,14 +96,24 @@ function CountryContent({ iso }: { iso: string }) {
 
       <CountryOverview data={data} />
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{data.name}: Price trends</CardTitle>
-          <CardDescription>
-            US Bureau of Labor Statistics (BLS) import price indexes, 
+      <SectionNav
+        sections={[
+          { id: "price-trends", label: "Price trends" },
+          { id: "import-value", label: "Import value" },
+          { id: "import-value-by-product", label: "Import value by product" },
+          { id: "tracked-products", label: "Tracked products" },
+        ]}
+      />
+
+      <ChartCard
+        id="price-trends"
+        title={<>{data.name}: Price trends</>}
+        description={
+          <>
+            <strong>US Bureau of Labor Statistics (BLS) import price indexes</strong>,
             monthly from Jan 2023 or the earliest
-            available month through {monthLabel(PRICES_THROUGH)}, indexed to
-            March 2025 = 100. BLS indexes cover all US imports of a
+            available month through {monthLabel(PRICES_THROUGH)}, indexed to{" "}
+            <strong>March 2025 = 100</strong>. BLS indexes cover all US imports of a
             product, not imports from {data.name} alone.{" "}
             <strong>
               Only products with a BLS import price index can be shown, so
@@ -109,67 +122,81 @@ function CountryContent({ iso }: { iso: string }) {
               {countLabel(data.qualifyingCount)}).
             </strong>{" "}
             Multi-select to compare products.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {priced.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No qualifying products to plot.</p>
-          ) : (
-            <PriceTrendsChart products={priced} />
-          )}
-        </CardContent>
-      </Card>
+          </>
+        }
+      >
+        {priced.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No qualifying products to plot.</p>
+        ) : (
+          <PriceTrendsChart products={priced} />
+        )}
+      </ChartCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{data.name}: Import value</CardTitle>
-          <CardDescription>
-            Cumulative year-to-date US goods imports from {data.name}, each
-            month showing the year so far vs the same months a year earlier
-            (US Census).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {data.importValue.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No monthly Census import value data for {data.name}.
-            </p>
-          ) : (
-            <ImportValueChart data={data.importValue} />
-          )}
-        </CardContent>
-      </Card>
+      <ChartCard
+        id="import-value"
+        title={<>{data.name}: Import value</>}
+        description={
+          <>
+            <strong>Cumulative year-to-date US goods imports</strong> from{" "}
+            {data.name}, each month showing the year so far vs the same months a
+            year earlier (<strong>US Census</strong>). This country-level analysis
+            covers all merchandise imports, while the product-level analysis
+            below focuses on{" "}
+            <strong>
+              <Term id="qualifying">qualifying</Term> <Term id="hs4">HS4</Term> products
+            </strong>{" "}
+            for which a{" "}
+            <strong>BLS import price index</strong> is also available.
+          </>
+        }
+      >
+        {data.importValue.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            No monthly Census import value data for {data.name}.
+          </p>
+        ) : (
+          <ImportValueChart data={data.importValue} />
+        )}
+      </ChartCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{data.name}: Import value by product</CardTitle>
-          <CardDescription>
-            Cumulative year-to-date US imports of each tracked product from{" "}
-            {data.name}, each month showing the year so far vs the same months
-            a year earlier (US Census). Products with no imports in the
-            year-earlier months have no comparison and are left out.
-            Multi-select to compare products. The products shown for each country
-            may differ from those in the “Price trends” tracker because the two
-            trackers use different databases (US Census and BLS, respectively).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {priced.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No tracked products to plot.</p>
-          ) : (
-            <ProductImportChart iso={data.iso} products={priced} />
-          )}
-        </CardContent>
-      </Card>
+      <ChartCard
+        id="import-value-by-product"
+        title={<>{data.name}: Import value by product</>}
+        description={
+          <>
+            <strong>Cumulative year-to-date US imports</strong> of each{" "}
+            <Term id="tracked">tracked product</Term> from the selected country,
+            with each month comparing the year to date with the same period one
+            year earlier (<strong>US Census</strong>). Products with no
+            imports during the corresponding year-earlier period are omitted
+            because no comparison is available. Select multiple products to
+            compare them.
+          </>
+        }
+      >
+        {priced.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No tracked products to plot.</p>
+        ) : (
+          <ProductImportChart iso={data.iso} products={priced} />
+        )}
+      </ChartCard>
 
-      <Card>
+      <Card id="tracked-products" tabIndex={-1} className="outline-none">
         <CardHeader>
           <CardTitle>{data.name}: Tracked products</CardTitle>
           <CardDescription>
-            HS4 products with a BLS import price index where ≥{thresholdPct}% of{" "}
-            {data.name}'s exports went to the US in {SHARE_BASIS} ({priced.length} of{" "}
-            {countLabel(data.qualifyingCount)} qualifying products). Export shares
-            are from Observatory of Economic Complexity bilateral trade data for {SHARE_BASIS}. Tariff status is the
+            <strong>
+              <Term id="hs4">HS4</Term> products
+            </strong>{" "}
+            with a <strong>BLS import price index</strong>{" "}
+            where ≥{thresholdPct}% of {data.name}'s exports went to the US in{" "}
+            {SHARE_BASIS} ({priced.length} of {countLabel(data.qualifyingCount)}{" "}
+            <strong>
+              <Term id="qualifying">qualifying products</Term>
+            </strong>
+            ). Export shares are from{" "}
+            <strong>Observatory of Economic Complexity (OEC)</strong> bilateral
+            trade data for {SHARE_BASIS}. <strong>Tariff status</strong> is the
             import-value-weighted share of the HS4 exempt under Executive Orders
             (0% = fully tariffed, 100% = not tariffed).
           </CardDescription>
@@ -187,7 +214,7 @@ function CountryContent({ iso }: { iso: string }) {
       </Card>
 
       <div className="flex justify-center pt-2">
-        <BackToCountries />
+        <BackToCountries position="bottom" />
       </div>
     </div>
   )

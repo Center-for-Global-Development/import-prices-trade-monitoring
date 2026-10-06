@@ -20,6 +20,7 @@ import { LineLegend } from "@/components/LineLegend"
 import { TariffLineKey } from "@/components/PriceTrendsChart"
 import { DASH } from "@/lib/tariffDash"
 import { useSeriesColors } from "@/lib/seriesColors"
+import { useChartExpanded } from "@/lib/chartExpanded"
 
 const MONTH_LABELS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -27,6 +28,16 @@ const MONTH_LABELS = [
 ]
 
 const pct = (v: number) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1)}%`
+
+// Products whose cumulative YoY tops this in any displayed month move to a
+// second chart below the main one, so a tiny trade flow swinging thousands of
+// percent doesn't flatten every other line (researcher request, Sep 2026).
+const OUTLIER_PCT = 500
+const OUTLIER_NOTE =
+  "Products marked with an asterisk have cumulative year-over-year changes greater than 500% and are displayed separately so they do not distort the scale of the main chart. In most cases, these large percentages reflect base effects: when a product's prior-year value was very low, even a small increase produces a very large percentage change."
+
+type Row = Record<string, string | number | null>
+type Panel = { year: number; rows: Row[] }
 
 // Per-product US import value from the country: the researcher's monthly
 // cumulative-YTD YoY series per country×HS4 (Sep 2026 drop), laid out like
@@ -58,26 +69,48 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
       .map((p) => p.hs),
   )
 
+  const expanded = useChartExpanded()
+
+  // Panels cover the years any plottable product has data for (last three),
+  // so they don't jump around as the selection changes.
+  const years = useMemo(() => {
+    const ys = new Set<number>()
+    for (const s of series.values())
+      for (const pt of s) if (pt.cumYoy !== null) ys.add(parseInt(pt.date, 10))
+    return [...ys].sort().slice(-3)
+  }, [series])
+
+  // Judged on the displayed years only, so a product isn't split out for a
+  // spike readers can't see.
+  const outliers = useMemo(() => {
+    const out = new Set<string>()
+    for (const [hs, s] of series)
+      if (s.some((pt) => years.includes(parseInt(pt.date, 10)) && (pt.cumYoy ?? 0) > OUTLIER_PCT))
+        out.add(hs)
+    return out
+  }, [series, years])
+  const isOutlier = (p: Product) => outliers.has(p.hs)
+
   const colors = useSeriesColors(selected)
   const config = useMemo<ChartConfig>(() => {
     const c: ChartConfig = {}
     plottable.forEach((p) => {
       const code = tariffCode(p)
       c[p.hs] = {
-        label: `${p.hs} · ${p.name}${code ? ` (${code})` : ""}`,
+        label: `${p.hs} · ${p.name}${outliers.has(p.hs) ? "*" : ""}${code ? ` (${code})` : ""}`,
         color: colors[p.hs],
       }
     })
     return c
-  }, [plottable, colors])
+  }, [plottable, colors, outliers])
 
   const quickSelects = useMemo(() => {
     const byCode = (code: TariffCode) =>
       plottable.filter((p) => tariffCode(p) === code).map((p) => p.hs)
     return [
-      { label: "All tariffed", hs: byCode("T") },
-      { label: "All exempt", hs: byCode("E") },
-      { label: "All partially exempt", hs: byCode("P") },
+      { id: "tariffed", label: "All tariffed", hs: byCode("T") },
+      { id: "exempt", label: "All exempt", hs: byCode("E") },
+      { id: "partially_exempt", label: "All partially exempt", hs: byCode("P") },
     ].filter((q) => q.hs.length > 0)
   }, [plottable])
 
@@ -86,22 +119,13 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
     [plottable, selected],
   )
 
-  // Panels cover the years any plottable product has data for (last three),
-  // so they don't jump around as the selection changes. Rows are
-  // month -> { hs4: yoy } for the selected products only.
-  const years = useMemo(() => {
-    const ys = new Set<number>()
-    for (const s of series.values())
-      for (const pt of s) if (pt.cumYoy !== null) ys.add(parseInt(pt.date, 10))
-    return [...ys].sort().slice(-3)
-  }, [series])
-
-  const panels = useMemo(
+  // Rows are month -> { hs4: yoy } for the selected products only.
+  const panels = useMemo<Panel[]>(
     () =>
       years.map((year) => ({
         year,
         rows: MONTH_LABELS.map((month, m) => {
-          const row: Record<string, string | number | null> = { month }
+          const row: Row = { month }
           const date = `${year}-${String(m + 1).padStart(2, "0")}`
           for (const p of active) {
             row[p.hs] = series.get(p.hs)?.find((pt) => pt.date === date)?.cumYoy ?? null
@@ -120,19 +144,8 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
     )
   }
 
-  // Shared y-domain across the panels so they compare at a glance. Tiny
-  // trade flows can swing thousands of percent; the axis follows the
-  // selection rather than clipping, so readers see what they picked.
-  const values = panels
-    .flatMap((p) => p.rows.flatMap((r) => active.map((a) => r[a.hs])))
-    .filter((v): v is number => typeof v === "number")
-  const pad = 5
-  const domain: [number, number] = values.length
-    ? [
-        Math.floor(Math.min(...values, 0) / pad) * pad - pad,
-        Math.ceil(Math.max(...values, 0) / pad) * pad + pad,
-      ]
-    : [-pad, pad]
+  const mainActive = active.filter((p) => !outliers.has(p.hs))
+  const outlierActive = active.filter((p) => outliers.has(p.hs))
 
   const toggle = (hs: string) =>
     setSelected((curr) =>
@@ -141,84 +154,38 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="text-sm text-muted-foreground">
-          Cumulative year-to-date vs a year earlier, %
-        </div>
-        <ProductPicker
-          products={plottable}
-          selected={selected}
-          onToggle={toggle}
-          onSetSelected={setSelected}
-          quickSelects={quickSelects}
-          tag={tariffCode}
-        />
-      </div>
-      <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {panels.map((panel) => (
-          <div key={panel.year} className="min-w-0">
-            <div className="mb-1 text-sm font-medium">{panel.year}</div>
-            <ChartContainer config={config} className="h-56 w-full">
-              <LineChart data={panel.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
-                <CartesianGrid vertical={false} stroke="var(--border)" />
-                <XAxis
-                  dataKey="month"
-                  tick={{ fontSize: 11, fill: "var(--foreground)" }}
-                  ticks={["Jan", "Apr", "Jul", "Oct"]}
-                  axisLine={{ stroke: "var(--foreground)" }}
-                  tickLine={false}
-                />
-                <YAxis
-                  domain={domain}
-                  tick={{ fontSize: 11, fill: "var(--foreground)" }}
-                  axisLine={false}
-                  tickLine={false}
-                  unit="%"
-                  width={48}
-                />
-                <ReferenceLine y={0} stroke="var(--cgd-teal-gray)" />
-                {TARIFF_EVENTS.filter((e) => e.month.startsWith(`${panel.year}-`)).map((e) => (
-                  <ReferenceLine
-                    key={e.month}
-                    x={MONTH_LABELS[parseInt(e.month.slice(5), 10) - 1]}
-                    stroke="var(--cgd-teal-gray)"
-                    strokeDasharray="10 4"
-                    label={{
-                      value: String(TARIFF_EVENTS.indexOf(e) + 1),
-                      position: "insideTopRight",
-                      fontSize: 10,
-                      fill: "var(--muted-foreground)",
-                    }}
-                  />
-                ))}
-                <ChartTooltip
-                  wrapperStyle={{ zIndex: 20 }}
-                  content={<TrimmedTooltip year={panel.year} config={config} />}
-                />
-                {active.map((p) => {
-                  const code = tariffCode(p)
-                  return (
-                    <Line
-                      key={p.hs}
-                      type="monotone"
-                      dataKey={p.hs}
-                      stroke={`var(--color-${p.hs})`}
-                      strokeWidth={2.5}
-                      strokeDasharray={code ? DASH[code] : undefined}
-                      // Small dots so a product with a single month of
-                      // history (a lone point) is still visible.
-                      dot={{ r: 2, strokeWidth: 0, fill: `var(--color-${p.hs})` }}
-                      activeDot={{ r: 4 }}
-                      connectNulls
-                      isAnimationActive={false}
-                    />
-                  )
-                })}
-              </LineChart>
-            </ChartContainer>
+      <ProductPicker
+        trackingPrefix="product_imports"
+        label="Cumulative year-to-date vs a year earlier, %"
+        products={plottable}
+        selected={selected}
+        onToggle={toggle}
+        onSetSelected={setSelected}
+        quickSelects={quickSelects}
+        tag={tariffCode}
+        mark={isOutlier}
+        markNote={OUTLIER_NOTE}
+      />
+      <PanelGrid
+        panels={panels}
+        lines={mainActive}
+        config={config}
+        heightClass={expanded ? "h-[min(45vh,520px)]" : "h-56"}
+      />
+      {outlierActive.length > 0 && (
+        <div className="space-y-2 border-t pt-4">
+          <div className="text-sm font-medium">
+            Products with cumulative changes greater than {OUTLIER_PCT}%*
           </div>
-        ))}
-      </div>
+          <p className="text-xs text-muted-foreground">{OUTLIER_NOTE}</p>
+          <PanelGrid
+            panels={panels}
+            lines={outlierActive}
+            config={config}
+            heightClass={expanded ? "h-[min(45vh,520px)]" : "h-56"}
+          />
+        </div>
+      )}
       <TariffEventKey />
       <LineLegend
         items={active.map((p) => {
@@ -234,6 +201,115 @@ export function ProductImportChart({ iso, products }: { iso: string; products: P
       <TariffLineKey />
     </div>
   )
+}
+
+// One row of year panels (months on x, % on y) for a set of products. The
+// main and >500% charts each get their own, with a y-domain shared across
+// the row's panels so years compare at a glance. The axis follows the
+// selection rather than clipping, so readers see what they picked.
+function PanelGrid({
+  panels,
+  lines,
+  config,
+  heightClass,
+}: {
+  panels: Panel[]
+  lines: Product[]
+  config: ChartConfig
+  heightClass: string
+}) {
+  const values = panels
+    .flatMap((p) => p.rows.flatMap((r) => lines.map((a) => r[a.hs])))
+    .filter((v): v is number => typeof v === "number")
+  const { domain, ticks } = yScale(values)
+
+  return (
+    <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {panels.map((panel) => (
+        <div key={panel.year} className="min-w-0">
+          <div className="mb-1 text-sm font-medium">{panel.year}</div>
+          <ChartContainer config={config} className={`${heightClass} w-full`}>
+            <LineChart data={panel.rows} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
+              <CartesianGrid vertical={false} stroke="var(--border)" />
+              <XAxis
+                dataKey="month"
+                tick={{ fontSize: 11, fill: "var(--foreground)" }}
+                ticks={["Jan", "Apr", "Jul", "Oct"]}
+                axisLine={{ stroke: "var(--foreground)" }}
+                tickLine={false}
+              />
+              <YAxis
+                domain={domain}
+                ticks={ticks}
+                tick={{ fontSize: 11, fill: "var(--foreground)" }}
+                axisLine={false}
+                tickLine={false}
+                unit="%"
+                width={48}
+              />
+              <ReferenceLine y={0} stroke="var(--cgd-teal-gray)" />
+              {TARIFF_EVENTS.filter((e) => e.month.startsWith(`${panel.year}-`)).map((e) => (
+                <ReferenceLine
+                  key={e.month}
+                  x={MONTH_LABELS[parseInt(e.month.slice(5), 10) - 1]}
+                  stroke="var(--cgd-teal-gray)"
+                  strokeDasharray="10 4"
+                  label={{
+                    value: String(TARIFF_EVENTS.indexOf(e) + 1),
+                    position: "insideTopRight",
+                    fontSize: 10,
+                    fill: "var(--muted-foreground)",
+                  }}
+                />
+              ))}
+              <ChartTooltip
+                wrapperStyle={{ zIndex: 20 }}
+                content={<TrimmedTooltip year={panel.year} config={config} />}
+              />
+              {lines.map((p) => {
+                const code = tariffCode(p)
+                return (
+                  <Line
+                    key={p.hs}
+                    type="monotone"
+                    dataKey={p.hs}
+                    stroke={`var(--color-${p.hs})`}
+                    strokeWidth={2.5}
+                    strokeDasharray={code ? DASH[code] : undefined}
+                    // Small dots so a product with a single month of
+                    // history (a lone point) is still visible.
+                    dot={{ r: 2, strokeWidth: 0, fill: `var(--color-${p.hs})` }}
+                    activeDot={{ r: 4 }}
+                    connectNulls
+                    isAnimationActive={false}
+                  />
+                )
+              })}
+            </LineChart>
+          </ChartContainer>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Y-axis on round steps (1/2/2.5/5 × 10^k, about four intervals) so the
+// >500% chart reads 0%, 2000%, 4000% rather than 1415%, 2915%. A % change
+// can't fall below −100%, so the floor stops there instead of a whole step
+// down; its tick is dropped when it would crowd the 0% label.
+function yScale(values: number[]): { domain: [number, number]; ticks: number[] } {
+  if (values.length === 0) return { domain: [-5, 5], ticks: [-5, 0, 5] }
+  const min = Math.min(...values, 0)
+  const max = Math.max(...values, 0)
+  const raw = Math.max((max - min) / 4, 1)
+  const mag = 10 ** Math.floor(Math.log10(raw))
+  const step = ([1, 2, 2.5, 5, 10].find((m) => m * mag >= raw) ?? 10) * mag
+  const lo = Math.max(Math.floor(min / step) * step, min >= -100 ? -100 : -Infinity)
+  const hi = Math.ceil(max / step) * step || step
+  const ticks: number[] = []
+  for (let t = Math.ceil(lo / step) * step; t <= hi; t += step) ticks.push(t + 0) // + 0 turns −0 into 0
+  if (lo < ticks[0] && ticks[0] - lo > step / 4) ticks.unshift(lo)
+  return { domain: [lo === 0 ? -step / 4 : lo, hi], ticks }
 }
 
 // Same treatment as the price chart: readers can select every product at

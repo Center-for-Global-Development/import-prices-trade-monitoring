@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { COUNTRIES, countLabel } from "@/data/tracker"
 import { WorldMap } from "@/components/WorldMap"
+import { trackEngagement } from "@/lib/tracking"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import {
   Command,
@@ -20,13 +21,12 @@ export function Home() {
         <CardTitle>Country</CardTitle>
         <CardDescription>
           {COUNTRIES.length} countries with at least one product sending ≥10%
-          of its estimated exports to the US. Click the map (zoom in for
-          smaller countries) or search the list — the smallest territories
-          only appear in the list.
+          of its estimated exports to the US. Search the list or click the
+          map (zoom in for smaller countries) — the smallest territories only
+          appear in the list.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <WorldMap />
         <Command className="rounded-md border">
           <CommandInput placeholder="Search countries..." />
           <CommandList className="max-h-96">
@@ -35,7 +35,10 @@ export function Home() {
               <CommandItem
                 key={c.iso}
                 value={c.name}
-                onSelect={() => navigate(`/country/${c.iso}`)}
+                onSelect={() => {
+                  trackEngagement("navigate", "country_list", c.iso)
+                  navigate(`/country/${c.iso}`)
+                }}
                 className="flex flex-wrap justify-between gap-x-3 gap-y-1"
               >
                 <span>{c.name}</span>
@@ -48,6 +51,7 @@ export function Home() {
             ))}
           </CommandList>
         </Command>
+        <WorldMap />
       </CardContent>
     </Card>
   )

@@ -19,6 +19,8 @@ import { ProductPicker } from "@/components/ProductPicker"
 import { LineLegend } from "@/components/LineLegend"
 import { DASH } from "@/lib/tariffDash"
 import { useSeriesColors } from "@/lib/seriesColors"
+import { useChartExpanded } from "@/lib/chartExpanded"
+import { Term } from "@/components/Term"
 
 
 export function PriceTrendsChart({ products }: { products: Product[] }) {
@@ -32,6 +34,7 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
   const [selected, setSelected] = useState<string[]>(() =>
     plottable.slice(0, 3).map((p) => p.hs),
   )
+  const expanded = useChartExpanded()
 
   const colors = useSeriesColors(selected)
   const config = useMemo<ChartConfig>(() => {
@@ -52,9 +55,9 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
     const byCode = (code: TariffCode) =>
       plottable.filter((p) => tariffCode(p) === code).map((p) => p.hs)
     return [
-      { label: "All tariffed", hs: byCode("T") },
-      { label: "All exempt", hs: byCode("E") },
-      { label: "All partially exempt", hs: byCode("P") },
+      { id: "tariffed", label: "All tariffed", hs: byCode("T") },
+      { id: "exempt", label: "All exempt", hs: byCode("E") },
+      { id: "partially_exempt", label: "All partially exempt", hs: byCode("P") },
     ].filter((q) => q.hs.length > 0)
   }, [plottable])
 
@@ -96,20 +99,17 @@ export function PriceTrendsChart({ products }: { products: Product[] }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="text-sm text-muted-foreground">
-          Indexed to {BASE_LABEL}
-        </div>
-        <ProductPicker
-          products={plottable}
-          selected={selected}
-          onToggle={toggle}
-          onSetSelected={setSelected}
-          quickSelects={quickSelects}
-          tag={tariffCode}
-        />
-      </div>
-      <ChartContainer config={config} className="h-80 w-full">
+      <ProductPicker
+        trackingPrefix="price_trends"
+        label={<>Indexed to {BASE_LABEL}</>}
+        products={plottable}
+        selected={selected}
+        onToggle={toggle}
+        onSetSelected={setSelected}
+        quickSelects={quickSelects}
+        tag={tariffCode}
+      />
+      <ChartContainer config={config} className={`${expanded ? "h-[min(65vh,720px)]" : "h-80"} w-full`}>
         <LineChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
           {/* CGD chart furniture: solid light-gray horizontal grid only,
               teal-black axis text, teal-gray separators/indicators. */}
@@ -237,15 +237,15 @@ export function TariffLineKey() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t pt-3 text-xs text-muted-foreground">
       <span className="font-medium">Tariff status:</span>
       <span className="flex items-center gap-1.5">
-        {sample()} <span className="font-mono">T</span> tariffed
+        {sample()} <span className="font-mono">T</span> <Term id="tariffed">tariffed</Term>
       </span>
       <span className="flex items-center gap-1.5">
-        {sample(DASH.E)} <span className="font-mono">E</span> exempt
+        {sample(DASH.E)} <span className="font-mono">E</span> <Term id="exempt">exempt</Term>
       </span>
       <span className="flex items-center gap-1.5">
-        {sample(DASH.P)} <span className="font-mono">P</span> partially exempt
+        {sample(DASH.P)} <span className="font-mono">P</span>{" "}
+        <Term id="partial">partially exempt</Term>
       </span>
-      <span>Share of the HS4's US import value exempt under Executive Orders.</span>
     </div>
   )
 }

@@ -1,122 +1,219 @@
 # US Import Price and Value Tracker
 
-A dashboard monitoring how US tariff policy is playing out in import prices and
-trade flows, built for the Center for Global Development (working name in the
-researcher's docs: "CGD Trade Tracker"). The approach follows Alberto Cavallo's
-work on tariff incidence: tariffs are paid at the border by US importers, so
-whether *border prices* of tariffed goods fall (exporters absorbing the cost)
-or hold steady (US importers/consumers paying) is the story. The tracker puts
-the ingredients of that comparison on screen for ~220 exporting countries.
+A Center for Global Development (CGD) interactive that tracks how US tariffs
+are showing up in import prices and trade flows, country by country.
 
-**Status: exploratory.** Data is loaded from one-time researcher deliverables
-plus ad-hoc API pulls — there is no automated refresh pipeline yet, by design.
+The idea comes from Alberto Cavallo's work on tariff incidence. US importers
+pay tariffs at the border. If the *border price* of a tariffed good falls, the
+exporter is absorbing the tariff. If it holds steady, US importers and
+consumers are paying. For each exporting country, the tracker shows the
+evidence needed for that comparison. It is a monitoring tool, not a causal
+estimate: prices also move with exchange rates, commodity prices and demand.
 
-## What it shows
+- **Research owners:** the CGD research team (research lead plus RA). They own
+  the methodology, the data, and the policy dates shown on the charts.
+- **Hosting:** a static site on Cloudflare Workers, embedded on cgdev.org in an
+  iframe (see [Embedding on cgdev.org](#embedding-on-cgdevorg)).
+- **Stack:** Vite, React 19, TypeScript, Tailwind 4, shadcn/ui (Radix), Recharts,
+  React Router. There is no backend: all data is built into static JSON at
+  build time.
 
-Pick a country on the home page; its dashboard has three cards:
+## What the site shows
 
-1. **Tracked products** — the country's HS4 products that (a) sent ≥10% of
-   their exports to the US in 2024 and (b) have a BLS import price index.
-   Columns: export share to the US, tariff status under the Annex II exemption
-   lists, cumulative price change since March 2025, and US-bound export value.
-   Grouped by HS2 chapter, collapsed to 20 rows by default.
-2. **Price trends** — BLS import price indices for those products, monthly
-   since Jan 2023, indexed to **March 2025 = 100**, multi-select to compare.
-3. **Import value** — year-over-year change in monthly total US goods imports
-   from the country, as small multiples (one panel per year, 2024–2026, shared
-   y-scale). Tariff announcement dates are marked on both chart types — the
-   "frontloading" surges ahead of announcements are usually visible.
+**Home (`/`)** has a searchable list of countries and a clickable world map.
+The smallest territories appear only in the list.
 
-## Methodology (short version)
+**Country page (`/country/:iso`)**, from top to bottom:
 
-Follows the researcher's write-up in `researcher data/Text for Website.docx`:
+| Section | What it shows | Source |
+|---|---|---|
+| Summary tiles | US imports from the country (YTD), counts of tariffed / partially exempt / exempt qualifying products, and the latest cumulative-YTD import change | `country_summary` rows |
+| Price trends | BLS import price index lines for the country's tracked products, March 2025 = 100. Multi-select, with quick-selects by tariff status | `PRICE_DATA.csv` |
+| Import value | Cumulative-YTD year-over-year change in all US goods imports from the country, one panel per year | `country_month` rows |
+| Import value by product | The same measure for each tracked product, with the same picker as the price chart. Products above 500% get a separate chart so they don't flatten the main one | `country_product_month` rows |
+| Tracked products | A sortable, searchable table with US export share, tariff status, average tariff rate and YTD imports, grouped by HS2 chapter | `country_product` rows |
 
-- **Product selection**: country×HS4 pairs where exports to the US ≥10% of the
-  country's world exports of that product (OEC bilateral data, 2024).
-- **Prices**: BLS Import Price Indexes by HS4. These cover *all* US imports of
-  a product, not imports from one origin country — a given HS4 shows the same
-  price line on every country's page (the UI says so).
-- **Import values**: US Census monthly bilateral totals, shown as simple
-  monthly YoY (each month vs the same month a year earlier — not cumulative).
-- **Tariff status**: Annex II exemptions are defined at HS8; the import-value-
-  weighted share of each HS4 that is exempt gives a continuous "exempt share"
-  (0% = tariffed, 100% = exempt, in between = partial).
-- The tracker is a **monitoring tool, not a causal estimate** — prices also
-  move with exchange rates, commodity prices, and demand.
+Tariff-policy dates (`src/data/events.ts`) appear as dashed vertical lines on
+every chart.
 
-## Data flow
+## Methodology
+
+The researchers do all the analysis upstream in their R workflow. The site
+only reshapes and displays their numbers and does no statistical work of its
+own. Today the methodology is:
+
+- **Qualifying product:** an HS4 product for which ≥10% of the country's
+  exports go to the US (OEC bilateral data, 2024).
+- **Tracked product:** a qualifying product that also has a BLS import price
+  index. Only tracked products appear in the charts and table. The summary
+  tiles count all qualifying products.
+- **Prices:** BLS import price indexes by HS4, rebased to March 2025 = 100.
+  They cover **all** US imports of the product, not just imports from one
+  country, so a given HS4 shows the same line on every country's page.
+- **Import values:** US Census data, shown as cumulative year-to-date change
+  (Jan..M this year vs Jan..M last year), precomputed by the researchers.
+- **Tariff status:** the import-value-weighted share of the HS4 exempt under
+  the Executive Orders. 0% is *tariffed*, 100% is *exempt*, and anything in
+  between is *partially exempt*. Reader-facing definitions are in
+  `src/data/glossary.ts`.
+
+The share year, the 10% threshold and the March 2025 base are constants at
+the top of `scripts/build_app_data.mjs`. Change them only when the researchers
+change the methodology.
+
+## Updating the data
+
+This is the most common maintenance task. The researchers deliver two CSVs.
+Column-by-column documentation is in [`data/README.md`](data/README.md).
+
+1. Replace `data/PRICE_DATA.csv` and `data/COUNTRY_PRODUCT_DATA.csv`, keeping
+   the same file names.
+2. Run `npm run data` and **read the output.** The converter stops with an
+   error on structural problems: missing columns, duplicate keys, HS codes
+   that lost their leading zeros, or a product with no price series. It
+   prints warnings for softer inconsistencies to send back to the RA, such as
+   counts that don't add up or labels that disagree with the numbers. A
+   normal run ends with a summary line like
+   `176 price series through 2026-07; 217 countries (210 with tracked products) …`.
+3. Diff the input CSVs against the previous drop, even if the researchers
+   didn't mention any changes. Past drops have renamed columns and reworked
+   the tariff classification without notice. Check that the site's wording
+   still matches what the numbers mean.
+4. Run `npm run dev` and spot-check a few countries (for example, a large
+   country like Mexico and a small one).
+5. Commit the new CSVs together with the regenerated `src/data/prices.json`,
+   then deploy.
+
+Period labels such as "Jan–Jul 2026" and "through Jul 2026" come from the data,
+so a routine drop needs no component edits. If the researchers add a column or
+`record_type`, update the converter first, then `src/data/tracker.ts`.
+
+## How the code fits together
 
 ```
-researcher data/                      one-time researcher deliverables (gitignored)
-├── bls_indexed_mar2025.csv     ──┐
-├── product_us_share.csv        ──┼─▶  scripts/build_app_data.py  ─▶  src/data/{bls_series,
-├── exemptions_annex_ii_list.xlsx ─┘                                  products_by_country,
-└── Text for Website.docx  (methodology; not parsed)                  exempt_share}.json
+data/PRICE_DATA.csv ───────────┐
+data/COUNTRY_PRODUCT_DATA.csv ─┴─▶ scripts/build_app_data.mjs ─▶ src/data/
+                                   (npm run data; also runs        ├─ directory.json   all countries' summaries (loaded on the home page)
+                                    before dev and build)          ├─ details/ISO.json one file per country, fetched when its page opens
+                                                                   └─ prices.json      shared BLS series, fetched once
 
-US Census Intl Trade API  ─▶  scripts/fetch_import_values.py  ─▶  src/data/import_values.json
-                              (needs reference/census_apikey.txt)
+src/data/tracker.ts   the only module that reads the JSON; exposes types,
+                      loaders and period labels to the components
 ```
 
-- `src/data/tracker.ts` is the app's only data layer; everything reads through it.
-- `src/data/events.ts` — hand-maintained list of tariff-policy dates rendered
-  as chart markers. **Placeholder** — the researcher owns the canonical dates.
-- `scripts/` and `researcher data/` are deliberately gitignored until the
-  pipeline stabilizes; the generated `src/data/*.json` files are committed, so
-  the app builds without either.
-- Legacy: `scripts/fetch_tracker_data.R` (BLS/Census/Comtrade pull for the
-  original 10-country pilot) still works but nothing reads its output anymore.
-  See `scripts/README.md` for details.
+`directory.json` and `details/` are gitignored because they are rebuilt on
+every dev or build run. Vite fingerprints every data file
+(`assetsInlineLimit: 0`), so a new data deploy never mixes with cached old
+data. Always deploy a complete `dist/`.
 
-## Current data updates and loading
+### Where things live
 
-Replace the two canonical researcher files in `data/` (`PRICE_DATA.csv` and
-`COUNTRY_PRODUCT_DATA.csv`) and run `npm run build`. The Node pipeline validates
-and regenerates the directory, shared prices, and individual country payloads.
-The homepage loads summaries; country details and chart code load on demand.
-Vite fingerprints each data asset to prevent reuse of stale data after updates.
-Deploy the complete `dist/` build together. See [scripts/README.md](scripts/README.md)
-for the current pipeline; the earlier data-flow notes above describe the legacy setup.
+| Path | Purpose |
+|---|---|
+| `src/pages/Home.tsx`, `src/pages/CountryPage.tsx` | The two routes. The country page is lazy-loaded |
+| `src/components/ChartCard.tsx` | Card with the expand/full-screen button used by every chart |
+| `src/components/PriceTrendsChart.tsx`, `ImportValueChart.tsx`, `ProductImportChart.tsx` | The three chart types |
+| `src/components/ProductPicker.tsx` | Shared product picker for the multi-select charts |
+| `src/components/TopProductsTable.tsx` | Tracked products table (search, status filter, sorting, HS2 grouping) |
+| `src/components/Term.tsx` + `src/data/glossary.ts` | Dotted-underline jargon terms with definition popovers |
+| `src/components/SectionNav.tsx` | "Jump to" links on the country page |
+| `src/components/WorldMap.tsx` + `src/data/world_map.json` | Home page map. Geometry is precomputed by `scripts/build_world_map.mjs` (see [`scripts/README.md`](scripts/README.md)) |
+| `src/data/events.ts` | Tariff-policy dates drawn on the charts. Hand-maintained, and the researchers confirm each entry |
+| `src/lib/tariffDash.ts` | Line dash per tariff status (T solid, E dashed, P dotted) |
+| `src/lib/seriesColors.ts` | Stable colors for selected chart series |
+| `src/index.css` | CGD brand tokens (`--cgd-*`), status colors, light and dark themes |
+| `src/components/ui/` | shadcn/ui primitives. Edit them sparingly |
+| `src/lib/tracking.ts` + `TRACKING.md` | Analytics events (see below) |
 
-## Running it
+## Embedding on cgdev.org
+
+The site runs inside an iframe on cgdev.org, and several features exist only
+because of that. Test changes inside the embed, not just standalone.
+
+- **Height:** an inline script in `index.html` posts the page's height to
+  `https://www.cgdev.org` (`cgd-iframe-resize`, per the CGD Interactive
+  Coding Standard). The iframe is as tall as the page and never scrolls
+  itself.
+- **So:** `#hash` links do nothing, which is why `SectionNav` uses
+  `scrollIntoView`. A `position: fixed` overlay would be as tall as the whole
+  page, and popovers near the bottom of the page get clipped. That is why the
+  product picker opens inline and the definition popovers stay small.
+- **Full screen:** the iframe doesn't grant `allow="fullscreen"`, and iPhone
+  Safari doesn't support the Fullscreen API on elements, so `ChartCard`
+  makes the chart taller in place instead. Expanded charts size themselves as
+  `min(vh, px)` because inside the iframe `vh` is the whole page height.
+- **Analytics:** the iframe has no GA tag. `src/lib/tracking.ts` posts
+  events to the cgdev.org parent page, and GTM there forwards them to GA4,
+  per the CGD Interactive Analytics Tracking Standard. The parent's GTM
+  listener only accepts messages from known hosting domains (including
+  `*.workers.dev`), so moving the site to a custom domain means updating that
+  allowlist. [`TRACKING.md`](TRACKING.md) lists every event. Any PR that adds,
+  removes or renames a tracked control must update it.
+- **Fonts:** Sofia Pro comes from CGD's Adobe Fonts kit, and Bitter from
+  Google Fonts. If the kit is ever restricted to certain domains, text falls
+  back to the system sans.
+
+## Conventions
+
+- **"US", never "U.S."** in site copy (CGD house style), except in direct
+  quotes. This applies to copy the researchers send, too.
+- Tariff status is labeled with words or the letters T/E/P, never color
+  alone. Color and dash pattern only reinforce the label.
+- Mark only the first use of a jargon term in each section with `<Term>`.
+- Show missing values as "n/a".
+- Write comments to explain *why* (researcher requests, iframe constraints),
+  not what the code does.
+
+## Running and deploying
 
 ```bash
 npm install
-npm run dev        # local dev server
-npm run build      # tsc + vite build to dist/
-npm run deploy     # build + wrangler deploy (Cloudflare Workers)
+npm run dev          # regenerate data, start the dev server
+npm run build        # regenerate data, type-check, build dist/
+npm run lint
+npm run preview      # serve the built dist/ locally
+npm run cf:preview   # build and run under wrangler (Workers runtime)
+npm run deploy       # build and wrangler deploy to Cloudflare
 ```
 
-Regenerating data (only needed when inputs change):
+Deploying needs Cloudflare access to the CGD account (`wrangler login`).
+`wrangler.jsonc` serves `dist/` as a single-page app, so `/country/XXX`
+falls back to `index.html`.
 
-```bash
-npm run data  # canonical researcher CSVs -> all app JSON
-```
+## Known data caveats
 
-Stack: Vite + React + TypeScript, Tailwind, shadcn/ui, Recharts.
+- 217 countries are shown. The converter drops 12 territories with no
+  qualifying products. Seven countries have qualifying products but none with
+  a BLS index, so their pages have an empty table and no product charts.
+- 844 tracked products have no monthly import series because there were no
+  imports in the year-earlier months to compare against. They don't appear in
+  the "Import value by product" picker.
+- Small product flows can swing by thousands of percent. That is why the
+  >500% chart exists and why its note explains base effects.
+- HS4 8708 has different names in the two CSVs. The converter uses the
+  country file's name.
+- The converter derives the partially exempt count as qualifying − tariffed −
+  exempt. This assumes every qualifying product has an exemption share.
 
-## Known caveats
+## Open questions with the researchers
 
-- BLS covers 183 HS4 products; qualifying products without an index are
-  filtered out of the UI (the data files keep them, so a toggle is cheap).
-- Six countries have zero priced products (North Korea, Sudan, South Sudan,
-  Tokelau, Saint Pierre and Miquelon, Wallis and Futuna); their pages show
-  only the import-value chart.
-- Saint Martin has no Census import series (Census doesn't split the French
-  side of the island). Palestine is the sum of Census's Gaza Strip + West Bank.
-- The exemptions workbook is a snapshot — no per-product tariff start/stop
-  dates yet, so tariff status is "as of the latest Annex II list".
-- The ~1MB products JSON compiles into the JS bundle (~530KB gzipped total).
-  Fine for now; lazy-load it if that changes.
+- **Tariff classification:** the September 2026 drop changed many exempt
+  shares, and the status now varies by country for the same HS4. Confirm that
+  "exempt under Executive Orders" is still the right description.
+- **Headline import figure:** `us_imports_2026` is read as year-to-date.
+  Confirm that's the definition.
+- **Not built yet, waiting on researcher input:** a price-change comparison to
+  replace the dropped "price change since March 2025" table column (the field
+  is still in the data as `priceChangePct`), the aggregate exempt-vs-tariffed
+  price comparison, per-product tariff start/stop dates, and a designed
+  tariff-status key (a placeholder ships today).
 
-## Open items (waiting on researcher input)
+## Not in the repo
 
-- Canonical list of tariff moments for `events.ts` (incl. what "July 24" is).
-- Per-product import *value* change column (needs a Census country×HS4 pull).
-- The "compare vs China" price inset — not buildable from current data since
-  BLS indices aren't by origin country; needs either a basket-weighted
-  reframing or a China-specific price source.
-- Per-product tariff start/stop dates for on-chart dots/dashed segments.
-- Tariff-status key design (placeholder key ships under the products table).
-- Exempt-vs-tariffed aggregate price comparison ("headline chart") — sketched,
-  parked until the researcher weighs in on weighting (the exempt bucket is
-  dominated by oil and pharma).
+These are gitignored and kept only on the maintainer's machine:
+
+- `researcher data/`: email attachments, the methodology doc
+  (`Text for Website.docx`) and earlier data drops
+- `reference/`: proposal docs and old API keys
+- `scripts/*` other than the two `.mjs` scripts and the README: earlier
+  Python and R pipelines that the app no longer uses
