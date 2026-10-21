@@ -66,6 +66,9 @@ const SHARE_BASIS = "2024" // OEC bilateral trade, calendar 2024
 const SHARE_THRESHOLD = 0.1 // ≥10% of the country's exports of the HS4 go to the U.S.
 const BASE_LABEL = "March 2025 = 100"
 const BASE_MONTH = "2025-03"
+// BLS publishes a month ahead of Census. The RA asked (Oct 2026) to show
+// prices only through the latest Census month so the two stay aligned.
+const ALIGN_PRICES_WITH_IMPORTS = true
 
 // ---------------------------------------------------------------- helpers
 
@@ -305,6 +308,23 @@ for (const [hs4, s] of Object.entries(series)) {
   if (hs4Names[hs4] !== s.name) warn(`hs4 ${hs4} named "${hs4Names[hs4]}" in COUNTRY_PRODUCT_DATA but "${s.name}" in PRICE_DATA (using the former)`)
 }
 
+// Trim prices to the import months. The file's price changes were checked
+// against the full series above; the carried values move to the new last month.
+let pricesTrimmedFrom = null
+if (ALIGN_PRICES_WITH_IMPORTS && importsYtdThrough && importsYtdThrough < priceThrough) {
+  pricesTrimmedFrom = priceThrough
+  priceThrough = importsYtdThrough
+  for (const s of Object.values(series)) s.points = s.points.filter((p) => p[0] <= priceThrough)
+  for (const c of Object.values(countries)) {
+    for (const p of c.products.values()) {
+      if (!p[4] || p[4] <= priceThrough) continue
+      const last = series[p[0]].points.at(-1)
+      p[4] = last[0]
+      p[5] = round(last[1] - 100, 2)
+    }
+  }
+}
+
 // Headline import total: a full calendar year when the column's year is
 // before the data's latest month, otherwise Jan..latest month of that year.
 let latestPeriod = ""
@@ -416,6 +436,7 @@ console.log(
   `${nProducts} country-products with ${nProductMonths} product-months; imports YTD through ${importsYtdThrough}; ` +
   `headline imports ${usImportsPeriod.through ? `Jan..${usImportsPeriod.through}` : usImportsPeriod.year}`,
 )
+if (pricesTrimmedFrom) console.log(`  prices trimmed from ${pricesTrimmedFrom} to ${priceThrough} to match the import data (ALIGN_PRICES_WITH_IMPORTS)`)
 if (dropped.length) console.log(`  dropped ${dropped.length} countries with no qualifying products: ${dropped.join(" ")}`)
 if (warnings.length) {
   console.log(`  ${warnings.length} warning(s):`)

@@ -10,6 +10,8 @@ consumers are paying. For each exporting country, the tracker shows the
 evidence needed for that comparison. It is a monitoring tool, not a causal
 estimate: prices also move with exchange rates, commodity prices and demand.
 
+- **Live:** [cgdev.org/media/import-price-trade-flow-monitor](https://www.cgdev.org/media/import-price-trade-flow-monitor),
+  launched in early October 2026.
 - **Research owners:** the CGD research team (research lead plus RA). They own
   the methodology, the data, and the policy dates shown on the charts.
 - **Hosting:** a static site on Cloudflare Workers, embedded on cgdev.org in an
@@ -60,6 +62,11 @@ own. Today the methodology is:
 The share year, the 10% threshold and the March 2025 base are constants at
 the top of `scripts/build_app_data.mjs`. Change them only when the researchers
 change the methodology.
+
+BLS publishes a month ahead of Census. At the researchers' request, the site
+shows prices only through the latest Census month. The converter trims the
+price series to match (`ALIGN_PRICES_WITH_IMPORTS`, on by default), so the RA
+can send the full BLS file.
 
 ## Updating the data
 
@@ -127,7 +134,9 @@ data. Always deploy a complete `dist/`.
 
 ## Embedding on cgdev.org
 
-The site runs inside an iframe on cgdev.org, and several features exist only
+The site runs inside an iframe on
+[cgdev.org/media/import-price-trade-flow-monitor](https://www.cgdev.org/media/import-price-trade-flow-monitor),
+and several features exist only
 because of that. Test changes inside the embed, not just standalone.
 
 - **Height:** an inline script in `index.html` posts the page's height to
