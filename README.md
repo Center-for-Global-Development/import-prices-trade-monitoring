@@ -61,6 +61,11 @@ The share year, the 10% threshold and the March 2025 base are constants at
 the top of `scripts/build_app_data.mjs`. Change them only when the researchers
 change the methodology.
 
+BLS publishes a month ahead of Census. At the researchers' request, the site
+shows prices only through the latest Census month. The converter trims the
+price series to match (`ALIGN_PRICES_WITH_IMPORTS`, on by default), so the RA
+can send the full BLS file.
+
 ## Updating the data
 
 This is the most common maintenance task. The researchers deliver two CSVs.

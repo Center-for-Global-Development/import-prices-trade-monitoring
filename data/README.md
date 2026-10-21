@@ -19,6 +19,9 @@ One row per HS4 × month. Each row is the BLS import price index for **all**
 US imports of that HS4, rebased so **March 2025 = 100**. BLS doesn't publish
 these indexes by origin country.
 
+The file can run a month past the Census data. The converter drops those
+months so prices and imports end in the same month.
+
 | column | notes |
 |---|---|
 | `date` | first of the month, `YYYY-MM-DD` |
