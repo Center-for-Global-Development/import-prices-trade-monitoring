@@ -10,6 +10,8 @@ consumers are paying. For each exporting country, the tracker shows the
 evidence needed for that comparison. It is a monitoring tool, not a causal
 estimate: prices also move with exchange rates, commodity prices and demand.
 
+- **Live:** [cgdev.org/media/import-price-trade-flow-monitor](https://www.cgdev.org/media/import-price-trade-flow-monitor),
+  launched in early October 2026.
 - **Research owners:** the CGD research team (research lead plus RA). They own
   the methodology, the data, and the policy dates shown on the charts.
 - **Hosting:** a static site on Cloudflare Workers, embedded on cgdev.org in an
@@ -132,7 +134,9 @@ data. Always deploy a complete `dist/`.
 
 ## Embedding on cgdev.org
 
-The site runs inside an iframe on cgdev.org, and several features exist only
+The site runs inside an iframe on
+[cgdev.org/media/import-price-trade-flow-monitor](https://www.cgdev.org/media/import-price-trade-flow-monitor),
+and several features exist only
 because of that. Test changes inside the embed, not just standalone.
 
 - **Height:** an inline script in `index.html` posts the page's height to
