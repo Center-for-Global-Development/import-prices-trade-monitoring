@@ -90,6 +90,18 @@ Column-by-column documentation is in [`data/README.md`](data/README.md).
    country like Mexico and a small one).
 5. Commit the new CSVs together with the regenerated `src/data/prices.json`,
    then deploy.
+6. Once the drop is merged to `main`, tag the merge commit and publish a GitHub
+   Release named for the latest month of import data, for example
+   `data-2026-08`. Put the PR's summary of what changed in the release notes.
+   Only data drops get tags, so the
+   [Releases page](https://github.com/Center-for-Global-Development/import-prices-trade-monitoring/releases)
+   lists every data update the site has had, and
+   `git diff data-2026-07 data-2026-08 -- data/` shows exactly what changed
+   between two of them.
+
+   ```bash
+   gh release create data-2026-08 --target main --title "Data through August 2026" --notes "…"
+   ```
 
 Period labels such as "Jan–Jul 2026" and "through Jul 2026" come from the data,
 so a routine drop needs no component edits. If the researchers add a column or
